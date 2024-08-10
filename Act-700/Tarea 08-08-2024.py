@@ -1,0 +1,2 @@
+primes = 
+def decompose
