@@ -127,7 +127,7 @@ def binary_to_int(l):
     return N
 
 # Esta funcion calcula el periodo del multiplicative congruential (pseudorandom) generator de modulo m y
-# multiplicador b
+# multiplicador b. Si el multiplicador es un divisor de cero devuelve -1
 def multiplier_order(b,m):
     if b%m==1:
         return 1
