@@ -2,9 +2,9 @@
 from copy import copy
 
 # import list of primes as primes
-FILE_primes = open('primes.py','r')
-exec(FILE_primes.read())
-FILE_primes.close()
+# FILE_primes = open('primes.py','r')
+# exec(FILE_primes.read())
+# FILE_primes.close()
 
 # Esta funcion devuelve el indice del primer primo mayor a *primes[start_i]* que divide a *N*   
 def find_next_prime(N,start_i):
