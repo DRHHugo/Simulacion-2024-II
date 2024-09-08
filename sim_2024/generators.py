@@ -160,6 +160,11 @@ class polynomial_confruential_generator(_congruential_generator):
         _validate_mod(kwargs)
         _validate_seed(kwargs)
         _validate_poly_array(kwargs,exclude_last_zero=True if kwargs['seed']==0 else False)
+        if len(kwargs['mult'])==1:
+            raise ValueError('mult shuld be at least of size 2')
+        if len(kwargs['mult'])==2:
+            warn('since mult only have 2 integers you will get a linear congruential generator instead of a polynomial congruential generator',category=package_type_warning)
+            return linear_congruential_generator(mod=kwargs['mod'],mult=kwargs['mult'][1],cte=kwargs['mult'][0],seed=kwargs['seed'])
         return super().__new__(cls)
     def __init__(self,**kwargs):
         self._mod = kwargs['mod']
@@ -171,10 +176,53 @@ class polynomial_confruential_generator(_congruential_generator):
     def rand(self)->float:
         x = 0
         pow = 1
-        for k in range(len(self._mult)):
-            x = (x+pow*self._mult[k])%self._mod
-            pow = pow*self._state%self._mod
+        while x==0:
+            pow = 1
+            for k in range(len(self._mult)):
+                x = (x+pow*self._mult[k])%self._mod
+                pow = pow*self._state%self._mod
+            if x==0 and self._mult[0]==0:
+                raise package_generator_error(f'generator raise a dead end.')
         self._state = x
-        return self._state/self._mod
+        return self._state/self._mod        
+    def sample(self,size:int=1)->list[float]:
+        return [self.rand for _ in range(size)]
+
+class multiple_congruential_generator(_congruential_generator):
+    """"""
+    _sub_type = ''
+    def __new__(cls,**kwargs):
+        pass
+    def __init__(self,**kwargs):
+        pass
+    @property
+    def rand(self):
+        pass
+    def sample(self,size:int=1)->list[float]:
+        pass
+
+class combined_congruential_generator(_congruential_generator):
+    """"""
+    _sub_type = ''
+    def __new__(cls,**kwargs):
+        pass
+    def __init__(self,**kwargs):
+        pass
+    @property
+    def rand(self):
+        pass
+    def sample(self,size:int=1)->list[float]:
+        pass
+
+class multcombi_congruential_generator(_congruential_generator):
+    """"""
+    _sub_type = ''
+    def __new__(cls,**kwargs):
+        pass
+    def __init__(self,**kwargs):
+        pass
+    @property
+    def rand(self):
+        pass
     def sample(self,size:int=1)->list[float]:
         pass
