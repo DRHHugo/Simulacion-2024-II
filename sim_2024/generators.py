@@ -106,11 +106,10 @@ class linear_congruential_generator(_congruential_generator):
             warn('since cte=0 you will get a multiplicative congruential generator instead of a linear congruential generator',category=package_type_warning)
             return multiplicative_congruential_generator(mod=kwargs['mod'],mult=kwargs['mult'],seed=kwargs['seed'])
     def __init__(self,**kwargs):
-        if type(self!='linear_congruential_generator'):
-            self._mod = kwargs['mod']
-            self._mult = kwargs['mult']%self._mod
-            self._cte = kwargs['cte']%self._mod
-            self._state = kwargs['seed']%self._mod
+        self._mod = kwargs['mod']
+        self._mult = kwargs['mult']%self._mod
+        self._cte = kwargs['cte']%self._mod
+        self._state = kwargs['seed']%self._mod
     @property
     def rand(self)->float:
         self._state = (self._mult*self._state + self._cte)%self._mod
