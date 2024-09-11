@@ -1,0 +1,15 @@
+---
+title: sim_2024_doc
+jupyter: python3
+---
+
+```{python}
+#| include: false
+import pandas as pd
+pd.options.display.max_rows = 25
+```
+
+The pins package helps you publish data sets, models, and other Python objects, making it easy to share them across projects and with your colleagues.
+You can pin objects to a variety of "boards", including local folders (to share on a networked drive or with DropBox), Posit Connect, Amazon S3,
+Google Cloud Storage, Azure, and more.
+This vignette will introduce you to the basics of pins.
