@@ -1,6 +1,14 @@
-from sim_2024 import *
+from __init__ import *
 
 def _validate_mod(kwargs:dict)->bool:
+    """
+    Args:
+        kwargs (dict): Description of arg1
+
+    Returns:
+        bool: True if kwargs['mod'] is a positive integer
+
+    """
     if not 'mod' in kwargs.keys():
         raise KeyError('mod not found during inicialization. You should use mod=value.')
     if type(kwargs['mod'])!=int:
@@ -225,3 +233,9 @@ class multcombi_congruential_generator(_congruential_generator):
         pass
     def sample(self,size:int=1)->list[float]:
         pass
+
+__all__=[
+    'multiplicative_congruential_generator',
+    'linear_congruential_generator',
+    'quadratic_congrential_generator',
+    'multiple_congruential_generator']

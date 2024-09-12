@@ -1,0 +1,10 @@
+# Function reference {.doc .doc-index}
+
+## PseudoRandom Congruential Generators (PRCG)
+
+.
+
+| | |
+| --- | --- |
+| [multiplicative_congruential_generator](multiplicative_congruential_generator.qmd#generators.multiplicative_congruential_generator) | class for congruential multiplicative pseudorandom generators |
+| [linear_congruential_generator](linear_congruential_generator.qmd#generators.linear_congruential_generator) | class for congruential linear pseudorandom generators |

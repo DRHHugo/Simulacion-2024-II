@@ -1,0 +1,5 @@
+# multiplicative_congruential_generator { #generators.multiplicative_congruential_generator }
+
+`multiplicative_congruential_generator(self, **kwargs)`
+
+class for congruential multiplicative pseudorandom generators

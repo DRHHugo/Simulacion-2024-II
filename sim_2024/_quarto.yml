@@ -2,22 +2,16 @@
 project:
   type: website
 
-# tell quarto to read the generated sidebar
-metadata-files:
-  - _sidebar.yml
-
 quartodoc:
   # the name used to import the package you want to create reference docs for
   package: generators
-
-  # write sidebar data to this file
-  sidebar: _sidebar.yml
+  parser: google
 
   sections:
-    - title: Some functions
-      desc: Functions to inspect docstrings.
+    - title: PseudoRandom Congruential Generators (PRCG)
+      desc: .
       contents:
         # the functions being documented in the package.
         # you can refer to anything: class methods, modules, etc..
-        - get_object
-        - preview
+        - multiplicative_congruential_generator
+        - linear_congruential_generator
