@@ -2,16 +2,27 @@
 project:
   type: website
 
+website:
+  repo-url: https://github.com/
+  page-navigation: true
+
 quartodoc:
+  # style of page
+  style: pkgdown
   # the name used to import the package you want to create reference docs for
   package: generators
+  # style of docstrings
   parser: google
 
   sections:
     - title: PseudoRandom Congruential Generators (PRCG)
-      desc: .
       contents:
         # the functions being documented in the package.
         # you can refer to anything: class methods, modules, etc..
         - multiplicative_congruential_generator
         - linear_congruential_generator
+
+format:
+  html:
+    theme:
+      - flatly

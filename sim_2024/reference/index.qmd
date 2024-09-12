@@ -2,8 +2,6 @@
 
 ## PseudoRandom Congruential Generators (PRCG)
 
-.
-
 | | |
 | --- | --- |
 | [multiplicative_congruential_generator](multiplicative_congruential_generator.qmd#generators.multiplicative_congruential_generator) | class for congruential multiplicative pseudorandom generators |

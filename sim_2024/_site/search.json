@@ -1,0 +1,9 @@
+[
+  {
+    "objectID": "sim_2024_doc.html",
+    "href": "sim_2024_doc.html",
+    "title": "Sim24 documentation",
+    "section": "",
+    "text": "Esta es la parte introductoria supongo\n\nRANDU = multiplicative_congruential_generator(mod=2**31,mult=65539,seed=14501)\n\nY no se que va aqui"
+  }
+]
