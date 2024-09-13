@@ -1,10 +1,10 @@
-from os import getcwd,chdir
-direc_list = getcwd().split('\\')
-direc_list.pop()
-chdir('\\'.join(direc_list))
-print(getcwd())
+# from os import getcwd,chdir
+# direc_list = getcwd().split('\\')
+# direc_list.pop()
+# chdir('\\'.join(direc_list))
+# print(getcwd())
 
-from __init__ import *
+# from __init__ import *
 
 def _validate_mod(kwargs:dict)->bool:
     """
