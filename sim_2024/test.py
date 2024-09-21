@@ -1,5 +1,6 @@
 from scipy.stats import norm
 from scipy.stats import chi2
+from __init__ import *
 
 def mean_test(sample:list,sig:float=0.95)->bool:
     if type(sample)!=list:
@@ -68,3 +69,4 @@ def chisq_test(sample:list,k:int,sig:float=0.95)->bool:
     else:
         return True
 
+def series_test(sample:list,m:int,k:int,sig:float=0.95)->bool:
