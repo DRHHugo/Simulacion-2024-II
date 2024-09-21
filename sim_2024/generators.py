@@ -4,99 +4,147 @@
 # chdir('\\'.join(direc_list))
 # print(getcwd())
 
-# from __init__ import *
+from __init__ import *
 
 def _validate_mod(kwargs:dict)->bool:
     """
+    validation of module
+
     Args:
-        kwargs (dict): Description of arg1
-
+        kwargs : kwargs passed from another function
+    
     Returns:
-        bool: True if kwargs['mod'] is a positive integer
-
+        True if kwargs['mod'] is an integer bigger that 1
+        False otherwise
     """
     if not 'mod' in kwargs.keys():
         raise KeyError('mod not found during inicialization. You should use mod=value.')
-    if type(kwargs['mod'])!=int:
-        raise TypeError('mod should be a strictly positive integer')
-    if kwargs['mod']<0:
-        raise ValueError('mod should be a strictly positive integer')
-    return True
+        return False
+    return _validate_int(kwargs['mod'],'mod should be an integer bigger than 1',threshold=2)
 
 def _validate_mult(kwargs:dict)->bool:
+    """
+    validation of multiplier
+    
+    Args:
+        kwargs : kwargs passed from another function
+    
+    Returns:
+        True if kwargs['mod'] is a non-zero integer
+        False otherwise
+    """
     if not 'mult' in kwargs.keys():
         raise KeyError('mult not found during inicialization. You should use mult=value.')
-    if type(kwargs['mult'])!=int:
-        raise TypeError('mult should be non zero integer')
-    if kwargs['mult']==0:
-        raise ValueError('mult should be non zero integer')
-    return True
+    return _validate_int(kwargs['mult'],'mult should be non zero integer',None,0)
 
-def _validate_seed(kwargs:dict,exclude_zero:bool=False)->bool:
+def _validate_seed(kwargs:dict,exceptions:None|int|list[int]=None)->bool:
+    """
+    validation of seed
+    
+    Args:
+        kwargs : kwargs passed from another function
+        exceptions: integer or list of integers not allowed for seed
+    
+    Returns:
+        True if kwargs['seed'] is a valid integer
+        False otherwise
+    """
     if not 'seed' in kwargs.keys():
         raise KeyError('seed not found during inicialization. You should use seed=value.')
-    if type(kwargs['seed'])!=int:
-        raise TypeError('seed should be a non zero integer')
-    if exclude_zero and kwargs['seed']==0:
-        raise TypeError('seed should be a non zero integer')
-    return True
+    return _validate_int(kwargs['seed'],'seed is set to a non valid value',None,exceptions)
 
 def _validate_cte(kwargs:dict)->bool:
+    """
+    validation of constant
+
+    Args:
+        kwargs : kwargs passed from another function
+    
+    Returns:
+        True if kwargs['cte'] is a non zero integer
+        False otherwise
+    """
     if not 'cte' in kwargs.keys():
         raise KeyError('cte not found during inicialization. You should use cte=value.')
-    if type(kwargs['cte'])!=int:
-        raise TypeError('cte should be an integer')
-    return True if kwargs['cte']!=0 else False
+    return _validate_int(kwargs['cte'],'cte should be an integer')
 
-def _validate_poly_array(kwargs:dict,exclude_last_zero=False)->bool:
+def _validate_list(kwargs:dict,exclude_all_zeros:bool=True)->bool:
+    """
+    validate a list of integers
+
+    Args:
+        kwargs : kwargs passed from another function
+        exclude_all_zeros : True if kwargs['mult'] can\'t be a list of zeros only
+    
+    Returns:
+        True if kwargs['mult'] is a valid list of integers
+        False otherwise
+    """
     if not 'mult' in kwargs.keys():
-        raise KeyError('mult not found during inicialization. You should use cte=list[values]')
+        raise KeyError('mult not found during inicialization. You should use mult=list[values]')
     if type(kwargs['mult'])!=list:
         raise TypeError('mult should be a non empty list of integers')
-    num_of_zeros = 0
     for x in kwargs['mult']:
-        if type(x)!=int:
-            listt = kwargs['mult']
-            raise TypeError(f'mult[{listt.index(x)}] should be a integer')
-        if x==0:
-            num_of_zeros+=1
-    if num_of_zeros == len(kwargs['mult']):
-        raise ValueError('mult can\'t be full of zeros')
-    if kwargs['mult'][0]==0 and exclude_last_zero:
-        raise ValueError('seed and mult[0] can\'t be both zeros')
+        _validate_int(x,'mult should be a non empty list of integers')
+    if exclude_all_zeros:
+        num_of_zeros = 0
+        for x in kwargs['mult']:
+            if x==0:
+                num_of_zeros+=1
+        if num_of_zeros == len(kwargs['mult']):
+            raise ValueError('mult can\'t be a list of zeros')
     return True
 
-def _validate_mult_array(kwargs:dict)->bool:
-    pass
-
 class _random_generator:
-    """parent class for random generators"""
+    """
+    parent class for random generators
+
+    """
+    _main_type:str
+    _sub_type:str
     def __str__(self):
-        return f'{self._main_type} {self._sub_type} pseudorandom generator. All properties are private.'
+        return f'{self._main_type} {self._sub_type} pseudorandom generator. All attributes are private.'
     def __repr__(self):
         return self.__str__()
 
 class _congruential_generator(_random_generator):
-    """parent class for congruential random generators"""
+    """
+    parent class for congruential random generators
+
+    subclasses must contain the global Attribute: _sub_type
+    """
     _main_type = 'congruential'
 
 class multiplicative_congruential_generator(_congruential_generator):
-    """class for congruential multiplicative pseudorandom generators"""
+    """
+    class for congruential multiplicative pseudorandom generators
+    """
     _sub_type = 'multiplicative'
     def __new__(cls,**kwargs):
+        """
+        validation of parameters occurs here
+        """
         _validate_mod(kwargs)
         _validate_mult(kwargs)
-        _validate_seed(kwargs,exclude_zero=True)
+        _validate_seed(kwargs,exceptions=0)
         return super().__new__(cls)
     def __init__(self,**kwargs):
-        self._mod = kwargs['mod']
-        self._mult = kwargs['mult']%self._mod
-        self._state = kwargs['seed']%self._mod
-    @property
+        """
+        All Attributes are private
+        """
+        self._mod:int = int(kwargs['mod'])
+        self._mult:int = int(kwargs['mult']%self._mod)
+        self._state:int = int(kwargs['seed']%self._mod)
     def rand(self)->float:
+        """
+        generation of one pseudo-random number
+        """
         self._state = self._mult*self._state % self._mod
         return self._state/self._mod
     def sample(self,size:int=1)->list[float]|None:
+        """
+        generation of size pseudo-random numbers
+        """
         if size<0:
             return None
         if size==0:
@@ -109,9 +157,14 @@ class multiplicative_congruential_generator(_congruential_generator):
         return sample
 
 class linear_congruential_generator(_congruential_generator):
-    """class for congruential linear pseudorandom generators"""
+    """
+    class for congruential linear pseudorandom generators
+    """
     _sub_type = 'linear'
     def __new__(cls,**kwargs):
+        """
+        validation of parameters occurs here
+        """
         _validate_mod(kwargs)
         _validate_mult(kwargs)
         if _validate_cte(kwargs):
@@ -120,15 +173,23 @@ class linear_congruential_generator(_congruential_generator):
             warn('since cte=0 you will get a multiplicative congruential generator instead of a linear congruential generator',category=package_type_warning)
             return multiplicative_congruential_generator(mod=kwargs['mod'],mult=kwargs['mult'],seed=kwargs['seed'])
     def __init__(self,**kwargs):
-        self._mod = kwargs['mod']
-        self._mult = kwargs['mult']%self._mod
-        self._cte = kwargs['cte']%self._mod
-        self._state = kwargs['seed']%self._mod
-    @property
+        """
+        All Attributes are private
+        """
+        self._mod:int = kwargs['mod']
+        self._mult:int = kwargs['mult']%self._mod
+        self._cte:int = kwargs['cte']%self._mod
+        self._state:int = kwargs['seed']%self._mod
     def rand(self)->float:
+        """
+        generation of one pseudo-random number
+        """
         self._state = (self._mult*self._state + self._cte)%self._mod
         return self._state/self._mod
     def sample(self,size:int=1)->list[float]|None:
+        """
+        generation of size pseudo-random numbers
+        """
         if size<0:
             return None
         if size==0:
@@ -141,11 +202,16 @@ class linear_congruential_generator(_congruential_generator):
         return sample
 
 class quadratic_congrential_generator(_congruential_generator):
-    """class for congruential quadratic pseudorandom generators"""
+    """
+    class for congruential quadratic pseudorandom generators
+    """
     _sub_type = 'quadratic'
     def __new__(cls,**kwargs):
+        """
+        validation of parameters occurs here
+        """
         _validate_mod(kwargs)
-        _validate_seed(kwargs,exclude_zero=True)
+        _validate_seed(kwargs,exceptions=0)
         return super().__new__(cls)
     def __init__(self,**kwargs):
         self._mod = kwargs['mod']
@@ -172,7 +238,7 @@ class polynomial_confruential_generator(_congruential_generator):
     def __new__(cls,**kwargs):
         _validate_mod(kwargs)
         _validate_seed(kwargs)
-        _validate_poly_array(kwargs,exclude_last_zero=True if kwargs['seed']==0 else False)
+        _validate_list(kwargs,exclude_all_zeros=True)
         if len(kwargs['mult'])==1:
             raise ValueError('mult shuld be at least of size 2')
         if len(kwargs['mult'])==2:
@@ -208,8 +274,7 @@ class multiple_congruential_generator(_congruential_generator):
         pass
     def __init__(self,**kwargs):
         pass
-    @property
-    def rand(self):
+    def rand(self)->float:
         pass
     def sample(self,size:int=1)->list[float]:
         pass
