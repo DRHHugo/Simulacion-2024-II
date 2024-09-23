@@ -306,13 +306,8 @@ class multcombi_congruential_generator(_congruential_generator):
         pass
 
 __all__=[
-
     'multiplicative_congruential_generator',
-
     'linear_congruential_generator',
-
     'quadratic_congrential_generator',
-
     'multiple_congruential_generator',
-
     'combined_congruential_generator']
