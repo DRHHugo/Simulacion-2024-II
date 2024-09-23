@@ -21,6 +21,9 @@ quartodoc:
         # you can refer to anything: class methods, modules, etc..
         - multiplicative_congruential_generator
         - linear_congruential_generator
+        - quadratic_congrential_generator
+        - multiple_congruential_generator
+        - combined_congruential_generator
 
 format:
   html:

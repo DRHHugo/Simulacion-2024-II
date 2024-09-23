@@ -2,4 +2,16 @@
 
 `linear_congruential_generator(self, **kwargs)`
 
-class for congruential linear pseudorandom generators
+congruential linear pseudorandom generators
+
+## Methods
+
+| Name | Description |
+| --- | --- |
+| [rand](#generators.linear_congruential_generator.rand) | generation of one pseudo-random number |
+
+### rand { #generators.linear_congruential_generator.rand }
+
+`linear_congruential_generator.rand()`
+
+generation of one pseudo-random number

@@ -2,4 +2,18 @@
 
 `multiplicative_congruential_generator(self, **kwargs)`
 
-class for congruential multiplicative pseudorandom generators
+congruential multiplicative pseudorandom generators
+
+Pseudorandom generator based on the multiplicative congruential method
+
+## Methods
+
+| Name | Description |
+| --- | --- |
+| [rand](#generators.multiplicative_congruential_generator.rand) | generation of one pseudo-random number |
+
+### rand { #generators.multiplicative_congruential_generator.rand }
+
+`multiplicative_congruential_generator.rand()`
+
+generation of one pseudo-random number

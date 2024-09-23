@@ -108,6 +108,38 @@ def _validate_int_by_key(kwargs:dict,key:str,message:str,threshold:None|int=None
         return False
     return _validate_int(kwargs[key],message,threshold,exceptions)
 
+def _validate_list(l:Any,message:str,threshold:None|int=None,exceptions:None|int|list[int]=None):
+    """validation for first parameter
+
+    l must be a non empty list of integers and each one must be not inferior to threshold and not in exceptions to be valid.
+    If l is not valid an apropiate Error will be raised with the associated message error.
+    
+    Args:
+        l : variable to validate
+        threshold : inferior threshold for integers in l
+        exceptions : one or more values not allowed for integers in l
+        message : message to be displayed when l isn't valid
+
+    Returns:
+        True for success
+        False otherwise
+    """
+
+    if type(l)!=list:
+        raise TypeError(message)
+        return False
+    if len(l)==0:
+        raise ValueError(message)
+        return False
+    fails = [0 for i in range(len(l))]
+    if type(exceptions)==int:
+        exceptions=[exceptions]
+    for i in range(len(l)):
+        if b<threshold:
+            num_fails+=1
+        elif b
+    return True
+
 def _validate_list_by_key(kwargs:dict,key:str,exclude_all_zeros:bool=True)->bool:
     """validate list on kwargs
 

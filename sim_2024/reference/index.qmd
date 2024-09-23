@@ -4,5 +4,8 @@
 
 | | |
 | --- | --- |
-| [multiplicative_congruential_generator](multiplicative_congruential_generator.qmd#generators.multiplicative_congruential_generator) | class for congruential multiplicative pseudorandom generators |
-| [linear_congruential_generator](linear_congruential_generator.qmd#generators.linear_congruential_generator) | class for congruential linear pseudorandom generators |
+| [multiplicative_congruential_generator](multiplicative_congruential_generator.qmd#generators.multiplicative_congruential_generator) | congruential multiplicative pseudorandom generators |
+| [linear_congruential_generator](linear_congruential_generator.qmd#generators.linear_congruential_generator) | congruential linear pseudorandom generators |
+| [quadratic_congrential_generator](quadratic_congrential_generator.qmd#generators.quadratic_congrential_generator) | congruential quadratic pseudorandom generators |
+| [multiple_congruential_generator](multiple_congruential_generator.qmd#generators.multiple_congruential_generator) | multiple congruential pseudorandom generator |
+| [combined_congruential_generator](combined_congruential_generator.qmd#generators.combined_congruential_generator) | combined congruential pseudorandom generator |

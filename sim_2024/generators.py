@@ -210,9 +210,9 @@ class multiple_congruential_generator(_congruential_generator):
         
         """
 
-        _validate_int_by_key(kwargs,'mod','mod should be an integer bigger than 1',threshold=2)
-        _validate_list_by_key(kwargs,'mults',exclude_all_zeros=True)
-        _validate_list_by_key(kwargs,'seeds',exclude_all_zeros=True)
+        _validate_int_by_key(kwargs,key='mod',message='mod should be an integer bigger than 1',threshold=2)
+        _validate_list_by_key(kwargs,key='mults',exclude_all_zeros=True)
+        _validate_list_by_key(kwargs,key='seeds',exclude_all_zeros=True)
         if len(kwargs['seeds'])!=len(kwargs['mults']):
             raise ValueError('seeds and mults must be of the same size')
         return super().__new__(cls)
@@ -254,19 +254,18 @@ class combined_congruential_generator(_congruential_generator):
         """validation of parameters occurs here
 
         """
-
+        _validate_list_by_key(kwargs,key='mods',exclude_all_zeros=False)
+        _validate_list_by_key(kwargs,key='mults',exclude_all_zeros=False)
+        _validate_list_by_key(kwargs,key='seeds',exclude_all_zeros=False)
         if len(kwargs['mods'])!=2:
-            warn('mods must be a list of two non zero integers',category=package_warning)
-        _validate_int(kwargs['mods'][0],'mods must be a list of two non zero integers',exceptions=0)
-        _validate_int(kwargs['mods'][1],'mods must be a list of two non zero integers',exceptions=0)
-        if len(kwargs['seeds'])!=2:
-            warn('seeds must be a list of two non zero integers',category=package_warning)
-        _validate_int(kwargs['seeds'][0],'seeds must be a list of two non zero integers',exceptions=0)
-        _validate_int(kwargs['seeds'][1],'seeds must be a list of two non zero integers',exceptions=0)
+            raise ValueError('mods must be a list of integers both at leats two')
+        _validate_list(kwargs['mods'],message='mods must be a list of integers both at leats two',threshold=2)
         if len(kwargs['mults'])!=2:
-            warn('mults must be a list of two non zero integers',category=package_warning)
-        _validate_int(kwargs['mults'][0],'mults must be a list of two non zero integers',exceptions=0)
-        _validate_int(kwargs['mults'][1],'mults must be a list of two non zero integers',exceptions=0)
+            raise ValueError('mults must be a list of two non zero integers')
+        _validate_list(kwargs['mults'],message='mults must be a list of two non zero integers',exceptions=0)
+        if len(kwargs['seeds'])!=2:
+            raise ValueError('seeds must be a list of two non zero integers')
+        _validate_list(kwargs['seeds'],message='seeds must be a list of two non zero integers',exceptions=0)
         return super().__new__(cls)
 
     def __init__(self,**kwargs:Any)->None:
@@ -297,7 +296,23 @@ class multcombi_congruential_generator(_congruential_generator):
     _sub_type = 'multiple combined'
 
     def __new__(cls,**kwargs:Any):
-        pass
+        """validation of parameters occurs here
+
+        """
+        _validate_list_by_key(kwargs,key='mods',exclude_all_zeros=False)
+        _validate_list_by_key(kwargs,key='seeds',exclude_all_zeros=False)
+        _validate_list_by_key(kwargs,key='seeds',exclude_all_zeros=False)
+        if len(kwargs['mods'])!=2:
+            raise ValueError('mods must be a list of integers both at leats two')
+        _validate_list(kwargs['mods'],message='mods must be a list of integers both at leats two',threshold=2)
+        if len(kwargs['mults'])%2!=0:
+            raise ValueError('mults must be a list of odd size')
+        k = len(kwargs['mults'])//2
+        if not _validate_list(kwargs['mults'][0:k],message='first half of mults are all zero',exceptions)
+        if len(kwargs['mults'])%2!=0:
+            raise ValueError('mults must be a list of odd size')
+        
+
 
     def __init__(self,**kwargs:Any)->None:
         pass
