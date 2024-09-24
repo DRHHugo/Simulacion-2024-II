@@ -131,16 +131,16 @@ def _validate_list(l:Any,message:str,threshold:None|int=None,exceptions:None|int
     if len(l)==0:
         raise ValueError(message)
         return False
-    fails = [0 for i in range(len(l))]
+    fails:list[int] = [0 for i in range(len(l))]
+    exceptions_list:list[int] =[]
     if type(exceptions)==int:
-        exceptions=[exceptions]
+        exceptions_list.append(exceptions)
     for i in range(len(l)):
         if threshold!=None:
             if l[i]<threshold:
                 fails[i] = 1
-        if exceptions!=None:
-            if l[i] in exceptions:
-                fails[i] = 1
+        if l[i] in exceptions:
+            fails[i] = 1
     if sum(fails)==len(l):
         raise ValueError(message)
     return True

@@ -238,7 +238,7 @@ class multiple_congruential_generator(_congruential_generator):
             self._state.pop(0)
             self._state.insert(len(self._state),x)
             try:
-                _validate_list_by_key({'state':self._state},key='state',exclude_all_zeros=True)
+                _validate_list(self._state,key='state',exclude_all_zeros=True)
             except:
                 raise GeneratorError()
         return x/self._mod
@@ -306,19 +306,48 @@ class multcombi_congruential_generator(_congruential_generator):
             raise ValueError('mods must be a list of integers both at leats two')
         _validate_list(kwargs['mods'],message='mods must be a list of integers both at leats two',threshold=2)
         if len(kwargs['mults'])%2!=0:
-            raise ValueError('mults must be a list of odd size')
+            raise ValueError('mults must be a list of odd lenght')
         k = len(kwargs['mults'])//2
-        if not _validate_list(kwargs['mults'][0:k],message='first half of mults are all zero',exceptions)
-        if len(kwargs['mults'])%2!=0:
-            raise ValueError('mults must be a list of odd size')
-        
-
+        _validate_list(kwargs['mults'][0:k],message='first half of mults are all zero',exceptions=0)
+        _validate_list(kwargs['mults'][k+1:2*k],message='second half of mults are all zero',exceptions=0)
+        if len(kwargs['seeds'])%2!=0:
+            raise ValueError('seeds must be a list of odd lenght')
+        if  len(kwargs['seeds'])//2!=k:
+            raise ValueError('seeds and mods must be of the same lenght')
+        _validate_list(kwargs['seeds'][0:k],message='first half of seeds are all zero',exceptions=0)
+        _validate_list(kwargs['seeds'][k+1:2*k],message='second half of seeds are all zero',exceptions=0)
+        return super().__new__(cls)
 
     def __init__(self,**kwargs:Any)->None:
-        pass
-
+        """All Attributes are private
+        
+        """
+        self._mod_1:int = kwargs['mods'][0]
+        self._mod_2:int = kwargs['mods'][1]
+        self._mults_1:list[int] = kwargs['mults'][0:len(kwargs['mults'])//2]
+        self._mults_2:list[int] = kwargs['mults'][len(kwargs['mults'])//2+1:len(kwargs['mults'])]
+        self._state_1:list[int] = kwargs['seeds'][0:len(kwargs['mults'])//2]
+        self._state_2:list[int] = kwargs['seeds'][len(kwargs['mults'])//2+1:len(kwargs['mults'])]
+    
     def rand(self)->float:
-        pass
+        x = 0
+        y = 0
+        for i in range(len(self._state_1)):
+            x = (x+self._state_1[i]*self._mults_1[i])%self._mod_1
+            y = (y+self._state_2[i]*self._mults_2[i])%self._mod_2
+        z = (x-y)%self._mod_1
+        self._state_1.pop(0)
+        self._state_2.pop(0)
+        self._state_1.insert(len(self._state_1),x)
+        self._state_2.insert(len(self._state_2),x)
+        try:
+            _validate_list(self._state_1,message='',exceptions=0)
+        except:
+            try:
+                _validate_list(self._state_2,message='',exceptions=0)
+            except:
+                raise GeneratorError()
+        return z/self._mod_1
 
 __all__=[
     'multiplicative_congruential_generator',
