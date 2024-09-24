@@ -181,5 +181,6 @@ __all__ = [
     'GeneratorError',
     '_validate_int',
     '_validate_int_by_key',
+    '_validate_list',
     '_validate_list_by_key'
     ]
