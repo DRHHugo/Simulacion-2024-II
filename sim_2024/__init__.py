@@ -135,9 +135,14 @@ def _validate_list(l:Any,message:str,threshold:None|int=None,exceptions:None|int
     if type(exceptions)==int:
         exceptions=[exceptions]
     for i in range(len(l)):
-        if b<threshold:
-            num_fails+=1
-        elif b
+        if threshold!=None:
+            if l[i]<threshold:
+                fails[i] = 1
+        if exceptions!=None:
+            if l[i] in exceptions:
+                fails[i] = 1
+    if sum(fails)==len(l):
+        raise ValueError(message)
     return True
 
 def _validate_list_by_key(kwargs:dict,key:str,exclude_all_zeros:bool=True)->bool:
