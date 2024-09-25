@@ -139,7 +139,7 @@ def _validate_list(l:Any,message:str,threshold:None|int=None,exceptions:None|int
         if threshold!=None:
             if l[i]<threshold:
                 fails[i] = 1
-        if l[i] in exceptions:
+        if l[i] in exceptions_list:
             fails[i] = 1
     if sum(fails)==len(l):
         raise ValueError(message)

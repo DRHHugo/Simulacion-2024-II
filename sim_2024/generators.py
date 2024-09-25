@@ -238,7 +238,7 @@ class multiple_congruential_generator(_congruential_generator):
             self._state.pop(0)
             self._state.insert(len(self._state),x)
             try:
-                _validate_list(self._state,key='state',exclude_all_zeros=True)
+                _validate_list(self._state,message='',exceptions=0)
             except:
                 raise GeneratorError()
         return x/self._mod
