@@ -3,31 +3,68 @@ project:
   type: website
 
 website:
+  title: "sim_2024"
   repo-url: https://github.com/
   page-navigation: true
-
-quartodoc:
-  # style of page
-  style: pkgdown
-  # the name used to import the package you want to create reference docs for
-  package: generators
-  # style of docstrings
-  parser: google
-
-  sections:
-    - title: PseudoRandom Congruential Generators (PRCG)
-      contents:
-        # the functions being documented in the package.
-        # you can refer to anything: class methods, modules, etc..
-        - multiplicative_congruential_generator
-        - linear_congruential_generator
-        - quadratic_congrential_generator
-        - multiple_congruential_generator
-        - combined_congruential_generator
+  navbar:
+    background: light
+    pinned: true
+    left:
+      - text: "Get started"
+        file: get_started.qmd
+      - text: "Reference"
+        file: reference/index.qmd
+      - text: Learn more
+        menu:
+          - text: "generators"
+            file: generators.qmd
+          - text: "pins for R"
+            href: https://pins.rstudio.com
+            target: _blank
+    right:
+      - icon: github
+        href: https://github.com/rstudio/pins-python
+        aria-label: Pins python GitHub
+  sidebar:
+    style: "floating"
+    collapse-level: 1
+    contents:
+      - section: PseudoRandom Number Generators (PRNG)
+        contents:
+          - text: "`multiplicative_congruential_generator`"
+            href: reference/multiplicative_congruential_generator.qmd
+          - text: "`linear_congruential_generator`"
+            href: reference/linear_congruential_generator.qmd
+          - text: "`quadratic_congrential_generator`"
+            href: reference/quadratic_congrential_generator.qmd
+          - text: "`polynomial_congruential_generator`"
+            href: reference/polynomial_congruential_generator.qmd
+          - text: "`multiple_congruential_generator`"
+            href: reference/multiple_congruential_generator.qmd
+          - text: "`combined_congruential_generator`"
+            href: reference/combined_congruential_generator.qmd
+          - text: "`multcombi_congruential_generator`"
+            href: reference/multcombi_congruential_generator.qmd
 
 format:
   html:
-    theme:
-      - flatly
-    toc: true
+    sidebar: false
     html-math-method: katex
+
+
+quartodoc:
+  title: sim_2024
+  package: generators
+  parser: google
+
+  sections:
+    - title: PseudoRandom Number Generators (PRNG)
+      desc: "Que pondremos aca"
+      contents:
+        - multiplicative_congruential_generator
+        - linear_congruential_generator
+        - quadratic_congrential_generator
+        - polynomial_congruential_generator
+        - multiple_congruential_generator
+        - combined_congruential_generator
+        - multcombi_congruential_generator  

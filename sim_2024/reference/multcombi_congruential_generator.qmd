@@ -1,0 +1,5 @@
+# multcombi_congruential_generator { #generators.multcombi_congruential_generator }
+
+`multcombi_congruential_generator(self, **kwargs)`
+
+multiple combined congruential pseudorandom generator

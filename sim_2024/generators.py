@@ -36,8 +36,14 @@ class _congruential_generator(_random_generator):
 class multiplicative_congruential_generator(_congruential_generator):
     """congruential multiplicative pseudorandom generators
 
-    Pseudorandom generator based on the multiplicative congruential method
+    Pseudorandom generator based on the multiplicative congruential method. Initialization must be made
+    with keywords for all parameters.
 
+    Keyword Args:
+        mod (int): Module for residual reduction
+        mult (int): Multiplier
+        seed (int): initial value
+    
     """
 
     _sub_type = 'multiplicative'
@@ -353,5 +359,7 @@ __all__=[
     'multiplicative_congruential_generator',
     'linear_congruential_generator',
     'quadratic_congrential_generator',
+    'polynomial_congruential_generator',
     'multiple_congruential_generator',
-    'combined_congruential_generator']
+    'combined_congruential_generator',
+    'multcombi_congruential_generator']

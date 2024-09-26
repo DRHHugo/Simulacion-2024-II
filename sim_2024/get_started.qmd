@@ -1,9 +1,8 @@
 ---
-title: Sim24 documentation
 jupyter: python3
 ---
 
-Esta es la parte introductoria supongo
+Aqui vamos a poner una introducción
 
 ```{python}
 #| include: false
