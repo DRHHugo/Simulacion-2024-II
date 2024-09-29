@@ -170,14 +170,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="sim_2024" class="level1">
 <h1>sim_2024 <a href="https://github.com/DRHHugo/Simulacion-2024-II/"></a></h1>
-<p>The pins package publishes data, models, and other Python objects, making it easy to share them across projects and with your colleagues. You can pin objects to a variety of pin <em>boards</em>, including folders (to share on a networked drive or with services like DropBox), Posit Connect, Amazon S3, and Google Cloud Storage. Pins can be automatically versioned, making it straightforward to track changes, re-run analyses on historical data, and undo mistakes.</p>
-<section id="usage" class="level2">
-<h2 class="anchored" data-anchor-id="usage">Usage</h2>
-<p>To use the pins package, you must first create a pin board. A good place to start is <a href="`~pins.board_folder`"></a>, which stores pins in a directory you specify. Here we’ll use a special version of <a href="`~pins.board_folder`"></a> called <a href="`~pins.board_temp`"></a> which creates a temporary board that’s automatically deleted when your Python script or notebook session ends. This is great for examples, but obviously you shouldn’t use it for real work!</p>
-<div id="16589214" class="cell" data-execution_count="1">
+<p>El paquete sim_2024 es un paquete básico de simulación estocástica construido dentro del curso <em>Simulación Estocástica</em> que se impartio en el periodo agosto-noviembre de 2024 en el programa de Acturía de la Universidad La Salle México.</p>
+<section id="contenido" class="level2">
+<h2 class="anchored" data-anchor-id="contenido">Contenido</h2>
+<p>Este paquete contiene los siguientes modulos</p>
+<ul>
+<li><p><em>generators</em>: aqui se implementan algunos generadores de números pseudoaleatorios (PRNG por sus siglas en ingles) simples. Ninguno de estos generadores tiene la intención de ser utilizado más que con fines didácticos.</p></li>
+<li><p><em>pruebas</em>: en este módulo se implementan algunas pruebas empíricas de aleatoriedad que son aplicables a los PRNG contenidos en el módulo <em>generators</em> así como una batería de pruebas para facilitar el análisis de muestras.</p></li>
+<li><p><em>variates</em>: este modulo contiene representaciones de las variables aleatorias más utilizadas en el contexto actuarial. Esto inclute distribuciones discretas y continuas univariadas, así como las distribuciónes mutinormal y multinomial como únicos ejemplos de distribuciones multivariadas.</p></li>
+<li><p><em>processes</em>: aqui se han implementado representaciones del proceso de Wiener, del proceso de Poisson homogeneo y del proceso de Poisson no-homogeneo de tasa acotada.</p></li>
+</ul>
+<p>En toda el paquete se utilizan las definiciones y la terminología estandar de probabilidad y estadística.</p>
+</section>
+<section id="uso" class="level2">
+<h2 class="anchored" data-anchor-id="uso">Uso</h2>
+<p>Los módulos descritos son independientes, por lo que es necesario importarlos de forma independiente. Por ejemplo, para recrear el infame PRNG <em>RANDU</em> del lenguaje Basic utilizariamos</p>
+<div id="919f5f6e" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> generators</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>gen <span class="op">=</span> generators.multiplicative_congruential_generator(mod<span class="op">=</span><span class="dv">2</span><span class="op">**</span><span class="dv">31</span>,mult<span class="op">=</span><span class="dv">65539</span>,seed<span class="op">=</span><span class="dv">14501</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>RANDU <span class="op">=</span> generators.multiplicative_congruential_generator(mod<span class="op">=</span><span class="dv">2</span><span class="op">**</span><span class="dv">31</span>,mult<span class="op">=</span><span class="dv">65539</span>,seed<span class="op">=</span><span class="dv">14501</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Above, we saved the data as a CSV, but depending on what you’re saving and who else you want to read it, you might use the <code>type</code> argument to instead save it as a <code>joblib</code>, <code>parquet</code>, or <code>json</code> file.</p>
 <p>You can later retrieve the pinned data with <a href="`~pins.boards.BaseBoard.pin_read`"></a>:</p>
