@@ -180,26 +180,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><em>variates</em>: este modulo contiene representaciones de las variables aleatorias más utilizadas en el contexto actuarial. Esto inclute distribuciones discretas y continuas univariadas, así como las distribuciónes mutinormal y multinomial como únicos ejemplos de distribuciones multivariadas.</p></li>
 <li><p><em>processes</em>: aqui se han implementado representaciones del proceso de Wiener, del proceso de Poisson homogeneo y del proceso de Poisson no-homogeneo de tasa acotada.</p></li>
 </ul>
-<p>En toda el paquete se utilizan las definiciones y la terminología estandar de probabilidad y estadística.</p>
+<p>En toda el paquete se utilizan las definiciones y la terminología estandar de probabilidad y estadística. Para cualquier referencia sugerimos consultar la página <a href="https://es.wikipedia.org/">Wikipedia</a>.</p>
 </section>
 <section id="uso" class="level2">
 <h2 class="anchored" data-anchor-id="uso">Uso</h2>
 <p>Los módulos descritos son independientes, por lo que es necesario importarlos de forma independiente. Por ejemplo, para recrear el infame PRNG <em>RANDU</em> del lenguaje Basic utilizariamos</p>
-<div id="919f5f6e" class="cell" data-execution_count="1">
+<div id="06fdec8e" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> generators</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>RANDU <span class="op">=</span> generators.multiplicative_congruential_generator(mod<span class="op">=</span><span class="dv">2</span><span class="op">**</span><span class="dv">31</span>,mult<span class="op">=</span><span class="dv">65539</span>,seed<span class="op">=</span><span class="dv">14501</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Above, we saved the data as a CSV, but depending on what you’re saving and who else you want to read it, you might use the <code>type</code> argument to instead save it as a <code>joblib</code>, <code>parquet</code>, or <code>json</code> file.</p>
-<p>You can later retrieve the pinned data with <a href="`~pins.boards.BaseBoard.pin_read`"></a>:</p>
-<p>A board on your computer is good place to start, but the real power of pins comes when you use a board that’s shared with multiple people. To get started, you can use <a href="`~pins.board_folder`"></a> with a directory on a shared drive or in DropBox, or if you use <a href="https://posit.co/products/enterprise/connect/">Posit Connect</a> you can use <a href="`~pins.board_connect`"></a>:</p>
-<p>You can easily control who gets to access the data using the Posit Connect permissions pane.</p>
+<p>Cualquier generador pseudoaleatorio tiene dos métodos: <em>rand</em> y <em>sample</em>. El método <em>rand</em> se utiliza para obtener un número pseudoaleatorio, mientras que <em>sample</em> se emplea cuando se desea obtener una lista de números pseudoaleatorios.</p>
 <p>The pins package also includes boards that allow you to share data on services like Amazon’s S3 (<a href="`~pins.board_s3`"></a>), Google Cloud Storage (<a href="`~pins.board_gcs`"></a>), and Azure blob storage (<a href="`~pins.board_azure`"></a>).</p>
 </section>
-<section id="contributing" class="level2">
-<h2 class="anchored" data-anchor-id="contributing">Contributing</h2>
+<section id="autor" class="level2">
+<h2 class="anchored" data-anchor-id="autor">Autor</h2>
 <ul>
-<li><p>This project is released with a <a href="https://www.contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p></li>
-<li><p>If you think you have encountered a bug, please <a href="https://github.com/rstudio/pins-python/issues">submit an issue</a>.</p></li>
+<li>Héctor Hugo Corrales Sánchez, hhcorrales@gmail.com.</li>
 </ul>
 
 

@@ -18,7 +18,7 @@ Este paquete contiene los siguientes modulos
 
 - *processes*: aqui se han implementado representaciones del proceso de Wiener, del proceso de Poisson homogeneo y del proceso de Poisson no-homogeneo de tasa acotada.
 
-En toda el paquete se utilizan las definiciones y la terminología estandar de probabilidad y estadística.
+En toda el paquete se utilizan las definiciones y la terminología estandar de probabilidad y estadística. Para cualquier referencia sugerimos consultar la página [Wikipedia](https://es.wikipedia.org/).
 
 ## Uso
 
@@ -29,17 +29,12 @@ import generators
 RANDU = generators.multiplicative_congruential_generator(mod=2**31,mult=65539,seed=14501)
 ```
 
- [Wikipedia](https://es.wikipedia.org/)
-
-You can easily control who gets to access the data using the Posit
-Connect permissions pane.
+Cualquier generador pseudoaleatorio tiene dos métodos: *rand* y *sample*. El método *rand* se utiliza para obtener un número pseudoaleatorio, mientras que *sample* se emplea cuando se desea obtener una lista de números pseudoaleatorios.
 
 The pins package also includes boards that allow you to share data on
 services like Amazon’s S3 ([](`~pins.board_s3`)), Google Cloud Storage ([](`~pins.board_gcs`)),
 and Azure blob storage ([](`~pins.board_azure`)).
 
-## Contributing
+## Autor
 
-- This project is released with a [Contributor Code of Conduct](https://www.contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
-
-- If you think you have encountered a bug, please [submit an issue](https://github.com/rstudio/pins-python/issues).
+- Héctor Hugo Corrales Sánchez, hhcorrales@gmail.com.
