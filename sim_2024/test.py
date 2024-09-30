@@ -2,7 +2,7 @@ from scipy.stats import norm
 from scipy.stats import chi2
 from __init__ import *
 
-def mean_test(sample:list,sig:float=0.95)->bool:
+def mean_test(sample:list[float],sig:float=0.95)->bool:
     if type(sample)!=list:
         return TypeError('sample must be a list')
     n = len(sample)
@@ -22,7 +22,7 @@ def mean_test(sample:list,sig:float=0.95)->bool:
     else:
         return True
 
-def var_test(sample:list,sig:float=0.95)->bool:
+def var_test(sample:list[float],sig:float=0.95)->bool:
     if type(sample)!=list:
         return TypeError('sample must be a list')
     n = len(sample)
@@ -42,7 +42,7 @@ def var_test(sample:list,sig:float=0.95)->bool:
     else:
         return True
 
-def chisq_test(sample:list,k:int,sig:float=0.95)->bool:
+def chisq_test(sample:list[float],k:int,sig:float=0.95)->bool:
     if type(sample)!=list:
         return TypeError('sample must be a list')
     n = len(sample)
@@ -69,4 +69,27 @@ def chisq_test(sample:list,k:int,sig:float=0.95)->bool:
     else:
         return True
 
-def series_test(sample:list,m:int,k:int,sig:float=0.95)->bool:
+def series_test(sample:list[float]  ,l:int,d:int,sig:float=0.95)->list[int]:
+    freq:list[int] = [0 for _ in range(l**d)]
+    n:int = len(sample)
+    m:int = n//d
+    sample_iterator:iter = iter(sample)
+    tuples:list[list[float]] = [[next(sample_iterator) for _ in range(d)] for _ in range(m)]
+    for tuple in tuples:
+        k:int = 0
+        for i in range(d):
+            k+= floor(l*tuple[i])*(l**i)
+        freq[k]+=1
+    summ = 0
+    f_teo = m/(l**d)
+    for f in freq:
+        summ+= (f-f_teo)**2
+    chi2_0 = (l**d)*summ/m
+    return chi2_0
+
+__all__ = [
+    'mean_test',
+    'var_test',
+    'chisq_test',
+    'series_test'
+    ]
