@@ -16,7 +16,7 @@ website:
         file: reference/index.qmd
       - text: Learn more
         menu:
-          - text: "generators"
+          - text: "Generators"
             file: generators.qmd
           - text: "pins for R"
             href: https://pins.rstudio.com
@@ -45,6 +45,12 @@ website:
             href: reference/combined_congruential_generator.qmd
           - text: "`multcombi_congruential_generator`"
             href: reference/multcombi_congruential_generator.qmd
+      - section: Randomess Test
+        contents:
+          - text: "`mean test`"
+            href: reference/mean_test.qmd
+          - text: "`variance test`"
+            href: reference/variance_test.qmd
 
 format:
   html:
@@ -53,7 +59,7 @@ format:
 
 quartodoc:
   title: sim_2024
-  package: generators
+  package: sim_2024
   parser: google
 
   sections:
@@ -66,4 +72,9 @@ quartodoc:
         - polynomial_congruential_generator
         - multiple_congruential_generator
         - combined_congruential_generator
-        - multcombi_congruential_generator  
+        - multcombi_congruential_generator
+    - title: Randomess Test
+      desc: "falta llenar esto"
+      contents:
+        - mean_test
+        - variance_test
