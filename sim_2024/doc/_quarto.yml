@@ -60,6 +60,7 @@ format:
 quartodoc:
   title: sim_2024
   package: sim_2024
+  dir 
   parser: google
 
   sections:

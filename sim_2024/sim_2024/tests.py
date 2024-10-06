@@ -1,3 +1,4 @@
+from math import floor
 from scipy.stats import norm
 from scipy.stats import chi2
 from typing import Iterator
