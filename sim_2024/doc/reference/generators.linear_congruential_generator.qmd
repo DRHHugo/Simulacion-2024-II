@@ -1,0 +1,17 @@
+# generators.linear_congruential_generator { #sim_2024.generators.linear_congruential_generator }
+
+`generators.linear_congruential_generator(self, **kwargs)`
+
+congruential linear pseudorandom generators
+
+## Methods
+
+| Name | Description |
+| --- | --- |
+| [rand](#sim_2024.generators.linear_congruential_generator.rand) | generation of one pseudo-random number |
+
+### rand { #sim_2024.generators.linear_congruential_generator.rand }
+
+`generators.linear_congruential_generator.rand()`
+
+generation of one pseudo-random number

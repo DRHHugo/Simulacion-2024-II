@@ -1,0 +1,191 @@
+[
+  {
+    "objectID": "tests.html",
+    "href": "tests.html",
+    "title": "Pruebas de aleatoriedad",
+    "section": "",
+    "text": "Aqui vamos a poner la documentacion del modulo tests\n\nmean_test(sample)\n\nFalse"
+  },
+  {
+    "objectID": "reference/tests.mean_test.html",
+    "href": "reference/tests.mean_test.html",
+    "title": "tests.mean_test",
+    "section": "",
+    "text": "tests.mean_test\ntests.mean_test(sample, sig=0.95)"
+  },
+  {
+    "objectID": "reference/generators.quadratic_congrential_generator.html",
+    "href": "reference/generators.quadratic_congrential_generator.html",
+    "title": "generators.quadratic_congrential_generator",
+    "section": "",
+    "text": "generators.quadratic_congrential_generator(self, **kwargs)\ncongruential quadratic pseudorandom generators\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.quadratic_congrential_generator.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.quadratic_congrential_generator.html#methods",
+    "href": "reference/generators.quadratic_congrential_generator.html#methods",
+    "title": "generators.quadratic_congrential_generator",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.quadratic_congrential_generator.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.multiplicative_congruential_generator.html",
+    "href": "reference/generators.multiplicative_congruential_generator.html",
+    "title": "generators.multiplicative_congruential_generator",
+    "section": "",
+    "text": "generators.multiplicative_congruential_generator(self, **kwargs)\ncongruential multiplicative pseudorandom generators\nPseudorandom generator based on the multiplicative congruential method. Initialization must be made with keywords for all parameters.\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmod\nint\nModule for residual reduction\nrequired\n\n\nmult\nint\nMultiplier\nrequired\n\n\nseed\nint\ninitial value\nrequired\n\n\n\n\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.multiplicative_congruential_generator.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.multiplicative_congruential_generator.html#other-parameters",
+    "href": "reference/generators.multiplicative_congruential_generator.html#other-parameters",
+    "title": "generators.multiplicative_congruential_generator",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nmod\nint\nModule for residual reduction\nrequired\n\n\nmult\nint\nMultiplier\nrequired\n\n\nseed\nint\ninitial value\nrequired"
+  },
+  {
+    "objectID": "reference/generators.multiplicative_congruential_generator.html#methods",
+    "href": "reference/generators.multiplicative_congruential_generator.html#methods",
+    "title": "generators.multiplicative_congruential_generator",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.multiplicative_congruential_generator.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.multcombi_congruential_generator.html",
+    "href": "reference/generators.multcombi_congruential_generator.html",
+    "title": "generators.multcombi_congruential_generator",
+    "section": "",
+    "text": "generators.multcombi_congruential_generator\ngenerators.multcombi_congruential_generator(self, **kwargs)\nmultiple combined congruential pseudorandom generator"
+  },
+  {
+    "objectID": "reference/generators.combined_congruential_generator.html",
+    "href": "reference/generators.combined_congruential_generator.html",
+    "title": "generators.combined_congruential_generator",
+    "section": "",
+    "text": "generators.combined_congruential_generator(self, **kwargs)\ncombined congruential pseudorandom generator\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.combined_congruential_generator.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.combined_congruential_generator.html#methods",
+    "href": "reference/generators.combined_congruential_generator.html#methods",
+    "title": "generators.combined_congruential_generator",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.combined_congruential_generator.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "get_started.html",
+    "href": "get_started.html",
+    "title": "Guia rápida",
+    "section": "",
+    "text": "Aqui vamos a poner una guia rápida."
+  },
+  {
+    "objectID": "get_started.html#primeros-pasos",
+    "href": "get_started.html#primeros-pasos",
+    "title": "Guia rápida",
+    "section": "Primeros pasos",
+    "text": "Primeros pasos\nLos módulos descritos son independientes, por lo que es necesario importarlos de forma independiente. Por ejemplo, para recrear el infame PRNG RANDU del lenguaje Basic utilizariamos\n\nimport sim_2024.generators as generators\nRANDU = generators.multiplicative_congruential_generator(mod=2**31,mult=65539,seed=14501)\n\nCualquier generador pseudoaleatorio creado mediante uno de los constructores definidos posee dos métodos: rand y sample. El método rand se utiliza para obtener un número pseudoaleatorio, mientras que sample se emplea cuando se desea obtener una lista de números pseudoaleatorios."
+  },
+  {
+    "objectID": "get_started.html#segundos-pasos",
+    "href": "get_started.html#segundos-pasos",
+    "title": "Guia rápida",
+    "section": "Segundos pasos",
+    "text": "Segundos pasos\nY luego mas cosas así"
+  },
+  {
+    "objectID": "generators.html",
+    "href": "generators.html",
+    "title": "Generadores pseudoaleatorios",
+    "section": "",
+    "text": "Aqui vamos a poner cosas sobre el apartado de generadores\n\nRANDU = multiplicative_congruential_generator(mod=2**31,mult=65539,seed=14501)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "sim_2024 ",
+    "section": "",
+    "text": "El paquete sim_2024 es un paquete básico de simulación estocástica construido dentro del curso Simulación Estocástica que se impartio en el periodo agosto-noviembre de 2024 en el programa de Acturía de la Universidad La Salle México."
+  },
+  {
+    "objectID": "index.html#contenido",
+    "href": "index.html#contenido",
+    "title": "sim_2024 ",
+    "section": "Contenido",
+    "text": "Contenido\nEste paquete contiene los siguientes modulos\n\ngenerators: aqui se implementan algunos generadores de números pseudoaleatorios (PRNG por sus siglas en ingles) simples. Ninguno de estos generadores tiene la intención de ser utilizado más que con fines didácticos.\ntests: en este módulo se implementan algunas pruebas empíricas de aleatoriedad que son aplicables a los PRNG contenidos en el módulo generators así como una batería de pruebas para facilitar el análisis de muestras.\nvariates: este modulo contiene representaciones de las variables aleatorias más utilizadas en el contexto actuarial. Esto inclute distribuciones discretas y continuas univariadas, así como las distribuciónes mutinormal y multinomial como únicos ejemplos de distribuciones multivariadas.\nprocesses: aqui se han implementado representaciones del proceso de Wiener, del proceso de Poisson homogeneo y del proceso de Poisson no-homogeneo de tasa acotada.\n\nEn toda el paquete se utilizan las definiciones y la terminología estandar de probabilidad y estadística. Para cualquier referencia sugerimos consultar la página Wikipedia."
+  },
+  {
+    "objectID": "index.html#autor",
+    "href": "index.html#autor",
+    "title": "sim_2024 ",
+    "section": "Autor",
+    "text": "Autor\n\nHéctor Hugo Corrales Sánchez, hhcorrales@gmail.com."
+  },
+  {
+    "objectID": "reference/generators.linear_congruential_generator.html",
+    "href": "reference/generators.linear_congruential_generator.html",
+    "title": "generators.linear_congruential_generator",
+    "section": "",
+    "text": "generators.linear_congruential_generator(self, **kwargs)\ncongruential linear pseudorandom generators\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_congruential_generator.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.linear_congruential_generator.html#methods",
+    "href": "reference/generators.linear_congruential_generator.html#methods",
+    "title": "generators.linear_congruential_generator",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_congruential_generator.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.multiple_congruential_generator.html",
+    "href": "reference/generators.multiple_congruential_generator.html",
+    "title": "generators.multiple_congruential_generator",
+    "section": "",
+    "text": "generators.multiple_congruential_generator(self, **kwargs)\nmultiple congruential pseudorandom generator\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.multiple_congruential_generator.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.multiple_congruential_generator.html#methods",
+    "href": "reference/generators.multiple_congruential_generator.html#methods",
+    "title": "generators.multiple_congruential_generator",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.multiple_congruential_generator.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.polynomial_congruential_generator.html",
+    "href": "reference/generators.polynomial_congruential_generator.html",
+    "title": "generators.polynomial_congruential_generator",
+    "section": "",
+    "text": "generators.polynomial_congruential_generator(self, **kwargs)\ncongruential polynomial pseudorandom generator\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.polynomial_congruential_generator.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.polynomial_congruential_generator.html#methods",
+    "href": "reference/generators.polynomial_congruential_generator.html#methods",
+    "title": "generators.polynomial_congruential_generator",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.polynomial_congruential_generator.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/index.html",
+    "href": "reference/index.html",
+    "title": "sim_2024",
+    "section": "",
+    "text": "Que pondremos aca\n\n\n\ngenerators.multiplicative_congruential_generator\ncongruential multiplicative pseudorandom generators\n\n\ngenerators.linear_congruential_generator\ncongruential linear pseudorandom generators\n\n\ngenerators.quadratic_congrential_generator\ncongruential quadratic pseudorandom generators\n\n\ngenerators.polynomial_congruential_generator\ncongruential polynomial pseudorandom generator\n\n\ngenerators.multiple_congruential_generator\nmultiple congruential pseudorandom generator\n\n\ngenerators.combined_congruential_generator\ncombined congruential pseudorandom generator\n\n\ngenerators.multcombi_congruential_generator\nmultiple combined congruential pseudorandom generator\n\n\n\n\n\n\nfalta llenar esto\n\n\n\ntests.mean_test\n\n\n\ntests.variance_test"
+  },
+  {
+    "objectID": "reference/index.html#pseudorandom-number-generators-prng",
+    "href": "reference/index.html#pseudorandom-number-generators-prng",
+    "title": "sim_2024",
+    "section": "",
+    "text": "Que pondremos aca\n\n\n\ngenerators.multiplicative_congruential_generator\ncongruential multiplicative pseudorandom generators\n\n\ngenerators.linear_congruential_generator\ncongruential linear pseudorandom generators\n\n\ngenerators.quadratic_congrential_generator\ncongruential quadratic pseudorandom generators\n\n\ngenerators.polynomial_congruential_generator\ncongruential polynomial pseudorandom generator\n\n\ngenerators.multiple_congruential_generator\nmultiple congruential pseudorandom generator\n\n\ngenerators.combined_congruential_generator\ncombined congruential pseudorandom generator\n\n\ngenerators.multcombi_congruential_generator\nmultiple combined congruential pseudorandom generator"
+  },
+  {
+    "objectID": "reference/index.html#randomess-test",
+    "href": "reference/index.html#randomess-test",
+    "title": "sim_2024",
+    "section": "",
+    "text": "falta llenar esto\n\n\n\ntests.mean_test\n\n\n\ntests.variance_test"
+  },
+  {
+    "objectID": "reference/tests.variance_test.html",
+    "href": "reference/tests.variance_test.html",
+    "title": "tests.variance_test",
+    "section": "",
+    "text": "tests.variance_test\ntests.variance_test(sample, sig=0.95)"
+  }
+]

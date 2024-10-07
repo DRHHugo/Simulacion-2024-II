@@ -5,7 +5,7 @@ jupyter: python3
 #| include: false
 #| echo: false
 from os import chdir
-chdir('D:\\OneDrive\\Documents\\GitHub\\Simulacion-2024-II\\sim_2024')
+chdir('D:\\OneDrive\\Documents\\GitHub\\Simulacion-2024-II\\sim_2024\\src')
 from sim_2024.generators import *
 ```
 

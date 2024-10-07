@@ -1,4 +1,0 @@
-# tests.mean_test { #sim_2024.tests.mean_test }
-
-`tests.mean_test(sample, sig=0.95)`
-

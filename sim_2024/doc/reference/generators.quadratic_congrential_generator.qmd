@@ -1,0 +1,17 @@
+# generators.quadratic_congrential_generator { #sim_2024.generators.quadratic_congrential_generator }
+
+`generators.quadratic_congrential_generator(self, **kwargs)`
+
+congruential quadratic pseudorandom generators
+
+## Methods
+
+| Name | Description |
+| --- | --- |
+| [rand](#sim_2024.generators.quadratic_congrential_generator.rand) | generation of one pseudo-random number |
+
+### rand { #sim_2024.generators.quadratic_congrential_generator.rand }
+
+`generators.quadratic_congrential_generator.rand()`
+
+generation of one pseudo-random number

@@ -1,0 +1,17 @@
+# generators.multiple_congruential_generator { #sim_2024.generators.multiple_congruential_generator }
+
+`generators.multiple_congruential_generator(self, **kwargs)`
+
+multiple congruential pseudorandom generator
+
+## Methods
+
+| Name | Description |
+| --- | --- |
+| [rand](#sim_2024.generators.multiple_congruential_generator.rand) | generation of one pseudo-random number |
+
+### rand { #sim_2024.generators.multiple_congruential_generator.rand }
+
+`generators.multiple_congruential_generator.rand()`
+
+generation of one pseudo-random number

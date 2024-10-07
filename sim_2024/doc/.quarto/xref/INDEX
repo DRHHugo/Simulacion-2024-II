@@ -1,0 +1,44 @@
+{
+  "generators.qmd": {
+    "generators.html": "c1d49040"
+  },
+  "get_started.qmd": {
+    "get_started.html": "dba50ea4"
+  },
+  "index.qmd": {
+    "index.html": "6fdd9f46"
+  },
+  "reference/generators.combined_congruential_generator.qmd": {
+    "generators.combined_congruential_generator.html": "133bcc07"
+  },
+  "reference/generators.linear_congruential_generator.qmd": {
+    "generators.linear_congruential_generator.html": "601c4dc3"
+  },
+  "reference/generators.multcombi_congruential_generator.qmd": {
+    "generators.multcombi_congruential_generator.html": "d0291453"
+  },
+  "reference/generators.multiple_congruential_generator.qmd": {
+    "generators.multiple_congruential_generator.html": "905632d3"
+  },
+  "reference/generators.multiplicative_congruential_generator.qmd": {
+    "generators.multiplicative_congruential_generator.html": "db5c8515"
+  },
+  "reference/generators.polynomial_congruential_generator.qmd": {
+    "generators.polynomial_congruential_generator.html": "479dae47"
+  },
+  "reference/generators.quadratic_congrential_generator.qmd": {
+    "generators.quadratic_congrential_generator.html": "4251e2b7"
+  },
+  "reference/index.qmd": {
+    "index.html": "829c7773"
+  },
+  "reference/tests.mean_test.qmd": {
+    "tests.mean_test.html": "7fd8207d"
+  },
+  "reference/tests.variance_test.qmd": {
+    "tests.variance_test.html": "eae9a393"
+  },
+  "tests.qmd": {
+    "tests.html": "b1a3c880"
+  }
+}

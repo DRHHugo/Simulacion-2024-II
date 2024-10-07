@@ -1,0 +1,5 @@
+# generators.multcombi_congruential_generator { #sim_2024.generators.multcombi_congruential_generator }
+
+`generators.multcombi_congruential_generator(self, **kwargs)`
+
+multiple combined congruential pseudorandom generator
