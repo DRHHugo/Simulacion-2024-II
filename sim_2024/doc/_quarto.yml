@@ -18,15 +18,16 @@ website:
         menu:
           - text: "Generators"
             file: generators.qmd
-          - text: "pins for R"
-            href: https://pins.rstudio.com
+          - text: "Tests"
+            file: tests.qmd
+          - text: "Google"
+            href: https://google.com
             target: _blank
     right:
       - icon: github
         href: https://github.com/rstudio/pins-python
         aria-label: Pins python GitHub
   sidebar:
-    style: "floating"
     collapse-level: 1
     contents:
       - section: PseudoRandom Number Generators (PRNG)
@@ -60,22 +61,22 @@ format:
 quartodoc:
   title: sim_2024
   package: sim_2024
-  dir 
+  source_dir: symlink_src
   parser: google
 
   sections:
     - title: PseudoRandom Number Generators (PRNG)
       desc: "Que pondremos aca"
       contents:
-        - multiplicative_congruential_generator
-        - linear_congruential_generator
-        - quadratic_congrential_generator
-        - polynomial_congruential_generator
-        - multiple_congruential_generator
-        - combined_congruential_generator
-        - multcombi_congruential_generator
+        - generators.multiplicative_congruential_generator
+        - generators.linear_congruential_generator
+        - generators.quadratic_congrential_generator
+        - generators.polynomial_congruential_generator
+        - generators.multiple_congruential_generator
+        - generators.combined_congruential_generator
+        - generators.multcombi_congruential_generator
     - title: Randomess Test
       desc: "falta llenar esto"
       contents:
-        - mean_test
-        - variance_test
+        - tests.mean_test
+        - tests.variance_test
