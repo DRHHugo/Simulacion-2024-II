@@ -1,5 +1,5 @@
 from os import chdir
-chdir('D:\\OneDrive\\Documents\\GitHub\\Simulacion-2024-II\\sim_2024')
+chdir('D:\\OneDrive\\Documents\\GitHub\\Simulacion-2024-II\\sim_2024\\src')
 from sim_2024.generators import multiplicative_congruential_generator
 
 random = multiplicative_congruential_generator(mod=2**32,mult=65321,seed=48158)
