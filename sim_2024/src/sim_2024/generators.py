@@ -517,6 +517,236 @@ class multcombi_congruential_generator(_congruential_generator):
                 raise GeneratorError()
         return z/self._mod_1
 
+class _linearfeedback_generator(_random_generator):
+    """parent class for linear feedback random generators
+
+    First level hierarchy for all linear feedback type generators.
+    
+    """
+
+    _main_type = 'linear feedback'
+
+def _int2bools(d:int)->list[bool]:
+    if d<0:
+        return []
+    if d<2:
+        return [d%2==1]
+    sig:list[bool] = _int2bools(d//2)
+    sig.insert(0,d%2==1)
+    return sig
+
+def _bools2int(l:list[bool])->int:
+    if len(l)<2:
+        return 1 if l[0]==True else 0
+    return _bools2int([l[0]])+2*_bools2int(l[1:len(l)])
+
+def _ensure_size_bools(l:list[bool],size:int)->list[bool]:
+    if len(l)>=size:
+        return l[0:size]
+    while len(l)<size:
+        l.append(False)
+    return l
+
+def _make_submatrix(d:int)->list[bool]:
+    return [[i==(j-1) for j in range(d)] for i in range(d-1)]
+
+def _append_and_return(l:list[Any],e:Any)->list[Any]:
+    l.append(e)
+    return l
+
+def _multiply_bools_by_matrix(l:list[bool],A:list[list[bool]])->list[bool]:
+    n:int = len(l)
+    res:list[bool] = []
+    for i in range(n):
+        row_res = False
+        for j in range(n):
+            row_res = row_res ^ (A[i][j] and l[j])
+        res.append(row_res)
+    return res
+
+def _taps2bools(s:str)->list[bool]:
+    return [False if bit=='0' else True for bit in s]
+
+class linear_feedback_shift_register_4(_linearfeedback_generator):
+    """linear fedbacl shift register for word size 4
+
+    """
+    _taps = '1100'
+    _word_size = 4
+    _matrix = _append_and_return(_make_submatrix(_word_size),_taps2bools(_taps))
+    _divisor = 2**_word_size
+
+    def __new__(cls,**kwargs:Any):
+        """validation of parameters occurs here
+
+        """
+        _validate_int_by_key(kwargs,'seed','',threshold=1)
+        return super().__new__(cls)
+    
+    def __init__(self,**kwargs:Any) -> None:
+        """All Attributes are private
+        
+        """
+        self._state:list[bool] = _ensure_size_bools(_int2bools(kwargs['seed']),self._word_size)
+    
+    def rand(self)->float:
+        """generation of one pseudo-random number
+        
+        """
+        self._state = _multiply_bools_by_matrix(self._state,self._matrix)
+        n:int = _bools2int(self._state)
+        return n/self._divisor
+
+class linear_feedback_shift_register_8(_linearfeedback_generator):
+    """linear fedbacl shift register for word size 8
+
+    """
+    _taps = '10111000'
+    _word_size = 8
+    _matrix = _append_and_return(_make_submatrix(_word_size),_taps2bools(_taps))
+    _divisor = 2**_word_size
+
+    def __new__(cls,**kwargs:Any):
+        """validation of parameters occurs here
+
+        """
+        _validate_int_by_key(kwargs,'seed','',threshold=1)
+        return super().__new__(cls)
+    
+    def __init__(self,**kwargs:Any) -> None:
+        """All Attributes are private
+        
+        """
+        self._state:list[bool] = _ensure_size_bools(_int2bools(kwargs['seed']),self._word_size)
+    
+    def rand(self)->float:
+        """generation of one pseudo-random number
+        
+        """
+        self._state = _multiply_bools_by_matrix(self._state,self._matrix)
+        n:int = _bools2int(self._state)
+        return n/self._divisor
+
+class linear_feedback_shift_register_12(_linearfeedback_generator):
+    """linear fedbacl shift register for word size 12
+
+    """
+    _taps = '111000001000'
+    _word_size = 12
+    _matrix = _append_and_return(_make_submatrix(_word_size),_taps2bools(_taps))
+    _divisor = 2**_word_size
+
+    def __new__(cls,**kwargs:Any):
+        """validation of parameters occurs here
+
+        """
+        _validate_int_by_key(kwargs,'seed','',threshold=1)
+        return super().__new__(cls)
+    
+    def __init__(self,**kwargs:Any) -> None:
+        """All Attributes are private
+        
+        """
+        self._state:list[bool] = _ensure_size_bools(_int2bools(kwargs['seed']),self._word_size)
+    
+    def rand(self)->float:
+        """generation of one pseudo-random number
+        
+        """
+        self._state = _multiply_bools_by_matrix(self._state,self._matrix)
+        n:int = _bools2int(self._state)
+        return n/self._divisor
+
+class linear_feedback_shift_register_16(_linearfeedback_generator):
+    """linear fedbacl shift register for word size 4
+
+    """
+    _taps = '1101000000001000'
+    _word_size = 16
+    _matrix = _append_and_return(_make_submatrix(_word_size),_taps2bools(_taps))
+    _divisor = 2**_word_size
+
+    def __new__(cls,**kwargs:Any):
+        """validation of parameters occurs here
+
+        """
+        _validate_int_by_key(kwargs,'seed','',threshold=1)
+        return super().__new__(cls)
+    
+    def __init__(self,**kwargs:Any) -> None:
+        """All Attributes are private
+        
+        """
+        self._state:list[bool] = _ensure_size_bools(_int2bools(kwargs['seed']),self._word_size)
+    
+    def rand(self)->float:
+        """generation of one pseudo-random number
+        
+        """
+        self._state = _multiply_bools_by_matrix(self._state,self._matrix)
+        n:int = _bools2int(self._state)
+        return n/self._divisor
+
+class linear_feedback_shift_register_20(_linearfeedback_generator):
+    """linear fedbacl shift register for word size 4
+
+    """
+    _taps = '10010000000000000000'
+    _word_size = 16
+    _matrix = _append_and_return(_make_submatrix(_word_size),_taps2bools(_taps))
+    _divisor = 2**_word_size
+
+    def __new__(cls,**kwargs:Any):
+        """validation of parameters occurs here
+
+        """
+        _validate_int_by_key(kwargs,'seed','',threshold=1)
+        return super().__new__(cls)
+    
+    def __init__(self,**kwargs:Any) -> None:
+        """All Attributes are private
+        
+        """
+        self._state:list[bool] = _ensure_size_bools(_int2bools(kwargs['seed']),self._word_size)
+    
+    def rand(self)->float:
+        """generation of one pseudo-random number
+        
+        """
+        self._state = _multiply_bools_by_matrix(self._state,self._matrix)
+        n:int = _bools2int(self._state)
+        return n/self._divisor
+
+class linear_feedback_shift_register_24(_linearfeedback_generator):
+    """linear fedbacl shift register for word size 4
+
+    """
+    _taps = '111000010000000000000000'
+    _word_size = 24
+    _matrix = _append_and_return(_make_submatrix(_word_size),_taps2bools(_taps))
+    _divisor = 2**_word_size
+
+    def __new__(cls,**kwargs:Any):
+        """validation of parameters occurs here
+
+        """
+        _validate_int_by_key(kwargs,'seed','',threshold=1)
+        return super().__new__(cls)
+    
+    def __init__(self,**kwargs:Any) -> None:
+        """All Attributes are private
+        
+        """
+        self._state:list[bool] = _ensure_size_bools(_int2bools(kwargs['seed']),self._word_size)
+    
+    def rand(self)->float:
+        """generation of one pseudo-random number
+        
+        """
+        self._state = _multiply_bools_by_matrix(self._state,self._matrix)
+        n:int = _bools2int(self._state)
+        return n/self._divisor
+
 __all__=[
     'multiplicative_congruential_generator',
     'linear_congruential_generator',
@@ -524,4 +754,10 @@ __all__=[
     'polynomial_congruential_generator',
     'multiple_congruential_generator',
     'combined_congruential_generator',
-    'multcombi_congruential_generator']
+    'multcombi_congruential_generator',
+    'linear_feedback_shift_register_4',
+    'linear_feedback_shift_register_8',
+    'linear_feedback_shift_register_12',
+    'linear_feedback_shift_register_16',
+    'linear_feedback_shift_register_20',
+    'linear_feedback_shift_register_24']
