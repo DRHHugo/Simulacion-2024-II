@@ -7,13 +7,21 @@ jupyter: python3
 #| echo: false
 from os import chdir
 chdir('D:\\OneDrive\\Documents\\GitHub\\Simulacion-2024-II\\sim_2024')
+from sim_2024.tests import *
 from sim_2024.generators import *
 ```
-# Generadores pseudoaleatorios
 
-Aqui vamos a poner cosas sobre el apartado de generadores
+# Pruebas de aleatoriedad
+
+Aqui vamos a poner la documentacion del modulo tests
 
 ```{python}
-#| include: true
+#| include: false
 RANDU = multiplicative_congruential_generator(mod=2**31,mult=65539,seed=14501)
+sample = RANDU.sample(1000)
+```
+```{python}
+#| include: true
+#| echo: true
+mean_test(sample)
 ```

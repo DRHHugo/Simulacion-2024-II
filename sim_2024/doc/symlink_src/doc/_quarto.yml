@@ -1,0 +1,82 @@
+# yml file for quartodoc
+project:
+  type: website
+
+website:
+  title: "sim_2024"
+  repo-url: https://github.com/
+  page-navigation: true
+  navbar:
+    background: light
+    pinned: true
+    left:
+      - text: "Get started"
+        file: get_started.qmd
+      - text: "Reference"
+        file: reference/index.qmd
+      - text: Learn more
+        menu:
+          - text: "Generators"
+            file: generators.qmd
+          - text: "Tests"
+            file: tests.qmd
+          - text: "Google"
+            href: https://google.com
+            target: _blank
+    right:
+      - icon: github
+        href: https://github.com/rstudio/pins-python
+        aria-label: Pins python GitHub
+  sidebar:
+    collapse-level: 1
+    contents:
+      - section: PseudoRandom Number Generators (PRNG)
+        contents:
+          - text: "`multiplicative_congruential_generator`"
+            href: reference/multiplicative_congruential_generator.qmd
+          - text: "`linear_congruential_generator`"
+            href: reference/linear_congruential_generator.qmd
+          - text: "`quadratic_congrential_generator`"
+            href: reference/quadratic_congrential_generator.qmd
+          - text: "`polynomial_congruential_generator`"
+            href: reference/polynomial_congruential_generator.qmd
+          - text: "`multiple_congruential_generator`"
+            href: reference/multiple_congruential_generator.qmd
+          - text: "`combined_congruential_generator`"
+            href: reference/combined_congruential_generator.qmd
+          - text: "`multcombi_congruential_generator`"
+            href: reference/multcombi_congruential_generator.qmd
+      - section: Randomess Test
+        contents:
+          - text: "`mean test`"
+            href: reference/mean_test.qmd
+          - text: "`variance test`"
+            href: reference/variance_test.qmd
+
+format:
+  html:
+    sidebar: false
+    html-math-method: katex
+
+quartodoc:
+  title: sim_2024
+  package: sim_2024
+  source_dir: symlink_src
+  parser: google
+
+  sections:
+    - title: PseudoRandom Number Generators (PRNG)
+      desc: "Que pondremos aca"
+      contents:
+        - generators.multiplicative_congruential_generator
+        - generators.linear_congruential_generator
+        - generators.quadratic_congrential_generator
+        - generators.polynomial_congruential_generator
+        - generators.multiple_congruential_generator
+        - generators.combined_congruential_generator
+        - generators.multcombi_congruential_generator
+    - title: Randomess Test
+      desc: "falta llenar esto"
+      contents:
+        - tests.mean_test
+        - tests.variance_test
