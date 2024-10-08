@@ -40,5 +40,23 @@
   },
   "tests.qmd": {
     "tests.html": "b1a3c880"
+  },
+  "reference/generators.linear_feedback_shift_register_12.qmd": {
+    "generators.linear_feedback_shift_register_12.html": "986df7c2"
+  },
+  "reference/generators.linear_feedback_shift_register_16.qmd": {
+    "generators.linear_feedback_shift_register_16.html": "90c963cc"
+  },
+  "reference/generators.linear_feedback_shift_register_20.qmd": {
+    "generators.linear_feedback_shift_register_20.html": "e7fb05e8"
+  },
+  "reference/generators.linear_feedback_shift_register_24.qmd": {
+    "generators.linear_feedback_shift_register_24.html": "500f6188"
+  },
+  "reference/generators.linear_feedback_shift_register_4.qmd": {
+    "generators.linear_feedback_shift_register_4.html": "fccea70c"
+  },
+  "reference/generators.linear_feedback_shift_register_8.qmd": {
+    "generators.linear_feedback_shift_register_8.html": "0e05153d"
   }
 }

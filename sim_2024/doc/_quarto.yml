@@ -66,17 +66,28 @@ quartodoc:
 
   sections:
     - title: PseudoRandom Number Generators (PRNG)
-      desc: "Que pondremos aca"
+      desc: 'submodulo de generadores de números pseudoaleatorios'
       contents:
-        - generators.multiplicative_congruential_generator
-        - generators.linear_congruential_generator
-        - generators.quadratic_congrential_generator
-        - generators.polynomial_congruential_generator
-        - generators.multiple_congruential_generator
-        - generators.combined_congruential_generator
-        - generators.multcombi_congruential_generator
-    - title: Randomess Test
-      desc: "falta llenar esto"
-      contents:
-        - tests.mean_test
-        - tests.variance_test
+        - title: Métodos congruenciales
+          contents:
+            - generators.multiplicative_congruential_generator
+            - generators.linear_congruential_generator
+            - generators.quadratic_congrential_generator
+            - generators.polynomial_congruential_generator
+            - generators.multiple_congruential_generator
+            - generators.combined_congruential_generator
+            - generators.multcombi_congruential_generator
+            - 
+        - title: Métodos de retroalimentación lineal
+          contents:
+            - generators.linear_feedback_shift_register_4
+            - generators.linear_feedback_shift_register_8
+            - generators.linear_feedback_shift_register_12
+            - generators.linear_feedback_shift_register_16
+            - generators.linear_feedback_shift_register_20
+            - generators.linear_feedback_shift_register_24
+    
+        - title: Pruebas de aleatoriedad
+          contents:
+            - tests.mean_test
+            - tests.variance_test

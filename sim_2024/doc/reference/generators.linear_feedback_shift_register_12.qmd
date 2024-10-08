@@ -1,0 +1,17 @@
+# generators.linear_feedback_shift_register_12 { #sim_2024.generators.linear_feedback_shift_register_12 }
+
+`generators.linear_feedback_shift_register_12(self, **kwargs)`
+
+linear fedbacl shift register for word size 12
+
+## Methods
+
+| Name | Description |
+| --- | --- |
+| [rand](#sim_2024.generators.linear_feedback_shift_register_12.rand) | generation of one pseudo-random number |
+
+### rand { #sim_2024.generators.linear_feedback_shift_register_12.rand }
+
+`generators.linear_feedback_shift_register_12.rand()`
+
+generation of one pseudo-random number

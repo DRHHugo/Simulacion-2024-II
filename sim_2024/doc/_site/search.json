@@ -56,6 +56,48 @@
     "text": "generators.multcombi_congruential_generator\ngenerators.multcombi_congruential_generator(self, **kwargs)\nmultiple combined congruential pseudorandom generator"
   },
   {
+    "objectID": "reference/generators.linear_feedback_shift_register_4.html",
+    "href": "reference/generators.linear_feedback_shift_register_4.html",
+    "title": "generators.linear_feedback_shift_register_4",
+    "section": "",
+    "text": "generators.linear_feedback_shift_register_4(self, **kwargs)\nlinear fedbacl shift register for word size 4\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_4.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.linear_feedback_shift_register_4.html#methods",
+    "href": "reference/generators.linear_feedback_shift_register_4.html#methods",
+    "title": "generators.linear_feedback_shift_register_4",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_4.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.linear_feedback_shift_register_20.html",
+    "href": "reference/generators.linear_feedback_shift_register_20.html",
+    "title": "generators.linear_feedback_shift_register_20",
+    "section": "",
+    "text": "generators.linear_feedback_shift_register_20(self, **kwargs)\nlinear fedbacl shift register for word size 4\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_20.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.linear_feedback_shift_register_20.html#methods",
+    "href": "reference/generators.linear_feedback_shift_register_20.html#methods",
+    "title": "generators.linear_feedback_shift_register_20",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_20.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.linear_feedback_shift_register_12.html",
+    "href": "reference/generators.linear_feedback_shift_register_12.html",
+    "title": "generators.linear_feedback_shift_register_12",
+    "section": "",
+    "text": "generators.linear_feedback_shift_register_12(self, **kwargs)\nlinear fedbacl shift register for word size 12\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_12.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.linear_feedback_shift_register_12.html#methods",
+    "href": "reference/generators.linear_feedback_shift_register_12.html#methods",
+    "title": "generators.linear_feedback_shift_register_12",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_12.rand()\ngeneration of one pseudo-random number"
+  },
+  {
     "objectID": "reference/generators.combined_congruential_generator.html",
     "href": "reference/generators.combined_congruential_generator.html",
     "title": "generators.combined_congruential_generator",
@@ -133,6 +175,48 @@
     "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_congruential_generator.rand()\ngeneration of one pseudo-random number"
   },
   {
+    "objectID": "reference/generators.linear_feedback_shift_register_16.html",
+    "href": "reference/generators.linear_feedback_shift_register_16.html",
+    "title": "generators.linear_feedback_shift_register_16",
+    "section": "",
+    "text": "generators.linear_feedback_shift_register_16(self, **kwargs)\nlinear fedbacl shift register for word size 4\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_16.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.linear_feedback_shift_register_16.html#methods",
+    "href": "reference/generators.linear_feedback_shift_register_16.html#methods",
+    "title": "generators.linear_feedback_shift_register_16",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_16.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.linear_feedback_shift_register_24.html",
+    "href": "reference/generators.linear_feedback_shift_register_24.html",
+    "title": "generators.linear_feedback_shift_register_24",
+    "section": "",
+    "text": "generators.linear_feedback_shift_register_24(self, **kwargs)\nlinear fedbacl shift register for word size 4\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_24.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.linear_feedback_shift_register_24.html#methods",
+    "href": "reference/generators.linear_feedback_shift_register_24.html#methods",
+    "title": "generators.linear_feedback_shift_register_24",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_24.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.linear_feedback_shift_register_8.html",
+    "href": "reference/generators.linear_feedback_shift_register_8.html",
+    "title": "generators.linear_feedback_shift_register_8",
+    "section": "",
+    "text": "generators.linear_feedback_shift_register_8(self, **kwargs)\nlinear fedbacl shift register for word size 8\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_8.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.linear_feedback_shift_register_8.html#methods",
+    "href": "reference/generators.linear_feedback_shift_register_8.html#methods",
+    "title": "generators.linear_feedback_shift_register_8",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_8.rand()\ngeneration of one pseudo-random number"
+  },
+  {
     "objectID": "reference/generators.multiple_congruential_generator.html",
     "href": "reference/generators.multiple_congruential_generator.html",
     "title": "generators.multiple_congruential_generator",
@@ -165,14 +249,14 @@
     "href": "reference/index.html",
     "title": "sim_2024",
     "section": "",
-    "text": "Que pondremos aca\n\n\n\ngenerators.multiplicative_congruential_generator\ncongruential multiplicative pseudorandom generators\n\n\ngenerators.linear_congruential_generator\ncongruential linear pseudorandom generators\n\n\ngenerators.quadratic_congrential_generator\ncongruential quadratic pseudorandom generators\n\n\ngenerators.polynomial_congruential_generator\ncongruential polynomial pseudorandom generator\n\n\ngenerators.multiple_congruential_generator\nmultiple congruential pseudorandom generator\n\n\ngenerators.combined_congruential_generator\ncombined congruential pseudorandom generator\n\n\ngenerators.multcombi_congruential_generator\nmultiple combined congruential pseudorandom generator\n\n\n\n\n\n\nfalta llenar esto\n\n\n\ntests.mean_test\n\n\n\ntests.variance_test"
+    "text": "Que pondremos aca\n\n\n\ngenerators.multiplicative_congruential_generator\ncongruential multiplicative pseudorandom generators\n\n\ngenerators.linear_congruential_generator\ncongruential linear pseudorandom generators\n\n\ngenerators.quadratic_congrential_generator\ncongruential quadratic pseudorandom generators\n\n\ngenerators.polynomial_congruential_generator\ncongruential polynomial pseudorandom generator\n\n\ngenerators.multiple_congruential_generator\nmultiple congruential pseudorandom generator\n\n\ngenerators.combined_congruential_generator\ncombined congruential pseudorandom generator\n\n\ngenerators.multcombi_congruential_generator\nmultiple combined congruential pseudorandom generator\n\n\ngenerators.linear_feedback_shift_register_4\nlinear fedbacl shift register for word size 4\n\n\ngenerators.linear_feedback_shift_register_8\nlinear fedbacl shift register for word size 8\n\n\ngenerators.linear_feedback_shift_register_12\nlinear fedbacl shift register for word size 12\n\n\ngenerators.linear_feedback_shift_register_16\nlinear fedbacl shift register for word size 4\n\n\ngenerators.linear_feedback_shift_register_20\nlinear fedbacl shift register for word size 4\n\n\ngenerators.linear_feedback_shift_register_24\nlinear fedbacl shift register for word size 4\n\n\n\n\n\n\nfalta llenar esto\n\n\n\ntests.mean_test\n\n\n\ntests.variance_test"
   },
   {
     "objectID": "reference/index.html#pseudorandom-number-generators-prng",
     "href": "reference/index.html#pseudorandom-number-generators-prng",
     "title": "sim_2024",
     "section": "",
-    "text": "Que pondremos aca\n\n\n\ngenerators.multiplicative_congruential_generator\ncongruential multiplicative pseudorandom generators\n\n\ngenerators.linear_congruential_generator\ncongruential linear pseudorandom generators\n\n\ngenerators.quadratic_congrential_generator\ncongruential quadratic pseudorandom generators\n\n\ngenerators.polynomial_congruential_generator\ncongruential polynomial pseudorandom generator\n\n\ngenerators.multiple_congruential_generator\nmultiple congruential pseudorandom generator\n\n\ngenerators.combined_congruential_generator\ncombined congruential pseudorandom generator\n\n\ngenerators.multcombi_congruential_generator\nmultiple combined congruential pseudorandom generator"
+    "text": "Que pondremos aca\n\n\n\ngenerators.multiplicative_congruential_generator\ncongruential multiplicative pseudorandom generators\n\n\ngenerators.linear_congruential_generator\ncongruential linear pseudorandom generators\n\n\ngenerators.quadratic_congrential_generator\ncongruential quadratic pseudorandom generators\n\n\ngenerators.polynomial_congruential_generator\ncongruential polynomial pseudorandom generator\n\n\ngenerators.multiple_congruential_generator\nmultiple congruential pseudorandom generator\n\n\ngenerators.combined_congruential_generator\ncombined congruential pseudorandom generator\n\n\ngenerators.multcombi_congruential_generator\nmultiple combined congruential pseudorandom generator\n\n\ngenerators.linear_feedback_shift_register_4\nlinear fedbacl shift register for word size 4\n\n\ngenerators.linear_feedback_shift_register_8\nlinear fedbacl shift register for word size 8\n\n\ngenerators.linear_feedback_shift_register_12\nlinear fedbacl shift register for word size 12\n\n\ngenerators.linear_feedback_shift_register_16\nlinear fedbacl shift register for word size 4\n\n\ngenerators.linear_feedback_shift_register_20\nlinear fedbacl shift register for word size 4\n\n\ngenerators.linear_feedback_shift_register_24\nlinear fedbacl shift register for word size 4"
   },
   {
     "objectID": "reference/index.html#randomess-test",
