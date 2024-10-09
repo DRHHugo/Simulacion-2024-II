@@ -547,7 +547,7 @@ def _ensure_size_bools(l:list[bool],size:int)->list[bool]:
         l.append(False)
     return l
 
-def _make_submatrix(d:int)->list[bool]:
+def _make_submatrix(d:int)->list[list[bool]]:
     return [[i==(j-1) for j in range(d)] for i in range(d-1)]
 
 def _append_and_return(l:list[Any],e:Any)->list[Any]:
