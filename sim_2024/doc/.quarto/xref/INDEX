@@ -58,5 +58,20 @@
   },
   "reference/generators.linear_feedback_shift_register_8.qmd": {
     "generators.linear_feedback_shift_register_8.html": "0e05153d"
+  },
+  "reference/density_function.qmd": {
+    "density_function.html": "0ed30228"
+  },
+  "reference/HistogramFigure.qmd": {
+    "HistogramFigure.html": "656e456b"
+  },
+  "reference/mass_function.qmd": {
+    "mass_function.html": "5d0f32f5"
+  },
+  "reference/rand.qmd": {
+    "rand.html": "31f7210a"
+  },
+  "reference/set_seed.qmd": {
+    "set_seed.html": "970d3cce"
   }
 }

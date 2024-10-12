@@ -33,29 +33,30 @@ website:
       - section: PseudoRandom Number Generators (PRNG)
         contents:
           - text: "`multiplicative_congruential_generator`"
-            href: reference/multiplicative_congruential_generator.qmd
+            href: reference/generators.multiplicative_congruential_generator.qmd
           - text: "`linear_congruential_generator`"
-            href: reference/linear_congruential_generator.qmd
+            href: reference/generators.linear_congruential_generator.qmd
           - text: "`quadratic_congrential_generator`"
-            href: reference/quadratic_congrential_generator.qmd
+            href: reference/generators.quadratic_congrential_generator.qmd
           - text: "`polynomial_congruential_generator`"
-            href: reference/polynomial_congruential_generator.qmd
+            href: reference/generators.polynomial_congruential_generator.qmd
           - text: "`multiple_congruential_generator`"
-            href: reference/multiple_congruential_generator.qmd
+            href: reference/generators.multiple_congruential_generator.qmd
           - text: "`combined_congruential_generator`"
-            href: reference/combined_congruential_generator.qmd
+            href: reference/generators.combined_congruential_generator.qmd
           - text: "`multcombi_congruential_generator`"
-            href: reference/multcombi_congruential_generator.qmd
+            href: reference/generators.multcombi_congruential_generator.qmd
       - section: Randomess Test
         contents:
           - text: "`mean test`"
-            href: reference/mean_test.qmd
+            href: reference/tests.mean_test.qmd
           - text: "`variance test`"
-            href: reference/variance_test.qmd
+            href: reference/tests.variance_test.qmd
+
 
 format:
   html:
-    sidebar: false
+    sidebar: true
     html-math-method: katex
 
 quartodoc:
@@ -65,43 +66,32 @@ quartodoc:
   parser: google
 
   sections:
-    - title: Package default
-      desc: 'utilidades básicas'
+    - title: Miscelanea
+      desc: 'funcionalidades básicas'
       contents:
-        - title: Utilidades aleatorias
-          contents:
-            - rand
-            - set seed
-        - title: Utilidades estadísticas
-          contents:
-            - density_function
-            - mass_function
-        - title: Gráficos
-          contents:
-            - HistogramFigure
+        - rand
+        - set_seed
+        - mass_function
+        - density_function
+        - HistogramFigure
     - title: PseudoRandom Number Generators (PRNG)
       desc: 'submodulo de generadores de números pseudoaleatorios'
       contents:
-        - title: Métodos congruenciales
-          contents:
-            - generators.multiplicative_congruential_generator
-            - generators.linear_congruential_generator
-            - generators.quadratic_congrential_generator
-            - generators.polynomial_congruential_generator
-            - generators.multiple_congruential_generator
-            - generators.combined_congruential_generator
-            - generators.multcombi_congruential_generator
-            - 
-        - title: Métodos de retroalimentación lineal
-          contents:
-            - generators.linear_feedback_shift_register_4
-            - generators.linear_feedback_shift_register_8
-            - generators.linear_feedback_shift_register_12
-            - generators.linear_feedback_shift_register_16
-            - generators.linear_feedback_shift_register_20
-            - generators.linear_feedback_shift_register_24
-    
-        - title: Pruebas de aleatoriedad
-          contents:
-            - tests.mean_test
-            - tests.variance_test
+        - generators.multiplicative_congruential_generator
+        - generators.linear_congruential_generator
+        - generators.quadratic_congrential_generator
+        - generators.polynomial_congruential_generator
+        - generators.multiple_congruential_generator
+        - generators.combined_congruential_generator
+        - generators.multcombi_congruential_generator
+        - generators.linear_feedback_shift_register_4
+        - generators.linear_feedback_shift_register_8
+        - generators.linear_feedback_shift_register_12
+        - generators.linear_feedback_shift_register_16
+        - generators.linear_feedback_shift_register_20
+        - generators.linear_feedback_shift_register_24
+    - title: Pruebas de aleatoriedad
+      desc: 'submodulo de pruebas de aleatoriedad para PRNG'
+      contents:
+        - tests.mean_test
+        - tests.variance_test

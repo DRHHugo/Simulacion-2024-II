@@ -1,8 +1,20 @@
 # sim_2024 {.doc .doc-index}
 
+## Miscelanea
+
+funcionalidades básicas
+
+| | |
+| --- | --- |
+| [rand](rand.qmd#sim_2024.rand) |  |
+| [set_seed](set_seed.qmd#sim_2024.set_seed) |  |
+| [mass_function](mass_function.qmd#sim_2024.mass_function) | funcion de masa |
+| [density_function](density_function.qmd#sim_2024.density_function) | funcion de densidad |
+| [HistogramFigure](HistogramFigure.qmd#sim_2024.HistogramFigure) | function to create a density histogram with or without a density function |
+
 ## PseudoRandom Number Generators (PRNG)
 
-Que pondremos aca
+submodulo de generadores de números pseudoaleatorios
 
 | | |
 | --- | --- |
@@ -20,9 +32,9 @@ Que pondremos aca
 | [generators.linear_feedback_shift_register_20](generators.linear_feedback_shift_register_20.qmd#sim_2024.generators.linear_feedback_shift_register_20) | linear fedbacl shift register for word size 4 |
 | [generators.linear_feedback_shift_register_24](generators.linear_feedback_shift_register_24.qmd#sim_2024.generators.linear_feedback_shift_register_24) | linear fedbacl shift register for word size 4 |
 
-## Randomess Test
+## Pruebas de aleatoriedad
 
-falta llenar esto
+submodulo de pruebas de aleatoriedad para PRNG
 
 | | |
 | --- | --- |
