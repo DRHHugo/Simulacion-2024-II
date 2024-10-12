@@ -65,6 +65,20 @@ quartodoc:
   parser: google
 
   sections:
+    - title: Package default
+      desc: 'utilidades básicas'
+      contents:
+        - title: Utilidades aleatorias
+          contents:
+            - rand
+            - set seed
+        - title: Utilidades estadísticas
+          contents:
+            - density_function
+            - mass_function
+        - title: Gráficos
+          contents:
+            - HistogramFigure
     - title: PseudoRandom Number Generators (PRNG)
       desc: 'submodulo de generadores de números pseudoaleatorios'
       contents:

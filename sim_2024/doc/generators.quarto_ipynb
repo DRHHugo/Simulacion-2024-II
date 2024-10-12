@@ -8,7 +8,7 @@
         "jupyter: python3\n",
         "---"
       ],
-      "id": "47619b90"
+      "id": "92c99f26"
     },
     {
       "cell_type": "code",
@@ -20,7 +20,7 @@
         "chdir('D:\\\\OneDrive\\\\Documents\\\\GitHub\\\\Simulacion-2024-II\\\\sim_2024\\\\src')\n",
         "from sim_2024.generators import *"
       ],
-      "id": "ff7ce75c",
+      "id": "8e861778",
       "execution_count": null,
       "outputs": []
     },
@@ -32,7 +32,7 @@
         "\n",
         "Aqui vamos a poner cosas sobre el apartado de generadores\n"
       ],
-      "id": "78236af8"
+      "id": "c318e2c9"
     },
     {
       "cell_type": "code",
@@ -41,7 +41,7 @@
         "#| include: true\n",
         "RANDU = multiplicative_congruential_generator(mod=2**31,mult=65539,seed=14501)"
       ],
-      "id": "00fbfb37",
+      "id": "27500f2d",
       "execution_count": null,
       "outputs": []
     }
