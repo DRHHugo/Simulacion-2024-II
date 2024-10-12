@@ -1,0 +1,7 @@
+# _congruential_generator { #generators._congruential_generator }
+
+`_congruential_generator()`
+
+parent class for congruential random generators
+
+First level hierarchy for all congruential type generators.

@@ -1,0 +1,65 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "jupyter: python3\n",
+        "---"
+      ],
+      "id": "0d9e7f8f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| include: false\n",
+        "#| echo: false\n",
+        "from os import chdir\n",
+        "chdir('D:\\\\OneDrive\\\\Documents\\\\GitHub\\\\Simulacion-2024-II\\\\sim_2024\\\\src')"
+      ],
+      "id": "eeb13afc",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# sim_2024 <a href=\"https://github.com/DRHHugo/Simulacion-2024-II/\"></a>\n",
+        "\n",
+        "El paquete sim_2024 es un paquete básico de simulación estocástica construido dentro del curso *Simulación Estocástica* que se impartio en el periodo agosto-noviembre de 2024 en el programa de Acturía de la Universidad La Salle México.\n",
+        "\n",
+        "## Contenido\n",
+        "\n",
+        "Este paquete contiene los siguientes modulos\n",
+        "\n",
+        "- *generators*: aqui se implementan algunos generadores de números pseudoaleatorios (PRNG por sus siglas en ingles) simples. Ninguno de estos generadores tiene la intención de ser utilizado más que con fines didácticos.\n",
+        "\n",
+        "- *tests*: en este módulo se implementan algunas pruebas empíricas de aleatoriedad que son aplicables a los PRNG contenidos en el módulo *generators* así como una batería de pruebas para facilitar el análisis de muestras.\n",
+        "\n",
+        "- *variates*: este modulo contiene representaciones de las variables aleatorias más utilizadas en el contexto actuarial. Esto inclute distribuciones discretas y continuas univariadas, así como las distribuciónes mutinormal y multinomial como únicos ejemplos de distribuciones multivariadas.\n",
+        "\n",
+        "- *processes*: aqui se han implementado representaciones del proceso de Wiener, del proceso de Poisson homogeneo y del proceso de Poisson no-homogeneo de tasa acotada.\n",
+        "\n",
+        "En toda el paquete se utilizan las definiciones y la terminología estandar de probabilidad y estadística. Para cualquier referencia sugerimos consultar la página [Wikipedia](https://es.wikipedia.org/).\n",
+        "\n",
+        "## Autor\n",
+        "\n",
+        "- Héctor Hugo Corrales Sánchez, hhcorrales@gmail.com."
+      ],
+      "id": "7414b8ba"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "C:\\ProgramData\\jupyter\\kernels\\python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

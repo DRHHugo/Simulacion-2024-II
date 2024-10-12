@@ -1,4 +1,3 @@
-from typing import Any
 from warnings import warn
 from . import package_warning,GeneratorError
 
@@ -165,11 +164,8 @@ def _validate_list_by_key(kwargs:dict,key:str,exclude_all_zeros:bool=True)->bool
 class _random_generator:
     """parent class for random generators
     
-
     Pseudorandom generators are organized in a two level hierarchy, specified by attributs _main_type and _sub_type
-    
     """
-
     _main_type:str
     _sub_type:str
     def __str__(self)->str:
@@ -192,7 +188,6 @@ class _congruential_generator(_random_generator):
     First level hierarchy for all congruential type generators.
     
     """
-
     _main_type = 'congruential'
 
 class multiplicative_congruential_generator(_congruential_generator):
@@ -747,7 +742,7 @@ class linear_feedback_shift_register_24(_linearfeedback_generator):
         n:int = _bools2int(self._state)
         return n/self._divisor
 
-__all__=[
+__all__ = [
     'multiplicative_congruential_generator',
     'linear_congruential_generator',
     'quadratic_congrential_generator',

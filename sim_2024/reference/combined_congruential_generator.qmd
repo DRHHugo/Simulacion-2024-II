@@ -1,0 +1,17 @@
+# combined_congruential_generator { #generators.combined_congruential_generator }
+
+`combined_congruential_generator(self, **kwargs)`
+
+combined congruential pseudorandom generator
+
+## Methods
+
+| Name | Description |
+| --- | --- |
+| [rand](#generators.combined_congruential_generator.rand) | generation of one pseudo-random number |
+
+### rand { #generators.combined_congruential_generator.rand }
+
+`combined_congruential_generator.rand()`
+
+generation of one pseudo-random number
