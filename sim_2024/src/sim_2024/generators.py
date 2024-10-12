@@ -1,3 +1,4 @@
+from typing import Any
 from warnings import warn
 from . import package_warning,GeneratorError
 
