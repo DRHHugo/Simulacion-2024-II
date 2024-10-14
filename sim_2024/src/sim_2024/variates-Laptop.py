@@ -1,5 +1,6 @@
 from typing import Any as _Any
 from . import _validate_float_by_key
+<<<<<<< Updated upstream
 from . import _validate_int_by_key
 from .utilities import mass_function as _mass_function
 from importlib.util import find_spec as _find_spec
@@ -9,6 +10,9 @@ try:
     rand = modules['sim_2024'].rand
 except KeyError:
     raise ImportError('Module sim_2024 not loaded. Load sim_2024 and try again')
+=======
+from .utilities import mass_function as _mass_function
+>>>>>>> Stashed changes
 
 class _random_variate:
     """parent class for random variates
@@ -23,20 +27,34 @@ class _random_variate:
     def rand(self):
         pass
     def sample(self,size:int=1)->list[float]|None:
+<<<<<<< Updated upstream
         """generation of size pseudo-random sample of variate"""
         return [self.rand() for _ in range(size)]
+=======
+        """generation of size pseudo-random sample of variate
+
+        """
+>>>>>>> Stashed changes
 
 class _discrete_variate(_random_variate):
     """parent class for discrete random variates"""
     _main_type = 'discrete'
 
+<<<<<<< Updated upstream
 class _continuos_variate(_random_variate):
+=======
+class _continuos_variare(_random_variate):
+>>>>>>> Stashed changes
     """parent class for continuos random variates
     
     """
     _main_type = 'continuos'
 
+<<<<<<< Updated upstream
 class Bernoulli(_discrete_variate):
+=======
+class Bernoulli_variate(_discrete_variate):
+>>>>>>> Stashed changes
     """representation of a random variate of Bernoulli type
     
     Representation of random variate include ...
@@ -57,13 +75,19 @@ class Bernoulli(_discrete_variate):
         self._p:float = kwargs['p']
         self.mass_function:_mass_function = _mass_function({0.0:1-self._p,1.0:self._p})
     def rand(self)->float:
+<<<<<<< Updated upstream
         global rand
         u = rand.rand()
+=======
+        #global rand
+        u = _rand.rand()
+>>>>>>> Stashed changes
         if u<self._p:
             return 1.0
         else:
             return 0.0
 
+<<<<<<< Updated upstream
 class Binomial(_discrete_variate):
     """representation of a random variate of binonimal type
     
@@ -87,65 +111,11 @@ class Binomial(_discrete_variate):
         self._p:float = kwargs['p']
         self._n:float = kwargs['n']
 
-class Geometric():
-    """representation of a random variate of Bernoulli type
-    
-    Representation of random variate include ...
-
-    Keyword Args:
-        p (float): Sucess probability
-    """
-    _sub_type = 'Geometric'
-
-    def __new__(cls,**kwargs):
-        """validation of parameters occurs here"""
-        #_validate_float_by_key(kwargs,'p','probability p must be a float betwenn 0 and 1',threshold=0.0)
-        if kwargs['p']>1:
-            raise ValueError('probability p must be a float betwenn 0 and 1')
-        return super().__new__(cls)
-    def __init__(self,**kwargs):
-        """All Attributes are private"""
-        self._p:float = kwargs['p']
-    def rand(self)->float:
-        #global rand
-        u = rand()
-        x =  0.0
-        while u>self._p:
-            u = rand()
-            x+= 1
-        return x
-
-class NegativeBinomial(_discrete_variate):
-    """representation of a random variate of Bernoulli type
-    
-    Representation of random variate include ...
-
-    Keyword Args:
-        p (float): Sucess probability
-    """
-    _sub_type = 'Negative binomial'
-    def __new__(cls,**kwargs):
-        """validation of parameters occurs here"""
-        #_validate_float_by_key(kwargs,'p','probability p must be a float betwenn 0 and 1',threshold=0.0)
-        if kwargs['p']>1:
-            raise ValueError('probability p must be a float betwenn 0 and 1')
-        return super().__new__(cls)
-    def __init__(self,**kwargs):
-        """All Attributes are private"""
-        self._p:float = kwargs['p']
-        self._s:float = kwargs['s']
-    def rand(self)->float:
-        #global rand
-        s = 1 if rand()<self._p else 0
-        x = 0 if s==1 else 1
-        while s<self._s:
-            s+= 1 if rand()<self._p else 0
-            x+= 0 if s==1 else 1
-        return x
-
 __all__ = [
     'Bernoulli',
-    'Binomial',
-    'Geometric',
-    'NegativeBinomial'
+    'Binomial'
+=======
+__all__ = [
+    'Bernoulli_variate'
+>>>>>>> Stashed changes
 ]
