@@ -1,20 +1,232 @@
-from typing import Any,Callable
-from matplotlib import pyplot
+from typing import Any
+from warnings import warn
 from matplotlib import font_manager
-from matplotlib import rc as matplotlib_rc
-from matplotlib import rcParams as matplotlib_rcParams
-from matplotlib import use as matplotlib_use
+from matplotlib import rc
+from matplotlib import rcParams
 from os import urandom
+#from matplotlib import use as _use
 
 #select backend and change font for matplotlib figures
-matplotlib_use('notebook')
-custom_font = font_manager.FontProperties(fname='C:\\Windows\\Fonts\\lmsans12-regular.otf')
+#matplotlib_use('notebook')
 font_manager.fontManager.addfont('C:\\Windows\\Fonts\\lmsans12-regular.otf')
-matplotlib_rc('font', family='sans-serif') 
-matplotlib_rcParams.update({
-    'font.sans-serif': custom_font.get_name(),
+rc('font', family='sans-serif') 
+_custom_font = font_manager.FontProperties(fname='C:\\Windows\\Fonts\\lmsans12-regular.otf')
+rcParams.update({
+    'font.sans-serif': _custom_font.get_name(),
     'font.size': 8
     })
+
+class _packagewarning(UserWarning):
+    """package warning"""
+    pass
+
+class _GeneratorError(Exception):
+    """exception raised when a generator raise a null state"""
+    def __init__(self):
+        self.add_note('random generator raise a null state')
+
+def _validate_int(x:Any,message:str,threshold:None|int=None,exceptions:None|int|list[int]=None)->bool:
+    """validation for integer paramater
+
+    x must be an integer not inferior to threshold and not in exceptions to be valid.
+    If x is not valid an apropiate Error will be raised with the associated message error.
+
+    Args:
+        x : variable to validate
+        threshold : inferior threshold for x
+        exceptions : one or more values not allowed for x
+        message : message to be displayed when x isn't valid
+
+    Returns:
+        True for success
+    """
+    if type(x)!=int:
+        raise TypeError(message)
+    if threshold!=None:
+        if type(threshold)!=int:
+            raise TypeError('inferior threshold must be an integer')
+        if x<threshold:
+            raise ValueError(message)
+    if exceptions!=None:
+        if type(exceptions)!=int and type(exceptions)!=list:
+            raise TypeError('exceptions must be an integer or a list of integers')
+        if type(exceptions)==int:
+            if x==exceptions:
+                raise ValueError(message)
+        if type(exceptions)==list:
+            for exc in exceptions:
+                if type(exc)!=int:
+                    raise TypeError('exceptions must be an integer or a list of integers')
+            for exc in exceptions:
+                if x==exc:
+                    raise ValueError(message)
+    return True
+
+def warn_int(x:Any,message:str,threshold:None|int=None,exceptions:None|int|list[int]=None)->bool:
+    """similar to _validate_int but raise a warn instead of an error
+    
+    x must be an integer not inferior to threshold and not in exceptions to be valid.
+    If x is not valid an apropiate Warning will be raised with the associated message error.
+
+    Args:
+        x : variable to validate
+        threshold : inferior threshold for x
+        exceptions : one or more values not allowed for x
+        message : message to be displayed when x isn't valid
+
+    Returns:
+        True for success
+    """
+    try:
+        _validate_int(x,message,threshold,exceptions)
+    except:
+        warn(message,category=_packagewarning)
+        return False
+    else:
+        return True
+
+def _validate_int_by_key(kwargs:dict,key:str,message:str,threshold:None|int=None,exceptions:None|int|list[int]=None)->bool:
+    """_validate_int aplied to kwargs[key]
+
+    This functions will raise an Error if kwargs[key] doesn't exists.
+    If kwargs[key] exists, evaluate _validate_int(kwargs[key],message,threshold,exceptions)
+
+    Args:
+        kwargs : kwargs passed by another function
+        key: key associated with the value to be validated
+        message : message to be displayed when kwargs[key] isn't valid
+        threshold : inferior threshold for kwargs[key]
+        exceptions : one or more values not allowed for kwargs[key]
+
+    Returns:
+        True for success
+    """
+    if not key in kwargs:
+        raise KeyError(key+' key not found during inicialization. You should use '+key+'=value(s).')
+    return _validate_int(kwargs[key],message,threshold,exceptions)
+
+def _validate_float(x:Any,message:str,threshold:None|float=0.0,exceptions:None|float|list[float]=None)->bool:
+    """validation for float paramater
+
+    x must be a float not inferior to threshold and not in exceptions to be valid.
+    If x is not valid an apropiate Error will be raised with the associated message error.
+
+    Args:
+        x : variable to validate
+        threshold : inferior threshold for x
+        exceptions : one or more values not allowed for x
+        message : message to be displayed when x isn't valid
+
+    Returns:
+        True for success
+    """
+    if type(x)!=float:
+        raise TypeError(message)
+    if threshold!=None:
+        if type(threshold)!=float:
+            raise TypeError('inferior threshold must be a float')
+        if x<threshold:
+            raise ValueError(message)
+    if exceptions!=None:
+        if type(exceptions)!=int and type(exceptions)!=list:
+            raise TypeError('exceptions must be an integer or a list of integers')
+        if type(exceptions)==int:
+            if x==exceptions:
+                raise ValueError(message)
+        if type(exceptions)==list:
+            for exc in exceptions:
+                if type(exc)!=int:
+                    raise TypeError('exceptions must be an integer or a list of integers')
+            for exc in exceptions:
+                if x==exc:
+                    raise ValueError(message)
+    return True
+
+def _validate_float_by_key(kwargs:dict,key:str,message:str,threshold:None|float=None,exceptions:None|float|list[float]=None)->bool:
+    """_validate_float aplied to kwargs[key]
+
+    This functions will raise an Error if kwargs[key] doesn't exists.
+    If kwargs[key] exists, evaluate _validate_float(kwargs[key],message,threshold,exceptions)
+
+    Args:
+        kwargs : kwargs passed by another function
+        key: key associated with the value to be validated
+        message : message to be displayed when kwargs[key] isn't valid
+        threshold : inferior threshold for kwargs[key]
+        exceptions : one or more values not allowed for kwargs[key]
+
+    Returns:
+        True for success
+    
+    """
+    if not key in kwargs:
+        raise KeyError(key+' key not found during inicialization. You should use '+key+'=value(s).')
+        return False
+    return _validate_float(kwargs[key],message,threshold,exceptions)
+
+def _validate_list(l:Any,message:str,threshold:None|int=None,exceptions:None|int|list[int]=None):
+    """validation for first parameter
+
+    l must be a non empty list of integers and each one must be not inferior to threshold and not in exceptions to be valid.
+    If l is not valid an apropiate Error will be raised with the associated message error.
+    
+    Args:
+        l : variable to validate
+        threshold : inferior threshold for integers in l
+        exceptions : one or more values not allowed for integers in l
+        message : message to be displayed when l isn't valid
+
+    Returns:
+        True for success
+    """
+    if type(l)!=list:
+        raise TypeError(message)
+        return False
+    if len(l)==0:
+        raise ValueError(message)
+        return False
+    fails:list[int] = [0 for i in range(len(l))]
+    exceptions_list:list[int] =[]
+    if type(exceptions)==int:
+        exceptions_list.append(exceptions)
+    for i in range(len(l)):
+        if threshold!=None:
+            if l[i]<threshold:
+                fails[i] = 1
+        if l[i] in exceptions_list:
+            fails[i] = 1
+    if sum(fails)==len(l):
+        raise ValueError(message)
+    return True
+
+def _validate_list_by_key(kwargs:dict,key:str,exclude_all_zeros:bool=True)->bool:
+    """validate list on kwargs
+
+    This functions will raise an Error if kwargs[key] doesn't exists or if is not a list of integers.
+    If exclude_all_zeros==True, it will also raise an Error if all elements on list kwargs[key] are zeros.
+
+    Args:
+        kwargs : kwargs passed from another function
+        key: key associated with the list to be validated
+        exclude_all_zeros : True if kwargs[key] can't be a list of zeros only
+
+    Returns:
+        True if kwargs[key] is a valid list of integers
+    """
+    if not key in kwargs.keys():
+        raise KeyError(key+' not found during inicialization. You should use '+key+'=list[value(s)]')
+    if type(kwargs[key])!=list:
+        raise TypeError(key+' should be a non empty list of integers')
+    for x in kwargs[key]:
+        _validate_int(x,key+' should be a non empty list of integers')
+    if exclude_all_zeros:
+        num_of_zeros = 0
+        for x in kwargs[key]:
+            if x==0:
+                num_of_zeros+=1
+        if num_of_zeros == len(kwargs[key]):
+            raise ValueError(key+' can\'t be a list of zeros')
+    return True
 
 def _validate_sample(sample:Any,message:str)->bool:
     if type(sample)!=list:
@@ -24,84 +236,12 @@ def _validate_sample(sample:Any,message:str)->bool:
             raise TypeError(message)
     return True
 
-class package_warning(UserWarning):
-    """package warning
-    
-    """
-    pass
-
-class GeneratorError(Exception):
-    """exception raised when a generator raise a null state
-    
-    """
-    def __init__(self):
-        self.add_note('random generator raise a null state')
-
-class mass_function:
-    """funcion de masa"""
-    def __init__(self,f:dict[int,float])->None:
-        self.__dict = dict(sorted(f.items()))
-        keys = list(self.__dict.keys())
-        self.__min = keys[0]
-        self.__max = keys[-1]
-    def __add__( self , g ) :
-        len_f = self.__max-self.__min+1
-        len_g = g.__max-g.__min+1
-        f_values = [self.__min+k for k in range(len_f)]
-        g_values = [g.__min+k for k in range(len_g)]
-        new_weights = [[self(f_values[i])*g(g_values[k-i]) for i in range(max(0,k+1-len_g),min(k+1,len_f))] for k in range(len_f+len_g-1)]
-        return mass_function({k+self.__min+g.__min:sum(new_weights[k]) for k in range(len(new_weights))})
-    def __str__( self ) :
-        return 'Funcion de masa'
-    def __repr__( self ) :
-        return 'mass_function from:'+repr(self.__dict)
-    def __call__( self , x):
-        return self.__dict.get(x,0)
-    def get_dict( self ) -> dict[float:float]:
-        return self.__dict
-
-class density_function:
-    """funcion de densidad"""
-    def __init__(self,function:Callable[[float],float],min:float|None=None,max:float|None=None):
-        self.min:float|str = float(min) if isinstance(min,int) or isinstance(min,float) else "-inf"
-        self.max:float|str = float(max) if isinstance(max,int) or isinstance(max,float) else "+inf"
-        self._function:Callable[[float],float] = function
-    def __call__(self,x:float)->float:
-        if type(self.min) is float and type(self.max) is float:
-            if self.min<=x and x<=self.max:
-                return self._function(x)
-            else:
-                return 0
-        elif type(self.min) is float:
-            if self.min<=x:
-                return self._function(x)
-            else:
-                return 0
-        else:
-            return self._function(x)
-
-def HistogramFigure(sample:list[float],function:None|mass_function|density_function=None,bins:int|list[float]=10,**kwargs:Any):
-    """function to create a density histogram with or without a density function 
-    
-    """
-    _validate_sample(sample,message='later')
-    figure:Figure = pyplot.figure(figsize=(5,3),dpi=200,frameon=False)
-    freq,listbins,bars = pyplot.hist(sample,bins=bins,density=True)
-    for bar in bars:
-            bar.set_facecolor('xkcd:azure')
-            bar.set_edgecolor('xkcd:white')
-    if function != None:
-        min_x = listbins[0]
-        max_x = listbins[-1]
-        xrange = [min_x+0.01*k for k in range(int((max_x-min_x)/0.01))]
-        yrange = [function(x) for x in xrange]
-        pyplot.plot(xrange,yrange,color='xkcd:indigo')
-    return figure
-
 class _package_generator:
-    """class for package random generator
-    
-    """
+    """class for package random generator"""
+    def __str__(self)->str:
+        return 'package default generator'
+    def __call__(self)->float:
+        return self.rand()
     def __init__(self,seed:int)->None:
         self._mod_1:int = 2**32-209
         self._mod_2:int = 2**32-22853
@@ -109,13 +249,8 @@ class _package_generator:
         self._mults_2:list[int] = [527612,0,-1370589]
         self._state_1:list[int] = [1,1,seed]
         self._state_2:list[int] = [1,1,1]
-    def __str__(self)->str:
-        return 'package default generator'
     def rand(self):
-        """generation of one pseudo-random numbers
-
-        """
-
+        """generation of one pseudo-random numbers"""
         x = 0
         y = 0
         for i in range(len(self._state_1)):
@@ -128,30 +263,24 @@ class _package_generator:
         self._state_2.insert(len(self._state_2),x)
         return z/self._mod_1
     def sample(self,size:int=1)->list[float]|None:
-        """generation of size pseudo-random numbers
-
-        """
-
+        """generation of size pseudo-random numbers"""
         if type(size)!=int:
             return []
         if size<=0:
             return []
         return [self.rand() for _ in range(size)]
-    def _set_seed(self,seed):
-        self._state_1:list[int] = [1,1,seed]
-        self._state_2:list[int] = [1,1,1]
+    def _set_seed(self,seed)->None:
+        self._state_1 = [1,1,seed]
+        self._state_2 = [1,1,1]
+        return None
 
 rand = _package_generator(int.from_bytes(urandom(4)))
 
 def set_seed(seed:int)->None:
-    global rand
     rand._set_seed(seed)
     return None
 
 __all__ = [
-    'mass_function',
-    'density_function',
-    'HistogramFigure',
     'rand',
-    'set_seed'
-    ]
+    'set_seed',
+]
