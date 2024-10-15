@@ -1,20 +1,19 @@
 from typing import Any
 from warnings import warn
-from matplotlib import font_manager
-from matplotlib import rc
-from matplotlib import rcParams
+#from matplotlib import font_manager
+#from matplotlib import rc
+#from matplotlib import rcParams
 from os import urandom
-#from matplotlib import use as _use
 
 #select backend and change font for matplotlib figures
 #matplotlib_use('notebook')
-font_manager.fontManager.addfont('C:\\Windows\\Fonts\\lmsans12-regular.otf')
-rc('font', family='sans-serif') 
-_custom_font = font_manager.FontProperties(fname='C:\\Windows\\Fonts\\lmsans12-regular.otf')
-rcParams.update({
-    'font.sans-serif': _custom_font.get_name(),
-    'font.size': 8
-    })
+#font_manager.fontManager.addfont('C:\\Windows\\Fonts\\lmsans12-regular.otf')
+#rc('font', family='sans-serif') 
+#custom_font = font_manager.FontProperties(fname='C:\\Windows\\Fonts\\lmsans12-regular.otf')
+#rcParams.update({
+#    'font.sans-serif': _custom_font.get_name(),
+#    'font.size': 8
+#    })
 
 class _packagewarning(UserWarning):
     """package warning"""
