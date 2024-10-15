@@ -15,11 +15,11 @@ from os import urandom
 #    'font.size': 8
 #    })
 
-class _packagewarning(UserWarning):
+class _package_warning(UserWarning):
     """package warning"""
     pass
 
-class _GeneratorError(Exception):
+class _Generator_Error(Exception):
     """exception raised when a generator raise a null state"""
     def __init__(self):
         self.add_note('random generator raise a null state')
@@ -61,7 +61,7 @@ def _validate_int(x:Any,message:str,threshold:None|int=None,exceptions:None|int|
                     raise ValueError(message)
     return True
 
-def warn_int(x:Any,message:str,threshold:None|int=None,exceptions:None|int|list[int]=None)->bool:
+def _warn_int(x:Any,message:str,threshold:None|int=None,exceptions:None|int|list[int]=None)->bool:
     """similar to _validate_int but raise a warn instead of an error
     
     x must be an integer not inferior to threshold and not in exceptions to be valid.
@@ -79,7 +79,7 @@ def warn_int(x:Any,message:str,threshold:None|int=None,exceptions:None|int|list[
     try:
         _validate_int(x,message,threshold,exceptions)
     except:
-        warn(message,category=_packagewarning)
+        warn(message,category=_package_warning)
         return False
     else:
         return True

@@ -1,7 +1,7 @@
 from typing import Any
 from warnings import warn
-from . import _package_warning as package_warning
-from . import _GeneratorError as GeneratorError
+from . import _package_warning
+from . import _Generator_Error
 from . import _validate_int
 from . import _validate_int_by_key
 from . import _validate_list
@@ -69,7 +69,7 @@ class multiplicative_congruential_generator(_congruential_generator):
 
         self._state = self._mult*self._state % self._mod
         if self._state==0:
-            raise GeneratorError()
+            raise _Generator_Error()
         return self._state/self._mod
 
 class linear_congruential_generator(_congruential_generator):
@@ -93,7 +93,7 @@ class linear_congruential_generator(_congruential_generator):
         if kwargs['cte']!=0:
             return super().__new__(cls)
         else:
-            warn('since cte=0 you will get a multiplicative congruential generator instead of a linear congruential generator',category=package_warning)
+            warn('since cte=0 you will get a multiplicative congruential generator instead of a linear congruential generator',category=_package_warning)
             return multiplicative_congruential_generator(mod=kwargs['mod'],mult=kwargs['mult'],seed=kwargs['seed'])
     def __init__(self,**kwargs:Any)->None:
         """All Attributes are private"""
@@ -124,7 +124,7 @@ class quadratic_congrential_generator(_congruential_generator):
         """generation of one pseudo-random number"""
         x = self._state**2%self._mod
         if x==0:
-            raise GeneratorError()
+            raise _Generator_Error()
         self._state = x
         return x/self._mod
 
@@ -139,7 +139,7 @@ class polynomial_congruential_generator(_congruential_generator):
         if len(kwargs['coefs'])==1:
             raise ValueError('coefs shuld be at least of size 2')
         if len(kwargs['coefs'])==2:
-            warn('coefs only have 2 integers, you will get a linear congruential generator instead of a polynomial congruential generator',category=package_warning)
+            warn('coefs only have 2 integers, you will get a linear congruential generator instead of a polynomial congruential generator',category=_package_warning)
             return linear_congruential_generator(mod=kwargs['mod'],mult=kwargs['coefs'][1],cte=kwargs['coefs'][0],seed=kwargs['seed'])
         return super().__new__(cls)
     def __init__(self,**kwargs:Any)->None:
@@ -159,7 +159,7 @@ class polynomial_congruential_generator(_congruential_generator):
                 x = (x+pow*self._mult[k])%self._mod
                 pow = pow*self._state%self._mod
             if x==0 and self._mult[0]==0:
-                raise GeneratorError()
+                raise _Generator_Error()
         self._state = x
         return x/self._mod        
 
@@ -205,7 +205,7 @@ class multiple_congruential_generator(_congruential_generator):
             try:
                 _validate_list(self._state,message='',exceptions=0)
             except:
-                raise GeneratorError()
+                raise _Generator_Error()
         return x/self._mod
 
 class combined_congruential_generator(_congruential_generator):
@@ -311,7 +311,7 @@ class multcombi_congruential_generator(_congruential_generator):
             try:
                 _validate_list(self._state_2,message='',exceptions=0)
             except:
-                raise GeneratorError()
+                raise _Generator_Error()
         return z/self._mod_1
 
 class _linearfeedback_generator(_random_generator):

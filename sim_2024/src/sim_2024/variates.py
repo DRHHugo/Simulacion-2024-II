@@ -1,10 +1,9 @@
-from typing import Any as _Any
-from . import _validate_float_by_key
-from . import _validate_int_by_key
-from .utilities import mass_function as mass_function
-from importlib.util import find_spec as find_spec
+from typing import Any
 from sys import modules
 from math import log
+from . import _validate_float_by_key
+from . import _validate_int_by_key
+from .utilities import mass_function
 
 try:
     rand = modules['sim_2024'].rand
@@ -47,16 +46,16 @@ class Bernoulli(_discrete_variate):
     """
     _sub_type = 'Bernoulli'
 
-    def __new__(cls,**kwargs:_Any):
+    def __new__(cls,**kwargs:Any):
         """validation of parameters occurs here"""
         _validate_float_by_key(kwargs,'p','probability p must be a float betwenn 0 and 1',threshold=0.0)
         if kwargs['p']>1:
             raise ValueError('probability p must be a float betwenn 0 and 1')
         return super().__new__(cls)
-    def __init__(self,**kwargs:_Any):
+    def __init__(self,**kwargs:Any):
         """All Attributes are private"""
         self._p:float = kwargs['p']
-        self.mass_function:mass_function = mass_function({0.0:1-self._p,1.0:self._p})
+        self.mass_function:mass_function = mass_function(function=lambda x:(self._p if x==1 else 1-self._p),sup=[0,1])
     def rand(self)->float:
         global rand
         u = rand.rand()
@@ -76,14 +75,14 @@ class Binomial(_discrete_variate):
     """
     _sub_type = 'Binomial'
 
-    def __new__(cls,**kwargs:_Any):
+    def __new__(cls,**kwargs:Any):
         """validation of parameters occurs here"""
         _validate_float_by_key(kwargs,'p','probability p must be a float betwenn 0 and 1',threshold=0.0)
         _validate_int_by_key(kwargs,'n','number of trials must be a positive integer',threshold=1)
         if kwargs['p']>1:
             raise ValueError('probability p must be a float betwenn 0 and 1')
         return super().__new__(cls)
-    def __init__(self,**kwargs:_Any):
+    def __init__(self,**kwargs:Any):
         """All Attributes are private"""
         self._p:float = kwargs['p']
         self._n:float = kwargs['n']
@@ -104,7 +103,7 @@ class Geometric():
         if kwargs['p']>1:
             raise ValueError('probability p must be a float betwenn 0 and 1')
         return super().__new__(cls)
-    def __init__(self,**kwargs):
+    def __init__(self,**kwargs)->None:
         """All Attributes are private"""
         self._p:float = kwargs['p']
     def rand(self)->float:
@@ -131,7 +130,7 @@ class NegativeBinomial(_discrete_variate):
         if kwargs['p']>1:
             raise ValueError('probability p must be a float betwenn 0 and 1')
         return super().__new__(cls)
-    def __init__(self,**kwargs):
+    def __init__(self,**kwargs)->None:
         """All Attributes are private"""
         self._p:float = kwargs['p']
         self._s:float = kwargs['s']
@@ -146,9 +145,9 @@ class NegativeBinomial(_discrete_variate):
 
 class DiscreteUniform(_discrete_variate):
     def __init__(self,**kwargs:dict) -> None:
-        self._size = kwargs['size']
+        self._size:float = kwargs['size']
     def rand(self)->float:
-        u = rand()
+        u:float = rand()
         index = 1
         while u>index/self._size:
             index+=1
@@ -167,7 +166,7 @@ class DiscreteUniformArb(_discrete_variate):
 
 class Exponential(_continuos_variate):
     def __init__(self,**kwargs:dict):
-        self._rate = kwargs['rate']
+        self._rate:float = kwargs['rate']
     def rand(self)->float:
         u = rand()
         return -log(u)/self._rate
@@ -183,7 +182,7 @@ class NormalStd(_continuos_variate):
             x = 2*u -1
             y = 2*v -1
             s = x**2+y**2
-        return (x*((-log(s)/s)**0.5),y*((-log(s)/s)**0.5))
+        return (x*((-2*log(s)/s)**0.5),y*((-2*log(s)/s)**0.5))
     def rand(self):
         _rand()[0]
     def sample(self,size:int=1)->list[float]|None:
