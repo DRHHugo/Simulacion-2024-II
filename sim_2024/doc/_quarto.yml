@@ -53,7 +53,6 @@ website:
           - text: "`variance test`"
             href: reference/tests.variance_test.qmd
 
-
 format:
   html:
     sidebar: true
@@ -66,14 +65,17 @@ quartodoc:
   parser: google
 
   sections:
-    - title: Miscelanea
+    - title: Basics PseudoRandom functionalities
       desc: 'funcionalidades básicas'
       contents:
         - rand
         - set_seed
-        - mass_function
-        - density_function
-        - HistogramFigure
+    - title: Probability and Statistics tools
+      desc: 'herramientas de probabilidad y estadística'
+      contents:
+        - utilities.mass_function
+        - utilities.density_function
+        - utilities.HistogramFigure
     - title: PseudoRandom Number Generators (PRNG)
       desc: 'submodulo de generadores de números pseudoaleatorios'
       contents:
@@ -93,5 +95,13 @@ quartodoc:
     - title: Pruebas de aleatoriedad
       desc: 'submodulo de pruebas de aleatoriedad para PRNG'
       contents:
+        - tests.mean_est
         - tests.mean_test
+        - tests.variance_est
         - tests.variance_test
+        - tests.chisq_est
+        - tests.chisq_test
+        - tests.series_est
+        - tests.series_test
+        - tests.runs_est
+        - tests.runs_test

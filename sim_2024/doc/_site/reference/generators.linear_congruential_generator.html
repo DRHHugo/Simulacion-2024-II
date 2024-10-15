@@ -237,6 +237,46 @@ ul.task-list li input[type="checkbox"] {
 <h1>generators.linear_congruential_generator</h1>
 <p><code>generators.linear_congruential_generator(self, **kwargs)</code></p>
 <p>congruential linear pseudorandom generators</p>
+<p>Pseudorandom generator based on the linear congruential method. Initialization must be made with keywords for all parameters.</p>
+<section id="other-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="other-parameters">Other Parameters</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>mod</code></td>
+<td>int</td>
+<td>Module for residual reduction</td>
+<td><em>required</em></td>
+</tr>
+<tr class="even">
+<td><code>mult</code></td>
+<td>int</td>
+<td>Multiplier</td>
+<td><em>required</em></td>
+</tr>
+<tr class="odd">
+<td><code>seed</code></td>
+<td>int</td>
+<td>initial value</td>
+<td><em>required</em></td>
+</tr>
+<tr class="even">
+<td><code>cte</code></td>
+<td>int</td>
+<td>aditive constant</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
 <table class="caption-top table">

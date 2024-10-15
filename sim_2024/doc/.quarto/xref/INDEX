@@ -73,5 +73,38 @@
   },
   "reference/set_seed.qmd": {
     "set_seed.html": "970d3cce"
+  },
+  "reference/utilities.density_function.qmd": {
+    "utilities.density_function.html": "8cf02985"
+  },
+  "reference/utilities.HistogramFigure.qmd": {
+    "utilities.HistogramFigure.html": "02abd4cd"
+  },
+  "reference/utilities.mass_function.qmd": {
+    "utilities.mass_function.html": "0fbf3015"
+  },
+  "reference/tests.chisq_est.qmd": {
+    "tests.chisq_est.html": "c8349b50"
+  },
+  "reference/tests.chisq_test.qmd": {
+    "tests.chisq_test.html": "e33d5196"
+  },
+  "reference/tests.mean_est.qmd": {
+    "tests.mean_est.html": "c44ea70c"
+  },
+  "reference/tests.runs_est.qmd": {
+    "tests.runs_est.html": "f7221344"
+  },
+  "reference/tests.runs_test.qmd": {
+    "tests.runs_test.html": "6e522d2f"
+  },
+  "reference/tests.series_est.qmd": {
+    "tests.series_est.html": "9fd70941"
+  },
+  "reference/tests.series_test.qmd": {
+    "tests.series_test.html": "ff575b04"
+  },
+  "reference/tests.variance_est.qmd": {
+    "tests.variance_est.html": "9e5f13c7"
   }
 }

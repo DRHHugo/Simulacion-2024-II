@@ -1,31 +1,30 @@
-from typing import Any as _Any
-from warnings import warn as _warn
-from matplotlib import font_manager as _font_manager
-from matplotlib import rc as _rc
-from matplotlib import rcParams as _rcParams
-from os import urandom as _urandom
-#from matplotlib import use as _use
+from typing import Any
+from warnings import warn
+#from matplotlib import font_manager
+#from matplotlib import rc
+#from matplotlib import rcParams
+from os import urandom
 
 #select backend and change font for matplotlib figures
 #matplotlib_use('notebook')
-_font_manager.fontManager.addfont('C:\\Windows\\Fonts\\lmsans12-regular.otf')
-_rc('font', family='sans-serif') 
-_custom_font = _font_manager.FontProperties(fname='C:\\Windows\\Fonts\\lmsans12-regular.otf')
-_rcParams.update({
-    'font.sans-serif': _custom_font.get_name(),
-    'font.size': 8
-    })
+#font_manager.fontManager.addfont('C:\\Windows\\Fonts\\lmsans12-regular.otf')
+#rc('font', family='sans-serif') 
+#custom_font = font_manager.FontProperties(fname='C:\\Windows\\Fonts\\lmsans12-regular.otf')
+#rcParams.update({
+#    'font.sans-serif': _custom_font.get_name(),
+#    'font.size': 8
+#    })
 
 class _package_warning(UserWarning):
     """package warning"""
     pass
 
-class _GeneratorError(Exception):
+class _Generator_Error(Exception):
     """exception raised when a generator raise a null state"""
     def __init__(self):
         self.add_note('random generator raise a null state')
 
-def _validate_int(x:_Any,message:str,threshold:None|int=None,exceptions:None|int|list[int]=None)->bool:
+def _validate_int(x:Any,message:str,threshold:None|int=None,exceptions:None|int|list[int]=None)->bool:
     """validation for integer paramater
 
     x must be an integer not inferior to threshold and not in exceptions to be valid.
@@ -62,7 +61,7 @@ def _validate_int(x:_Any,message:str,threshold:None|int=None,exceptions:None|int
                     raise ValueError(message)
     return True
 
-def _warn_int(x:_Any,message:str,threshold:None|int=None,exceptions:None|int|list[int]=None)->bool:
+def _warn_int(x:Any,message:str,threshold:None|int=None,exceptions:None|int|list[int]=None)->bool:
     """similar to _validate_int but raise a warn instead of an error
     
     x must be an integer not inferior to threshold and not in exceptions to be valid.
@@ -80,7 +79,7 @@ def _warn_int(x:_Any,message:str,threshold:None|int=None,exceptions:None|int|lis
     try:
         _validate_int(x,message,threshold,exceptions)
     except:
-        _warn(message,category=_package_warning)
+        warn(message,category=_package_warning)
         return False
     else:
         return True
@@ -105,7 +104,7 @@ def _validate_int_by_key(kwargs:dict,key:str,message:str,threshold:None|int=None
         raise KeyError(key+' key not found during inicialization. You should use '+key+'=value(s).')
     return _validate_int(kwargs[key],message,threshold,exceptions)
 
-def _validate_float(x:_Any,message:str,threshold:None|float=0.0,exceptions:None|float|list[float]=None)->bool:
+def _validate_float(x:Any,message:str,threshold:None|float=0.0,exceptions:None|float|list[float]=None)->bool:
     """validation for float paramater
 
     x must be a float not inferior to threshold and not in exceptions to be valid.
@@ -164,7 +163,7 @@ def _validate_float_by_key(kwargs:dict,key:str,message:str,threshold:None|float=
         return False
     return _validate_float(kwargs[key],message,threshold,exceptions)
 
-def _validate_list(l:_Any,message:str,threshold:None|int=None,exceptions:None|int|list[int]=None):
+def _validate_list(l:Any,message:str,threshold:None|int=None,exceptions:None|int|list[int]=None):
     """validation for first parameter
 
     l must be a non empty list of integers and each one must be not inferior to threshold and not in exceptions to be valid.
@@ -228,7 +227,7 @@ def _validate_list_by_key(kwargs:dict,key:str,exclude_all_zeros:bool=True)->bool
             raise ValueError(key+' can\'t be a list of zeros')
     return True
 
-def _validate_sample(sample:_Any,message:str)->bool:
+def _validate_sample(sample:Any,message:str)->bool:
     if type(sample)!=list:
         raise TypeError(message)
     for x in sample:
@@ -274,11 +273,13 @@ class _package_generator:
         self._state_2 = [1,1,1]
         return None
 
-global _rand
-_rand = _package_generator(int.from_bytes(_urandom(4)))
-
-rand = _rand
+rand = _package_generator(int.from_bytes(urandom(4)))
 
 def set_seed(seed:int)->None:
     rand._set_seed(seed)
     return None
+
+__all__ = [
+    'rand',
+    'set_seed',
+]

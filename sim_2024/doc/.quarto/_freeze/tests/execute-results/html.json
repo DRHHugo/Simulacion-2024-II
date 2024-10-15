@@ -2,7 +2,7 @@
   "hash": "039f110b938e820419c6e084473c06cb",
   "result": {
     "engine": "jupyter",
-    "markdown": "---\njupyter: python3\ntitle: Pruebas de aleatoriedad\n---\n\n\n\n\n\n\nAqui vamos a poner la documentacion del modulo tests\n\n\n\n::: {#0d77c3f2 .cell execution_count=3}\n``` {.python .cell-code}\nmean_test(sample)\n```\n\n::: {.cell-output .cell-output-display execution_count=3}\n```\nFalse\n```\n:::\n:::\n\n\n",
+    "markdown": "---\njupyter: python3\ntitle: Pruebas de aleatoriedad\n---\n\n\n\n\n\n\nAqui vamos a poner la documentacion del modulo tests\n\n\n\n::: {#62cf4fc9 .cell execution_count=3}\n``` {.python .cell-code}\nmean_test(sample)\n```\n\n::: {.cell-output .cell-output-display execution_count=3}\n```\nFalse\n```\n:::\n:::\n\n\n",
     "supporting": [
       "tests_files"
     ],

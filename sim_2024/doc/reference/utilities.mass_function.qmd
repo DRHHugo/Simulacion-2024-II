@@ -1,0 +1,5 @@
+# utilities.mass_function { #sim_2024.utilities.mass_function }
+
+`utilities.mass_function(self, function, sup)`
+
+funcion de masa

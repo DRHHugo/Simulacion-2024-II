@@ -2,7 +2,7 @@
   "hash": "c6ed6e5259aa7773967a0639a5dcd571",
   "result": {
     "engine": "jupyter",
-    "markdown": "---\njupyter: python3\ntitle: Generadores pseudoaleatorios\n---\n\n\n\n\n\n\nAqui vamos a poner cosas sobre el apartado de generadores\n\n\n::: {#cac3ba48 .cell execution_count=2}\n``` {.python .cell-code}\nRANDU = multiplicative_congruential_generator(mod=2**31,mult=65539,seed=14501)\n```\n:::\n\n\n",
+    "markdown": "---\njupyter: python3\ntitle: Generadores pseudoaleatorios\n---\n\n\n\n\n\n\nAqui vamos a poner cosas sobre el apartado de generadores\n\n\n::: {#525f9087 .cell execution_count=2}\n``` {.python .cell-code}\nRANDU = multiplicative_congruential_generator(mod=2**31,mult=65539,seed=14501)\n```\n:::\n\n\n",
     "supporting": [
       "generators_files"
     ],

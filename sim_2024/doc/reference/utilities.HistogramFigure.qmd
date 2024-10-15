@@ -1,0 +1,5 @@
+# utilities.HistogramFigure { #sim_2024.utilities.HistogramFigure }
+
+`utilities.HistogramFigure(sample, function=None, bins=10, **kwargs)`
+
+function to create a density histogram with or without a density function

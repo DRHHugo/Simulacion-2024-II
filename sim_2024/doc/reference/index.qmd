@@ -1,6 +1,6 @@
 # sim_2024 {.doc .doc-index}
 
-## Miscelanea
+## Basics PseudoRandom functionalities
 
 funcionalidades básicas
 
@@ -8,9 +8,16 @@ funcionalidades básicas
 | --- | --- |
 | [rand](rand.qmd#sim_2024.rand) |  |
 | [set_seed](set_seed.qmd#sim_2024.set_seed) |  |
-| [mass_function](mass_function.qmd#sim_2024.mass_function) | funcion de masa |
-| [density_function](density_function.qmd#sim_2024.density_function) | funcion de densidad |
-| [HistogramFigure](HistogramFigure.qmd#sim_2024.HistogramFigure) | function to create a density histogram with or without a density function |
+
+## Probability and Statistics tools
+
+herramientas de probabilidad y estadística
+
+| | |
+| --- | --- |
+| [utilities.mass_function](utilities.mass_function.qmd#sim_2024.utilities.mass_function) | funcion de masa |
+| [utilities.density_function](utilities.density_function.qmd#sim_2024.utilities.density_function) | funcion de densidad |
+| [utilities.HistogramFigure](utilities.HistogramFigure.qmd#sim_2024.utilities.HistogramFigure) | function to create a density histogram with or without a density function |
 
 ## PseudoRandom Number Generators (PRNG)
 
@@ -38,5 +45,13 @@ submodulo de pruebas de aleatoriedad para PRNG
 
 | | |
 | --- | --- |
+| [tests.mean_est](tests.mean_est.qmd#sim_2024.tests.mean_est) |  |
 | [tests.mean_test](tests.mean_test.qmd#sim_2024.tests.mean_test) |  |
+| [tests.variance_est](tests.variance_est.qmd#sim_2024.tests.variance_est) |  |
 | [tests.variance_test](tests.variance_test.qmd#sim_2024.tests.variance_test) |  |
+| [tests.chisq_est](tests.chisq_est.qmd#sim_2024.tests.chisq_est) |  |
+| [tests.chisq_test](tests.chisq_test.qmd#sim_2024.tests.chisq_test) |  |
+| [tests.series_est](tests.series_est.qmd#sim_2024.tests.series_est) |  |
+| [tests.series_test](tests.series_test.qmd#sim_2024.tests.series_test) |  |
+| [tests.runs_est](tests.runs_est.qmd#sim_2024.tests.runs_est) |  |
+| [tests.runs_test](tests.runs_test.qmd#sim_2024.tests.runs_test) |  |

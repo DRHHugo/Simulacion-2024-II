@@ -1,0 +1,4 @@
+# tests.mean_est { #sim_2024.tests.mean_est }
+
+`tests.mean_est(sample)`
+
