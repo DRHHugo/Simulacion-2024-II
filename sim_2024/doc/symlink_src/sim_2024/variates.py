@@ -3,6 +3,8 @@ from sys import modules
 from math import log
 from . import _validate_float_by_key
 from . import _validate_int_by_key
+from . import _validate_int
+from . import _validate_list
 from .utilities import mass_function
 
 try:
@@ -37,15 +39,12 @@ class _continuos_variate(_random_variate):
     _main_type = 'continuos'
 
 class Bernoulli(_discrete_variate):
-    """representation of a random variate of Bernoulli type
+    """Representation of a random variate of Bernoulli type
     
-    Representation of random variate include ...
-
     Keyword Args:
         p (float): Sucess probability
     """
     _sub_type = 'Bernoulli'
-
     def __new__(cls,**kwargs:Any):
         """validation of parameters occurs here"""
         _validate_float_by_key(kwargs,'p','probability p must be a float betwenn 0 and 1',threshold=0.0)
@@ -67,14 +66,11 @@ class Bernoulli(_discrete_variate):
 class Binomial(_discrete_variate):
     """representation of a random variate of binonimal type
     
-    Representation of random variate include ...
-
     Keyword Args:
         p (float): Sucess probability
         n (int): Number of trials
     """
     _sub_type = 'Binomial'
-
     def __new__(cls,**kwargs:Any):
         """validation of parameters occurs here"""
         _validate_float_by_key(kwargs,'p','probability p must be a float betwenn 0 and 1',threshold=0.0)
@@ -86,17 +82,16 @@ class Binomial(_discrete_variate):
         """All Attributes are private"""
         self._p:float = kwargs['p']
         self._n:float = kwargs['n']
+    def rand(self)->float:
+        pass
 
-class Geometric():
-    """representation of a random variate of Bernoulli type
+class Geometric(_discrete_variate):
+    """Representation of a random variate of Bernoulli type
     
-    Representation of random variate include ...
-
     Keyword Args:
         p (float): Sucess probability
     """
     _sub_type = 'Geometric'
-
     def __new__(cls,**kwargs):
         """validation of parameters occurs here"""
         #_validate_float_by_key(kwargs,'p','probability p must be a float betwenn 0 and 1',threshold=0.0)
@@ -144,25 +139,41 @@ class NegativeBinomial(_discrete_variate):
         return x
 
 class DiscreteUniform(_discrete_variate):
-    def __init__(self,**kwargs:dict) -> None:
-        self._size:float = kwargs['size']
+    """Discrete uniform distribution
+
+    """
+    def __new__(cls,**kwargs:dict[Any,Any]):
+        """validation of parameters occurs here"""
+        size:bool = True if 'size' in kwargs else False
+        sup:bool = True if 'sup' in kwargs else False
+        if not (size^sup):
+            raise KeyError('initialization must include one and just one:size or sup')
+        if 'size' in kwargs:
+            _validate_int(kwargs['size'],'size must be an integer greater that 1',2)
+        if 'sup' in kwargs:
+            _validate_list(kwargs['sup'],'sup must be a list of int or float numbers')
+            if len(kwargs['sup'])<2:
+                raise ValueError('sup must be a list of size at leats 2')
+        return super().__new__(cls)
+    def __init__(self,**kwargs:dict[Any,Any]) -> None:
+        self._type:str = 'size' if ('size' in kwargs) else 'sup'
+        self._size:int
+        self._sup:list[int]|None
+        if self._type=='size':
+            self._size = kwargs['size']
+            self._sup = None
+        else:
+            self._sup = kwargs['sup']
+            self._size = len(self._sup)
     def rand(self)->float:
         u:float = rand()
-        index = 1
+        index:float = 1.0
         while u>index/self._size:
-            index+=1
-        return index
-
-class DiscreteUniformArb(_discrete_variate):
-    def __init__(self,**kwargs:dict) -> None:
-        self._sup = kwargs['sup']
-        self._size = len(self._sup)
-    def rand(self)->float:
-        u = rand()
-        index = 1
-        while u>index/self._size:
-            index+=1
-        return self._sup[index-1]
+            index+=1.0
+        if self._sup==None:
+            return index
+        else:
+            return self._sup[int(index)-1]
 
 class Exponential(_continuos_variate):
     def __init__(self,**kwargs:dict):
@@ -171,7 +182,7 @@ class Exponential(_continuos_variate):
         u = rand()
         return -log(u)/self._rate
 
-class NormalStd(_continuos_variate):
+class _NormalStd(_continuos_variate):
     def __init__(self):
         pass
     def _rand(self):
@@ -195,7 +206,23 @@ class NormalStd(_continuos_variate):
             _sample.append(pairs[-1][0])
         return _sample
 
-class chisq(_continuos_variate):
+class Normal(_continuos_variate):
+    def __init__(self,**kwargs):
+        self._mean:float = kwargs['mean']
+        if 'var' in kwargs:
+            self._var:float = kwargs['var']
+            self._stdev:float = self._var**0.5
+        if 'stdev'in kwargs:
+            self._stdev:float = kwargs['stdev']
+            self._var = self._stdev**2
+        self._stdvariate = _NormalStd()
+    def rand(self):
+        return self._mean+self._stdev*self._stdvariate().rand()
+    def sample(self,size:int=1)->list[float]|None:
+        _sample = self._stdev.sample(size)
+        return [self._mean+self._stdev*z for z in sample]
+
+class Chisq(_continuos_variate):
     def __init__(self,**kwargs):
         self._deg = kwargs['deg']
     def rand(self):
@@ -208,5 +235,9 @@ __all__ = [
     'Bernoulli',
     'Binomial',
     'Geometric',
-    'NegativeBinomial'
+    'NegativeBinomial',
+    'DiscreteUniform',
+    'Exponential',
+    'Normal',
+    'Chisq'
 ]

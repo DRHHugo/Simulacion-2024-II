@@ -19,7 +19,7 @@ class _package_warning(UserWarning):
     """package warning"""
     pass
 
-class _Generator_Error(Exception):
+class _generator_Error(Exception):
     """exception raised when a generator raise a null state"""
     def __init__(self):
         self.add_note('random generator raise a null state')
