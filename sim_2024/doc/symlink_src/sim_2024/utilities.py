@@ -1,7 +1,27 @@
 from typing import Any,Callable
-from matplotlib import pyplot
+from warnings import warn
+from sys import modules
+from matplotlib import pyplot as _pyplot
 from matplotlib.figure import Figure
+from matplotlib import font_manager
+from matplotlib import rc
+from matplotlib import rcParams
 from . import _validate_sample
+from . import _package_warning
+
+#change font for matplotlib figures
+font_manager.fontManager.addfont('C:\\Windows\\Fonts\\lmsans12-regular.otf')
+rc('font', family='sans-serif') 
+custom_font = font_manager.FontProperties(fname='C:\\Windows\\Fonts\\lmsans12-regular.otf')
+rcParams.update({
+   'font.sans-serif': custom_font.get_name(),
+   'font.size': 8
+   })
+
+try:
+    'sim_2024' in modules.keys()
+except KeyError:
+    raise ImportError('Module sim_2024 not loaded. Load sim_2024 and try again')
 
 class mass_function:
     """funcion de masa"""
@@ -42,11 +62,14 @@ class density_function:
         else:
             return self._function(x)
 
-def HistogramFigure(sample:list[float],function:None|mass_function|density_function=None,bins:int|list[float]=10,**kwargs:dict[str,Any]):
+def HistogramFigure(sample:list[float],function:None|mass_function|density_function=None,bins:int|list[float]=10,label:str='',**kwargs:dict[str,Any]):
     """function to create a density histogram with or without a density function"""
     _validate_sample(sample,message='later')
-    figure:Figure = pyplot.figure(figsize=(5,3),dpi=200,frameon=False)
-    _,listbins,bars = pyplot.hist(sample,bins=bins,density=True)
+    if label=='':
+        figure:Figure = _pyplot.figure(figsize=(5,3),dpi=200,frameon=False)
+    else:
+        figure:Figure = _pyplot.figure(num=label,figsize=(5,3),dpi=200,frameon=False)
+    _,listbins,bars = _pyplot.hist(sample,bins=bins,density=True)
     for bar in bars:
             bar.set_facecolor('xkcd:azure')
             bar.set_edgecolor('xkcd:white')
@@ -55,11 +78,11 @@ def HistogramFigure(sample:list[float],function:None|mass_function|density_funct
         max_x:float = listbins[-1]
         xrange:list[float] = [min_x+0.01*k for k in range(int((max_x-min_x)/0.01))]
         yrange:list[float] = [function(x) for x in xrange]
-        pyplot.plot(xrange,yrange,color='xkcd:indigo')
+        _pyplot.plot(xrange,yrange,color='xkcd:indigo')
     return figure
 
 __all__ = [
     'mass_function',
     'density_function',
-    'HistogramFigure'
+    'HistogramFigure',
     ]

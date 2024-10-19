@@ -1,19 +1,6 @@
 from typing import Any
 from warnings import warn
-#from matplotlib import font_manager
-#from matplotlib import rc
-#from matplotlib import rcParams
 from os import urandom
-
-#select backend and change font for matplotlib figures
-#matplotlib_use('notebook')
-#font_manager.fontManager.addfont('C:\\Windows\\Fonts\\lmsans12-regular.otf')
-#rc('font', family='sans-serif') 
-#custom_font = font_manager.FontProperties(fname='C:\\Windows\\Fonts\\lmsans12-regular.otf')
-#rcParams.update({
-#    'font.sans-serif': _custom_font.get_name(),
-#    'font.size': 8
-#    })
 
 class _package_warning(UserWarning):
     """package warning"""
@@ -227,7 +214,7 @@ def _validate_list_by_key(kwargs:dict,key:str,exclude_all_zeros:bool=True)->bool
             raise ValueError(key+' can\'t be a list of zeros')
     return True
 
-def _validate_sample(sample:Any,message:str)->bool:
+def _validate_sample(sample:Any,message:str='')->bool:
     if type(sample)!=list:
         raise TypeError(message)
     for x in sample:
