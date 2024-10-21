@@ -10,13 +10,16 @@ from . import _validate_sample
 from . import _package_warning
 
 #change font for matplotlib figures
-font_manager.fontManager.addfont('C:\\Windows\\Fonts\\lmsans12-regular.otf')
-rc('font', family='sans-serif') 
-custom_font = font_manager.FontProperties(fname='C:\\Windows\\Fonts\\lmsans12-regular.otf')
-rcParams.update({
-   'font.sans-serif': custom_font.get_name(),
-   'font.size': 8
-   })
+try:
+    font_manager.fontManager.addfont('C:\\Windows\\Fonts\\lmsans12-regular.otf')
+    rc('font', family='sans-serif') 
+    custom_font = font_manager.FontProperties(fname='C:\\Windows\\Fonts\\lmsans12-regular.otf')
+    rcParams.update({
+    'font.sans-serif': custom_font.get_name(),
+    'font.size': 8
+    })
+except:
+    pass
 
 try:
     'sim_2024' in modules.keys()
