@@ -85,7 +85,12 @@ def HistogramFigure(sample:list[float],function:None|mass_function|density_funct
         xrange:list[float] = [min_x+0.01*k for k in range(int((max_x-min_x)/0.01))]
         yrange:list[float] = [function(x) for x in xrange]
         pyplot.plot(xrange,yrange,color='xkcd:indigo')
-    return figure
+    try:
+        figure.canvas.toolbar_visible = False
+        figure.canvas.header_visible = False
+        figure.canvas.footer_visible = False
+    finally:
+        return figure
 
 __all__ = [
     'mass_function',
