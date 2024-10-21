@@ -77,6 +77,8 @@ def HistogramFigure(sample:list[float],function:None|mass_function|density_funct
     for bar in bars:
             bar.set_facecolor('xkcd:azure')
             bar.set_edgecolor('xkcd:white')
+    if label!='':
+        figure.axes[0].set_title(label)
     if type(function)==density_function:
         min_x:float = listbins[0]
         max_x:float = listbins[-1]
