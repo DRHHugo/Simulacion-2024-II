@@ -10,13 +10,16 @@ from . import _validate_sample
 from . import _package_warning
 
 #change font for matplotlib figures
-font_manager.fontManager.addfont('C:\\Windows\\Fonts\\lmsans12-regular.otf')
-rc('font', family='sans-serif') 
-custom_font = font_manager.FontProperties(fname='C:\\Windows\\Fonts\\lmsans12-regular.otf')
-rcParams.update({
-   'font.sans-serif': custom_font.get_name(),
-   'font.size': 8
-   })
+try:
+    font_manager.fontManager.addfont('C:\\Windows\\Fonts\\lmsans12-regular.otf')
+    rc('font', family='sans-serif') 
+    custom_font = font_manager.FontProperties(fname='C:\\Windows\\Fonts\\lmsans12-regular.otf')
+    rcParams.update({
+    'font.sans-serif': custom_font.get_name(),
+    'font.size': 8
+    })
+except:
+    pass
 
 try:
     'sim_2024' in modules.keys()
@@ -74,13 +77,20 @@ def HistogramFigure(sample:list[float],function:None|mass_function|density_funct
     for bar in bars:
             bar.set_facecolor('xkcd:azure')
             bar.set_edgecolor('xkcd:white')
+    if label!='':
+        figure.axes[0].set_title(label)
     if type(function)==density_function:
         min_x:float = listbins[0]
         max_x:float = listbins[-1]
         xrange:list[float] = [min_x+0.01*k for k in range(int((max_x-min_x)/0.01))]
         yrange:list[float] = [function(x) for x in xrange]
         pyplot.plot(xrange,yrange,color='xkcd:indigo')
-    return figure
+    try:
+        figure.canvas.header_visible = False
+        figure.canvas.footer_visible = False
+        figure.canvas.toolbar_visible = False
+    finally:
+        return figure
 
 __all__ = [
     'mass_function',

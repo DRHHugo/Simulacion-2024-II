@@ -143,8 +143,8 @@ class NegativeBinomial(_discrete_variate):
         self._s:float = kwargs['s']
     def rand(self)->float:
         #global rand
-        s = 1 if rand()<self._p else 0
-        x = 0 if s==1 else 1
+        s = 1.0 if rand()<self._p else 0
+        x = 0.0 if s==1 else 1
         while s<self._s:
             s+= 1 if rand()<self._p else 0
             x+= 0 if s==1 else 1
