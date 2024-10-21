@@ -77,20 +77,13 @@ def HistogramFigure(sample:list[float],function:None|mass_function|density_funct
     for bar in bars:
             bar.set_facecolor('xkcd:azure')
             bar.set_edgecolor('xkcd:white')
-    if label!='':
-        figure.axes[0].set_title(label)
     if type(function)==density_function:
         min_x:float = listbins[0]
         max_x:float = listbins[-1]
         xrange:list[float] = [min_x+0.01*k for k in range(int((max_x-min_x)/0.01))]
         yrange:list[float] = [function(x) for x in xrange]
         pyplot.plot(xrange,yrange,color='xkcd:indigo')
-    try:
-        figure.canvas.header_visible = False
-        figure.canvas.footer_visible = False
-        figure.canvas.toolbar_visible = False
-    finally:
-        return figure
+    return figure
 
 __all__ = [
     'mass_function',
