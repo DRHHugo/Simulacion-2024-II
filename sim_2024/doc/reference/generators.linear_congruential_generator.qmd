@@ -2,9 +2,10 @@
 
 `generators.linear_congruential_generator(self, **kwargs)`
 
-congruential linear pseudorandom generators
+Linear congruential pseudorandom generator.
 
-Pseudorandom generator based on the linear congruential method. Initialization must be made with keywords for all parameters.
+Pseudorandom generator based on the linear congruential method.
+Initialization must be made with keywords for all parameters.
 
 ## Other Parameters
 

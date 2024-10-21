@@ -234,8 +234,37 @@ ul.task-list li input[type="checkbox"] {
 <section id="sim_2024.set_seed" class="level1">
 <h1>set_seed</h1>
 <p><code>set_seed(seed)</code></p>
+<p>Change state of default pseudorandom generator.</p>
+<p>This functions allows to set the state of the default pseudorandom generator for reproductibility porpuses. If seed is not an integer it raise a Warning and no change is done.</p>
+<section id="parameters" class="level2">
+<h2 class="anchored" data-anchor-id="parameters">Parameters</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 68%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>seed</code></td>
+<td>int</td>
+<td>integer used to restart the default pseudorandom generator</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

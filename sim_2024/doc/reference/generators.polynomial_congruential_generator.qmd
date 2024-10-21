@@ -2,7 +2,18 @@
 
 `generators.polynomial_congruential_generator(self, **kwargs)`
 
-congruential polynomial pseudorandom generator
+Polynomial congruential pseudorandom generator.
+
+Pseudorandom generator based on the method to generate pseudorandom numbers.
+Initialization must be made with keywords for all parameters.
+
+## Other Parameters
+
+| Name    | Type   | Description                                   | Default    |
+|---------|--------|-----------------------------------------------|------------|
+| `mod`   | int    | Module for residual reduction                 | _required_ |
+| `mults` | int    | Multipliers                                   | _required_ |
+| `seeds` | int    | initial values, the flast element on the list | _required_ |
 
 ## Methods
 

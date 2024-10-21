@@ -2,10 +2,10 @@
 
 `generators.multiplicative_congruential_generator(self, **kwargs)`
 
-congruential multiplicative pseudorandom generators
+Multiplicative congruential  pseudorandom generator.
 
-Pseudorandom generator based on the multiplicative congruential method. Initialization must be made
-with keywords for all parameters.
+Pseudorandom generator based on the multiplicative congruential method.
+Initialization must be made with keywords for all parameters.
 
 ## Other Parameters
 

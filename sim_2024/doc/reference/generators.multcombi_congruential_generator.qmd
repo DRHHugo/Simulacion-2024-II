@@ -2,4 +2,27 @@
 
 `generators.multcombi_congruential_generator(self, **kwargs)`
 
-multiple combined congruential pseudorandom generator
+Multiple combined congruential pseudorandom generator
+
+Pseudorandom generator based on the multiple combined congruential method.
+Initialization must be made with keywords for all parameters.
+
+## Other Parameters
+
+| Name    | Type        | Description                                                                                       | Default    |
+|---------|-------------|---------------------------------------------------------------------------------------------------|------------|
+| `mods`  | list\[int\] | array of 2 positive integers, both to be used as modules                                          | _required_ |
+| `mults` | list\[int\] | array of 2m integers used as multipliers, the sequence is splited in two array of the same length | _required_ |
+| `seeds` | list\[int\] | array of 2m integers used as seeds, the sequence is splited in two array of the same length       | _required_ |
+
+## Methods
+
+| Name | Description |
+| --- | --- |
+| [rand](#sim_2024.generators.multcombi_congruential_generator.rand) | generation of one pseudorandom number |
+
+### rand { #sim_2024.generators.multcombi_congruential_generator.rand }
+
+`generators.multcombi_congruential_generator.rand()`
+
+generation of one pseudorandom number

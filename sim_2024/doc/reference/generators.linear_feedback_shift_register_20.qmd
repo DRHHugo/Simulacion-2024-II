@@ -2,7 +2,7 @@
 
 `generators.linear_feedback_shift_register_20(self, **kwargs)`
 
-linear fedbacl shift register for word size 4
+linear fedbacl shift register for word size 20
 
 ## Methods
 

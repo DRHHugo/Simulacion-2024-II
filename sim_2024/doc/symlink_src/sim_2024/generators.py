@@ -46,9 +46,9 @@ class multiplicative_congruential_generator(_congruential_generator):
     Initialization must be made with keywords for all parameters.
 
     Keyword Args:
-        mod(int): Module for residual reduction
-        mult(int): Multiplier
-        seed(int): initial value
+        mod (int): Module for residual reduction
+        mult (int): Multiplier
+        seed (int): initial value
     """
     
     _sub_type = 'multiplicative'
@@ -80,10 +80,10 @@ class linear_congruential_generator(_congruential_generator):
     Initialization must be made with keywords for all parameters.
 
     Keyword Args:
-        mod(int): Module for residual reduction
-        mult(int): Multiplier
-        seed(int): initial value
-        cte(int): aditive constant
+        mod (int): Module for residual reduction
+        mult (int): Multiplier
+        seed (int): initial value
+        cte (int): aditive constant
     """
     
     _sub_type = 'linear'
@@ -121,8 +121,8 @@ class quadratic_congrential_generator(_congruential_generator):
     Initialization must be made with keywords for all parameters.
     
     Keyword Args:
-        mod(int): Module for residual reduction
-        seed(int): initial value
+        mod (int): Module for residual reduction
+        seed (int): initial value
     """
     
     _sub_type = 'quadratic'
@@ -200,8 +200,8 @@ class multiple_congruential_generator(_congruential_generator):
     Pseudorandom generator based on the multiple multiplicative congruential generator. 
     
     Keyword Args:
-        mod(int): Module for residual reduction
-        seed(int): initial values, the last element on the list
+        mod (int): Module for residual reduction
+        seed (int): initial values, the last element on the list
     """
     
     _sub_type = 'multiple'
@@ -244,8 +244,8 @@ class combined_congruential_generator(_congruential_generator):
     Pseudorandom generator based on the multiple multiplicative congruential generator. 
     
     Keyword Args:
-        mod(int): Module for residual reduction
-        seed(int): initial values, the last element on the list
+        mod (int): Module for residual reduction
+        seed (int): initial values, the last element on the list
     """
     
     _sub_type = 'combined'
@@ -287,9 +287,9 @@ class multcombi_congruential_generator(_congruential_generator):
     Initialization must be made with keywords for all parameters.
 
     Keyword Args:
-        mods(list[int]): array of 2 positive integers, both to be used as modules
-        mults(list[int]): array of 2m integers used as multipliers, the sequence is splited in two array of the same length
-        seeds(list[int]): array of 2m integers used as seeds, the sequence is splited in two array of the same length
+        mods (list[int]): array of 2 positive integers, both to be used as modules
+        mults (list[int]): array of 2m integers used as multipliers, the sequence is splited in two array of the same length
+        seeds (list[int]): array of 2m integers used as seeds, the sequence is splited in two array of the same length
     """
 
     _sub_type = 'multiple combined'

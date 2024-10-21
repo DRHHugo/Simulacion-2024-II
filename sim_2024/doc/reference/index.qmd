@@ -7,7 +7,7 @@ funcionalidades básicas
 | | |
 | --- | --- |
 | [rand](rand.qmd#sim_2024.rand) |  |
-| [set_seed](set_seed.qmd#sim_2024.set_seed) |  |
+| [set_seed](set_seed.qmd#sim_2024.set_seed) | Change state of default pseudorandom generator. |
 
 ## Probability and Statistics tools
 
@@ -25,19 +25,19 @@ submodulo de generadores de números pseudoaleatorios
 
 | | |
 | --- | --- |
-| [generators.multiplicative_congruential_generator](generators.multiplicative_congruential_generator.qmd#sim_2024.generators.multiplicative_congruential_generator) | congruential multiplicative pseudorandom generators |
-| [generators.linear_congruential_generator](generators.linear_congruential_generator.qmd#sim_2024.generators.linear_congruential_generator) | congruential linear pseudorandom generators |
-| [generators.quadratic_congrential_generator](generators.quadratic_congrential_generator.qmd#sim_2024.generators.quadratic_congrential_generator) | congruential quadratic pseudorandom generators |
-| [generators.polynomial_congruential_generator](generators.polynomial_congruential_generator.qmd#sim_2024.generators.polynomial_congruential_generator) | congruential polynomial pseudorandom generator |
-| [generators.multiple_congruential_generator](generators.multiple_congruential_generator.qmd#sim_2024.generators.multiple_congruential_generator) | multiple congruential pseudorandom generator |
-| [generators.combined_congruential_generator](generators.combined_congruential_generator.qmd#sim_2024.generators.combined_congruential_generator) | combined congruential pseudorandom generator |
-| [generators.multcombi_congruential_generator](generators.multcombi_congruential_generator.qmd#sim_2024.generators.multcombi_congruential_generator) | multiple combined congruential pseudorandom generator |
+| [generators.multiplicative_congruential_generator](generators.multiplicative_congruential_generator.qmd#sim_2024.generators.multiplicative_congruential_generator) | Multiplicative congruential  pseudorandom generator. |
+| [generators.linear_congruential_generator](generators.linear_congruential_generator.qmd#sim_2024.generators.linear_congruential_generator) | Linear congruential pseudorandom generator. |
+| [generators.quadratic_congrential_generator](generators.quadratic_congrential_generator.qmd#sim_2024.generators.quadratic_congrential_generator) | Quadratic congruential pseudorandom generators. |
+| [generators.polynomial_congruential_generator](generators.polynomial_congruential_generator.qmd#sim_2024.generators.polynomial_congruential_generator) | Polynomial congruential pseudorandom generator. |
+| [generators.multiple_congruential_generator](generators.multiple_congruential_generator.qmd#sim_2024.generators.multiple_congruential_generator) | Multiple congruential pseudorandom generator |
+| [generators.combined_congruential_generator](generators.combined_congruential_generator.qmd#sim_2024.generators.combined_congruential_generator) | Combined congruential pseudorandom generator. |
+| [generators.multcombi_congruential_generator](generators.multcombi_congruential_generator.qmd#sim_2024.generators.multcombi_congruential_generator) | Multiple combined congruential pseudorandom generator |
 | [generators.linear_feedback_shift_register_4](generators.linear_feedback_shift_register_4.qmd#sim_2024.generators.linear_feedback_shift_register_4) | linear fedbacl shift register for word size 4 |
 | [generators.linear_feedback_shift_register_8](generators.linear_feedback_shift_register_8.qmd#sim_2024.generators.linear_feedback_shift_register_8) | linear fedbacl shift register for word size 8 |
 | [generators.linear_feedback_shift_register_12](generators.linear_feedback_shift_register_12.qmd#sim_2024.generators.linear_feedback_shift_register_12) | linear fedbacl shift register for word size 12 |
-| [generators.linear_feedback_shift_register_16](generators.linear_feedback_shift_register_16.qmd#sim_2024.generators.linear_feedback_shift_register_16) | linear fedbacl shift register for word size 4 |
-| [generators.linear_feedback_shift_register_20](generators.linear_feedback_shift_register_20.qmd#sim_2024.generators.linear_feedback_shift_register_20) | linear fedbacl shift register for word size 4 |
-| [generators.linear_feedback_shift_register_24](generators.linear_feedback_shift_register_24.qmd#sim_2024.generators.linear_feedback_shift_register_24) | linear fedbacl shift register for word size 4 |
+| [generators.linear_feedback_shift_register_16](generators.linear_feedback_shift_register_16.qmd#sim_2024.generators.linear_feedback_shift_register_16) | linear fedback shift register for word size 16 |
+| [generators.linear_feedback_shift_register_20](generators.linear_feedback_shift_register_20.qmd#sim_2024.generators.linear_feedback_shift_register_20) | linear fedbacl shift register for word size 20 |
+| [generators.linear_feedback_shift_register_24](generators.linear_feedback_shift_register_24.qmd#sim_2024.generators.linear_feedback_shift_register_24) | linear fedbacl shift register for word size 24 |
 
 ## Pruebas de aleatoriedad
 

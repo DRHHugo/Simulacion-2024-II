@@ -2,7 +2,16 @@
 
 `generators.multiple_congruential_generator(self, **kwargs)`
 
-multiple congruential pseudorandom generator
+Multiple congruential pseudorandom generator
+
+Pseudorandom generator based on the multiple multiplicative congruential generator. 
+
+## Other Parameters
+
+| Name   | Type   | Description                                  | Default    |
+|--------|--------|----------------------------------------------|------------|
+| `mod`  | int    | Module for residual reduction                | _required_ |
+| `seed` | int    | initial values, the last element on the list | _required_ |
 
 ## Methods
 
