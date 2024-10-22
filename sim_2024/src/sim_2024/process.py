@@ -16,4 +16,5 @@ class _random_process:
         pass
     def sample(self,stop:float=1.0,size:int=1)->list[float]|None:
         """generation of size pseudo-random sample of variate"""
-        return [self.rand() for _ in range(size)]
+        return [self.rand(stop=stop) for _ in range(size)]
+
