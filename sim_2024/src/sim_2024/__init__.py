@@ -122,7 +122,7 @@ def _validate_float(x:Any,message:str='',threshold:None|float=0.0,exceptions:Non
         if x<threshold:
             raise ValueError(message)
     if exceptions!=None:
-        if type(exceptions)!=int and type(exceptions)!=list:
+        if type(exceptions)!=float and type(exceptions)!=list:
             raise TypeError('exceptions must be an integer or a list of integers')
         if type(exceptions)==int:
             if x==exceptions:

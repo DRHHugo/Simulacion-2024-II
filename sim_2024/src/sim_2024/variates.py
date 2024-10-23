@@ -157,7 +157,7 @@ class DiscreteUniform(_discrete_variate):
         size(int): if provided, the class will represenr Discrete distribution on inetegers 1,2,...,size.
         sup(list[float]): if provided, the class will represent Discrete distribution on the set {members of list}.
     """
-
+    _sub_type = 'uniform'
     def __new__(cls,**kwargs:dict[Any,Any]):
         """validation of parameters occurs here"""
         size:bool = True if 'size' in kwargs else False
@@ -195,6 +195,32 @@ class DiscreteUniform(_discrete_variate):
         else:
             return self._sup[int(index)-1]
 
+class Poisson(_discrete_variate):
+    """Poisson distribution.
+
+    Keyword Args:
+        rate (float): the rate associated with the underlaing exponential distribitud arrival process.
+    """
+    _sub_type = 'Poisson'
+    def __new__(cls,**kwargs:dict[Any,Any]):
+        """validation of parameters occurs here"""
+        _validate_float_by_key(kwargs,'rate',threshold=0.0,exceptions=0.0)
+        return super().__new__(cls)
+    
+    def __init__(self,**kwargs:dict[Any,Any]) -> None:
+        """all attributes are private"""
+        self._rate:float = kwargs['rate']
+        self._expvariate:Exponential = Exponential(rate=kwargs['rate'])
+    
+    def rand(self)->float:
+        """generation of one random number"""
+        x:float = 0.0
+        t:float = self._expvariate.rand()
+        while t<=1:
+            x+=1.0
+            t+=self._expvariate.rand()
+        return x
+
 class ContinuousUniform(_continuos_variate):
     """Continuous uniform distribution.
 
@@ -220,15 +246,16 @@ class Exponential(_continuos_variate):
     def __new__(cls,**kwargs:dict[Any,Any]):
         """validation of parameters occurs here"""
         _validate_float_by_key(kwargs,'rate','rate must be a positive number',threshold=0.0,exceptions=0.0)
-    
+        return super().__new__(cls)
+
     def __init__(self,**kwargs:dict[Any,Any])->None:
-        self.rate:float = kwargs['rate']
-        self.density:density_function = density_function(lambda x: self.rate*exp(-self.rate*x),min=0,max=None)
+        self._rate:float = kwargs['rate']
+        self._density:density_function = density_function(lambda x: self.rate*exp(-self.rate*x),min=0,max=None)
 
     def rand(self)->float:
         """generation of one random number"""
         u = rand.rand()
-        return -log(u)/self.rate
+        return -log(u)/self._rate
 
 class _NormalStd(_continuos_variate):
     def __init__(self):
@@ -255,19 +282,31 @@ class _NormalStd(_continuos_variate):
         return _sample
 
 class Normal(_continuos_variate):
-    def __init__(self,**kwargs):
-        self._mean:float = kwargs['mean']
+    """Normal distribution
+
+    Keyword Args:
+        mean (float): mean parameter
+        var (float): variance parameter
+        stdev (float): standar deviation parameter
+    """
+    _sub_type = 'Normal'
+    def __init__(self,**kwargs)->None:
+        self._mean:float
+        self._var:float
+        self._stdev:float
+        self._stdvariate:_NormalStd
+        self._mean = kwargs['mean']
         if 'var' in kwargs:
-            self._var:float = kwargs['var']
-            self._stdev:float = self._var**0.5
+            self._var = kwargs['var']
+            self._stdev = self._var**0.5
         if 'stdev'in kwargs:
-            self._stdev:float = kwargs['stdev']
+            self._stdev = kwargs['stdev']
             self._var = self._stdev**2
         self._stdvariate = _NormalStd()
     def rand(self):
-        return self._mean+self._stdev*self._stdvariate().rand()
+        return self._mean+self._stdev*self._stdvariate.rand()
     def sample(self,size:int=1)->list[float]|None:
-        _sample = self._stdev.sample(size)
+        _sample = self._stdvariate.sample(size)
         return [self._mean+self._stdev*z for z in _sample]
 
 class Chisq(_continuos_variate):
@@ -295,6 +334,7 @@ __all__ = [
     'Geometric',
     'NegativeBinomial',
     'DiscreteUniform',
+    'Poisson',
     'Exponential',
     'Normal',
     'Chisq',
