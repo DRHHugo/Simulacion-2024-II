@@ -556,13 +556,6 @@
     "text": "tests.variance_est\ntests.variance_est(sample)"
   },
   {
-    "objectID": "reference/utilities.density_function.html",
-    "href": "reference/utilities.density_function.html",
-    "title": "utilities.density_function",
-    "section": "",
-    "text": "utilities.density_function\nutilities.density_function(self, function, min=None, max=None)\nfuncion de densidad"
-  },
-  {
     "objectID": "reference/utilities.mass_function.html",
     "href": "reference/utilities.mass_function.html",
     "title": "utilities.mass_function",

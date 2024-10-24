@@ -3,21 +3,15 @@ from typing import Callable as _Callable
 from sys import modules as _modules
 from matplotlib import pyplot as _pyplot
 from matplotlib.figure import Figure as _Figure
-from matplotlib import font_manager as _font_manager
-from matplotlib import rc as _rc
 from matplotlib import rcParams as _rcParams
 from . import _validate_sample
-from . import _package_warning
-from . import _validate_float_by_key
 from . import _validate_float
 
 #change font for matplotlib figures
 try:
-    _font_manager.fontManager.addfont('C:\\Windows\\Fonts\\lmsans12-regular.otf')
-    _rc('font', family='sans-serif') 
-    custom_font = _font_manager.FontProperties(fname='C:\\Windows\\Fonts\\lmsans12-regular.otf')
     _rcParams.update({
-    'font.sans-serif': custom_font.get_name(),
+    'font.serif': 'Latin Modern Roman',
+    'font.sans-serif': 'Latin Modern Sans',
     'font.size': 8
     })
 except:
@@ -56,8 +50,8 @@ class density_function:
         function (Callable): functión used to evaluate density_function between min and max args.
 
     Keyword Args:
-        min (float): density_functión evaluate to zero below min, min=-inf is used when min=-∞
-        max (float): density_functión evaluate to zero above max, max=+inf is used when max=+∞
+        min (float): density_functión evaluate to zero below min, min=-inf is used when min=-infinity
+        max (float): density_functión evaluate to zero above max, max=+inf is used when max=+infinity
     """
     def __new__(cls,function:_Callable[[float],float],**kwargs):
         if 'min' in kwargs:
