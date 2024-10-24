@@ -1,5 +1,0 @@
-# utilities.density_function { #sim_2024.utilities.density_function }
-
-`utilities.density_function(self, function, min=None, max=None)`
-
-funcion de densidad
