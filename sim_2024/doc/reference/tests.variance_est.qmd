@@ -1,0 +1,6 @@
+# tests.variance_est { #sim_2024.tests.variance_est }
+
+```python
+tests.variance_est(sample)
+```
+

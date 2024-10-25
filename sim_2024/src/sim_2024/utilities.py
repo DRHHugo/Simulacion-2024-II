@@ -54,8 +54,8 @@ class density_function:
         function (Callable): functión used to evaluate density_function between min and max args.
 
     Keyword Args:
-        min (float): density_functión evaluate to zero below min, min=-inf is used when min=-infinity
-        max (float): density_functión evaluate to zero above max, max=+inf is used when max=+infinity
+        min (float): density_functión evaluate to zero below min
+        max (float): density_functión evaluate to zero above max
         """
     def __new__(cls,function:_Callable[[float],float],**kwargs):
         if 'min' in kwargs:

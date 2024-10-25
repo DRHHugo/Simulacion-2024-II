@@ -1,0 +1,6 @@
+# tests.series_test { #sim_2024.tests.series_test }
+
+```python
+tests.series_test(sample, l, d, sig=0.95)
+```
+

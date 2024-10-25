@@ -1,0 +1,22 @@
+# utilities.density_function { #sim_2024.utilities.density_function }
+
+```python
+utilities.density_function(self, function, **kwargs)
+```
+
+funcion de densidad
+
+Clase de abstracción de una función de densidad de probabilidad.
+
+## Parameters {.doc-section .doc-section-parameters}
+
+| Name     | Type     | Description                                                          | Default    |
+|----------|----------|----------------------------------------------------------------------|------------|
+| function | Callable | functión used to evaluate density_function between min and max args. | _required_ |
+
+## Other Parameters {.doc-section .doc-section-other-parameters}
+
+| Name   | Type   | Description                                 | Default    |
+|--------|--------|---------------------------------------------|------------|
+| min    | float  | density_functión evaluate to zero below min | _required_ |
+| max    | float  | density_functión evaluate to zero above max | _required_ |

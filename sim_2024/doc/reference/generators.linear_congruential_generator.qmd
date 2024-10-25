@@ -1,0 +1,33 @@
+# generators.linear_congruential_generator { #sim_2024.generators.linear_congruential_generator }
+
+```python
+generators.linear_congruential_generator(self, **kwargs)
+```
+
+Linear congruential pseudorandom generator.
+
+Pseudorandom generator based on the linear congruential method.
+Initialization must be made with keywords for all parameters.
+
+## Other Parameters {.doc-section .doc-section-other-parameters}
+
+| Name   | Type   | Description                   | Default    |
+|--------|--------|-------------------------------|------------|
+| mod    | int    | Module for residual reduction | _required_ |
+| mult   | int    | Multiplier                    | _required_ |
+| seed   | int    | initial value                 | _required_ |
+| cte    | int    | aditive constant              | _required_ |
+
+## Methods
+
+| Name | Description |
+| --- | --- |
+| [rand](#sim_2024.generators.linear_congruential_generator.rand) | generation of one pseudo-random number |
+
+### rand { #sim_2024.generators.linear_congruential_generator.rand }
+
+```python
+generators.linear_congruential_generator.rand()
+```
+
+generation of one pseudo-random number
