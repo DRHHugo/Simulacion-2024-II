@@ -1,19 +1,21 @@
 # generators.polynomial_congruential_generator { #sim_2024.generators.polynomial_congruential_generator }
 
-`generators.polynomial_congruential_generator(self, **kwargs)`
+```python
+generators.polynomial_congruential_generator(self, **kwargs)
+```
 
 Polynomial congruential pseudorandom generator.
 
 Pseudorandom generator based on the method to generate pseudorandom numbers.
 Initialization must be made with keywords for all parameters.
 
-## Other Parameters
+## Other Parameters {.doc-section .doc-section-other-parameters}
 
-| Name    | Type   | Description                                   | Default    |
-|---------|--------|-----------------------------------------------|------------|
-| `mod`   | int    | Module for residual reduction                 | _required_ |
-| `mults` | int    | Multipliers                                   | _required_ |
-| `seeds` | int    | initial values, the flast element on the list | _required_ |
+| Name   | Type   | Description                                   | Default    |
+|--------|--------|-----------------------------------------------|------------|
+| mod    | int    | Module for residual reduction                 | _required_ |
+| mults  | int    | Multipliers                                   | _required_ |
+| seeds  | int    | initial values, the flast element on the list | _required_ |
 
 ## Methods
 
@@ -23,6 +25,8 @@ Initialization must be made with keywords for all parameters.
 
 ### rand { #sim_2024.generators.polynomial_congruential_generator.rand }
 
-`generators.polynomial_congruential_generator.rand()`
+```python
+generators.polynomial_congruential_generator.rand()
+```
 
 generation of one pseudo-random number

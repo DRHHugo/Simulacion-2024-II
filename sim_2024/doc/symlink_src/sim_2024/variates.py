@@ -431,6 +431,29 @@ class Gamma(_continuos_variate):
             u=rand()
         return self._rate*y        
 
+class Beta(_continuos_variate):
+    """Beta distribution
+    
+    """
+    
+    _sub_type = 'beta distribution'
+
+    def __init__(self,**kwargs:dict)->None:
+        self._alpha:float
+        self._beta:float
+        self._gamma_1:Gamma
+        self._gamma_2:Gamma
+        self._alpha = kwargs['shape'][0]
+        self._beta = kwargs['shape'][1]
+        self._gamma_1 = Gamma(shape=self._alpha,rate=1)
+        self._gamma_2 = Gamma(shape=self._beta,rate=1)
+    def rand(self)->float:
+        x:float
+        y:float
+        x = self._gamma_1.rand()
+        y = self._gamma_2.rand()
+        return x/(x+y)
+
 class Tringular(_continuos_variate):
     """Triangular distribution
     """

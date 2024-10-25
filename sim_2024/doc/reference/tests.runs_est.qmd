@@ -1,4 +1,6 @@
 # tests.runs_est { #sim_2024.tests.runs_est }
 
-`tests.runs_est(sample)`
+```python
+tests.runs_est(sample)
+```
 

@@ -272,7 +272,7 @@ class combined_congruential_generator(_congruential_generator):
         self._state:list[int] = [int(m) for m in kwargs['seeds']]
         self._mults:list[int] = [int(m) for m in kwargs['mults']]
 
-    def rand(self:Any):
+    def rand(self:_Any):
         """generation of one pseudo-random number"""
         x:int = self._mults[0]*self._state[0]%self._mods[0]
         y:int = self._mults[1]*self._state[1]%self._mods[1]
@@ -389,7 +389,7 @@ def _make_submatrix(d:int)->list[list[bool]]:
     """auxiliar constructor"""
     return [[i==(j-1) for j in range(d)] for i in range(d-1)]
 
-def _append_and_return(l:list[Any],e:Any)->list[Any]:
+def _append_and_return(l:list[_Any],e:_Any)->list[_Any]:
     """appends a valur to l and return l itself"""
     l.append(e)
     return l
