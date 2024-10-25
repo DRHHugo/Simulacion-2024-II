@@ -1,5 +1,0 @@
-# mass_function { #sim_2024.mass_function }
-
-`mass_function(self, f)`
-
-funcion de masa

@@ -1,4 +1,0 @@
-# tests.series_est { #sim_2024.tests.series_est }
-
-`tests.series_est(sample, l, d)`
-

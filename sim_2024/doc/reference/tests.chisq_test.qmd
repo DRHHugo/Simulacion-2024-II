@@ -1,4 +1,0 @@
-# tests.chisq_test { #sim_2024.tests.chisq_test }
-
-`tests.chisq_test(sample, k, sig=0.95)`
-
