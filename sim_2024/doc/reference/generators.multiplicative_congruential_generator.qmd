@@ -1,21 +1,19 @@
 # generators.multiplicative_congruential_generator { #sim_2024.generators.multiplicative_congruential_generator }
 
-```python
-generators.multiplicative_congruential_generator(self, **kwargs)
-```
+`generators.multiplicative_congruential_generator(self, **kwargs)`
 
 Multiplicative congruential  pseudorandom generator.
 
 Pseudorandom generator based on the multiplicative congruential method.
 Initialization must be made with keywords for all parameters.
 
-## Other Parameters {.doc-section .doc-section-other-parameters}
+## Other Parameters
 
 | Name   | Type   | Description                   | Default    |
 |--------|--------|-------------------------------|------------|
-| mod    | int    | Module for residual reduction | _required_ |
-| mult   | int    | Multiplier                    | _required_ |
-| seed   | int    | initial value                 | _required_ |
+| `mod`  | int    | Module for residual reduction | _required_ |
+| `mult` | int    | Multiplier                    | _required_ |
+| `seed` | int    | initial value                 | _required_ |
 
 ## Methods
 
@@ -25,8 +23,6 @@ Initialization must be made with keywords for all parameters.
 
 ### rand { #sim_2024.generators.multiplicative_congruential_generator.rand }
 
-```python
-generators.multiplicative_congruential_generator.rand()
-```
+`generators.multiplicative_congruential_generator.rand()`
 
 generation of one pseudo-random number

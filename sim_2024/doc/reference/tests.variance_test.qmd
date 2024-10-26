@@ -1,6 +1,4 @@
 # tests.variance_test { #sim_2024.tests.variance_test }
 
-```python
-tests.variance_test(sample, sig=0.95)
-```
+`tests.variance_test(sample, sig=0.95)`
 

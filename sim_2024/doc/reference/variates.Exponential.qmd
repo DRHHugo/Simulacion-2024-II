@@ -1,0 +1,23 @@
+# variates.Exponential { #sim_2024.variates.Exponential }
+
+`variates.Exponential(self, **kwargs)`
+
+Exponential distribution.
+
+## Other Parameters
+
+| Name   | Type   | Description    | Default    |
+|--------|--------|----------------|------------|
+| `rate` | float  | rate parameter | _required_ |
+
+## Methods
+
+| Name | Description |
+| --- | --- |
+| [rand](#sim_2024.variates.Exponential.rand) | generation of one random number |
+
+### rand { #sim_2024.variates.Exponential.rand }
+
+`variates.Exponential.rand()`
+
+generation of one random number

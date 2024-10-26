@@ -1,0 +1,5 @@
+# variates.Gamma { #sim_2024.variates.Gamma }
+
+`variates.Gamma(self, **kwargs)`
+
+Gamma distribution

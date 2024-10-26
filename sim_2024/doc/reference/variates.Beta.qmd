@@ -1,0 +1,5 @@
+# variates.Beta { #sim_2024.variates.Beta }
+
+`variates.Beta(self, **kwargs)`
+
+Beta distribution

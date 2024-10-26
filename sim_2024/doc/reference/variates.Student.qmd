@@ -1,0 +1,4 @@
+# variates.Student { #sim_2024.variates.Student }
+
+`variates.Student(self, **kwargs)`
+

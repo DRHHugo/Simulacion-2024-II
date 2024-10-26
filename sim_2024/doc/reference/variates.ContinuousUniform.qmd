@@ -1,0 +1,11 @@
+# variates.ContinuousUniform { #sim_2024.variates.ContinuousUniform }
+
+`variates.ContinuousUniform(self, **kwargs)`
+
+Continuous uniform distribution.
+
+## Other Parameters
+
+| Name   | Type   | Description              | Default    |
+|--------|--------|--------------------------|------------|
+| `sup`  | tuple  | support of distribution. | _required_ |

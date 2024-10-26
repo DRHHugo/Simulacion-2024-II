@@ -1,0 +1,5 @@
+# variates.BoundedNormal { #sim_2024.variates.BoundedNormal }
+
+`variates.BoundedNormal(self)`
+
+Normal bounded distribution

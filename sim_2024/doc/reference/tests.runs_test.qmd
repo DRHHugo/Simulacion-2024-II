@@ -1,6 +1,4 @@
 # tests.runs_test { #sim_2024.tests.runs_test }
 
-```python
-tests.runs_test(sample, sig=0.95)
-```
+`tests.runs_test(sample, sig=0.95)`
 

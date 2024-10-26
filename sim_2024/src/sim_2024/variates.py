@@ -1,4 +1,5 @@
-from typing import Any,Callable
+from typing import Any as _Any
+from typing import Callable as _Callable
 from sys import modules
 from math import log
 from math import exp
@@ -8,8 +9,8 @@ from . import _validate_float_by_key
 from . import _validate_int_by_key
 from . import _validate_int
 from . import _validate_list
-from .utilities import mass_function
-from .utilities import density_function
+from . import mass_function
+from . import density_function
 
 try:
     rand = modules['sim_2024'].rand
@@ -51,14 +52,14 @@ class Bernoulli(_discrete_variate):
     
     _sub_type = 'Bernoulli'
     
-    def __new__(cls,**kwargs:Any):
+    def __new__(cls,**kwargs:_Any):
         """validation of parameters occurs here"""
         _validate_float_by_key(kwargs,'p','probability p must be a float betwenn 0 and 1',threshold=0.0)
         if kwargs['p']>1:
             raise ValueError('probability p must be a float betwenn 0 and 1')
         return super().__new__(cls)
     
-    def __init__(self,**kwargs:Any):
+    def __init__(self,**kwargs:_Any):
         """all attributes are private"""
         self._p:float = kwargs['p']
         self.mass_function:mass_function = mass_function(function=lambda x:(self._p if x==1 else 1-self._p),sup=[0,1])
@@ -79,14 +80,14 @@ class Binomial(_discrete_variate):
         n (int): Number of trials
     """
     _sub_type = 'Binomial'
-    def __new__(cls,**kwargs:Any):
+    def __new__(cls,**kwargs:_Any):
         """validation of parameters occurs here"""
         _validate_int_by_key(kwargs,'n','number of trials must be a positive integer',threshold=1)
         _validate_float_by_key(kwargs,'p','probability p must be a float between 0 and 1',threshold=0.0)
         if kwargs['p']>1:
             raise ValueError('probability p must be a float betwenn 0 and 1')
         return super().__new__(cls)
-    def __init__(self,**kwargs:Any):
+    def __init__(self,**kwargs:_Any):
         """all attributes are private"""
         self._p:float = kwargs['p']
         self._n:int = kwargs['n']
@@ -156,29 +157,34 @@ class DiscreteUniform(_discrete_variate):
     """Discrete uniform distribution.
 
     Keyword Args:
-        size(int): if provided, the class will represenr Discrete distribution on inetegers 1,2,...,size.
-        sup(list[float]): if provided, the class will represent Discrete distribution on the set {members of list}.
+        size (int): if provided, the class will represenr Discrete distribution on inetegers 1,2,...,size.
+        sup (list[float]): if provided, the class will represent Discrete distribution on the set {members of list}.
     """
+    
     _sub_type = 'uniform'
-    def __new__(cls,**kwargs:dict):
+    
+    def __new__(cls,**kwargs:dict[str,_Any]):
         """validation of parameters occurs here"""
-        size:bool = True if 'size' in kwargs else False
-        sup:bool = True if 'sup' in kwargs else False
+        size:bool
+        sup:bool
+        size = True if 'size' in kwargs else False
+        sup = True if 'sup' in kwargs else False
         if not (size^sup):
             raise KeyError('initialization must include one and just one:size or sup')
         if 'size' in kwargs:
-            _validate_int(kwargs['size'],'size must be an integer greater that 1',2)
+            _validate_int(kwargs['size'],'size must be an integer greater than 1',2)
         if 'sup' in kwargs:
             _validate_list(kwargs['sup'],'sup must be a list of int or float numbers')
             if len(kwargs['sup'])<2:
                 raise ValueError('sup must be a list of size at leats 2')
         return super().__new__(cls)
     
-    def __init__(self,**kwargs:dict) -> None:
+    def __init__(self,**kwargs:dict[str,_Any]) -> None:
         """all attributes are private"""
-        self._type:str = 'size' if ('size' in kwargs) else 'sup'
+        self._type:str
         self._size:int
-        self._sup:list[int|float]|None
+        self._sup:list[float]
+        self._type = 'size' if ('size' in kwargs) else 'sup'
         if self._type=='size':
             self._size = kwargs['size']
             self._sup = None
@@ -204,12 +210,12 @@ class Poisson(_discrete_variate):
         rate (float): the rate associated with the underlaing exponential distribitud arrival process.
     """
     _sub_type = 'Poisson'
-    def __new__(cls,**kwargs:dict):
+    def __new__(cls,**kwargs:dict[str,_Any]):
         """validation of parameters occurs here"""
         _validate_float_by_key(kwargs,'rate',threshold=0.0,exceptions=0.0)
         return super().__new__(cls)
     
-    def __init__(self,**kwargs:dict) -> None:
+    def __init__(self,**kwargs:dict[str,_Any]) -> None:
         """all attributes are private"""
         self._rate:float = kwargs['rate']
         self._expvariate:Exponential = Exponential(rate=kwargs['rate'])
@@ -227,12 +233,12 @@ class ContinuousUniform(_continuos_variate):
     """Continuous uniform distribution.
 
     Keyword Args:
-        sup(tuple): support of distribution.
+        sup (tuple): support of distribution.
     """
 
     #def __new__(cls,**kwargs:dict):
     #    """validation of parameters occurs here"""
-    def __init__(self,**kwargs:dict)->None:
+    def __init__(self,**kwargs:dict[str,_Any])->None:
         self._sup = kwargs['sup']
     def rand(self)->float:
         u:float = rand.rand()
@@ -242,15 +248,15 @@ class Exponential(_continuos_variate):
     """Exponential distribution.
 
     Keyword Args:
-        rate(float): rate parameter 
+        rate (float): rate parameter 
     """
     
-    def __new__(cls,**kwargs:dict):
+    def __new__(cls,**kwargs:dict[str,_Any]):
         """validation of parameters occurs here"""
         _validate_float_by_key(kwargs,'rate','rate must be a positive number',threshold=0.0,exceptions=0.0)
         return super().__new__(cls)
 
-    def __init__(self,**kwargs:dict)->None:
+    def __init__(self,**kwargs:dict[str,_Any])->None:
         self._rate:float = kwargs['rate']
         #self._density:density_function = density_function(lambda x: self._rate*exp(-self._rate*x),min=0,max=None)
 
@@ -438,7 +444,7 @@ class Beta(_continuos_variate):
     
     _sub_type = 'beta distribution'
 
-    def __init__(self,**kwargs:dict)->None:
+    def __init__(self,**kwargs:dict[str,_Any])->None:
         self._alpha:float
         self._beta:float
         self._gamma_1:Gamma
@@ -492,6 +498,7 @@ __all__ = [
     'NegativeBinomial',
     'DiscreteUniform',
     'Poisson',
+    'ContinuosUniform',
     'Exponential',
     'Normal',
     'Chisq',
@@ -499,5 +506,7 @@ __all__ = [
     'BoundedNormal',
     'RectifiedNormal',
     'Gamma',
+    'Beta',
+    'Triangular',
     'ExampleDis'
 ]

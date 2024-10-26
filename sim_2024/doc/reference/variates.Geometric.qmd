@@ -1,0 +1,11 @@
+# variates.Geometric { #sim_2024.variates.Geometric }
+
+`variates.Geometric(self, **kwargs)`
+
+Representation of a random variate of Bernoulli type
+
+## Other Parameters
+
+| Name   | Type   | Description        | Default    |
+|--------|--------|--------------------|------------|
+| `p`    | float  | Sucess probability | _required_ |

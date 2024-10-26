@@ -1,6 +1,25 @@
 from typing import Any as _Any
-from warnings import warn as _warn  
+from typing import Callable as _Callable
+from array import array as _array
 from os import urandom as _urandom
+from os import getcwd as _getcwd
+from warnings import warn as _warn  
+from matplotlib import font_manager as _font_manager
+from matplotlib import pyplot as _pyplot
+from matplotlib.figure import Figure as _Figure
+from matplotlib import rcParams as _rcParams
+
+#change font for matplotlib figures
+
+_font_manager.fontManager.addfont(_getcwd()+'\\sim_2024\\lmsans12-regular.otf')
+_font_manager.fontManager.addfont(_getcwd()+'\\sim_2024\\lmroman12-regular.otf')
+_rcParams.update({
+    'font.serif': 'Latin Modern Roman',
+    'font.sans-serif': 'Latin Modern Sans',
+    'font.size': 8
+    })
+
+#custom errors and warnings
 
 class _package_warning(UserWarning):
     """Warning for error handling
@@ -16,6 +35,8 @@ class _generator_Error(Exception):
     """
     def __init__(self):
         self.add_note('random generator raise a null state')
+
+#validation functions
 
 def _validate_int(x:_Any,message:str='',threshold:None|int=None,exceptions:None|int|list[int]=None)->bool:
     """Validation for an integer.
@@ -79,7 +100,7 @@ def _warn_int(x:_Any,message:str='',threshold:None|int=None,exceptions:None|int|
     else:
         return True
 
-def _validate_int_by_key(kwargs:dict,key:str,message:str='',threshold:None|int=None,exceptions:None|int|list[int]=None)->bool:
+def _validate_int_by_key(kwargs:dict[str,_Any],key:str,message:str='',threshold:None|int=None,exceptions:None|int|list[int]=None)->bool:
     """Validation for an integer on a dictionary.
 
     This functions will raise an Error if kwargs[key] doesn't exists.
@@ -136,7 +157,7 @@ def _validate_float(x:_Any,message:str='',threshold:None|float=0.0,exceptions:No
                     raise ValueError(message)
     return True
 
-def _validate_float_by_key(kwargs:dict,key:str,message:str='',threshold:None|float=None,exceptions:None|float|list[float]=None)->bool:
+def _validate_float_by_key(kwargs:dict[str,_Any],key:str,message:str='',threshold:None|float=None,exceptions:None|float|list[float]=None)->bool:
     """Validation for an float on a dictionary.
 
     This functions will raise an Error if kwargs[key] doesn't exists.
@@ -192,7 +213,7 @@ def _validate_list(l:_Any,message:str='',threshold:None|int=None,exceptions:None
         raise ValueError(message)
     return True
 
-def _validate_list_by_key(kwargs:dict,key:str,exclude_all_zeros:bool=True)->bool:
+def _validate_list_by_key(kwargs:dict[str,_Any],key:str,exclude_all_zeros:bool=True)->bool:
     """Validation for an array on a dictionary.
 
     This functions will raise an Error if kwargs[key] doesn't exists or if is not a list of integers.
@@ -238,6 +259,8 @@ def _validate_sample(sample:_Any,message:str='')->bool:
         if type(x)!=float and type(x)!=int:
             raise TypeError(message)
     return True
+
+#pseudorandom default generator and related functions
 
 class _package_generator:
     """Class reserved for main pseudorandom generator.
@@ -317,7 +340,116 @@ def set_seed(seed:int)->None:
         rand._set_seed(seed)
     return None
 
+#probability and statistics utilities
+
+class mass_function:
+    """funcion de masa"""
+    def __init__(self,function:_Callable[[float],float],sup:list[float])->None:
+        self._function:_Any = function
+        self._support:list[float] = sup
+    def __str__(self) :
+        return 'Funcion de masa'
+    def __repr__(self) :
+        return f'mass_function with:\\n support:'+repr(self._sup)+'\\n formula:'+repr(self._support)
+    def __call__(self,x):
+        return self._function(x)
+    #    def __add__(self,g:mass_function) :
+    #        len_f:float = self.__max-self.__min+1
+    #        len_g:float = g.__max-g.__min+1
+    #        f_values:list[float] = [float(self.__min+k) for k in range(len_f)]
+    #        g_values:list[float] = [g.__min+k for k in range(len_g)]
+    #        new_weights:list[float] = [[self(f_values[i])*g(g_values[k-i]) for i in range(max(0,k+1-len_g),min(k+1,len_f))] for k in range(len_f+len_g-1)]
+    #        return mass_function({float(k+self.__min+g.__min):sum(new_weights[k]) for k in range(len(new_weights))})
+
+class density_function:
+    """funcion de densidad
+    
+    Clase de abstracción de una función de densidad de probabilidad.
+
+    Args:
+        function (Callable): functión used to evaluate density_function between min and max args.
+
+    Keyword Args:
+        min (float): density_functión evaluate to zero below min
+        max (float): density_functión evaluate to zero above max
+        """
+    def __new__(cls,function:_Callable[[float],float],**kwargs):
+        if 'min' in kwargs:
+            _validate_float(kwargs['min'],'min must be a float')
+        if 'max' in kwargs:
+            _validate_float(kwargs['max'],'max must be a float')
+        if 'min' in kwargs and 'max' in kwargs:
+            if kwargs['max']<=kwargs['min']:
+                raise ValueError('max value must be greater that min value')
+
+    def __init__(self,function:_Callable[[float],float],**kwargs):
+        self._function:_Callable[[float],float]
+        self._min: str|float
+        self._max: str|float
+        if 'min' in kwargs:
+            self._min = kwargs['min']
+        else:
+            self._min = '-inf'
+        if 'max' in kwargs:
+            self._min = kwargs['max']
+        else:
+            self._min = '+inf'
+        self._function = function
+    
+    def __call__(self,x:float)->float:
+        if type(self._min) is float and type(self._max) is float:
+            if self._min<=x and x<=self._max:
+                return self._function(x)
+            else:
+                return 0
+        elif type(self._min) is float:
+            if self._min<=x:
+                return self._function(x)
+            else:
+                return 0
+        else:
+            return self._function(x)
+
+def HistogramFigure(sample:list[float],function:None|mass_function|density_function=None,bins:int|list[float]=10,label:str='',**kwargs:dict[str,_Any]):
+    """function to create a density histogram with or without a density function"""
+    _validate_sample(sample,message='later')
+    figure:_Figure
+    if label=='':
+        figure = _pyplot.figure(figsize=(5,3),dpi=200,frameon=False)
+    else:
+        figure = _pyplot.figure(num=label,figsize=(5,3),dpi=200,frameon=False)
+    _,listbins,bars = _pyplot.hist(sample,bins=bins,density=True)
+    for bar in bars:
+            bar.set_facecolor('xkcd:azure')
+            bar.set_edgecolor('xkcd:white')
+    if label!='':
+        figure.axes[0].set_title(label)
+    if type(function)==density_function:
+        min_x:float = listbins[0]
+        max_x:float = listbins[-1]
+        xrange:list[float] = [min_x+0.01*k for k in range(int((max_x-min_x)/0.01))]
+        yrange:list[float] = [function(x) for x in xrange]
+        _pyplot.plot(xrange,yrange,color='xkcd:indigo')
+    try:
+        figure.canvas.toolbar_visible = False
+        figure.canvas.header_visible = False
+        figure.canvas.footer_visible = False
+    finally:
+        return figure
+
+class Sample:
+    """custom type to store an array of float xor int values and some functionalities related
+
+    Sample has to porpuses. First, store a potentialy huge amount of numbers (either float or int) 
+
+    """
+    pass
+
+#elements to export
 __all__ = [
     'rand',
     'set_seed',
-]
+    'mass_function',
+    'density_function',
+    'HistogramFigure',
+    ]

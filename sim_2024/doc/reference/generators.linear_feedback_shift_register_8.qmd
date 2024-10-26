@@ -1,8 +1,6 @@
 # generators.linear_feedback_shift_register_8 { #sim_2024.generators.linear_feedback_shift_register_8 }
 
-```python
-generators.linear_feedback_shift_register_8(self, **kwargs)
-```
+`generators.linear_feedback_shift_register_8(self, **kwargs)`
 
 linear fedbacl shift register for word size 8
 
@@ -14,8 +12,6 @@ linear fedbacl shift register for word size 8
 
 ### rand { #sim_2024.generators.linear_feedback_shift_register_8.rand }
 
-```python
-generators.linear_feedback_shift_register_8.rand()
-```
+`generators.linear_feedback_shift_register_8.rand()`
 
 generation of one pseudo-random number

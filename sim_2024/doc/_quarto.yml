@@ -70,12 +70,10 @@ quartodoc:
       contents:
         - rand
         - set_seed
-    - title: Probability and Statistics tools
-      desc: 'herramientas de probabilidad y estadística'
-      contents:
-        - utilities.mass_function
-        - utilities.density_function
-        - utilities.HistogramFigure
+        - mass_function
+        - density_function
+        - HistogramFigure
+        - Sample
     - title: PseudoRandom Number Generators (PRNG)
       desc: 'submodulo de generadores de números pseudoaleatorios'
       contents:
@@ -105,3 +103,22 @@ quartodoc:
         - tests.series_test
         - tests.runs_est
         - tests.runs_test
+    - title: Distribuciones de probabilidad
+      desc: 'submodulo de distribuciones de probabilidad'
+      contents:
+        - variates.Bernoulli
+        - variates.Binomial
+        - variates.Geometric
+        - variates.NegativeBinomial
+        - variates.DiscreteUniform
+        - variates.Poisson
+        - variates.ContinuousUniform
+        - variates.Exponential
+        - variates.Normal
+        - variates.BoundedNormal
+        - variates.RectifiedNormal
+        - variates.Chisq
+        - variates.Student
+        - variates.Gamma
+        - variates.Beta
+        - variates.ExampleDis

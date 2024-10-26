@@ -1,0 +1,5 @@
+# variates.RectifiedNormal { #sim_2024.variates.RectifiedNormal }
+
+`variates.RectifiedNormal(self)`
+
+Rectified normal distribution

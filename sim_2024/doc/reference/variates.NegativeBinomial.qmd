@@ -1,0 +1,13 @@
+# variates.NegativeBinomial { #sim_2024.variates.NegativeBinomial }
+
+`variates.NegativeBinomial(self, **kwargs)`
+
+representation of a random variate of Bernoulli type
+
+Representation of random variate include ...
+
+## Other Parameters
+
+| Name   | Type   | Description        | Default    |
+|--------|--------|--------------------|------------|
+| `p`    | float  | Sucess probability | _required_ |

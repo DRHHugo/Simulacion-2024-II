@@ -1,8 +1,6 @@
 # generators.linear_feedback_shift_register_16 { #sim_2024.generators.linear_feedback_shift_register_16 }
 
-```python
-generators.linear_feedback_shift_register_16(self, **kwargs)
-```
+`generators.linear_feedback_shift_register_16(self, **kwargs)`
 
 linear fedback shift register for word size 16
 
@@ -14,8 +12,6 @@ linear fedback shift register for word size 16
 
 ### rand { #sim_2024.generators.linear_feedback_shift_register_16.rand }
 
-```python
-generators.linear_feedback_shift_register_16.rand()
-```
+`generators.linear_feedback_shift_register_16.rand()`
 
 generation of one pseudo-random number

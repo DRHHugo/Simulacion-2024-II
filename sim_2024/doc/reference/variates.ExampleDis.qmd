@@ -1,0 +1,4 @@
+# variates.ExampleDis { #sim_2024.variates.ExampleDis }
+
+`variates.ExampleDis()`
+

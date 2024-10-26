@@ -1,0 +1,4 @@
+# variates.Chisq { #sim_2024.variates.Chisq }
+
+`variates.Chisq(self, **kwargs)`
+

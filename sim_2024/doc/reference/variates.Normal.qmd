@@ -1,0 +1,13 @@
+# variates.Normal { #sim_2024.variates.Normal }
+
+`variates.Normal(self, **kwargs)`
+
+Normal distribution
+
+## Other Parameters
+
+| Name    | Type   | Description                 | Default    |
+|---------|--------|-----------------------------|------------|
+| `mean`  | float  | mean parameter              | _required_ |
+| `var`   | float  | variance parameter          | _required_ |
+| `stdev` | float  | standar deviation parameter | _required_ |

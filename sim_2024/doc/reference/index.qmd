@@ -8,16 +8,10 @@ funcionalidades básicas
 | --- | --- |
 | [rand](rand.qmd#sim_2024.rand) |  |
 | [set_seed](set_seed.qmd#sim_2024.set_seed) | Change state of default pseudorandom generator. |
-
-## Probability and Statistics tools
-
-herramientas de probabilidad y estadística
-
-| | |
-| --- | --- |
-| [utilities.mass_function](utilities.mass_function.qmd#sim_2024.utilities.mass_function) | funcion de masa |
-| [utilities.density_function](utilities.density_function.qmd#sim_2024.utilities.density_function) | funcion de densidad |
-| [utilities.HistogramFigure](utilities.HistogramFigure.qmd#sim_2024.utilities.HistogramFigure) | function to create a density histogram with or without a density function |
+| [mass_function](mass_function.qmd#sim_2024.mass_function) | funcion de masa |
+| [density_function](density_function.qmd#sim_2024.density_function) | funcion de densidad |
+| [HistogramFigure](HistogramFigure.qmd#sim_2024.HistogramFigure) | function to create a density histogram with or without a density function |
+| [Sample](Sample.qmd#sim_2024.Sample) | custom type to store an array of float xor int values and some functionalities related |
 
 ## PseudoRandom Number Generators (PRNG)
 
@@ -55,3 +49,26 @@ submodulo de pruebas de aleatoriedad para PRNG
 | [tests.series_test](tests.series_test.qmd#sim_2024.tests.series_test) |  |
 | [tests.runs_est](tests.runs_est.qmd#sim_2024.tests.runs_est) |  |
 | [tests.runs_test](tests.runs_test.qmd#sim_2024.tests.runs_test) |  |
+
+## Distribuciones de probabilidad
+
+submodulo de distribuciones de probabilidad
+
+| | |
+| --- | --- |
+| [variates.Bernoulli](variates.Bernoulli.qmd#sim_2024.variates.Bernoulli) | Representation of a random variate of Bernoulli type. |
+| [variates.Binomial](variates.Binomial.qmd#sim_2024.variates.Binomial) | representation of a random variate of binonimal type |
+| [variates.Geometric](variates.Geometric.qmd#sim_2024.variates.Geometric) | Representation of a random variate of Bernoulli type |
+| [variates.NegativeBinomial](variates.NegativeBinomial.qmd#sim_2024.variates.NegativeBinomial) | representation of a random variate of Bernoulli type |
+| [variates.DiscreteUniform](variates.DiscreteUniform.qmd#sim_2024.variates.DiscreteUniform) | Discrete uniform distribution. |
+| [variates.Poisson](variates.Poisson.qmd#sim_2024.variates.Poisson) | Poisson distribution. |
+| [variates.ContinuousUniform](variates.ContinuousUniform.qmd#sim_2024.variates.ContinuousUniform) | Continuous uniform distribution. |
+| [variates.Exponential](variates.Exponential.qmd#sim_2024.variates.Exponential) | Exponential distribution. |
+| [variates.Normal](variates.Normal.qmd#sim_2024.variates.Normal) | Normal distribution |
+| [variates.BoundedNormal](variates.BoundedNormal.qmd#sim_2024.variates.BoundedNormal) | Normal bounded distribution |
+| [variates.RectifiedNormal](variates.RectifiedNormal.qmd#sim_2024.variates.RectifiedNormal) | Rectified normal distribution |
+| [variates.Chisq](variates.Chisq.qmd#sim_2024.variates.Chisq) |  |
+| [variates.Student](variates.Student.qmd#sim_2024.variates.Student) |  |
+| [variates.Gamma](variates.Gamma.qmd#sim_2024.variates.Gamma) | Gamma distribution |
+| [variates.Beta](variates.Beta.qmd#sim_2024.variates.Beta) | Beta distribution |
+| [variates.ExampleDis](variates.ExampleDis.qmd#sim_2024.variates.ExampleDis) |  |

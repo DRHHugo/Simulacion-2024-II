@@ -1,0 +1,20 @@
+# density_function { #sim_2024.density_function }
+
+`density_function(self, function, **kwargs)`
+
+funcion de densidad
+
+Clase de abstracción de una función de densidad de probabilidad.
+
+## Parameters
+
+| Name       | Type     | Description                                                          | Default    |
+|------------|----------|----------------------------------------------------------------------|------------|
+| `function` | Callable | functión used to evaluate density_function between min and max args. | _required_ |
+
+## Other Parameters
+
+| Name   | Type   | Description                                 | Default    |
+|--------|--------|---------------------------------------------|------------|
+| `min`  | float  | density_functión evaluate to zero below min | _required_ |
+| `max`  | float  | density_functión evaluate to zero above max | _required_ |

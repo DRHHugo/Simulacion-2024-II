@@ -1,19 +1,17 @@
 # generators.multiple_congruential_generator { #sim_2024.generators.multiple_congruential_generator }
 
-```python
-generators.multiple_congruential_generator(self, **kwargs)
-```
+`generators.multiple_congruential_generator(self, **kwargs)`
 
 Multiple congruential pseudorandom generator
 
 Pseudorandom generator based on the multiple multiplicative congruential generator. 
 
-## Other Parameters {.doc-section .doc-section-other-parameters}
+## Other Parameters
 
 | Name   | Type   | Description                                  | Default    |
 |--------|--------|----------------------------------------------|------------|
-| mod    | int    | Module for residual reduction                | _required_ |
-| seed   | int    | initial values, the last element on the list | _required_ |
+| `mod`  | int    | Module for residual reduction                | _required_ |
+| `seed` | int    | initial values, the last element on the list | _required_ |
 
 ## Methods
 
@@ -23,8 +21,6 @@ Pseudorandom generator based on the multiple multiplicative congruential generat
 
 ### rand { #sim_2024.generators.multiple_congruential_generator.rand }
 
-```python
-generators.multiple_congruential_generator.rand()
-```
+`generators.multiple_congruential_generator.rand()`
 
 generation of one pseudo-random number
