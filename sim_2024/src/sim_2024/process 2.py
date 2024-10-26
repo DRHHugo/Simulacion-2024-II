@@ -1,17 +1,23 @@
-from typing import Any as _Any
+from array import array as _array
 from warnings import warn as _warn
+from typing import Any as _Any
 from . import _package_warning
 from .variates import _NormalStd
 
-class _random_path:
-    def __init__(self,events:dict[float,float])->None:
-        self._events:dict
-        self._horizon:float
+class random_path:
+    def __init__(self,times:_array[float],events:_array[float])->None:
+        self._times:_array[float]
+        self._events:_array[float]
+        self._times = times
         self._events = events
-        self._horizon = list(events.values())[-1]
+        self._horizon = times[-1]
+    
     def get_values(self)->list[float]:
-        return [event[1] for event in self._events]
-
+        return self._events
+    
+    def make_plot(self,**kwargs)->None:
+        pass
+    
 class _random_process:
     """parent class for stochastic process
     
@@ -22,9 +28,9 @@ class _random_process:
         return f'{self._main_type} {self._sub_type} stochastic process. All attributes are private.'
     def __repr__(self)->str:
         return 'blocked'
-    def rand(self,stop:float=1.0)->_random_path:
-        return _random_path({0.0:0.0})
-    def sample(self,stop:float=1.0,size:int=1)->list[_random_path]|None:
+    def rand(self,stop:float=1.0)->random_path:
+        return random_path(times=[0.0],events=[0.0])
+    def sample(self,stop:float=1.0,size:int=1)->list[random_path]|None:
         """generation of size pseudo-random sample of variate"""
         return [self.rand(stop=stop) for _ in range(size)]
 

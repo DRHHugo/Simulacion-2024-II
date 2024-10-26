@@ -3,6 +3,7 @@ from typing import Callable as _Callable
 from array import array as _array
 from os import urandom as _urandom
 from os import getcwd as _getcwd
+from pathlib import Path as _Path
 from warnings import warn as _warn  
 from matplotlib import font_manager as _font_manager
 from matplotlib import pyplot as _pyplot
@@ -11,8 +12,8 @@ from matplotlib import rcParams as _rcParams
 
 #change font for matplotlib figures
 
-_font_manager.fontManager.addfont(_getcwd()+'\\sim_2024\\lmsans12-regular.otf')
 _font_manager.fontManager.addfont(_getcwd()+'\\sim_2024\\lmroman12-regular.otf')
+_font_manager.fontManager.addfont(_getcwd()+'\\sim_2024\\lmsans12-regular.otf')
 _rcParams.update({
     'font.serif': 'Latin Modern Roman',
     'font.sans-serif': 'Latin Modern Sans',
@@ -410,20 +411,15 @@ class density_function:
         else:
             return self._function(x)
 
-def HistogramFigure(sample:list[float],function:None|mass_function|density_function=None,bins:int|list[float]=10,label:str='',**kwargs:dict[str,_Any]):
+def HistogramFigure(sample:list[float],function:None|mass_function|density_function=None,bins:int|list[float]=10,**kwargs:dict[str,_Any])->_Figure:
     """function to create a density histogram with or without a density function"""
     _validate_sample(sample,message='later')
     figure:_Figure
-    if label=='':
-        figure = _pyplot.figure(figsize=(5,3),dpi=200,frameon=False)
-    else:
-        figure = _pyplot.figure(num=label,figsize=(5,3),dpi=200,frameon=False)
+    figure = _pyplot.figure(figsize=(5,3),dpi=200,frameon=False)
     _,listbins,bars = _pyplot.hist(sample,bins=bins,density=True)
     for bar in bars:
             bar.set_facecolor('xkcd:azure')
             bar.set_edgecolor('xkcd:white')
-    if label!='':
-        figure.axes[0].set_title(label)
     if type(function)==density_function:
         min_x:float = listbins[0]
         max_x:float = listbins[-1]
@@ -437,13 +433,28 @@ def HistogramFigure(sample:list[float],function:None|mass_function|density_funct
     finally:
         return figure
 
-class Sample:
+class Sample(_array):
     """custom type to store an array of float xor int values and some functionalities related
 
     Sample has to porpuses. First, store a potentialy huge amount of numbers (either float or int) 
 
     """
-    pass
+    
+    # def __init__(self)->None:
+    #     self._array:_array
+    #     self._array = _array('d')
+        
+    # def get_values(self)->_array:
+    #     return self._array
+    
+    # def add_value(self,x:float)->None:
+    #     self._array.append(x)
+    
+    def make_plot(self,**kwargs)->_Figure:
+        if 'density' in kwargs:
+            return HistogramFigure(self.tolist(),function=kwargs['function'],bins=kwargs['bins'])
+        else:
+            return HistogramFigure(self.tolist(),None,bins=kwargs['bins'])
 
 #elements to export
 __all__ = [
@@ -452,4 +463,5 @@ __all__ = [
     'mass_function',
     'density_function',
     'HistogramFigure',
+    'Sample'
     ]
