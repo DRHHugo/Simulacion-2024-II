@@ -313,13 +313,17 @@ class _package_generator:
         return z/self._mod_1
     
     def sample(self,size:int=1)->list[float]|None:
-        """generation of an array of pseudo-random numbers of length size"""
-        if type(size)!=int:
-            return []
-        if size<=0:
-            return []
-        return [self.rand() for _ in range(size)]
-    
+        """generation of a sample of pseudo-random numbers of length size
+        
+        Keyword Args:
+            size (int): size of sample
+        """
+        _warn_int(size,'size of sample must be a posituve integer',threshold=1)
+        sample = Sample('d')
+        for _ in range(size):
+            sample.append(self.rand())
+        return sample
+
     def _set_seed(self,seed)->None:
         """restart the state"""
         self._state_1 = [1,1,seed]
