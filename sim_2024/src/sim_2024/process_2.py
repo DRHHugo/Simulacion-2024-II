@@ -1,8 +1,5 @@
 from array import array as _array
-from warnings import warn as _warn
-from typing import Any as _Any
 from sys import modules
-from . import _package_warning
 from .variates import _NormalStd
 from . import random_path as _random_path
 from . import process_sample as _process_sample   

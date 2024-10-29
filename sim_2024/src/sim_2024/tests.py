@@ -1,8 +1,8 @@
-from typing import Iterator
-from copy import copy
-from math import floor
-from scipy.stats import norm
-from scipy.stats import chi2
+from typing import Iterator as _Iterator
+from copy import copy as _copy
+from math import floor as _floor
+from scipy.stats import norm as _norm
+from scipy.stats import chi2 as _chi2
 from . import _validate_sample
 
 def _validate_sig(sig:float)->None:
@@ -23,7 +23,7 @@ def mean_test(sample:list[float],sig:float=0.95)->float:
     mean:float = mean_est(sample)
     threshold:float = 1-(1-sig)/2
     n:int = len(sample)
-    if abs((mean-0.5))>norm.ppf(threshold)*(1/(n*12))**0.5:
+    if abs((mean-0.5))>_norm.ppf(threshold)*(1/(n*12))**0.5:
         return False
     else:
         return True
@@ -41,7 +41,7 @@ def variance_test(sample:list[float],sig:float=0.95)->bool:
     var:float = variance_est(sample)
     threshold = sig
     n:int = len(sample)
-    if abs((var-1/12))>norm.ppf(threshold,)*(1/(n*180))**0.5:
+    if abs((var-1/12))>_norm.ppf(threshold,)*(1/(n*180))**0.5:
         return False
     else:
         return True
@@ -66,7 +66,7 @@ def chisq_test(sample:list[float],k:int,sig:float=0.95)->bool:
     _validate_sig(sig)
     chisq:float = chisq_est(sample,k)
     threshold:float = sig
-    if chisq>chi2.ppf(threshold,k-1):
+    if chisq>_chi2.ppf(threshold,k-1):
         return False
     else:
         return True
@@ -102,7 +102,7 @@ def series_test(sample:list[float],l:int,d:int,sig:float=0.95)->bool:
     _validate_sig(sig)
     chisq:float = series_est(sample,l,d)
     threshold = sig
-    if chisq>chi2.ppf(threshold,l**d-1):
+    if chisq>_chi2.ppf(threshold,l**d-1):
         return False
     else:
         return True
@@ -143,7 +143,7 @@ def runs_test(sample:list[float],sig:float=0.95)->bool:
     _validate_sig(sig)
     chisq:float = runs_est(sample)
     threshold:float = sig
-    if chisq>chi2.ppf(threshold,6):
+    if chisq>_chi2.ppf(threshold,6):
         return False
     else:
         return True

@@ -3,12 +3,11 @@ from typing import Callable as _Callable
 from array import array as _array
 from os import urandom as _urandom
 from os import getcwd as _getcwd
-from pathlib import Path as _Path
 from warnings import warn as _warn  
 from matplotlib import font_manager as _font_manager
+from matplotlib import rcParams as _rcParams
 from matplotlib import pyplot as _pyplot
 from matplotlib.figure import Figure as _Figure
-from matplotlib import rcParams as _rcParams
 
 #change font for matplotlib figures
 
@@ -244,7 +243,7 @@ def _validate_list_by_key(kwargs:dict[str,_Any],key:str,exclude_all_zeros:bool=T
     return True
 
 def _validate_sample(sample:_Any,message:str='')->bool:
-    """Validate if sample is a sample of pseudorandom numbers.
+    """Validate if sample is a sample.
 
     This functions will raise an Error with message=message if sample is not a non-empty array of pseudorandom numbers.
     
@@ -254,7 +253,7 @@ def _validate_sample(sample:_Any,message:str='')->bool:
     Returns:
         True for success validation
     """
-    if type(sample)!=list:
+    if type(sample)!=random_sample:
         raise TypeError(message)
     for x in sample:
         if type(x)!=float and type(x)!=int:
@@ -319,7 +318,7 @@ class _package_generator:
             size (int): size of sample
         """
         _warn_int(size,'size of sample must be a posituve integer',threshold=1)
-        sample = Sample('d')
+        sample = random_sample('d')
         for _ in range(size):
             sample.append(self.rand())
         return sample
@@ -415,7 +414,7 @@ class density_function:
         else:
             return self._function(x)
 
-class Sample(_array):
+class random_sample(_array):
     """custom type to store an array of float xor int values and some functionalities related
 
     Sample has to porpuses. First, store a potentialy huge amount of numbers (either float or int) 
@@ -432,11 +431,8 @@ class Sample(_array):
     # def add_value(self,x:float)->None:
     #     self._array.append(x)
     
-    def make_plot(self,**kwargs)->_Figure:
-        if 'density' in kwargs:
-            return HistogramFigure(self.tolist(),function=kwargs['function'],bins=kwargs['bins'])
-        else:
-            return HistogramFigure(self.tolist(),None,bins=kwargs['bins'])
+    def make_plot(self,*args,**kwargs)->_Figure:
+        return _pyplot.figure(self,*args,**kwargs,FigureClass=HistogramFigure)
 
 class random_path:
     def __init__(self,times:_array[float],events:_array[float])->None:
@@ -449,8 +445,8 @@ class random_path:
     def get_values(self)->tuple[_array,_array]:
         return self._times,self._events
     
-    def make_plot(self)->None:
-        return PathFigure(self._times,self._events)
+    def make_plot(self,**kwargs)->None:
+        return PathFigure(self._times,self._events,**kwargs)
 
 class process_sample:
     def __init__(self,paths:list[random_path]):
@@ -458,31 +454,39 @@ class process_sample:
         self._maxhorizon = max([path._horizon for path in paths])
     def get_values(self)->list[tuple[_array,_array]]:
         return [path.get_values() for path in self._paths]
-    def make_plot(self):
+    def make_plot(self,**kwargs):
         paths = [path.get_values() for path in self._paths]
-        return PathFigure([path[0] for path in paths],[path[1] for path in paths])
+        return PathFigure([path[0] for path in paths],[path[1] for path in paths],**kwargs)
 
-def HistogramFigure(sample:_array,bins:int|list[float]=10,**kwargs:dict[str,_Any])->_Figure:
-    """function to create a density histogram with or without a density function"""
-    _validate_sample(sample,message='later')
-    figure:_Figure
-    figure = _pyplot.figure(figsize=(5,3),dpi=200,frameon=False)
-    _,listbins,bars = _pyplot.hist(sample,bins=bins,density=True)
-    for bar in bars:
+class HistogramFigure(_Figure):
+    """custom matplotlib Figure to plot a density histogram
+    
+    This custom figure allows to create a histogram of a sample of float values in a pre-defined format.
+    *args and *Keyword arguments are passed to figure inizialization and to histogram creation.
+
+    Args:
+        sample (random_sample): random_sample to plot
+    """
+    def __new__(cls,sample:random_sample,*args,**kwargs):
+        _validate_sample(sample,message='sample must be a random_sample object')
+        if len(args)==0:
+            args=(None,(5,3),200)
+        if len(args)==1:
+            args+=((5,3),200)
+        if len(args)==2:
+            args+=(200)
+        return super().__init__(*args,**dict({'frameon':False},**kwargs))
+    def __init__(self,sample:random_sample,*args,**kwargs):
+        _,_,bars = self.axes[0].hist(sample,**dict({'bins':bins},{'density':True},**kwargs))
+        for bar in bars:
             bar.set_facecolor('xkcd:azure')
             bar.set_edgecolor('xkcd:white')
-    if type(function)==density_function:
-        min_x:float = listbins[0]
-        max_x:float = listbins[-1]
-        xrange:list[float] = [min_x+0.01*k for k in range(int((max_x-min_x)/0.01))]
-        yrange:list[float] = [function(x) for x in xrange]
-        _pyplot.plot(xrange,yrange,color='xkcd:indigo')
-    try:
-        figure.canvas.toolbar_visible = False
-        figure.canvas.header_visible = False
-        figure.canvas.footer_visible = False
-    finally:
-        return figure
+        try:
+            self.canvas.toolbar_visible = False
+            self.canvas.header_visible = False
+            self.canvas.footer_visible = False
+        finally:
+            return figure
 
 def PathFigure(times:_array|list[_array],events:_array|list[_array],**kwargs:dict[str,_Any])->_Figure:
     """function to create a plot for random process realizations"""
@@ -497,10 +501,9 @@ def PathFigure(times:_array|list[_array],events:_array|list[_array],**kwargs:dic
     else:
         _events = events
     figure:_Figure
-    figure = _pyplot.figure(figsize=(5,3),dpi=300,frameon=False)
+    figure = pyplot.figure(figsize=(5,3),dpi=300,frameon=False,**kwargs)
     figure.add_axes((0,0,1,1))
-    for i in range(len(_times)):
-        figure.axes[0].plot(_times[i],_events[i])
+    figure.axes[0].plot(_times,_events,**kwargs)
     try:
         figure.canvas.toolbar_visible = False
         figure.canvas.header_visible = False
@@ -515,5 +518,5 @@ __all__ = [
     'mass_function',
     'density_function',
     'HistogramFigure',
-    'Sample'
+    'random_sample'
     ]

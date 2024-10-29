@@ -1,12 +1,11 @@
 from typing import Any as _Any
-from warnings import warn as _warmn
 from . import _package_warning
 from . import _generator_Error
 from . import _warn_int
 from . import _validate_int_by_key
 from . import _validate_list
 from . import _validate_list_by_key
-from . import Sample
+from . import random_sample as _random_sample
 
 class _random_generator:
     """parent class for random generators
@@ -30,7 +29,7 @@ class _random_generator:
 
         """
         _warn_int(size,'size of sample must be a positive integer',threshold=1)
-        sample = Sample('d')
+        sample = _random_sample('d')
         for _ in range(size):
             sample.append(self.rand())
         return sample

@@ -1,21 +1,19 @@
 from typing import Any as _Any
-from typing import Callable as _Callable
-from sys import modules
-from math import log
-from math import exp
-from math import gamma
-from math import pi
+from sys import modules as _modules
+from math import log as _log
+from math import exp as _exp
+from math import gamma as _gamma
 from . import _validate_float_by_key
 from . import _validate_int_by_key
 from . import _validate_int
 from . import _validate_list
 from . import _warn_int
-from . import Sample
-from . import mass_function
-from . import density_function
+from . import random_sample as _random_sample
+from . import mass_function as _mass_function
+from . import density_function as _density_function
 
 try:
-    rand = modules['sim_2024'].rand
+    rand = _modules['sim_2024'].rand
 except KeyError:
     raise ImportError('Module sim_2024 not loaded. Load sim_2024 and try again')
 
@@ -31,10 +29,10 @@ class _random_variate:
         return 'blocked'
     def rand(self):
         pass
-    def sample(self,size:int=1)->Sample|None:
+    def sample(self,size:int=1)->_random_sample|None:
         """generation of size pseudo-random sample of variate"""
         _warn_int(size,'size of sample must be a positive integer',threshold=1)
-        sample = Sample('d')
+        sample = _random_sample('d')
         for _ in range(size):
             sample.append(self.rand())
         return sample
@@ -273,7 +271,7 @@ class Exponential(_continuos_variate):
     def rand(self)->float:
         """generation of one random number"""
         u = rand.rand()
-        return -log(u)/self._rate
+        return -_log(u)/self._rate
 
 class _NormalStd(_continuos_variate):
     def __init__(self)->None:
@@ -286,7 +284,7 @@ class _NormalStd(_continuos_variate):
             x = 2*u -1
             y = 2*v -1
             s = x**2+y**2
-        return (x*((-2*log(s)/s)**0.5),y*((-2*log(s)/s)**0.5))
+        return (x*((-2*_log(s)/s)**0.5),y*((-2*_log(s)/s)**0.5))
     def rand(self)->float:
         return self._rand()[0]
     def sample(self,size:int=1)->list[float]|None:
@@ -398,12 +396,12 @@ class _mayorant_Gamma_density:
         self.b:float
         self.shape = shape
         self.a = abs(2*shape-1)**0.5
-        self.b = 4*(shape**shape)*exp(shape)/(self.a*gamma(shape))
+        self.b = 4*(shape**shape)*_exp(shape)/(self.a*_gamma(shape))
     
     def __call__(self,x:float)->float:
         if self.shape<1:
             if 1<x:
-                return exp(-x)/self.shape
+                return _exp(-x)/self.shape
             else:
                 return x**(self.shape-1)/self.shape
         else:
@@ -434,14 +432,14 @@ class Gamma(_continuos_variate):
             return Exponential(rate=1.0).rand()
         u=rand()
         if self._shape<1:
-            y = ((exp(0)+self._shape)*u/exp(0)) if u<exp(0)/(exp(0)+self._shape) else -log((exp(0)+self._shape)*(1-u)/(exp(0)*self._shape))
+            y = ((_exp(0)+self._shape)*u/_exp(0)) if u<_exp(0)/(_exp(0)+self._shape) else -_log((_exp(0)+self._shape)*(1-u)/(_exp(0)*self._shape))
         else:
             y = (u*self._shape**self._mayorant.a/(1-u))**(1/self._mayorant.a)
         u=rand()
-        while u*self._mayorant(y)>y**(self._shape-1)*exp(-y)/gamma(self._shape):
+        while u*self._mayorant(y)>y**(self._shape-1)*_exp(-y)/_gamma(self._shape):
             u=rand()
             if self._shape<1:
-                y = ((exp(0)+self._shape)*u/exp(0)) if u<exp(0)/(exp(0)+self._shape) else -log((exp(0)+self._shape)*(1-u)/(exp(0)*self._shape))
+                y = ((_exp(0)+self._shape)*u/_exp(0)) if u<_exp(0)/(_exp(0)+self._shape) else -_log((_exp(0)+self._shape)*(1-u)/(_exp(0)*self._shape))
             else:
                 y = (u*self._shape**self._mayorant.a/(1-u))**(1/self._mayorant.a)
             u=rand()
