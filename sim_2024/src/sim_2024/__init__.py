@@ -457,10 +457,10 @@ class process_sample:
         self._paths = paths
         self._maxhorizon = max([path._horizon for path in paths])
     def get_values(self)->list[tuple[_array,_array]]:
-        return [path.get_values() for path in paths]
+        return [path.get_values() for path in self._paths]
     def make_plot(self):
-        paths = self.get_values()
-        return PathFigure(paths[0],paths[1])
+        paths = [path.get_values() for path in self._paths]
+        return PathFigure([path[0] for path in paths],[path[1] for path in paths])
 
 def HistogramFigure(sample:_array,bins:int|list[float]=10,**kwargs:dict[str,_Any])->_Figure:
     """function to create a density histogram with or without a density function"""

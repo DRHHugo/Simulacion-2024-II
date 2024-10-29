@@ -4,7 +4,8 @@ from typing import Any as _Any
 from sys import modules
 from . import _package_warning
 from .variates import _NormalStd
-from . import random_path as _random_path   
+from . import random_path as _random_path
+from . import process_sample as _process_sample   
 
 try:
     rand = modules['sim_2024'].rand
@@ -19,29 +20,31 @@ class _random_process:
         return f'{self._main_type} {self._sub_type} stochastic process. All attributes are private.'
     def __repr__(self)->str:
         return 'blocked'
-    def rand(self,stop:float=1.0)->_random_path:
-        return random_path(times=[0.0],events=[0.0])
-    def sample(self,stop:float=1.0,size:int=1)->list[_random_path]|None:
+    def rand(self,**kwargs)->_random_path:
+        pass
+    def sample(self,size:int=1,**kwargs)->list[_random_path]|None:
         """generation of size pseudo-random sample of variate"""
-        return [self.rand(stop=stop) for _ in range(size)]
+        horizon = kwargs['horizon'] if 'horizon' in kwargs else 1.0
+        dt = kwargs['granularity'] if 'granularity' in kwargs else 0.01
+        return _process_sample([self.rand(horizon=horizon,granularity=dt) for _ in range(size)])
 
 class WienerProcess(_random_process):
     """Standar Wiener process """
     def __init__(self):
         self._stdvariate = _NormalStd()
     def rand(self,**kwargs)->_random_path:
-        _dt = kwargs['dt'] if 'dt' in kwargs else 0.01
-        _stdevdt = _dt**0.5
-        _horizon = kwargs['stop'] if 'stop' in kwargs else 1
+        dt = kwargs['granularity'] if 'granularity' in kwargs else 0.01
+        stdev_dt = dt**0.5
+        horizon = kwargs['horizon'] if 'horizon' in kwargs else 1.0
         times:_array
         X:_array
         times = _array('d')
         X = _array('d')
         times.append(0.0)
         X.append(0.0)
-        while _dt+times[-1]<_horizon:
-            X.append(X[-1]+_stdevdt*self._stdvariate.rand())
-            times.append(times[-1]+_dt)
-        X.append(X[-1]+(_horizon-times[-1])*self._stdvariate.rand())
-        times.append(_horizon)
+        while times[-1]+dt<horizon:
+            X.append(X[-1]+stdev_dt*self._stdvariate.rand())
+            times.append(times[-1]+dt)
+        X.append(X[-1]+(horizon-times[-1])*self._stdvariate.rand())
+        times.append(horizon)
         return _random_path(times=times,events=X)
