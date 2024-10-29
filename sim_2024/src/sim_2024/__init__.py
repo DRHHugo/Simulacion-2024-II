@@ -498,7 +498,9 @@ def PathFigure(times:_array|list[_array],events:_array|list[_array],**kwargs:dic
         _events = events
     figure:_Figure
     figure = _pyplot.figure(figsize=(5,3),dpi=300,frameon=False)
-    _pyplot.plot(_times,_events)
+    figure.add_axes((0,0,1,1))
+    for i in range(len(_times)):
+        figure.axes[0].plot(_times[i],_events[i])
     try:
         figure.canvas.toolbar_visible = False
         figure.canvas.header_visible = False
