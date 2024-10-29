@@ -415,28 +415,6 @@ class density_function:
         else:
             return self._function(x)
 
-def HistogramFigure(sample:list[float],function:None|mass_function|density_function=None,bins:int|list[float]=10,**kwargs:dict[str,_Any])->_Figure:
-    """function to create a density histogram with or without a density function"""
-    _validate_sample(sample,message='later')
-    figure:_Figure
-    figure = _pyplot.figure(figsize=(5,3),dpi=200,frameon=False)
-    _,listbins,bars = _pyplot.hist(sample,bins=bins,density=True)
-    for bar in bars:
-            bar.set_facecolor('xkcd:azure')
-            bar.set_edgecolor('xkcd:white')
-    if type(function)==density_function:
-        min_x:float = listbins[0]
-        max_x:float = listbins[-1]
-        xrange:list[float] = [min_x+0.01*k for k in range(int((max_x-min_x)/0.01))]
-        yrange:list[float] = [function(x) for x in xrange]
-        _pyplot.plot(xrange,yrange,color='xkcd:indigo')
-    try:
-        figure.canvas.toolbar_visible = False
-        figure.canvas.header_visible = False
-        figure.canvas.footer_visible = False
-    finally:
-        return figure
-
 class Sample(_array):
     """custom type to store an array of float xor int values and some functionalities related
 
@@ -459,6 +437,74 @@ class Sample(_array):
             return HistogramFigure(self.tolist(),function=kwargs['function'],bins=kwargs['bins'])
         else:
             return HistogramFigure(self.tolist(),None,bins=kwargs['bins'])
+
+class random_path:
+    def __init__(self,times:_array[float],events:_array[float])->None:
+        self._times:_array[float]
+        self._events:_array[float]
+        self._times = times
+        self._events = events
+        self._horizon = max(times)
+    
+    def get_values(self)->tuple[_array,_array]:
+        return self._times,self._events
+    
+    def make_plot(self)->None:
+        return PathFigure(self._times,self._events)
+
+class process_sample:
+    def __init__(self,paths:list[random_path]):
+        self._paths = paths
+        self._maxhorizon = max([path._horizon for path in paths])
+    def get_values(self)->list[tuple[_array,_array]]:
+        return [path.get_values() for path in paths]
+    def make_plot(self):
+        paths = self.get_values()
+        return PathFigure(paths[0],paths[1])
+
+def HistogramFigure(sample:_array,bins:int|list[float]=10,**kwargs:dict[str,_Any])->_Figure:
+    """function to create a density histogram with or without a density function"""
+    _validate_sample(sample,message='later')
+    figure:_Figure
+    figure = _pyplot.figure(figsize=(5,3),dpi=200,frameon=False)
+    _,listbins,bars = _pyplot.hist(sample,bins=bins,density=True)
+    for bar in bars:
+            bar.set_facecolor('xkcd:azure')
+            bar.set_edgecolor('xkcd:white')
+    if type(function)==density_function:
+        min_x:float = listbins[0]
+        max_x:float = listbins[-1]
+        xrange:list[float] = [min_x+0.01*k for k in range(int((max_x-min_x)/0.01))]
+        yrange:list[float] = [function(x) for x in xrange]
+        _pyplot.plot(xrange,yrange,color='xkcd:indigo')
+    try:
+        figure.canvas.toolbar_visible = False
+        figure.canvas.header_visible = False
+        figure.canvas.footer_visible = False
+    finally:
+        return figure
+
+def PathFigure(times:_array|list[_array],events:_array|list[_array],**kwargs:dict[str,_Any])->_Figure:
+    """function to create a plot for random process realizations"""
+    _times = list[_array]
+    _events = list[_array]
+    if type(times)==_array:
+        _times = [times]
+    else:
+        _times = times
+    if type(events)==_array:
+        _events = [events]
+    else:
+        _events = events
+    figure:_Figure
+    figure = _pyplot.figure(figsize=(5,3),dpi=300,frameon=False)
+    _pyplot.plot(_times,_events)
+    try:
+        figure.canvas.toolbar_visible = False
+        figure.canvas.header_visible = False
+        figure.canvas.footer_visible = False
+    finally:
+        return figure
 
 #elements to export
 __all__ = [

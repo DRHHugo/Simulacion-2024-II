@@ -3,25 +3,10 @@ from warnings import warn as _warn
 from typing import Any as _Any
 from . import _package_warning
 from .variates import _NormalStd
+from . import random_path as _ransom_path   
 
-class random_path:
-    def __init__(self,times:_array[float],events:_array[float])->None:
-        self._times:_array[float]
-        self._events:_array[float]
-        self._times = times
-        self._events = events
-        self._horizon = times[-1]
-    
-    def get_values(self)->list[float]:
-        return self._events
-    
-    def make_plot(self,**kwargs)->None:
-        pass
-    
 class _random_process:
-    """parent class for stochastic process
-    
-    """
+    """parent class for stochastic process"""
     _main_type:str
     _sub_type:str
     def __str__(self)->str:
