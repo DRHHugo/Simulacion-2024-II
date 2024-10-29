@@ -276,9 +276,9 @@ class Exponential(_continuos_variate):
         return -log(u)/self._rate
 
 class _NormalStd(_continuos_variate):
-    def __init__(self):
+    def __init__(self)->None:
         pass
-    def _rand(self):
+    def _rand(self)->float:
         s=2
         while s>1:
             u = rand()
@@ -287,8 +287,8 @@ class _NormalStd(_continuos_variate):
             y = 2*v -1
             s = x**2+y**2
         return (x*((-2*log(s)/s)**0.5),y*((-2*log(s)/s)**0.5))
-    def rand(self):
-        _rand()[0]
+    def rand(self)->float:
+        return self._rand()[0]
     def sample(self,size:int=1)->list[float]|None:
         pairs = [self._rand() for _ in range(size//2+size%2)]
         _sample = []
