@@ -483,10 +483,10 @@ class Tringular(_continuos_variate):
     def rand(self)->float:
         u:float
         u = rand()
-        if u<(self._b-self._a)/(self._c-self._a):
+        if u<(self._b-self._a)**2/((self._c-self._a)*(self._b-self._a)):
             return self._a + (u*(self._c-self._a)*(self._b-self._a))**0.5
         else:
-            return self._b - ((1-u)*(self._c-self._a)*(self._b-self._a))**0.5
+            return self._c - ((1-u)*(self._c-self._a)*(self._c-self._b))**0.5
 
 class ExampleDis(_continuos_variate):
     def rand(self)->float:
