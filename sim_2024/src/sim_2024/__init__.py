@@ -467,26 +467,40 @@ class HistogramFigure(_Figure):
     Args:
         sample (random_sample): random_sample to plot
     """
-    def __new__(cls,*args,sample:random_sample=random_sample('d'),**kwargs):
+    def __init__(self,sample:random_sample,**kwargs):
         _validate_sample(sample,message='sample must be a random_sample object')
-        if len(args)==0:
-            args=(None,(5,3),200)
-        if len(args)==1:
-            args+=((5,3),200)
-        if len(args)==2:
-            args+=(200)
-        return super().__init__(*args,**dict({'frameon':False},**kwargs))
-    def __init__(self,sample:random_sample,*args,**kwargs):
-        _,_,bars = self.axes[0].hist(sample,**dict({'bins':bins},{'density':True},**kwargs))
+        if 'figsize' in kwargs:
+            if type(kwargs['figsize'])==tuple:
+                figsize = kwargs.pop('figsize')
+            else:
+                figsize = tuple([5,3])
+        else:
+            figsize = tuple([5,3])
+        if 'dpi' in kwargs:
+            if type(kwargs['dpi'])==int:
+                dpi = kwargs.pop('dpi')
+            else:
+                dpi = 400
+        else:
+            dpi = 400
+        if 'bins' in kwargs:
+            if type(kwargs['bins']==int) or type(kwargs['bins']==list):
+                bins = kwargs.pop('bins')
+            else:
+                bins = 10
+        else:
+            bins = 10
+        super().__init__(**kwargs)
+        self.set_size_inches(figsize[0],figsize[1])
+        self.set_dpi(dpi)
+        self.add_axes((0,0,1,1))
+        _,_,bars = self.axes[0].hist(sample,bins=bins,density=True)
         for bar in bars:
             bar.set_facecolor('xkcd:azure')
             bar.set_edgecolor('xkcd:white')
-        try:
-            self.canvas.toolbar_visible = False
-            self.canvas.header_visible = False
-            self.canvas.footer_visible = False
-        finally:
-            return figure
+        self.canvas.toolbar_visible = False
+        self.canvas.header_visible = False
+        self.canvas.footer_visible = False
 
 def PathFigure(times:_array|list[_array],events:_array|list[_array],**kwargs:dict[str,_Any])->_Figure:
     """function to create a plot for random process realizations"""
