@@ -432,7 +432,7 @@ class random_sample(_array):
     #     self._array.append(x)
     
     def make_plot(self,*args,**kwargs)->_Figure:
-        return _pyplot.figure(self,*args,**kwargs,FigureClass=HistogramFigure)
+        return _pyplot.figure(*args,**dict({'FigureClass':HistogramFigure,'sample':self},**kwargs))
 
 class random_path:
     def __init__(self,times:_array[float],events:_array[float])->None:
@@ -467,7 +467,7 @@ class HistogramFigure(_Figure):
     Args:
         sample (random_sample): random_sample to plot
     """
-    def __new__(cls,sample:random_sample,*args,**kwargs):
+    def __new__(cls,*args,sample:random_sample=random_sample('d'),**kwargs):
         _validate_sample(sample,message='sample must be a random_sample object')
         if len(args)==0:
             args=(None,(5,3),200)
