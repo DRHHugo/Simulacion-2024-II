@@ -13,7 +13,7 @@ from . import mass_function as _mass_function
 from . import density_function as _density_function
 
 try:
-    rand = _modules['sim_2024'].rand
+    _rand = _modules['sim_2024'].rand
 except KeyError:
     raise ImportError('Module sim_2024 not loaded. Load sim_2024 and try again')
 
@@ -67,11 +67,11 @@ class Bernoulli(_discrete_variate):
         """all attributes are private"""
         self._p:float
         self._p = kwargs['p']
-        self.mass_function:mass_function = mass_function(function=lambda x:(self._p if x==1 else 1-self._p),sup=[0,1])
+        self.mass_function:mass_function = _mass_function(function=lambda x:(self._p if x==1 else 1-self._p),sup=[0,1])
     
     def rand(self)->float:
-        global rand
-        u = rand.rand()
+        global _rand
+        u = _rand()
         if u<self._p:
             return 1.0
         else:
@@ -99,11 +99,11 @@ class Binomial(_discrete_variate):
         self._p = float(kwargs['p'])
         self._n = int(kwargs['n'])
     def rand(self)->float:
-        global rand
+        global _rand
         x:float
         x = 0.0
         for _ in range(self._n):
-            u = rand.rand()
+            u = _rand()
             if u<self._p:
                 x+=1.0
         return x   
@@ -125,11 +125,11 @@ class Geometric(_discrete_variate):
         """all attributes are private"""
         self._p:float = kwargs['p']
     def rand(self)->float:
-        #global rand
-        u = rand()
+        global _rand
+        u = _rand()
         x =  0.0
         while u>self._p:
-            u = rand()
+            u = _rand()
             x+= 1
         return x
 
@@ -153,11 +153,11 @@ class NegativeBinomial(_discrete_variate):
         self._p:float = kwargs['p']
         self._s:float = kwargs['s']
     def rand(self)->float:
-        #global rand
-        s = 1.0 if rand()<self._p else 0
+        global _rand
+        s = 1.0 if _rand()<self._p else 0
         x = 0.0 if s==1 else 1
         while s<self._s:
-            s+= 1.0 if rand()<self._p else 0
+            s+= 1.0 if _rand()<self._p else 0
             x+= 0.0 if s==1 else 1
         return x
 
@@ -202,7 +202,8 @@ class DiscreteUniform(_discrete_variate):
     
     def rand(self)->float:
         """generation of one random number"""
-        u:float = rand()
+        global _rand
+        u:float = _rand()
         index:float = 1.0
         while u>index/self._size:
             index+=1.0
@@ -249,7 +250,8 @@ class ContinuousUniform(_continuos_variate):
     def __init__(self,**kwargs:dict[str,tuple[float]])->None:
         self._sup = kwargs['sup']
     def rand(self)->float:
-        u:float = rand.rand()
+        global _rand
+        u:float = _rand()
         return self._sup[0]+u*(self._sup[1]-self._sup[0])
 
 class Exponential(_continuos_variate):
@@ -270,17 +272,19 @@ class Exponential(_continuos_variate):
 
     def rand(self)->float:
         """generation of one random number"""
-        u = rand.rand()
+        global _rand
+        u = _rand()
         return -_log(u)/self._rate
 
 class _NormalStd(_continuos_variate):
     def __init__(self)->None:
         pass
     def _rand(self)->float:
+        global _rand
         s=2
         while s>1:
-            u = rand()
-            v = rand()
+            u = _rand()
+            v = _rand()
             x = 2*u -1
             y = 2*v -1
             s = x**2+y**2
@@ -425,24 +429,25 @@ class Gamma(_continuos_variate):
         self._mayorant = _mayorant_Gamma_density(self._shape)
     
     def rand(self)->float:
+        global _rand
         x:float
         u:float
         y:float
         if self._shape == 1:
             return Exponential(rate=1.0).rand()
-        u=rand()
+        u = _rand()
         if self._shape<1:
             y = ((_exp(0)+self._shape)*u/_exp(0)) if u<_exp(0)/(_exp(0)+self._shape) else -_log((_exp(0)+self._shape)*(1-u)/(_exp(0)*self._shape))
         else:
             y = (u*self._shape**self._mayorant.a/(1-u))**(1/self._mayorant.a)
-        u=rand()
+        u = _rand()
         while u*self._mayorant(y)>y**(self._shape-1)*_exp(-y)/_gamma(self._shape):
-            u=rand()
+            u = _rand()
             if self._shape<1:
                 y = ((_exp(0)+self._shape)*u/_exp(0)) if u<_exp(0)/(_exp(0)+self._shape) else -_log((_exp(0)+self._shape)*(1-u)/(_exp(0)*self._shape))
             else:
                 y = (u*self._shape**self._mayorant.a/(1-u))**(1/self._mayorant.a)
-            u=rand()
+            u = _rand()
         return self._rate*y        
 
 class Beta(_continuos_variate):
@@ -479,8 +484,9 @@ class Tringular(_continuos_variate):
         self._b = kwargs['b']
         self._c = kwargs['c']
     def rand(self)->float:
+        global _rand
         u:float
-        u = rand()
+        u = _rand()
         if u<(self._b-self._a)**2/((self._c-self._a)*(self._b-self._a)):
             return self._a + (u*(self._c-self._a)*(self._b-self._a))**0.5
         else:
@@ -488,15 +494,16 @@ class Tringular(_continuos_variate):
 
 class ExampleDis(_continuos_variate):
     def rand(self)->float:
+        global _rand
         y:float
         u:float
-        u = rand()
+        u = _rand()
         y = 2*u-1
-        u = rand()
+        u = _rand()
         while 4*u>3/(y**2+y+1):
-            u = rand()
+            u = _rand()
             y = 2*u-1
-            u = rand()
+            u = _rand()
         return y
 
 __all__ = [
