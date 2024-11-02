@@ -1,0 +1,7 @@
+# random_sample { #sim_2024.random_sample }
+
+`random_sample()`
+
+custom type to store an array of float xor int values and some functionalities related
+
+Sample has to porpuses. First, store a potentialy huge amount of numbers (either float or int)

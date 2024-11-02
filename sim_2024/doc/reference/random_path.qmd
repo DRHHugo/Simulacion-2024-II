@@ -1,0 +1,4 @@
+# random_path { #sim_2024.random_path }
+
+`random_path(self, times, events)`
+

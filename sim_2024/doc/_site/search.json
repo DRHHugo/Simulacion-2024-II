@@ -161,6 +161,13 @@
     "text": "Sample\nSample()\ncustom type to store an array of float xor int values and some functionalities related\nSample has to porpuses. First, store a potentialy huge amount of numbers (either float or int)"
   },
   {
+    "objectID": "reference/random_path.html",
+    "href": "reference/random_path.html",
+    "title": "random_path",
+    "section": "",
+    "text": "random_path\nrandom_path(self, times, events)"
+  },
+  {
     "objectID": "reference/mass_function.html",
     "href": "reference/mass_function.html",
     "title": "mass_function",
@@ -172,7 +179,14 @@
     "href": "reference/HistogramFigure.html",
     "title": "HistogramFigure",
     "section": "",
-    "text": "HistogramFigure\nHistogramFigure(sample, function=None, bins=10, label='', **kwargs)\nfunction to create a density histogram with or without a density function"
+    "text": "HistogramFigure(self, sample, **kwargs)\ncustom matplotlib Figure to plot a density histogram\nThis custom figure allows to create a histogram of a sample of float values in a pre-defined format. args and Keyword arguments are passed to figure inizialization and to histogram creation.\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nsample\nrandom_sample\nrandom_sample to plot\nrequired"
+  },
+  {
+    "objectID": "reference/HistogramFigure.html#parameters",
+    "href": "reference/HistogramFigure.html#parameters",
+    "title": "HistogramFigure",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nsample\nrandom_sample\nrandom_sample to plot\nrequired"
   },
   {
     "objectID": "reference/generators.polynomial_congruential_generator.html",
@@ -585,14 +599,14 @@
     "href": "reference/index.html",
     "title": "sim_2024",
     "section": "",
-    "text": "funcionalidades básicas\n\n\n\nrand\n\n\n\nset_seed\nChange state of default pseudorandom generator.\n\n\nmass_function\nfuncion de masa\n\n\ndensity_function\nfuncion de densidad\n\n\nHistogramFigure\nfunction to create a density histogram with or without a density function\n\n\nSample\ncustom type to store an array of float xor int values and some functionalities related\n\n\n\n\n\n\nsubmodulo de generadores de números pseudoaleatorios\n\n\n\ngenerators.multiplicative_congruential_generator\nMultiplicative congruential pseudorandom generator.\n\n\ngenerators.linear_congruential_generator\nLinear congruential pseudorandom generator.\n\n\ngenerators.quadratic_congrential_generator\nQuadratic congruential pseudorandom generators.\n\n\ngenerators.polynomial_congruential_generator\nPolynomial congruential pseudorandom generator.\n\n\ngenerators.multiple_congruential_generator\nMultiple congruential pseudorandom generator\n\n\ngenerators.combined_congruential_generator\nCombined congruential pseudorandom generator.\n\n\ngenerators.multcombi_congruential_generator\nMultiple combined congruential pseudorandom generator\n\n\ngenerators.linear_feedback_shift_register_4\nlinear fedbacl shift register for word size 4\n\n\ngenerators.linear_feedback_shift_register_8\nlinear fedbacl shift register for word size 8\n\n\ngenerators.linear_feedback_shift_register_12\nlinear fedbacl shift register for word size 12\n\n\ngenerators.linear_feedback_shift_register_16\nlinear fedback shift register for word size 16\n\n\ngenerators.linear_feedback_shift_register_20\nlinear fedbacl shift register for word size 20\n\n\ngenerators.linear_feedback_shift_register_24\nlinear fedbacl shift register for word size 24\n\n\n\n\n\n\nsubmodulo de pruebas de aleatoriedad para PRNG\n\n\n\ntests.mean_est\n\n\n\ntests.mean_test\n\n\n\ntests.variance_est\n\n\n\ntests.variance_test\n\n\n\ntests.chisq_est\n\n\n\ntests.chisq_test\n\n\n\ntests.series_est\n\n\n\ntests.series_test\n\n\n\ntests.runs_est\n\n\n\ntests.runs_test\n\n\n\n\n\n\n\nsubmodulo de distribuciones de probabilidad\n\n\n\nvariates.Bernoulli\nRepresentation of a random variate of Bernoulli type.\n\n\nvariates.Binomial\nrepresentation of a random variate of binonimal type\n\n\nvariates.Geometric\nRepresentation of a random variate of Bernoulli type\n\n\nvariates.NegativeBinomial\nrepresentation of a random variate of Bernoulli type\n\n\nvariates.DiscreteUniform\nDiscrete uniform distribution.\n\n\nvariates.Poisson\nPoisson distribution.\n\n\nvariates.ContinuousUniform\nContinuous uniform distribution.\n\n\nvariates.Exponential\nExponential distribution.\n\n\nvariates.Normal\nNormal distribution\n\n\nvariates.BoundedNormal\nNormal bounded distribution\n\n\nvariates.RectifiedNormal\nRectified normal distribution\n\n\nvariates.Chisq\n\n\n\nvariates.Student\n\n\n\nvariates.Gamma\nGamma distribution\n\n\nvariates.Beta\nBeta distribution\n\n\nvariates.ExampleDis"
+    "text": "funcionalidades básicas\n\n\n\nrand\n\n\n\nset_seed\nChange state of default pseudorandom generator.\n\n\nmass_function\nfuncion de masa\n\n\ndensity_function\nfuncion de densidad\n\n\nrandom_sample\ncustom type to store an array of float xor int values and some functionalities related\n\n\nrandom_path\n\n\n\nHistogramFigure\ncustom matplotlib Figure to plot a density histogram\n\n\n\n\n\n\nsubmodulo de generadores de números pseudoaleatorios\n\n\n\ngenerators.multiplicative_congruential_generator\nMultiplicative congruential pseudorandom generator.\n\n\ngenerators.linear_congruential_generator\nLinear congruential pseudorandom generator.\n\n\ngenerators.quadratic_congrential_generator\nQuadratic congruential pseudorandom generators.\n\n\ngenerators.polynomial_congruential_generator\nPolynomial congruential pseudorandom generator.\n\n\ngenerators.multiple_congruential_generator\nMultiple congruential pseudorandom generator\n\n\ngenerators.combined_congruential_generator\nCombined congruential pseudorandom generator.\n\n\ngenerators.multcombi_congruential_generator\nMultiple combined congruential pseudorandom generator\n\n\ngenerators.linear_feedback_shift_register_4\nlinear fedbacl shift register for word size 4\n\n\ngenerators.linear_feedback_shift_register_8\nlinear fedbacl shift register for word size 8\n\n\ngenerators.linear_feedback_shift_register_12\nlinear fedbacl shift register for word size 12\n\n\ngenerators.linear_feedback_shift_register_16\nlinear fedback shift register for word size 16\n\n\ngenerators.linear_feedback_shift_register_20\nlinear fedbacl shift register for word size 20\n\n\ngenerators.linear_feedback_shift_register_24\nlinear fedbacl shift register for word size 24\n\n\n\n\n\n\nsubmodulo de pruebas de aleatoriedad para PRNG\n\n\n\ntests.mean_est\n\n\n\ntests.mean_test\n\n\n\ntests.variance_est\n\n\n\ntests.variance_test\n\n\n\ntests.chisq_est\n\n\n\ntests.chisq_test\n\n\n\ntests.series_est\n\n\n\ntests.series_test\n\n\n\ntests.runs_est\n\n\n\ntests.runs_test\n\n\n\n\n\n\n\nsubmodulo de distribuciones de probabilidad\n\n\n\nvariates.Bernoulli\nRepresentation of a random variate of Bernoulli type.\n\n\nvariates.Binomial\nrepresentation of a random variate of binonimal type\n\n\nvariates.Geometric\nRepresentation of a random variate of Bernoulli type\n\n\nvariates.NegativeBinomial\nrepresentation of a random variate of Bernoulli type\n\n\nvariates.DiscreteUniform\nDiscrete uniform distribution.\n\n\nvariates.Poisson\nPoisson distribution.\n\n\nvariates.ContinuousUniform\nContinuous uniform distribution.\n\n\nvariates.Exponential\nExponential distribution.\n\n\nvariates.Normal\nNormal distribution\n\n\nvariates.BoundedNormal\nNormal bounded distribution\n\n\nvariates.RectifiedNormal\nRectified normal distribution\n\n\nvariates.Chisq\n\n\n\nvariates.Student\n\n\n\nvariates.Gamma\nGamma distribution\n\n\nvariates.Beta\nBeta distribution\n\n\nvariates.ExampleDis"
   },
   {
     "objectID": "reference/index.html#basics-pseudorandom-functionalities",
     "href": "reference/index.html#basics-pseudorandom-functionalities",
     "title": "sim_2024",
     "section": "",
-    "text": "funcionalidades básicas\n\n\n\nrand\n\n\n\nset_seed\nChange state of default pseudorandom generator.\n\n\nmass_function\nfuncion de masa\n\n\ndensity_function\nfuncion de densidad\n\n\nHistogramFigure\nfunction to create a density histogram with or without a density function\n\n\nSample\ncustom type to store an array of float xor int values and some functionalities related"
+    "text": "funcionalidades básicas\n\n\n\nrand\n\n\n\nset_seed\nChange state of default pseudorandom generator.\n\n\nmass_function\nfuncion de masa\n\n\ndensity_function\nfuncion de densidad\n\n\nrandom_sample\ncustom type to store an array of float xor int values and some functionalities related\n\n\nrandom_path\n\n\n\nHistogramFigure\ncustom matplotlib Figure to plot a density histogram"
   },
   {
     "objectID": "reference/index.html#pseudorandom-number-generators-prng",
@@ -621,6 +635,13 @@
     "title": "rand",
     "section": "",
     "text": "rand\nrand"
+  },
+  {
+    "objectID": "reference/random_sample.html",
+    "href": "reference/random_sample.html",
+    "title": "random_sample",
+    "section": "",
+    "text": "random_sample\nrandom_sample()\ncustom type to store an array of float xor int values and some functionalities related\nSample has to porpuses. First, store a potentialy huge amount of numbers (either float or int)"
   },
   {
     "objectID": "reference/set_seed.html",

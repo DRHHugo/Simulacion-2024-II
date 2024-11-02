@@ -10,8 +10,9 @@ funcionalidades básicas
 | [set_seed](set_seed.qmd#sim_2024.set_seed) | Change state of default pseudorandom generator. |
 | [mass_function](mass_function.qmd#sim_2024.mass_function) | funcion de masa |
 | [density_function](density_function.qmd#sim_2024.density_function) | funcion de densidad |
-| [HistogramFigure](HistogramFigure.qmd#sim_2024.HistogramFigure) | function to create a density histogram with or without a density function |
-| [Sample](Sample.qmd#sim_2024.Sample) | custom type to store an array of float xor int values and some functionalities related |
+| [random_sample](random_sample.qmd#sim_2024.random_sample) | custom type to store an array of float xor int values and some functionalities related |
+| [random_path](random_path.qmd#sim_2024.random_path) |  |
+| [HistogramFigure](HistogramFigure.qmd#sim_2024.HistogramFigure) | custom matplotlib Figure to plot a density histogram |
 
 ## PseudoRandom Number Generators (PRNG)
 

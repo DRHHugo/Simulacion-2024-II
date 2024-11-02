@@ -531,6 +531,7 @@ __all__ = [
     'set_seed',
     'mass_function',
     'density_function',
+    'random_sample',
+    'random_path',
     'HistogramFigure',
-    'random_sample'
     ]

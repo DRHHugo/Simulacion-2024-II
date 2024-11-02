@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -233,10 +233,32 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="sim_2024.HistogramFigure" class="level1">
 <h1>HistogramFigure</h1>
-<p><code>HistogramFigure(sample, function=None, bins=10, label='', **kwargs)</code></p>
-<p>function to create a density histogram with or without a density function</p>
+<p><code>HistogramFigure(self, sample, **kwargs)</code></p>
+<p>custom matplotlib Figure to plot a density histogram</p>
+<p>This custom figure allows to create a histogram of a sample of float values in a pre-defined format. <em>args and </em>Keyword arguments are passed to figure inizialization and to histogram creation.</p>
+<section id="parameters" class="level2">
+<h2 class="anchored" data-anchor-id="parameters">Parameters</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>sample</code></td>
+<td>random_sample</td>
+<td>random_sample to plot</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -72,8 +72,9 @@ quartodoc:
         - set_seed
         - mass_function
         - density_function
+        - random_sample
+        - random_path
         - HistogramFigure
-        - Sample
     - title: PseudoRandom Number Generators (PRNG)
       desc: 'submodulo de generadores de números pseudoaleatorios'
       contents:
