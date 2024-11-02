@@ -31,11 +31,7 @@ class _random_variate:
         pass
     def sample(self,size:int=1)->_random_sample|None:
         """generation of size pseudo-random sample of variate"""
-        _warn_int(size,'size of sample must be a positive integer',threshold=1)
-        sample = _random_sample('d')
-        for _ in range(size):
-            sample.append(self.rand())
-        return sample
+        return _random_sample(self.rand,size)
 
 class _discrete_variate(_random_variate):
     """parent class for discrete random variates"""
@@ -291,9 +287,9 @@ class _NormalStd(_continuos_variate):
         return (x*((-2*_log(s)/s)**0.5),y*((-2*_log(s)/s)**0.5))
     def rand(self)->float:
         return self._rand()[0]
-    def sample(self,size:int=1)->list[float]|None:
+    def sample(self,size:int=1)->_random_sample:
         pairs = [self._rand() for _ in range(size//2+size%2)]
-        _sample = []
+        _sample = _random_sample()
         for k in range(size//2):
             _sample.append(pairs[k][0])
             _sample.append(pairs[k][1])
@@ -329,9 +325,12 @@ class Normal(_continuos_variate):
     def rand(self):
         return self._mean+self._stdev*self._stdvariate.rand()
     
-    def sample(self,size:int=1)->list[float]|None:
-        _sample = self._stdvariate.sample(size)
-        return [self._mean+self._stdev*z for z in _sample]
+    def sample(self,size:int=1)->_random_sample:
+        _stdsample = self._stdvariate.sample(size)
+        _sample = _random_sample()
+        for z in _stdsample:
+            _sample.append(self._mean+self._stdev*z)
+        return _sample
 
 class BoundedNormal(_continuos_variate):
     """Normal bounded distribution

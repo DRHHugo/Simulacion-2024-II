@@ -260,90 +260,6 @@ def _validate_sample(sample:_Any,message:str='')->bool:
             raise TypeError(message)
     return True
 
-#pseudorandom default generator and related functions
-
-class _package_generator:
-    """Class reserved for main pseudorandom generator.
-    
-    This class provide the default pseudorandom generator on package initialization.
-    This pseudorandom generator is an implementation of L'Ecuyer* MRG32k3a specification.
-    When the package is first imported the generator is initialized with a random number provided by the host system.
-    After that is possible to restart the generator with the set_seed function.
-    This class is not intended to be used to construct another generator, if desire use multcombi_congruential_generator class to construct an equivalent generator.
-    *L'Ecuyer, P. Uniform random number generation. Ann Oper Res 53, 77-120 (1994).
-    
-    Args:
-        seed : integer to initilizate the pseudorandom generator
-    """
-    
-    def __str__(self)->str:
-        return 'package default generator'
-    
-    def __call__(self,n:None|int=None)->float|list[float]|None:
-        if n==None:
-            return self.rand()
-        if type(n)==int:
-            return self.sample(n)
-        else:
-            _warn(message='invalid parameter')
-            return None
-    
-    def __init__(self,seed:int)->None:
-        """all attributes are private"""
-        self._mod_1:int = 2**32-209
-        self._mod_2:int = 2**32-22853
-        self._mults_1:list[int] = [0,1403580,-810728]
-        self._mults_2:list[int] = [527612,0,-1370589]
-        self._state_1:list[int] = [1,1,seed%self._mod_1]
-        self._state_2:list[int] = [1,1,1]
-    
-    def rand(self)->float:
-        """generation of one pseudo-random numbers"""
-        x:int = 0
-        y:int = 0
-        for i in range(len(self._state_1)):
-            x = (x+self._state_1[i]*self._mults_1[i])%self._mod_1
-            y = (y+self._state_2[i]*self._mults_2[i])%self._mod_2
-        z:int = (x-y)%self._mod_1
-        self._state_1.pop(0)
-        self._state_2.pop(0)
-        self._state_1.insert(len(self._state_1),x)
-        self._state_2.insert(len(self._state_2),y)
-        return z/self._mod_1
-    
-    def sample(self,size:int=1)->list[float]|None:
-        """generation of a sample of pseudo-random numbers of length size
-        
-        Keyword Args:
-            size (int): size of sample
-        """
-        _warn_int(size,'size of sample must be a posituve integer',threshold=1)
-        sample = random_sample('d')
-        for _ in range(size):
-            sample.append(self.rand())
-        return sample
-
-    def _set_seed(self,seed)->None:
-        """restart the state"""
-        self._state_1 = [1,1,seed]
-        self._state_2 = [1,1,1]
-        return None
-
-rand = _package_generator(int.from_bytes(_urandom(4)))
-
-def set_seed(seed:int)->None:
-    """Change state of default pseudorandom generator.
-
-    This functions allows to set the state of the default pseudorandom generator for reproductibility porpuses.
-    If seed is not an integer it raise a Warning and no change is done.
-
-    Args:
-        seed: integer used to restart the default pseudorandom generator
-    """
-    if _warn_int(seed,message='seed must be an integer'):
-        rand._set_seed(seed)
-    return None
-
 #probability and statistics utilities
 
 class mass_function:
@@ -420,19 +336,27 @@ class random_sample(_array):
     Sample has to porpuses. First, store a potentialy huge amount of numbers (either float or int) 
 
     """
-    
-    # def __init__(self)->None:
-    #     self._array:_array
-    #     self._array = _array('d')
-        
-    # def get_values(self)->_array:
-    #     return self._array
-    
-    # def add_value(self,x:float)->None:
-    #     self._array.append(x)
-    
+    def __new__(cls,*args):
+        return super().__new__(cls,'d')
+    def __init__(self,*args)->None:
+        if len(args)==1:
+            _validate_int(args[0],'single argument must be a positive integer',threshold=1)
+            global rand
+            for _ in range(args[0]):
+                self.append(rand())
+        elif len(args)==2:
+            _validate_int(args[1],'second argument must be a positive integer',threshold=1)
+            for _ in range(args[1]):
+                self.append(args[0]())
+        elif len(args)!=0:
+            _warn('some arguments has bean ignored',type=_package_warning)
+
     def make_plot(self,*args,**kwargs)->_Figure:
         return _pyplot.figure(*args,**dict({'FigureClass':HistogramFigure,'sample':self},**kwargs))
+    
+    @property
+    def mean(self):
+        return sum(self)/len(self)
 
 class random_path:
     def __init__(self,times:_array[float],events:_array[float])->None:
@@ -445,8 +369,8 @@ class random_path:
     def get_values(self)->tuple[_array,_array]:
         return self._times,self._events
     
-    def make_plot(self,**kwargs)->None:
-        return PathFigure(self._times,self._events,**kwargs)
+    # def make_plot(self,**kwargs)->PathFigure:
+    #     return PathFigure(self._times,self._events,**kwargs)
 
 class process_sample:
     def __init__(self,paths:list[random_path]):
@@ -504,8 +428,8 @@ class HistogramFigure(_Figure):
 
 def PathFigure(times:_array|list[_array],events:_array|list[_array],**kwargs:dict[str,_Any])->_Figure:
     """function to create a plot for random process realizations"""
-    _times = list[_array]
-    _events = list[_array]
+    _times:list[_array]
+    _events:list[_array]
     if type(times)==_array:
         _times = [times]
     else:
@@ -524,6 +448,87 @@ def PathFigure(times:_array|list[_array],events:_array|list[_array],**kwargs:dic
         figure.canvas.footer_visible = False
     finally:
         return figure
+
+#pseudorandom default generator and related functions
+
+class _package_generator:
+    """Class reserved for main pseudorandom generator.
+    
+    This class provide the default pseudorandom generator on package initialization.
+    This pseudorandom generator is an implementation of L'Ecuyer* MRG32k3a specification.
+    When the package is first imported the generator is initialized with a random number provided by the host system.
+    After that is possible to restart the generator with the set_seed function.
+    This class is not intended to be used to construct another generator, if desire use multcombi_congruential_generator class to construct an equivalent generator.
+    *L'Ecuyer, P. Uniform random number generation. Ann Oper Res 53, 77-120 (1994).
+    
+    Args:
+        seed : integer to initilizate the pseudorandom generator
+    """
+    
+    def __str__(self)->str:
+        return 'package default generator'
+    
+    def __call__(self,size:None|int=None)->float|random_sample:
+        if size==None:
+            return self.rand()
+        _warn_int(size,'size of sample must be a positive integer',threshold=1)
+        if size==1:
+            return self.rand()
+        return self.sample(size)
+
+    def __init__(self,seed:int)->None:
+        """all attributes are private"""
+        self._mod_1:int = 2**32-209
+        self._mod_2:int = 2**32-22853
+        self._mults_1:list[int] = [0,1403580,-810728]
+        self._mults_2:list[int] = [527612,0,-1370589]
+        self._state_1:list[int] = [1,1,seed%self._mod_1]
+        self._state_2:list[int] = [1,1,1]
+    
+    def rand(self)->float:
+        """generation of one pseudo-random numbers"""
+        x:int = 0
+        y:int = 0
+        for i in range(len(self._state_1)):
+            x = (x+self._state_1[i]*self._mults_1[i])%self._mod_1
+            y = (y+self._state_2[i]*self._mults_2[i])%self._mod_2
+        z:int = (x-y)%self._mod_1
+        self._state_1.pop(0)
+        self._state_2.pop(0)
+        self._state_1.insert(len(self._state_1),x)
+        self._state_2.insert(len(self._state_2),y)
+        return z/self._mod_1
+    
+    def sample(self,size:int=1)->random_sample|None:
+        """generation of a sample of pseudo-random numbers of length size
+        
+        Keyword Args:
+            size (int): size of sample
+        """
+        _warn_int(size,'size of sample must be a posituve integer',threshold=1)
+        sample = random_sample(self.rand,size)
+        return sample
+
+    def _set_seed(self,seed)->None:
+        """restart the state"""
+        self._state_1 = [1,1,seed]
+        self._state_2 = [1,1,1]
+        return None
+
+rand = _package_generator(int.from_bytes(_urandom(4)))
+
+def set_seed(seed:int)->None:
+    """Change state of default pseudorandom generator.
+
+    This functions allows to set the state of the default pseudorandom generator for reproductibility porpuses.
+    If seed is not an integer it raise a Warning and no change is done.
+
+    Args:
+        seed: integer used to restart the default pseudorandom generator
+    """
+    if _warn_int(seed,message='seed must be an integer'):
+        rand._set_seed(seed)
+    return None
 
 #elements to export
 __all__ = [
