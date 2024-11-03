@@ -16,7 +16,8 @@ _font_manager.fontManager.addfont(_getcwd()+'\\sim_2024\\lmsans12-regular.otf')
 _rcParams.update({
     'font.serif': 'Latin Modern Roman',
     'font.sans-serif': 'Latin Modern Sans',
-    'font.size': 8
+    'font.size': 8,
+    'savefig.bbox': 'tight'
     })
 
 #custom errors and warnings
@@ -301,6 +302,7 @@ class density_function:
         if 'min' in kwargs and 'max' in kwargs:
             if kwargs['max']<=kwargs['min']:
                 raise ValueError('max value must be greater that min value')
+        return super().__new__(cls)
 
     def __init__(self,function:_Callable[[float],float],**kwargs):
         self._function:_Callable[[float],float]
@@ -311,9 +313,9 @@ class density_function:
         else:
             self._min = '-inf'
         if 'max' in kwargs:
-            self._min = kwargs['max']
+            self._max = kwargs['max']
         else:
-            self._min = '+inf'
+            self._max = '+inf'
         self._function = function
     
     def __call__(self,x:float)->float:
@@ -425,6 +427,45 @@ class HistogramFigure(_Figure):
         self.canvas.toolbar_visible = False
         self.canvas.header_visible = False
         self.canvas.footer_visible = False
+    def add_function(self,function:mass_function|density_function,**kwargs)->None:
+        xmin:float
+        xmax:float
+        ymin:float
+        ymax:float
+        dx:float
+        if 'range' in kwargs:
+            if type(kwargs['range'])==tuple:
+                xmin = kwargs['range'][0]
+                xmax = kwargs['range'][1]
+            else:
+                raise TypeError('range must a tuple')
+        else:
+            xmin = float(self.axes[0].get_xlim()[0])
+            xmax = float(self.axes[0].get_xlim()[1])
+        if 'dx' in kwargs:
+            if type(kwargs['dx']==float):
+                dx = kwargs['dx']
+            else:
+                raise TypeError('dx must be a float')
+        else:
+            dx = 0.05
+        if type(function)==density_function:
+            xrange:_array
+            yrange:_array
+            xmax_minus_dx:float
+            xrange = _array('d')
+            yrange = _array('d')
+            x = xmin
+            xmax_minus_dx = xmax-dx
+            while x<xmax_minus_dx:
+                xrange.append(x)
+                yrange.append(function(x))
+                x+=dx
+            xrange.append(xmax)
+            yrange.append(function(xmax))
+            self.axes[0].plot(xrange,yrange,color='xkcd:wine')
+        else:
+            _warn('in construction',category=_package_warning)
 
 def PathFigure(times:_array|list[_array],events:_array|list[_array],**kwargs:dict[str,_Any])->_Figure:
     """function to create a plot for random process realizations"""
