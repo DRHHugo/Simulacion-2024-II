@@ -8,6 +8,7 @@ from matplotlib import font_manager as _font_manager
 from matplotlib import rcParams as _rcParams
 from matplotlib import pyplot as _pyplot
 from matplotlib.figure import Figure as _Figure
+from matplotlib.patches import Circle as _Circle
 
 #change font for matplotlib figures
 
@@ -264,23 +265,67 @@ def _validate_sample(sample:_Any,message:str='')->bool:
 #probability and statistics utilities
 
 class mass_function:
-    """funcion de masa"""
-    def __init__(self,function:_Callable[[float],float],sup:list[float])->None:
-        self._function:_Any = function
-        self._support:list[float] = sup
+    """funcion de masa
+    
+    
+    """
+    
+    def __new__(cls,sup_val:dict[float,float]=None,**kwargs):
+        if sup_val==None:
+            if 'support' in kwargs and 'values' in kwargs:
+                if type(kwargs['support'])==list and type(kwargs['values'])==list:
+                    if len(kwargs['support'])>0 and len(kwargs['values'])>0 and len(kwargs['support'])==len(kwargs['values']):
+                        if sum(kwargs['values'])==1.0:
+                            return super().__new__(cls)
+                        else:
+                            raise ValueError('values sum not equals 1')
+                    else:
+                        raise ValueError('support and values must be non empty lists of the same size')
+                else:
+                        raise TypeError('support and values must be non empty lists of the same size')
+            elif 'support' in kwargs:
+                if type(kwargs['support'])==list:
+                    if len(kwargs['support'])>0:
+                        return super().__new__(cls)
+                    else:
+                        raise ValueError('support must be a non empty list')
+                else:
+                    raise TypeError('support must be a non empty list')
+            else:
+                raise KeyError('support not provided')
+        elif type(sup_val)==dict:
+            _validate_list(list(sup_val.keys()),message='dict keys must be all float numbers')
+            _validate_list(list(sup_val.values()),message='dict values must be all float numbers')
+            if sum(sup_val.values())==1.0:
+                return super().__new__(cls)
+            else:
+                raise ValueError('dict values sum not equals 1')
+        else:
+            raise TypeError('first parameter must be a dictionary with float keys and values')
+    
+    def __init__(self,sup_val:dict[float,float]=None,**kwargs)->None:
+        self._sup: list[float]
+        self._val: list[float]
+        if sup_val==None:
+            if 'support' in kwargs and 'values' in kwargs:
+                self._sup = kwargs['support']
+                self._val = kwargs['values']
+            else:
+                self._sup = kwargs['support']
+                self._val = [1/len(self._sup) for _ in range(len(self._sup))]
+        else:
+            self._sup = list(sup_val.keys())
+            self._val = list(sup_val.values())
+            
     def __str__(self) :
         return 'Funcion de masa'
     def __repr__(self) :
-        return f'mass_function with:\\n support:'+repr(self._sup)+'\\n formula:'+repr(self._support)
+        return self.__str__()
     def __call__(self,x):
-        return self._function(x)
-    #    def __add__(self,g:mass_function) :
-    #        len_f:float = self.__max-self.__min+1
-    #        len_g:float = g.__max-g.__min+1
-    #        f_values:list[float] = [float(self.__min+k) for k in range(len_f)]
-    #        g_values:list[float] = [g.__min+k for k in range(len_g)]
-    #        new_weights:list[float] = [[self(f_values[i])*g(g_values[k-i]) for i in range(max(0,k+1-len_g),min(k+1,len_f))] for k in range(len_f+len_g-1)]
-    #        return mass_function({float(k+self.__min+g.__min):sum(new_weights[k]) for k in range(len(new_weights))})
+        try:
+            return self._val[self._sup.index(x)]
+        except:
+            return 0.0
 
 class density_function:
     """funcion de densidad
@@ -427,12 +472,12 @@ class HistogramFigure(_Figure):
         self.canvas.toolbar_visible = False
         self.canvas.header_visible = False
         self.canvas.footer_visible = False
+    
     def add_function(self,function:mass_function|density_function,**kwargs)->None:
         xmin:float
         xmax:float
-        ymin:float
-        ymax:float
-        dx:float
+        xrange:_array
+        yrange:_array
         if 'range' in kwargs:
             if type(kwargs['range'])==tuple:
                 xmin = kwargs['range'][0]
@@ -442,19 +487,20 @@ class HistogramFigure(_Figure):
         else:
             xmin = float(self.axes[0].get_xlim()[0])
             xmax = float(self.axes[0].get_xlim()[1])
-        if 'dx' in kwargs:
-            if type(kwargs['dx']==float):
-                dx = kwargs['dx']
-            else:
-                raise TypeError('dx must be a float')
-        else:
-            dx = 0.05
         if type(function)==density_function:
-            xrange:_array
-            yrange:_array
+            x:float
+            dx:float
             xmax_minus_dx:float
             xrange = _array('d')
             yrange = _array('d')
+            if 'dx' in kwargs:
+                if type(kwargs['dx']==float):
+                    dx = kwargs['dx']
+                else:
+                    _warn('dx not a float, value set to 0.01 ',category=_package_warning)
+                    dx = 0.01
+            else:
+                dx = 0.01
             x = xmin
             xmax_minus_dx = xmax-dx
             while x<xmax_minus_dx:
@@ -464,8 +510,29 @@ class HistogramFigure(_Figure):
             xrange.append(xmax)
             yrange.append(function(xmax))
             self.axes[0].plot(xrange,yrange,color='xkcd:wine')
-        else:
-            _warn('in construction',category=_package_warning)
+        elif type(function)==mass_function:
+            x:float
+            radius:float
+            marker:str
+            xrange = _array('d')
+            yrange = _array('d')
+            if 'r' in kwargs:
+                if type(kwargs['r'])==float:
+                    radius = kwargs['r']
+                else:
+                    _warn('r not a float, value set to 0.25 ',category=_package_warning)
+                    radius = 0.25
+            else:
+                radius = 0.25
+            if 'marker' in kwargs:
+                marker = kwargs['marker']
+            else:
+                marker = 'o'
+            for x in function._sup:
+                if xmin<=x<=xmax:
+                    xrange.append(x)
+                    yrange.append(function(x))
+            self.axes[0].scatter(xrange,yrange,s=radius*72,marker=marker,color='xkcd:wine')
 
 def PathFigure(times:_array|list[_array],events:_array|list[_array],**kwargs:dict[str,_Any])->_Figure:
     """function to create a plot for random process realizations"""
