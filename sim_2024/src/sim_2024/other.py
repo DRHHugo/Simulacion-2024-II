@@ -434,42 +434,6 @@ class random_sample(_array):
     def make_plot(self,*args,**kwargs)->_Figure:
         return _pyplot.figure(*args,**dict({'FigureClass':HistogramFigure,'sample':self},**kwargs))
 
-class process_path:
-    def __new__(cls,times:_array[float]|list[float],events:_array[float]|list[float]):
-        if type(times)==_array and type(events)==_array:
-            if len(times)>0 and len(events)>0 and len(times)==len(events):
-                return super().__new__(cls)
-            else:
-                raise ValueError('first and second parameters must be arrays of the same length')
-        elif type(times)==list and type(events)==list:
-            _validate_list(times,'all elemnts of first parameter must be floats')
-            _validate_list(events,'all elemnts of second parameter must be floats')
-            if len(times)>0 and len(events)>0 and len(times)==len(events):
-                return super().__new__(cls)
-            else:
-                raise ValueError('first and second parameters must be lists of the same length')
-        else:
-            raise TypeError('first and second parameters must both be arrays or lists of the same length')
-    
-    def __init__(self,times:_array[float]|list[float],events:_array[float]|list[float])->None:
-        self._times:_array[float]
-        self._events:_array[float]
-        self._horizon:float
-        if type(times)==_array:
-            self._times:_array[float]
-            self._events:_array[float]
-        else:
-            self._times = _array('d',times)
-            self._events = _array('d',events)
-        self._horizon = max(times)
-    
-    def get_values(self)->list[tuple]:
-        i:int
-        return [(self._times[i],self._events[i]) for i in range(len(self._times))]
-    
-    def make_plot(self,**kwargs)->None:
-        return PathFigure(self._times,self._events,**kwargs)
-
 class process_sample:
     def __init__(self,paths:list[random_path]):
         self._paths = paths
@@ -524,34 +488,31 @@ class HistogramFigure(_Figure):
         self.canvas.header_visible = False
         self.canvas.footer_visible = False
 
-class PathFigure(_Figure):
-    """custom matplotlib Figure to plot a realization from a random process
-
-    """
-    
-    def __init__(self,)
-
-    times:_array|list[_array],events:_array|list[_array],**kwargs:dict[str,_Any])->_Figure:
-    _times = list[_array]
-    _events = list[_array]
-    if type(times)==_array:
-        _times = [times]
-    else:
-        _times = times
-    if type(events)==_array:
-        _events = [events]
-    else:
-        _events = events
-    figure:_Figure
-    figure = pyplot.figure(figsize=(5,3),dpi=300,frameon=False,**kwargs)
-    figure.add_axes((0,0,1,1))
-    figure.axes[0].plot(_times,_events,**kwargs)
-    try:
-        figure.canvas.toolbar_visible = False
-        figure.canvas.header_visible = False
-        figure.canvas.footer_visible = False
-    finally:
-        return figure
+# class PathFigure(_Figure):
+#     """custom matplotlib Figure to plot a realization from a random process
+#     """
+#     def __init__(self):
+#     times:_array|list[_array],events:_array|list[_array],**kwargs:dict[str,_Any])->_Figure:
+#     _times = list[_array]
+#     _events = list[_array]
+#     if type(times)==_array:
+#         _times = [times]
+#     else:
+#         _times = times
+#     if type(events)==_array:
+#         _events = [events]
+#     else:
+#         _events = events
+#     figure:_Figure
+#     figure = pyplot.figure(figsize=(5,3),dpi=300,frameon=False,**kwargs)
+#     figure.add_axes((0,0,1,1))
+#     figure.axes[0].plot(_times,_events,**kwargs)
+#     try:
+#         figure.canvas.toolbar_visible = False
+#         figure.canvas.header_visible = False
+#         figure.canvas.footer_visible = False
+#     finally:
+#         return figure
 
 #elements to export
 __all__ = [
