@@ -441,12 +441,23 @@ class process_path:
         else:
             return (self._times[i],self._events[i])
     
+    def __call__(self,time:float)->float:
+        if time in self._times:
+            return self._events[self._times.index(time)]
+        else:
+            raise ValueError('time not in path')
+
     def get_values(self)->list[tuple]:
         i:int
         return [(self._times[i],self._events[i]) for i in range(len(self._times))]
     
     def make_plot(self,*args,**kwargs)->None:
-        return _pyplot.figure(*args,**dict({'FigureClass':PathFigure,'sample_paths':self},**kwargs))
+        color:str
+        if not 'color' in kwargs:
+            kwargs['color'] = 'xkcd:cobalt'
+        if not 'linewidth' in kwargs:
+            kwargs['linewidth'] = 0.75
+        return _pyplot.figure(*args,**dict({'FigureClass':PathFigure,'sample':self},**kwargs))
 
 class process_sample:
     def __init__(self,paths:list[process_path]):
@@ -467,11 +478,27 @@ class process_sample:
         else:
             return self._paths[index]
     def make_plot(self,*args,**kwargs)->None:
-        return _pyplot.figure(*args,**dict({'FigureClass':PathFigure,'sample_paths':self},**kwargs))
+        return _pyplot.figure(*args,**dict({'FigureClass':PathFigure,'sample':self},**kwargs))
     @property
     def mean(self)->process_path:
-
-
+        times:_array
+        mean_values:_array
+        mean_values = _array('d')
+        times = self._paths[0]._times
+        for i in range(1,len(self)):
+            for t in self._paths[i]._times:
+                if not t in times:
+                    times.append(t)
+        times = _array('d',sorted(times))
+        for t in times:
+            try:
+                l = [self._paths[i](t) for i in range(len(self))]
+            except:
+                raise IndexError('paths in sample are uncompatible')
+            else:
+                mean_values.append(sum(l)/len(l))
+                del l
+        return process_path(times,mean_values)
 
 class HistogramFigure(_Figure):
     """custom matplotlib Figure to plot a density histogram
@@ -587,9 +614,14 @@ class PathFigure(_Figure):
     Args:
         sample_paths (process_sample): set of paths to plot
     """
-    def __init__(self,sample_paths:process_sample|process_path,**kwargs):
-        if type(sample_paths)!=process_sample and type(sample_paths)!=process_path:
+    def __init__(self,sample:process_sample|process_path,**kwargs):
+        if type(sample)!=process_sample and type(sample)!=process_path:
             raise TypeError('path(s) must be of type process_sample or process_path')
+        sample_paths:process_sample
+        if type(sample)==process_sample:
+            sample_paths = sample
+        else:
+            sample_paths = process_sample([sample])
         if 'figsize' in kwargs:
             if type(kwargs['figsize'])==tuple:
                 figsize = kwargs.pop('figsize')
@@ -606,7 +638,7 @@ class PathFigure(_Figure):
             dpi = 400
         if 'color' in kwargs:
             if type(kwargs['color'])==str:
-                color = kwargs.pop('str')
+                color = kwargs.pop('color')
             else:
                 color = 'winter'
         else:
@@ -633,11 +665,11 @@ class PathFigure(_Figure):
         self.canvas.footer_visible = False
     
     def add_path(self,path:process_path,**kwargs):
-        if type(paths)!=process_path:
+        if type(path)!=process_path:
             raise TypeError('path must be of type process_sample or process_path')
         if 'color' in kwargs:
             if type(kwargs['color'])==str:
-                color = kwargs.pop('str')
+                color = kwargs.pop('color')
             else:
                 color = 'red'
         else:
