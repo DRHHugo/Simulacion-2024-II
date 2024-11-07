@@ -24,12 +24,13 @@ class _random_generator:
     def rand(self):
         pass
     
-    def sample(self,size:int=1)->list[float]|None:
+    def sample(self,size:int=1)->_random_sample|None:
         """generation of size pseudo-random numbers
 
         """
+        sample:_random_sample
         _warn_int(size,'size of sample must be a positive integer',threshold=1)
-        sample = _random_sample('d')
+        sample = _random_sample()
         for _ in range(size):
             sample.append(self.rand())
         return sample
