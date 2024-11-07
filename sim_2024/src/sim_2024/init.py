@@ -8,7 +8,8 @@ from matplotlib import font_manager as _font_manager
 from matplotlib import rcParams as _rcParams
 from matplotlib import pyplot as _pyplot
 from matplotlib.figure import Figure as _Figure
-
+from matplotlib.patches import Circle as _Circle
+from matplotlib import colormaps as _colormaps
 #change font for matplotlib figures
 
 _font_manager.fontManager.addfont(_getcwd()+'\\sim_2024\\lmroman12-regular.otf')
@@ -16,7 +17,8 @@ _font_manager.fontManager.addfont(_getcwd()+'\\sim_2024\\lmsans12-regular.otf')
 _rcParams.update({
     'font.serif': 'Latin Modern Roman',
     'font.sans-serif': 'Latin Modern Sans',
-    'font.size': 8
+    'font.size': 8,
+    'savefig.bbox': 'tight'
     })
 
 #custom errors and warnings
@@ -260,111 +262,70 @@ def _validate_sample(sample:_Any,message:str='')->bool:
             raise TypeError(message)
     return True
 
-#pseudorandom default generator and related functions
-
-class _package_generator:
-    """Class reserved for main pseudorandom generator.
-    
-    This class provide the default pseudorandom generator on package initialization.
-    This pseudorandom generator is an implementation of L'Ecuyer* MRG32k3a specification.
-    When the package is first imported the generator is initialized with a random number provided by the host system.
-    After that is possible to restart the generator with the set_seed function.
-    This class is not intended to be used to construct another generator, if desire use multcombi_congruential_generator class to construct an equivalent generator.
-    *L'Ecuyer, P. Uniform random number generation. Ann Oper Res 53, 77-120 (1994).
-    
-    Args:
-        seed : integer to initilizate the pseudorandom generator
-    """
-    
-    def __str__(self)->str:
-        return 'package default generator'
-    
-    def __call__(self,n:None|int=None)->float|list[float]|None:
-        if n==None:
-            return self.rand()
-        if type(n)==int:
-            return self.sample(n)
-        else:
-            _warn(message='invalid parameter')
-            return None
-    
-    def __init__(self,seed:int)->None:
-        """all attributes are private"""
-        self._mod_1:int = 2**32-209
-        self._mod_2:int = 2**32-22853
-        self._mults_1:list[int] = [0,1403580,-810728]
-        self._mults_2:list[int] = [527612,0,-1370589]
-        self._state_1:list[int] = [1,1,seed%self._mod_1]
-        self._state_2:list[int] = [1,1,1]
-    
-    def rand(self)->float:
-        """generation of one pseudo-random numbers"""
-        x:int = 0
-        y:int = 0
-        for i in range(len(self._state_1)):
-            x = (x+self._state_1[i]*self._mults_1[i])%self._mod_1
-            y = (y+self._state_2[i]*self._mults_2[i])%self._mod_2
-        z:int = (x-y)%self._mod_1
-        self._state_1.pop(0)
-        self._state_2.pop(0)
-        self._state_1.insert(len(self._state_1),x)
-        self._state_2.insert(len(self._state_2),y)
-        return z/self._mod_1
-    
-    def sample(self,size:int=1)->list[float]|None:
-        """generation of a sample of pseudo-random numbers of length size
-        
-        Keyword Args:
-            size (int): size of sample
-        """
-        sample:random_sample
-        _warn_int(size,'size of sample must be a posituve integer',threshold=1)
-        sample = random_sample()
-        for _ in range(size):
-            sample.append(self.rand())
-        return sample
-
-    def _set_seed(self,seed)->None:
-        """restart the state"""
-        self._state_1 = [1,1,seed]
-        self._state_2 = [1,1,1]
-        return None
-
-rand = _package_generator(int.from_bytes(_urandom(4)))
-
-def set_seed(seed:int)->None:
-    """Change state of default pseudorandom generator.
-
-    This functions allows to set the state of the default pseudorandom generator for reproductibility porpuses.
-    If seed is not an integer it raise a Warning and no change is done.
-
-    Args:
-        seed: integer used to restart the default pseudorandom generator
-    """
-    if _warn_int(seed,message='seed must be an integer'):
-        rand._set_seed(seed)
-    return None
-
 #probability and statistics utilities
 
 class mass_function:
-    """funcion de masa"""
-    def __init__(self,function:_Callable[[float],float],sup:list[float])->None:
-        self._function:_Any = function
-        self._support:list[float] = sup
+    """funcion de masa
+    
+    
+    """
+    
+    def __new__(cls,sup_val:dict[float,float]=None,**kwargs):
+        if sup_val==None:
+            if 'support' in kwargs and 'values' in kwargs:
+                if type(kwargs['support'])==list and type(kwargs['values'])==list:
+                    if len(kwargs['support'])>0 and len(kwargs['values'])>0 and len(kwargs['support'])==len(kwargs['values']):
+                        if sum(kwargs['values'])==1.0:
+                            return super().__new__(cls)
+                        else:
+                            raise ValueError('values sum not equals 1')
+                    else:
+                        raise ValueError('support and values must be non empty lists of the same size')
+                else:
+                        raise TypeError('support and values must be non empty lists of the same size')
+            elif 'support' in kwargs:
+                if type(kwargs['support'])==list:
+                    if len(kwargs['support'])>0:
+                        return super().__new__(cls)
+                    else:
+                        raise ValueError('support must be a non empty list')
+                else:
+                    raise TypeError('support must be a non empty list')
+            else:
+                raise KeyError('support not provided')
+        elif type(sup_val)==dict:
+            _validate_list(list(sup_val.keys()),message='dict keys must be all float numbers')
+            _validate_list(list(sup_val.values()),message='dict values must be all float numbers')
+            if sum(sup_val.values())==1.0:
+                return super().__new__(cls)
+            else:
+                raise ValueError('dict values sum not equals 1')
+        else:
+            raise TypeError('first parameter must be a dictionary with float keys and values')
+    
+    def __init__(self,sup_val:dict[float,float]=None,**kwargs)->None:
+        self._sup: list[float]
+        self._val: list[float]
+        if sup_val==None:
+            if 'support' in kwargs and 'values' in kwargs:
+                self._sup = kwargs['support']
+                self._val = kwargs['values']
+            else:
+                self._sup = kwargs['support']
+                self._val = [1/len(self._sup) for _ in range(len(self._sup))]
+        else:
+            self._sup = list(sup_val.keys())
+            self._val = list(sup_val.values())
+            
     def __str__(self) :
         return 'Funcion de masa'
     def __repr__(self) :
-        return f'mass_function with:\\n support:'+repr(self._sup)+'\\n formula:'+repr(self._support)
+        return self.__str__()
     def __call__(self,x):
-        return self._function(x)
-    #    def __add__(self,g:mass_function) :
-    #        len_f:float = self.__max-self.__min+1
-    #        len_g:float = g.__max-g.__min+1
-    #        f_values:list[float] = [float(self.__min+k) for k in range(len_f)]
-    #        g_values:list[float] = [g.__min+k for k in range(len_g)]
-    #        new_weights:list[float] = [[self(f_values[i])*g(g_values[k-i]) for i in range(max(0,k+1-len_g),min(k+1,len_f))] for k in range(len_f+len_g-1)]
-    #        return mass_function({float(k+self.__min+g.__min):sum(new_weights[k]) for k in range(len(new_weights))})
+        try:
+            return self._val[self._sup.index(x)]
+        except:
+            return 0.0
 
 class density_function:
     """funcion de densidad
@@ -386,6 +347,7 @@ class density_function:
         if 'min' in kwargs and 'max' in kwargs:
             if kwargs['max']<=kwargs['min']:
                 raise ValueError('max value must be greater that min value')
+        return super().__new__(cls)
 
     def __init__(self,function:_Callable[[float],float],**kwargs):
         self._function:_Callable[[float],float]
@@ -396,9 +358,9 @@ class density_function:
         else:
             self._min = '-inf'
         if 'max' in kwargs:
-            self._min = kwargs['max']
+            self._max = kwargs['max']
         else:
-            self._min = '+inf'
+            self._max = '+inf'
         self._function = function
     
     def __call__(self,x:float)->float:
@@ -416,35 +378,30 @@ class density_function:
             return self._function(x)
 
 class random_sample(_array):
-    """array subclass to represent a realization of a random process
-    
-    A realization is an indexed set of observations of a random process wich is assumed to be indexed by continum time.
-    The _type attribute is set to continuos if the undarlay process is of continuos paths and to jump if is a jump process.
-    This class also defines some related functions and functionalities.
-    
-    Args:
-        initializer (iterable): if provided it must be an iterable object whose
+    """custom type to store an array of float xor int values and some functionalities related
+
+    Sample has to porpuses. First, store a potentialy huge amount of numbers (either float or int) 
+
     """
-    def __new__(cls,initializer:_Any=None):
-        if initializer==None or '__iter__' in initializer.__dir__():
-            return _array.__new__(cls,'d')
-        else:
-            raise TypeError('initializer is not iterable')
-    def __init__(self,initializer:_Any=None)->None:
-        if not initializer==None:
-            for elem in initializer:
-                self.append(elem)
-    # def __repr__(self)->str:
-    #     repr:str
-    #     repr = 'random_sample('
-    #     for elem in self:
-    #         repr+=elem.__repr__()
-    #     repr+=')'
-    #     return repr
-    # def __str__(self)->str:
-    #     return self.__repr__()
+    def __new__(cls,*args):
+        return super().__new__(cls,'d')
+    def __init__(self,*args)->None:
+        if len(args)==1:
+            _validate_int(args[0],'single argument must be a positive integer',threshold=1)
+            global rand
+            for _ in range(args[0]):
+                self.append(rand())
+        elif len(args)==2:
+            _validate_int(args[1],'second argument must be a positive integer',threshold=1)
+            for _ in range(args[1]):
+                self.append(args[0]())
+        elif len(args)!=0:
+            _warn('some arguments has bean ignored',type=_package_warning)
     def make_plot(self,*args,**kwargs)->_Figure:
-        return _pyplot.figure(*args,**dict({'FigureClass':HistogramFigure,'sample':self},**kwargs))
+        return _pyplot.figure(*args,**dict({'FigureClass':HistogramFigure,'sample':self},**kwargs))    
+    @property
+    def mean(self)->float:
+        return sum(self)/len(self)
 
 class process_path:
     def __new__(cls,times:_array[float]|list[float],events:_array[float]|list[float]):
@@ -478,7 +435,7 @@ class process_path:
     def __len__(self):
         return len(self._times)
     
-    def __getitem__(self, i:int)->tuple:
+    def __getitem__(self, i):
         if i<0 or i>=len(self):
             _warn('indes out of range',category=_package_warning)
         else:
@@ -503,29 +460,45 @@ class process_path:
         return _pyplot.figure(*args,**dict({'FigureClass':PathFigure,'sample':self},**kwargs))
 
 class process_sample:
-    """sample of process paths
-    
-    List of process paths and related functions. The process can be a continuous or jumps process but is assumed to be of in continum time.
-    The _type attribute is set to continuos if the undarlay process is of continuos paths and to jump if is a jump process.
-    Attribut _paths must be a list of process_path elements, each one is a realization of a process.
-
-    Args:
-        type (str): type of underlay process
-        paths (list[random_paths]): list of random_paths
-    """
-    
-    def __init__(self,type:str,paths:list[process_path]):
-        self._type:str
-        self._paths:list[process_paths]
-        self._maxhorizon:float
-        self._type = type
+    def __init__(self,paths:list[process_path]):
         self._paths = paths
         self._maxhorizon = max([path._horizon for path in paths])
+    def __len__(self)->int:
+        return len(self._paths)
+    def __getitem__(self,i:int)->process_path:
+        if i<0 or i>len(self):
+            _warn('index out of range',category=_package_warning)
+        else:
+            return self._paths[i]
     def get_values(self)->list[tuple[_array,_array]]:
         return [path.get_values() for path in self._paths]
-    def make_plot(self,**kwargs):
-        paths = [path.get_values() for path in self._paths]
-        return PathFigure([path[0] for path in paths],[path[1] for path in paths],**kwargs)
+    def get_path(self,index:int)->process_path:
+        if index<0 or index>=len(self._paths):
+            _warn('index out of range',category=_package_warning)
+        else:
+            return self._paths[index]
+    def make_plot(self,*args,**kwargs)->None:
+        return _pyplot.figure(*args,**dict({'FigureClass':PathFigure,'sample':self},**kwargs))
+    @property
+    def mean(self)->process_path:
+        times:_array
+        mean_values:_array
+        mean_values = _array('d')
+        times = self._paths[0]._times
+        for i in range(1,len(self)):
+            for t in self._paths[i]._times:
+                if not t in times:
+                    times.append(t)
+        times = _array('d',sorted(times))
+        for t in times:
+            try:
+                l = [self._paths[i](t) for i in range(len(self))]
+            except:
+                raise IndexError('paths in sample are uncompatible')
+            else:
+                mean_values.append(sum(l)/len(l))
+                del l
+        return process_path(times,mean_values)
 
 class HistogramFigure(_Figure):
     """custom matplotlib Figure to plot a density histogram
@@ -570,14 +543,150 @@ class HistogramFigure(_Figure):
         self.canvas.toolbar_visible = False
         self.canvas.header_visible = False
         self.canvas.footer_visible = False
+    
+    def add_function(self,function:mass_function|density_function,**kwargs)->None:
+        xmin:float
+        xmax:float
+        xrange:_array
+        yrange:_array
+        if 'range' in kwargs:
+            if type(kwargs['range'])==tuple:
+                xmin = kwargs['range'][0]
+                xmax = kwargs['range'][1]
+            else:
+                raise TypeError('range must a tuple')
+        else:
+            xmin = float(self.axes[0].get_xlim()[0])
+            xmax = float(self.axes[0].get_xlim()[1])
+        if type(function)==density_function:
+            x:float
+            dx:float
+            xmax_minus_dx:float
+            xrange = _array('d')
+            yrange = _array('d')
+            if 'dx' in kwargs:
+                if type(kwargs['dx']==float):
+                    dx = kwargs['dx']
+                else:
+                    _warn('dx not a float, value set to 0.01 ',category=_package_warning)
+                    dx = 0.01
+            else:
+                dx = 0.01
+            x = xmin
+            xmax_minus_dx = xmax-dx
+            while x<xmax_minus_dx:
+                xrange.append(x)
+                yrange.append(function(x))
+                x+=dx
+            xrange.append(xmax)
+            yrange.append(function(xmax))
+            self.axes[0].plot(xrange,yrange,color='xkcd:wine')
+        elif type(function)==mass_function:
+            x:float
+            radius:float
+            marker:str
+            xrange = _array('d')
+            yrange = _array('d')
+            if 'r' in kwargs:
+                if type(kwargs['r'])==float:
+                    radius = kwargs['r']
+                else:
+                    _warn('r not a float, value set to 0.25 ',category=_package_warning)
+                    radius = 0.25
+            else:
+                radius = 0.25
+            if 'marker' in kwargs:
+                marker = kwargs['marker']
+            else:
+                marker = 'o'
+            for x in function._sup:
+                if xmin<=x<=xmax:
+                    xrange.append(x)
+                    yrange.append(function(x))
+            self.axes[0].scatter(xrange,yrange,s=radius*72,marker=marker,color='xkcd:wine')
 
-# class PathFigure(_Figure):
-#     """custom matplotlib Figure to plot a realization from a random process
-#     """
-#     def __init__(self):
-#     times:_array|list[_array],events:_array|list[_array],**kwargs:dict[str,_Any])->_Figure:
-#     _times = list[_array]
-#     _events = list[_array]
+class PathFigure(_Figure):
+    """custom matplotlib Figure to plot a set of random paths
+    
+    This custom figure allows to create a figure of a set of random paths in a pre defined format.
+    *args and *Keyword arguments are passed to figure inizialization and to plot creation.
+
+    Args:
+        sample_paths (process_sample): set of paths to plot
+    """
+    def __init__(self,sample:process_sample|process_path,**kwargs):
+        if type(sample)!=process_sample and type(sample)!=process_path:
+            raise TypeError('path(s) must be of type process_sample or process_path')
+        sample_paths:process_sample
+        if type(sample)==process_sample:
+            sample_paths = sample
+        else:
+            sample_paths = process_sample([sample])
+        if 'figsize' in kwargs:
+            if type(kwargs['figsize'])==tuple:
+                figsize = kwargs.pop('figsize')
+            else:
+                figsize = tuple([5,3])
+        else:
+            figsize = tuple([5,3])
+        if 'dpi' in kwargs:
+            if type(kwargs['dpi'])==int:
+                dpi = kwargs.pop('dpi')
+            else:
+                dpi = 400
+        else:
+            dpi = 400
+        if 'color' in kwargs:
+            if type(kwargs['color'])==str:
+                color = kwargs.pop('color')
+            else:
+                color = 'winter'
+        else:
+            color = 'winter'
+        if 'linewidth' in kwargs:
+            if type(kwargs['linewidth'])==float:
+                linewidth = kwargs.pop('linewidth')
+            else:
+                linewidth=0.5
+        else:
+            linewidth=0.5
+        super().__init__(**kwargs)
+        self.set_size_inches(figsize[0],figsize[1])
+        self.set_dpi(dpi)
+        self.add_axes((0,0,1,1))
+        if color in _colormaps:
+            for j in range(len(sample_paths)):
+                self.axes[0].plot([sample_paths[j][i][0] for i in range(len(sample_paths[0]))],[sample_paths[j][i][1] for i in range(len(sample_paths[0]))],color=_colormaps[color]((j+1)/len(sample_paths)),linewidth=linewidth)
+        else:
+            for j in range(len(sample_paths)):
+                self.axes[0].plot([sample_paths[j][i][0] for i in range(len(sample_paths[0]))],[sample_paths[j][i][1] for i in range(len(sample_paths[0]))],color=color,linewidth=linewidth)
+        self.canvas.toolbar_visible = False
+        self.canvas.header_visible = False
+        self.canvas.footer_visible = False
+    
+    def add_path(self,path:process_path,**kwargs):
+        if type(path)!=process_path:
+            raise TypeError('path must be of type process_sample or process_path')
+        if 'color' in kwargs:
+            if type(kwargs['color'])==str:
+                color = kwargs.pop('color')
+            else:
+                color = 'red'
+        else:
+            color = 'red'
+        if 'linewidth' in kwargs:
+            if type(kwargs['linewidth'])==float:
+                linewidth = kwargs.pop('linewidth')
+            else:
+                linewidth=0.75
+        else:
+            linewidth=0.75
+        self.axes[0].plot([path[i][0] for i in range(len(path))],[path[i][1] for i in range(len(path))],color=color,linewidth=linewidth)
+
+# def PathFigure(times:_array|list[_array],events:_array|list[_array],**kwargs:dict[str,_Any])->_Figure:
+#     """function to create a plot for random process realizations"""
+#     _times:list[_array]
+#     _events:list[_array]
 #     if type(times)==_array:
 #         _times = [times]
 #     else:
@@ -587,7 +696,7 @@ class HistogramFigure(_Figure):
 #     else:
 #         _events = events
 #     figure:_Figure
-#     figure = pyplot.figure(figsize=(5,3),dpi=300,frameon=False,**kwargs)
+#     figure = _pyplot.figure(figsize=(5,3),dpi=300,frameon=False,**kwargs)
 #     figure.add_axes((0,0,1,1))
 #     figure.axes[0].plot(_times,_events,**kwargs)
 #     try:
@@ -597,12 +706,94 @@ class HistogramFigure(_Figure):
 #     finally:
 #         return figure
 
+#pseudorandom default generator and related functions
+
+class _package_generator:
+    """Class reserved for main pseudorandom generator.
+    
+    This class provide the default pseudorandom generator on package initialization.
+    This pseudorandom generator is an implementation of L'Ecuyer* MRG32k3a specification.
+    When the package is first imported the generator is initialized with a random number provided by the host system.
+    After that is possible to restart the generator with the set_seed function.
+    This class is not intended to be used to construct another generator, if desire use multcombi_congruential_generator class to construct an equivalent generator.
+    *L'Ecuyer, P. Uniform random number generation. Ann Oper Res 53, 77-120 (1994).
+    
+    Args:
+        seed : integer to initilizate the pseudorandom generator
+    """
+    
+    def __str__(self)->str:
+        return 'package default generator'
+    
+    def __call__(self,size:None|int=None)->float|random_sample:
+        if size==None:
+            return self.rand()
+        _warn_int(size,'size of sample must be a positive integer',threshold=1)
+        if size==1:
+            return self.rand()
+        return self.sample(size)
+
+    def __init__(self,seed:int)->None:
+        """all attributes are private"""
+        self._mod_1:int = 2**32-209
+        self._mod_2:int = 2**32-22853
+        self._mults_1:list[int] = [0,1403580,-810728]
+        self._mults_2:list[int] = [527612,0,-1370589]
+        self._state_1:list[int] = [1,1,seed%self._mod_1]
+        self._state_2:list[int] = [1,1,1]
+    
+    def rand(self)->float:
+        """generation of one pseudo-random numbers"""
+        x:int = 0
+        y:int = 0
+        for i in range(len(self._state_1)):
+            x = (x+self._state_1[i]*self._mults_1[i])%self._mod_1
+            y = (y+self._state_2[i]*self._mults_2[i])%self._mod_2
+        z:int = (x-y)%self._mod_1
+        self._state_1.pop(0)
+        self._state_2.pop(0)
+        self._state_1.insert(len(self._state_1),x)
+        self._state_2.insert(len(self._state_2),y)
+        return z/self._mod_1
+    
+    def sample(self,size:int=1)->random_sample|None:
+        """generation of a sample of pseudo-random numbers of length size
+        
+        Keyword Args:
+            size (int): size of sample
+        """
+        _warn_int(size,'size of sample must be a posituve integer',threshold=1)
+        sample = random_sample(self.rand,size)
+        return sample
+
+    def _set_seed(self,seed)->None:
+        """restart the state"""
+        self._state_1 = [1,1,seed]
+        self._state_2 = [1,1,1]
+        return None
+
+rand = _package_generator(int.from_bytes(_urandom(4)))
+
+def set_seed(seed:int)->None:
+    """Change state of default pseudorandom generator.
+
+    This functions allows to set the state of the default pseudorandom generator for reproductibility porpuses.
+    If seed is not an integer it raise a Warning and no change is done.
+
+    Args:
+        seed: integer used to restart the default pseudorandom generator
+    """
+    if _warn_int(seed,message='seed must be an integer'):
+        rand._set_seed(seed)
+    return None
+
 #elements to export
 __all__ = [
     'rand',
     'set_seed',
     'mass_function',
     'density_function',
+    'random_sample',
+    'random_path',
     'HistogramFigure',
-    'random_sample'
     ]
