@@ -16,7 +16,8 @@ _font_manager.fontManager.addfont(_getcwd()+'\\sim_2024\\lmsans12-regular.otf')
 _rcParams.update({
     'font.serif': 'Latin Modern Roman',
     'font.sans-serif': 'Latin Modern Sans',
-    'font.size': 8
+    'font.size': 8,
+    'savefig.bbox':'tight'
     })
 
 #custom errors and warnings
@@ -378,7 +379,9 @@ class density_function:
         min (float): density_functión evaluate to zero below min
         max (float): density_functión evaluate to zero above max
         """
-    def __new__(cls,function:_Callable[[float],float],**kwargs):
+    def __new__(cls,function:_Any,**kwargs):
+        if not '__call__' in function.__dir__():
+            raise AttributeError('function is not callable')
         if 'min' in kwargs:
             _validate_float(kwargs['min'],'min must be a float')
         if 'max' in kwargs:
@@ -386,9 +389,10 @@ class density_function:
         if 'min' in kwargs and 'max' in kwargs:
             if kwargs['max']<=kwargs['min']:
                 raise ValueError('max value must be greater that min value')
+        return super().__new__(cls)
 
-    def __init__(self,function:_Callable[[float],float],**kwargs):
-        self._function:_Callable[[float],float]
+    def __init__(self,function:_Any,**kwargs):
+        self._function:_Any
         self._min: str|float
         self._max: str|float
         if 'min' in kwargs:
@@ -396,9 +400,9 @@ class density_function:
         else:
             self._min = '-inf'
         if 'max' in kwargs:
-            self._min = kwargs['max']
+            self._max = kwargs['max']
         else:
-            self._min = '+inf'
+            self._max = '+inf'
         self._function = function
     
     def __call__(self,x:float)->float:
@@ -434,17 +438,11 @@ class random_sample(_array):
         if not initializer==None:
             for elem in initializer:
                 self.append(elem)
-    # def __repr__(self)->str:
-    #     repr:str
-    #     repr = 'random_sample('
-    #     for elem in self:
-    #         repr+=elem.__repr__()
-    #     repr+=')'
-    #     return repr
-    # def __str__(self)->str:
-    #     return self.__repr__()
     def make_plot(self,*args,**kwargs)->_Figure:
         return _pyplot.figure(*args,**dict({'FigureClass':HistogramFigure,'sample':self},**kwargs))
+    @property
+    def mean(self)->float:
+        return sum(self)/len(self)
 
 class process_path:
     def __new__(cls,times:_array[float]|list[float],events:_array[float]|list[float]):
@@ -570,6 +568,66 @@ class HistogramFigure(_Figure):
         self.canvas.toolbar_visible = False
         self.canvas.header_visible = False
         self.canvas.footer_visible = False
+    def add_function(self,function:mass_function|density_function,**kwargs)->None:
+        xmin:float
+        xmax:float
+        xrange:_array
+        yrange:_array
+        if 'range' in kwargs:
+            if type(kwargs['range'])==tuple:
+                xmin = kwargs['range'][0]
+                xmax = kwargs['range'][1]
+            else:
+                raise TypeError('range must a tuple')
+        else:
+            xmin = float(self.axes[0].get_xlim()[0])
+            xmax = float(self.axes[0].get_xlim()[1])
+        if type(function)==density_function:
+            x:float
+            dx:float
+            xmax_minus_dx:float
+            xrange = _array('d')
+            yrange = _array('d')
+            if 'dx' in kwargs:
+                if type(kwargs['dx']==float):
+                    dx = kwargs['dx']
+                else:
+                    _warn('dx not a float, value set to 0.01 ',category=_package_warning)
+                    dx = 0.01
+            else:
+                dx = 0.01
+            x = xmin
+            xmax_minus_dx = xmax-dx
+            while x<xmax_minus_dx:
+                xrange.append(x)
+                yrange.append(function(x))
+                x+=dx
+            xrange.append(xmax)
+            yrange.append(function(xmax))
+            self.axes[0].plot(xrange,yrange,color='xkcd:wine')
+        elif type(function)==mass_function:
+            x:float
+            radius:float
+            marker:str
+            xrange = _array('d')
+            yrange = _array('d')
+            if 'r' in kwargs:
+                if type(kwargs['r'])==float:
+                    radius = kwargs['r']
+                else:
+                    _warn('r not a float, value set to 0.25 ',category=_package_warning)
+                    radius = 0.25
+            else:
+                radius = 0.25
+            if 'marker' in kwargs:
+                marker = kwargs['marker']
+            else:
+                marker = 'o'
+            for x in function._sup:
+                if xmin<=x<=xmax:
+                    xrange.append(x)
+                    yrange.append(function(x))
+            self.axes[0].scatter(xrange,yrange,s=radius*72,marker=marker,color='xkcd:wine')
 
 # class PathFigure(_Figure):
 #     """custom matplotlib Figure to plot a realization from a random process
