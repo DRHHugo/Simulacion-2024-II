@@ -511,7 +511,6 @@ class process_sample:
         type (str): type of underlay process
         paths (list[random_paths]): list of random_paths
     """
-    
     def __init__(self,type:str,paths:list[process_path]):
         self._type:str
         self._paths:list[process_paths]
@@ -629,33 +628,34 @@ class HistogramFigure(_Figure):
                     yrange.append(function(x))
             self.axes[0].scatter(xrange,yrange,s=radius*72,marker=marker,color='xkcd:wine')
 
-# class PathFigure(_Figure):
-#     """custom matplotlib Figure to plot a realization from a random process
-#     """
-#     def __init__(self):
-#     times:_array|list[_array],events:_array|list[_array],**kwargs:dict[str,_Any])->_Figure:
-#     _times = list[_array]
-#     _events = list[_array]
-#     if type(times)==_array:
-#         _times = [times]
-#     else:
-#         _times = times
-#     if type(events)==_array:
-#         _events = [events]
-#     else:
-#         _events = events
-#     figure:_Figure
-#     figure = pyplot.figure(figsize=(5,3),dpi=300,frameon=False,**kwargs)
-#     figure.add_axes((0,0,1,1))
-#     figure.axes[0].plot(_times,_events,**kwargs)
-#     try:
-#         figure.canvas.toolbar_visible = False
-#         figure.canvas.header_visible = False
-#         figure.canvas.footer_visible = False
-#     finally:
-#         return figure
+class PathFigure(_Figure):
+    """custom matplotlib Figure to plot a realization from a random process
+    """
+    def __init__(self):
+    #times:_array|list[_array],events:_array|list[_array],**kwargs:dict[str,_Any]:
+    #_times = list[_array]
+    _events = list[_array]
+    if type(times)==_array:
+        _times = [times]
+    else:
+        _times = times
+    if type(events)==_array:
+        _events = [events]
+    else:
+        _events = events
+    figure:_Figure
+    figure = pyplot.figure(figsize=(5,3),dpi=300,frameon=False,**kwargs)
+    figure.add_axes((0,0,1,1))
+    figure.axes[0].plot(_times,_events,**kwargs)
+    try:
+        figure.canvas.toolbar_visible = False
+        figure.canvas.header_visible = False
+        figure.canvas.footer_visible = False
+    finally:
+        return figure   
 
 #elements to export
+
 __all__ = [
     'rand',
     'set_seed',

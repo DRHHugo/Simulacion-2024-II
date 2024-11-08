@@ -23,7 +23,7 @@ class _random_process:
         """generation of size pseudo-random sample of variate"""
         horizon = kwargs['horizon'] if 'horizon' in kwargs else 1.0
         dt = kwargs['granularity'] if 'granularity' in kwargs else 0.01
-        return _process_sample([self.rand(horizon=horizon,granularity=dt) for _ in range(size)])
+        return _process_sample('continum',[self.rand(horizon=horizon,granularity=dt) for _ in range(size)])
 
 class WienerProcess(_random_process):
     """Standar Wiener process """
