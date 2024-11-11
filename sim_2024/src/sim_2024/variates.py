@@ -31,7 +31,10 @@ class _random_variate:
         pass
     def sample(self,size:int=1)->_random_sample|None:
         """generation of size pseudo-random sample of variate"""
-        return _random_sample(self.rand,size)
+        sample = _random_sample()
+        for _ in range(size):
+            sample.append(self.rand())
+        return sample
 
 class _discrete_variate(_random_variate):
     """parent class for discrete random variates"""

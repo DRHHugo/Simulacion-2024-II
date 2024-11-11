@@ -697,7 +697,7 @@ class HistogramFigure(_Figure):
                 marker = kwargs['marker']
             else:
                 marker = 'o'
-            for x in function._sup:
+            for x in function._support:
                 if xmin<=x<=xmax:
                     xrange.append(x)
                     yrange.append(function(x))
