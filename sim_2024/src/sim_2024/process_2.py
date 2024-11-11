@@ -12,22 +12,28 @@ except KeyError:
 class _random_process:
     """parent class for stochastic process"""
     _main_type:str
-    _sub_type:str
+    _type_paths:str
+    _auto_valuation:bool
     def __str__(self)->str:
-        return f'{self._main_type} {self._sub_type} stochastic process. All attributes are private.'
+        return f'{self._main_type} stochastic process. All attributes are private.'
     def __repr__(self)->str:
         return 'blocked'
     def rand(self,**kwargs)->_process_path:
+        """generation of one pseudo-random sample of process"""
         pass
     def sample(self,size:int=1,**kwargs)->list[_process_path]|None:
-        """generation of size pseudo-random sample of variate"""
+        """generation of size pseudo-random sample of process"""
         horizon = kwargs['horizon'] if 'horizon' in kwargs else 1.0
         dt = kwargs['granularity'] if 'granularity' in kwargs else 0.01
-        return _process_sample('continum',[self.rand(horizon=horizon,granularity=dt) for _ in range(size)])
+        return _process_sample([self.rand(horizon=horizon,granularity=dt) for _ in range(size)])
 
 class WienerProcess(_random_process):
     """Standar Wiener process """
+    _main_type = 'Wiener standar'
+    _type_paths = 'continum'
+    _auto_valuation = False
     def __init__(self):
+        
         self._stdvariate = _NormalStd()
     def rand(self,**kwargs)->_process_path:
         dt = kwargs['granularity'] if 'granularity' in kwargs else 0.01
@@ -44,4 +50,4 @@ class WienerProcess(_random_process):
             times.append(times[-1]+dt)
         X.append(X[-1]+(horizon-times[-1])*self._stdvariate.rand())
         times.append(horizon)
-        return _process_path(times=times,events=X)
+        return _process_path(times,X,self._type_paths,self._auto_valuation)

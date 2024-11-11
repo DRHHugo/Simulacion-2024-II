@@ -2,17 +2,19 @@ from typing import Any as _Any
 from typing import Callable as _Callable
 from array import array as _array
 from os import urandom as _urandom
-from os import getcwd as _getcwd
+from os import path as _path
 from warnings import warn as _warn  
 from matplotlib import font_manager as _font_manager
 from matplotlib import rcParams as _rcParams
 from matplotlib import pyplot as _pyplot
 from matplotlib.figure import Figure as _Figure
+from matplotlib import colormaps as _colormaps
 
 #change font for matplotlib figures
+_dir_path = _path.dirname(_path.realpath(__file__))
 
-_font_manager.fontManager.addfont(_getcwd()+'\\sim_2024\\lmroman12-regular.otf')
-_font_manager.fontManager.addfont(_getcwd()+'\\sim_2024\\lmsans12-regular.otf')
+_font_manager.fontManager.addfont(_dir_path+'\\lmroman12-regular.otf')
+_font_manager.fontManager.addfont(_dir_path+'\\lmsans12-regular.otf')
 _rcParams.update({
     'font.serif': 'Latin Modern Roman',
     'font.sans-serif': 'Latin Modern Sans',
@@ -429,100 +431,173 @@ class random_sample(_array):
     Args:
         initializer (iterable): if provided it must be an iterable object whose
     """
+    
     def __new__(cls,initializer:_Any=None):
         if initializer==None or '__iter__' in initializer.__dir__():
             return _array.__new__(cls,'d')
         else:
             raise TypeError('initializer is not iterable')
+    
     def __init__(self,initializer:_Any=None)->None:
         if not initializer==None:
             for elem in initializer:
                 self.append(elem)
-    def make_plot(self,*args,**kwargs)->_Figure:
-        return _pyplot.figure(*args,**dict({'FigureClass':HistogramFigure,'sample':self},**kwargs))
+    
     @property
     def mean(self)->float:
         return sum(self)/len(self)
+    
+    def make_plot(self,*args,**kwargs)->_Figure:
+        fig:HistogramFigure
+        try:
+            fig = _pyplot.figure(*args,**dict({'FigureClass':HistogramFigure,'sample':self},**kwargs))
+        finally:
+            return fig
 
 class process_path:
-    def __new__(cls,times:_array[float]|list[float],events:_array[float]|list[float]):
-        if type(times)==_array and type(events)==_array:
-            if len(times)>0 and len(events)>0 and len(times)==len(events):
+    """realization of a random process
+
+    An observation over a period of the form [0,T] of a random process is called a realization.
+    Value T is called horizon and is derived at izialitation time.
+    A representation of such realization consist of an array of times and another one with the observed value for each time.
+    Is assumed that both arrays are of the same length and that the value at any index corresponds to time at the same index.
+    A random process can have contiuos or jumps paths, either one can be represneted in this class.
+    Attribute _type is set to continum for contonuos paths and to jump for jumps paths.
+    For both types of paths the attribute _auto must be set to on if the value of the realization at a time not given at inizialization can be derived as the weight average between the two closets times.
+    
+    Args:
+        times (array[float]|list[float]): times for wich the process has been observed
+        X (array[float]|list[float]): values for wich the process has been observed
+        type_par (str): the type of path that the process have, continum or jump.
+        auto (bool): Treu if the value of the realization at a time not given at inizialization can be derived.
+    """
+    def __new__(cls,times:_array[float]|list[float],X:_array[float]|list[float],type_par:str='continum',auto:bool=False):
+        if type(auto)!=bool:
+            raise TypeError('auto must a bool value')
+        if type(type_par)!=str:
+            raise TypeError('type_par must be of str type')
+        else:
+            if type_par!='continum' and type_par!='jump':
+                raise ValueError('type_par must be continum or jump')
+        if type(times)==_array and type(X)==_array:
+            if len(times)>=0 and len(X)>=0 and len(times)==len(X):
                 return super().__new__(cls)
             else:
-                raise ValueError('first and second parameters must be arrays of the same length')
-        elif type(times)==list and type(events)==list:
+                raise ValueError('times and X parameters must be arrays of the same length')
+        elif type(times)==list and type(X)==list:
             _validate_list(times,'all elemnts of first parameter must be floats')
-            _validate_list(events,'all elemnts of second parameter must be floats')
-            if len(times)>0 and len(events)>0 and len(times)==len(events):
+            _validate_list(X,'all elemnts of second parameter must be floats')
+            if len(times)>0 and len(X)>0 and len(times)==len(X):
                 return super().__new__(cls)
             else:
                 raise ValueError('first and second parameters must be lists of the same length')
         else:
             raise TypeError('first and second parameters must both be arrays or lists of the same length')
-    
-    def __init__(self,times:_array[float]|list[float],events:_array[float]|list[float])->None:
+    def __init__(self,times:_array[float]|list[float],X:_array[float]|list[float],type_par:str,auto:bool=False)->None:
         self._times:_array[float]
-        self._events:_array[float]
+        self._X:_array[float]
         self._horizon:float
+        self._type:str
+        self._auto:bool
+        self._type = type_par
+        self._auto = auto
         if type(times)==_array:
             self._times = times
-            self._events = events
+            self._X = X
         else:
             self._times = _array('d',times)
-            self._events = _array('d',events)
+            self._X = _array('d',X)
         self._horizon = max(times)
     
     def __len__(self):
         return len(self._times)
     
     def __getitem__(self, i:int)->tuple:
-        if i<0 or i>=len(self):
-            _warn('indes out of range',category=_package_warning)
-        else:
-            return (self._times[i],self._events[i])
+        return (self._times[i],self._X[i])
     
     def __call__(self,time:float)->float:
         if time in self._times:
-            return self._events[self._times.index(time)]
+            return self._X[self._times.index(time)]
         else:
             raise ValueError('time not in path')
 
     def get_values(self)->list[tuple]:
         i:int
-        return [(self._times[i],self._events[i]) for i in range(len(self._times))]
+        return [(self._times[i],self._X[i]) for i in range(len(self._times))]
     
+    def append(self,Xt:tuple[float])->None:
+        if type(Xt)!=tuple:
+            _warn('appended value must be a tuple of two float values',category=_package_warning)
+        if len(Xt)!=2:
+            _warn('appended value must be a tuple of two float values',category=_package_warning)
+        if type(Xt[0])!=float or type(Xt[1])!=float:
+            _warn('appended value must be a tuple of two float values',category=_package_warning)
+        self._times.append(Xt[0])
+        self._X.append(Xt[1])
+
     def make_plot(self,*args,**kwargs)->None:
+        fig:PathFigure
         color:str
         if not 'color' in kwargs:
             kwargs['color'] = 'xkcd:cobalt'
         if not 'linewidth' in kwargs:
             kwargs['linewidth'] = 0.75
-        return _pyplot.figure(*args,**dict({'FigureClass':PathFigure,'sample':self},**kwargs))
+        try:
+            fig=_pyplot.figure(*args,**dict({'FigureClass':PathFigure,'paths':self},**kwargs))
+        finally:
+            return fig
 
 class process_sample:
     """sample of process paths
     
     List of process paths and related functions. The process can be a continuous or jumps process but is assumed to be of in continum time.
-    The _type attribute is set to continuos if the undarlay process is of continuos paths and to jump if is a jump process.
-    Attribut _paths must be a list of process_path elements, each one is a realization of a process.
+    Attribute _paths must be a list of process_path elements, each one is a realization of a process.
 
     Args:
-        type (str): type of underlay process
         paths (list[random_paths]): list of random_paths
     """
-    def __init__(self,type:str,paths:list[process_path]):
-        self._type:str
+    
+    def __init__(self,paths:list[process_path]):
         self._paths:list[process_paths]
         self._maxhorizon:float
-        self._type = type
         self._paths = paths
         self._maxhorizon = max([path._horizon for path in paths])
+    
+    def __len__(self)->int:
+        return len(self._paths)
+
+    def __getitem__(self,i:int)->process_path:
+        return self._paths[i]
+
     def get_values(self)->list[tuple[_array,_array]]:
         return [path.get_values() for path in self._paths]
-    def make_plot(self,**kwargs):
-        paths = [path.get_values() for path in self._paths]
-        return PathFigure([path[0] for path in paths],[path[1] for path in paths],**kwargs)
+    
+    @property
+    def mean(self)->process_path:
+        times:_array[float]
+        means:_array[float]
+        means = _array('d')
+        t:float
+        i:int
+        times = self._paths[0]._times
+        for t in times:
+            sample = []
+            for path in self._paths:
+                try:
+                    i = path._times.index(t)
+                except:
+                    raise IndexError('times for paths in sample are different')
+                finally:
+                    sample.append(path._X[i])
+            means.append(sum(sample)/len(sample))
+        return process_path(times,means,self._paths[0]._type,self._paths[0]._auto)
+    
+    def make_plot(self,*args,**kwargs):
+        fig:PathFigure
+        try:
+            fig = _pyplot.figure(*args,**dict({'FigureClass':PathFigure,'paths':self},**kwargs))
+        finally:
+            return fig
 
 class HistogramFigure(_Figure):
     """custom matplotlib Figure to plot a density histogram
@@ -631,28 +706,83 @@ class HistogramFigure(_Figure):
 class PathFigure(_Figure):
     """custom matplotlib Figure to plot a realization from a random process
     """
-    def __init__(self):
-    #times:_array|list[_array],events:_array|list[_array],**kwargs:dict[str,_Any]:
-    #_times = list[_array]
-    _events = list[_array]
-    if type(times)==_array:
-        _times = [times]
-    else:
-        _times = times
-    if type(events)==_array:
-        _events = [events]
-    else:
-        _events = events
-    figure:_Figure
-    figure = pyplot.figure(figsize=(5,3),dpi=300,frameon=False,**kwargs)
-    figure.add_axes((0,0,1,1))
-    figure.axes[0].plot(_times,_events,**kwargs)
-    try:
-        figure.canvas.toolbar_visible = False
-        figure.canvas.header_visible = False
-        figure.canvas.footer_visible = False
-    finally:
-        return figure   
+    def __init__(self,paths:process_path|process_sample|list[process_path],**kwargs)->None:
+        _timesS:list[_array]
+        _XS:list[_array]
+        if type(paths)==process_path:
+            _timesS = [paths._times]
+            _XS = [paths._X]
+        elif type(paths)==process_sample:
+            _timesS = [path._times for path in paths]
+            _XS = [path._X for path in paths]
+        elif type(paths)==list:
+            for path in paths:
+                if type(path)!=process_path:
+                    raise TypeError('path(s) must be a process path, process sample or list of process paths')
+            _timesS = [path._time for path in paths]
+            _XS = [path._X for ppath in paths]
+        else:
+            raise TypeError('path(s) must be a process path, process sample or list of process paths')
+        if 'figsize' in kwargs:
+            if type(kwargs['figsize'])==tuple:
+                figsize = kwargs.pop('figsize')
+            else:
+                figsize = tuple([5,3])
+        else:
+            figsize = tuple([5,3])
+        if 'dpi' in kwargs:
+            if type(kwargs['dpi'])==int:
+                dpi = kwargs.pop('dpi')
+            else:
+                dpi = 400
+        else:
+            dpi = 400
+        if 'color' in kwargs:
+            if type(kwargs['color'])==str:
+                color = kwargs.pop('color')
+            else:
+                color = 'winter'
+        else:
+            color = 'winter'
+        if 'linewidth' in kwargs:
+            if type(kwargs['linewidth'])==float:
+                linewidth = kwargs.pop('linewidth')
+            else:
+                linewidth=0.5
+        else:
+            linewidth=0.5
+        super().__init__(**kwargs)
+        self.set_size_inches(figsize[0],figsize[1])
+        self.set_dpi(dpi)
+        self.add_axes((0,0,1,1))
+        if color in _colormaps:
+            for i in range(len(_XS)):
+                self.axes[0].plot(_timesS[i],_XS[i],color=_colormaps[color]((i+1)/len(paths)),linewidth=linewidth)
+        else:
+            for i in range(len(_XS)):
+                self.axes[0].plot(_timesS[i],_XS[i],color=color,linewidth=linewidth)
+        self.canvas.toolbar_visible = False
+        self.canvas.header_visible = False
+        self.canvas.footer_visible = False
+
+    def add_path(self,path:process_path,**kwargs):
+        if type(path)!=process_path:
+            raise TypeError('path must be of type process_sample or process_path')
+        if 'color' in kwargs:
+            if type(kwargs['color'])==str:
+                color = kwargs.pop('color')
+            else:
+                color = 'red'
+        else:
+            color = 'red'
+        if 'linewidth' in kwargs:
+            if type(kwargs['linewidth'])==float:
+                linewidth = kwargs.pop('linewidth')
+            else:
+                linewidth=0.75
+        else:
+            linewidth=0.75
+        self.axes[0].plot([path[i][0] for i in range(len(path))],[path[i][1] for i in range(len(path))],color=color,linewidth=linewidth)
 
 #elements to export
 
