@@ -497,9 +497,9 @@ class process_path:
         self._times:_array[float]
         self._X:_array[float]
         self._horizon:float
-        self._type_path:type_path
+        self._type_path:str
         self._auto:bool
-        self._type_path = type 
+        self._type_path = type_path 
         self._auto = auto
         if type(times)==_array:
             self._times = times
@@ -768,10 +768,14 @@ class PathFigure(_Figure):
         elif _type_paths=='jump':
             if color in _colormaps:
                 for i in range(len(_XS)):
-                    self.axes[0].plot(_timesS[i],_XS[i],color=_colormaps[color]((i+1)/len(paths)),linewidth=linewidth)
+                    for j in range(len(_timesS[i])-1):
+                        self.axes[0].plot([_timesS[i][j],_timesS[i][j+1]],[_XS[i][j],_XS[i][j]],color=_colormaps[color]((i+1)/len(paths)),linewidth=linewidth)
+                    #self.axes[0].plot([_timesS[i][j],_timesS[i][j+1]],[_XS[i][j],_XS[i][j+1]],color=_colormaps[color]((i+1)/len(paths)),linewidth=linewidth)
             else:
                 for i in range(len(_XS)):
-                    self.axes[0].plot(_timesS[i],_XS[i],color=color,linewidth=linewidth)    
+                    for j in range(len(_timesS[i])-1):
+                        self.axes[0].plot([_timesS[i][j],_timesS[i][j+1]],[_XS[i][j],_XS[i][j]],color=color,linewidth=linewidth)   
+
         else:
             raise TypeError('unknown type of path(s)')
         self.canvas.toolbar_visible = False

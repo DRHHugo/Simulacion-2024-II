@@ -54,9 +54,9 @@ class WienerProcess(_random_process):
 
 class PoissonProcess(_random_process):
     """Homogeneous Poisson process """
-    _main_type = 'Homogeneous Poisson'
-    _type_paths = 'jump'
-    _auto_valuation = True
+    _main_type:str = 'Homogeneous Poisson'
+    _type_paths:str = 'jump'
+    _auto_valuation:bool = True
     def __new__(cls,**kwargs):
         if 'rate' in kwargs:
             if type(kwargs['rate'])==float:
@@ -87,4 +87,7 @@ class PoissonProcess(_random_process):
             X.append(arrivals)
             t+=self._exponential.rand()
             arrivals+=1
+        times.append(horizon)
+        X.append(arrivals-1)
         return _process_path(times,X,self._type_paths,self._auto_valuation)
+
