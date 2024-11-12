@@ -493,10 +493,13 @@ class process_path:
                 raise ValueError('first and second parameters must be lists of the same length')
         else:
             raise TypeError('first and second parameters must both be arrays or lists of the same length')
+    def __init__(self,times:_array[float]|list[float],X:_array[float]|list[float],type_path:str,auto:bool=False)->None:
         self._times:_array[float]
         self._X:_array[float]
         self._horizon:float
+        self._type_path:type_path
         self._auto:bool
+        self._type_path = type 
         self._auto = auto
         if type(times)==_array:
             self._times = times
