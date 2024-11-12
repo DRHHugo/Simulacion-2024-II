@@ -1,6 +1,7 @@
 from array import array as _array
 from sys import modules
 from .variates import _NormalStd
+from .variates import Exponential as _Exponential
 from . import process_path as _process_path
 from . import process_sample as _process_sample   
 
@@ -33,7 +34,6 @@ class WienerProcess(_random_process):
     _type_paths = 'continum'
     _auto_valuation = False
     def __init__(self):
-        
         self._stdvariate = _NormalStd()
     def rand(self,**kwargs)->_process_path:
         dt = kwargs['granularity'] if 'granularity' in kwargs else 0.01
@@ -50,4 +50,41 @@ class WienerProcess(_random_process):
             times.append(times[-1]+dt)
         X.append(X[-1]+(horizon-times[-1])*self._stdvariate.rand())
         times.append(horizon)
+        return _process_path(times,X,self._type_paths,self._auto_valuation)
+
+class PoissonProcess(_random_process):
+    """Homogeneous Poisson process """
+    _main_type = 'Homogeneous Poisson'
+    _type_paths = 'jump'
+    _auto_valuation = True
+    def __new__(cls,**kwargs):
+        if 'rate' in kwargs:
+            if type(kwargs['rate'])==float:
+                if kwargs['rate']>0:
+                    return super().__new__(cls)
+                else:
+                    raise ValueError('rate must be a positive float')
+            else:
+                raise TypeError('rate must be a positive float')
+        else:
+            raise KeyError('key argument rate not found during initialization')
+    def __init__(self,**kwargs):
+        self._exponential = _Exponential(rate=kwargs['rate'])
+    def rand(self,**kwargs)->_process_path:
+        times:_array
+        X:_array
+        t:float
+        arrivals:int
+        horizon = kwargs['horizon'] if 'horizon' in kwargs else 1.0
+        times = _array('d')
+        X = _array('d')
+        times.append(0.0)
+        X.append(0.0)
+        t = self._exponential.rand()
+        arrivals = 1
+        while t<horizon:
+            times.append(t)
+            X.append(arrivals)
+            t+=self._exponential.rand()
+            arrivals+=1
         return _process_path(times,X,self._type_paths,self._auto_valuation)

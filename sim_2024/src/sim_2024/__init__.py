@@ -493,13 +493,10 @@ class process_path:
                 raise ValueError('first and second parameters must be lists of the same length')
         else:
             raise TypeError('first and second parameters must both be arrays or lists of the same length')
-    def __init__(self,times:_array[float]|list[float],X:_array[float]|list[float],type_par:str,auto:bool=False)->None:
         self._times:_array[float]
         self._X:_array[float]
         self._horizon:float
-        self._type:str
         self._auto:bool
-        self._type = type_par
         self._auto = auto
         if type(times)==_array:
             self._times = times
@@ -508,7 +505,6 @@ class process_path:
             self._times = _array('d',times)
             self._X = _array('d',X)
         self._horizon = max(times)
-    
     def __len__(self):
         return len(self._times)
     
@@ -709,18 +705,22 @@ class PathFigure(_Figure):
     def __init__(self,paths:process_path|process_sample|list[process_path],**kwargs)->None:
         _timesS:list[_array]
         _XS:list[_array]
+        _type_paths:str
         if type(paths)==process_path:
             _timesS = [paths._times]
             _XS = [paths._X]
+            _type_paths = paths._type_path
         elif type(paths)==process_sample:
             _timesS = [path._times for path in paths]
             _XS = [path._X for path in paths]
+            _type_paths = paths[0]._type_path
         elif type(paths)==list:
             for path in paths:
                 if type(path)!=process_path:
                     raise TypeError('path(s) must be a process path, process sample or list of process paths')
             _timesS = [path._time for path in paths]
             _XS = [path._X for ppath in paths]
+            _type_paths = paths[0]._type_path
         else:
             raise TypeError('path(s) must be a process path, process sample or list of process paths')
         if 'figsize' in kwargs:
@@ -755,12 +755,22 @@ class PathFigure(_Figure):
         self.set_size_inches(figsize[0],figsize[1])
         self.set_dpi(dpi)
         self.add_axes((0,0,1,1))
-        if color in _colormaps:
-            for i in range(len(_XS)):
-                self.axes[0].plot(_timesS[i],_XS[i],color=_colormaps[color]((i+1)/len(paths)),linewidth=linewidth)
+        if _type_paths=='continum':
+            if color in _colormaps:
+                for i in range(len(_XS)):
+                    self.axes[0].plot(_timesS[i],_XS[i],color=_colormaps[color]((i+1)/len(paths)),linewidth=linewidth)
+            else:
+                for i in range(len(_XS)):
+                    self.axes[0].plot(_timesS[i],_XS[i],color=color,linewidth=linewidth)
+        elif _type_paths=='jump':
+            if color in _colormaps:
+                for i in range(len(_XS)):
+                    self.axes[0].plot(_timesS[i],_XS[i],color=_colormaps[color]((i+1)/len(paths)),linewidth=linewidth)
+            else:
+                for i in range(len(_XS)):
+                    self.axes[0].plot(_timesS[i],_XS[i],color=color,linewidth=linewidth)    
         else:
-            for i in range(len(_XS)):
-                self.axes[0].plot(_timesS[i],_XS[i],color=color,linewidth=linewidth)
+            raise TypeError('unknown type of path(s)')
         self.canvas.toolbar_visible = False
         self.canvas.header_visible = False
         self.canvas.footer_visible = False
