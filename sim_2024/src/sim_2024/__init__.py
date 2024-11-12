@@ -625,7 +625,7 @@ class HistogramFigure(_Figure):
         else:
             dpi = 400
         if 'bins' in kwargs:
-            if type(kwargs['bins']==int) or type(kwargs['bins']==list):
+            if type(kwargs['bins'])==int or type(kwargs['bins'])==list:
                 bins = kwargs.pop('bins')
             else:
                 bins = 10
