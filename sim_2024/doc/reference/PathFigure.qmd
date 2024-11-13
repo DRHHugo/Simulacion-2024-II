@@ -1,0 +1,5 @@
+# PathFigure { #sim_2024.PathFigure }
+
+`PathFigure(self, paths, **kwargs)`
+
+custom matplotlib Figure to plot a realization from a random process

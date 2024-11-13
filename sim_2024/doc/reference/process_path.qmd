@@ -1,0 +1,22 @@
+# process_path { #sim_2024.process_path }
+
+`process_path(self, times, X, type_path, auto=False)`
+
+realization of a random process
+
+An observation over a period of the form [0,T] of a random process is called a realization.
+Value T is called horizon and is derived at izialitation time.
+A representation of such realization consist of an array of times and another one with the observed value for each time.
+Is assumed that both arrays are of the same length and that the value at any index corresponds to time at the same index.
+A random process can have contiuos or jumps paths, either one can be represneted in this class.
+Attribute _type is set to continum for contonuos paths and to jump for jumps paths.
+For both types of paths the attribute _auto must be set to on if the value of the realization at a time not given at inizialization can be derived as the weight average between the two closets times.
+
+## Parameters
+
+| Name        | Type                            | Description                                                                                | Default    |
+|-------------|---------------------------------|--------------------------------------------------------------------------------------------|------------|
+| `times`     | array\[float\] \| list\[float\] | times for wich the process has been observed                                               | _required_ |
+| `X`         | array\[float\] \| list\[float\] | values for wich the process has been observed                                              | _required_ |
+| `type_path` | str                             | the type of path that the process have, continum or jump.                                  | _required_ |
+| `auto`      | bool                            | Treu if the value of the realization at a time not given at inizialization can be derived. | `False`    |

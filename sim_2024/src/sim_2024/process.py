@@ -137,3 +137,10 @@ class CompundPoissonProcess(_random_process):
             t+=self._exponential.rand()
             Z_value+=self._stdev*self._normal_std.rand()
         return _process_path(times,X,self._type_paths,self._auto_valuation)
+
+#elements to export
+__all__=[
+    'WienerProcess',
+    'PoissonProcess',
+    'CompundPoissonProcess'
+]

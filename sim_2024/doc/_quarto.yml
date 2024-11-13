@@ -30,6 +30,22 @@ website:
   sidebar:
     collapse-level: 1
     contents:
+      - section: Main features
+        contents:
+          - text: "`rand`"
+          - href: reference/rand.qmd
+          - text: "`set_seed`"
+          - href: reference/set_seed.qmd
+          - text: "`random_sample`"
+          - href: reference/random_sample.qmd
+          - text: "`mass_function`"
+          - href: reference/mass_function.qmd
+          - text: "`density_function`"
+          - href: reference/density_function.qmd
+          - text: "`HistogramFigure`"
+          - href: reference/HistogramFigure.qmd
+          - text: "`PathFigure`"
+          - href: reference/PathFigure.qmd
       - section: PseudoRandom Number Generators (PRNG)
         contents:
           - text: "`multiplicative_congruential_generator`"
@@ -52,7 +68,14 @@ website:
             href: reference/tests.mean_test.qmd
           - text: "`variance test`"
             href: reference/tests.variance_test.qmd
-
+      - section: Stochastic process
+        contents:
+          - text: "`Wiener Process`"
+            href: reference/process.WienerProcess
+          - text: "`Poisson Process`"
+            href: reference/process.PoissonProcess
+          - text: "`Compound Poisson Process`"
+            href: reference/process.CompoundPoissonProcess
 format:
   html:
     sidebar: true
@@ -70,11 +93,13 @@ quartodoc:
       contents:
         - rand
         - set_seed
+        - random_sample
+        - HistogramFigure
+        - process_path
+        - process_sample
+        - PathFigure
         - mass_function
         - density_function
-        - random_sample
-        - random_path
-        - HistogramFigure
     - title: PseudoRandom Number Generators (PRNG)
       desc: 'submodulo de generadores de números pseudoaleatorios'
       contents:
@@ -123,3 +148,9 @@ quartodoc:
         - variates.Gamma
         - variates.Beta
         - variates.ExampleDis
+    - title: Stochastic Process
+      desc: 'submodulo de procesos estocásticos'
+      contents:
+        - process.WienerProcess
+        - process.PoissonProcess
+        - process.CompundPoissonProcess

@@ -683,31 +683,6 @@ class PathFigure(_Figure):
             linewidth=0.75
         self.axes[0].plot([path[i][0] for i in range(len(path))],[path[i][1] for i in range(len(path))],color=color,linewidth=linewidth)
 
-# def PathFigure(times:_array|list[_array],events:_array|list[_array],**kwargs:dict[str,_Any])->_Figure:
-#     """function to create a plot for random process realizations"""
-#     _times:list[_array]
-#     _events:list[_array]
-#     if type(times)==_array:
-#         _times = [times]
-#     else:
-#         _times = times
-#     if type(events)==_array:
-#         _events = [events]
-#     else:
-#         _events = events
-#     figure:_Figure
-#     figure = _pyplot.figure(figsize=(5,3),dpi=300,frameon=False,**kwargs)
-#     figure.add_axes((0,0,1,1))
-#     figure.axes[0].plot(_times,_events,**kwargs)
-#     try:
-#         figure.canvas.toolbar_visible = False
-#         figure.canvas.header_visible = False
-#         figure.canvas.footer_visible = False
-#     finally:
-#         return figure
-
-#pseudorandom default generator and related functions
-
 class _package_generator:
     """Class reserved for main pseudorandom generator.
     
@@ -796,4 +771,5 @@ __all__ = [
     'random_sample',
     'random_path',
     'HistogramFigure',
+    'PathFigure'
     ]

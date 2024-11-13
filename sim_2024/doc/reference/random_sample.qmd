@@ -1,7 +1,15 @@
 # random_sample { #sim_2024.random_sample }
 
-`random_sample()`
+`random_sample(self, initializer=None)`
 
-custom type to store an array of float xor int values and some functionalities related
+array subclass to represent a realization of a random process
 
-Sample has to porpuses. First, store a potentialy huge amount of numbers (either float or int)
+A realization is an indexed set of observations of a random process wich is assumed to be indexed by continum time.
+The _type attribute is set to continuos if the undarlay process is of continuos paths and to jump if is a jump process.
+This class also defines some related functions and functionalities.
+
+## Parameters
+
+| Name          | Type     | Description                                     | Default   |
+|---------------|----------|-------------------------------------------------|-----------|
+| `initializer` | iterable | if provided it must be an iterable object whose | `None`    |

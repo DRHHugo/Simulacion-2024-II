@@ -8,11 +8,13 @@ funcionalidades básicas
 | --- | --- |
 | [rand](rand.qmd#sim_2024.rand) |  |
 | [set_seed](set_seed.qmd#sim_2024.set_seed) | Change state of default pseudorandom generator. |
+| [random_sample](random_sample.qmd#sim_2024.random_sample) | array subclass to represent a realization of a random process |
+| [HistogramFigure](HistogramFigure.qmd#sim_2024.HistogramFigure) | custom matplotlib Figure to plot a density histogram |
+| [process_path](process_path.qmd#sim_2024.process_path) | realization of a random process |
+| [process_sample](process_sample.qmd#sim_2024.process_sample) | sample of process paths |
+| [PathFigure](PathFigure.qmd#sim_2024.PathFigure) | custom matplotlib Figure to plot a realization from a random process |
 | [mass_function](mass_function.qmd#sim_2024.mass_function) | funcion de masa |
 | [density_function](density_function.qmd#sim_2024.density_function) | funcion de densidad |
-| [random_sample](random_sample.qmd#sim_2024.random_sample) | custom type to store an array of float xor int values and some functionalities related |
-| [random_path](random_path.qmd#sim_2024.random_path) |  |
-| [HistogramFigure](HistogramFigure.qmd#sim_2024.HistogramFigure) | custom matplotlib Figure to plot a density histogram |
 
 ## PseudoRandom Number Generators (PRNG)
 
@@ -73,3 +75,13 @@ submodulo de distribuciones de probabilidad
 | [variates.Gamma](variates.Gamma.qmd#sim_2024.variates.Gamma) | Gamma distribution |
 | [variates.Beta](variates.Beta.qmd#sim_2024.variates.Beta) | Beta distribution |
 | [variates.ExampleDis](variates.ExampleDis.qmd#sim_2024.variates.ExampleDis) |  |
+
+## Stochastic Process
+
+submodulo de procesos estocásticos
+
+| | |
+| --- | --- |
+| [process.WienerProcess](process.WienerProcess.qmd#sim_2024.process.WienerProcess) | Standar Wiener process |
+| [process.PoissonProcess](process.PoissonProcess.qmd#sim_2024.process.PoissonProcess) | Homogeneous Poisson process |
+| [process.CompundPoissonProcess](process.CompundPoissonProcess.qmd#sim_2024.process.CompundPoissonProcess) | Homogeneous Poisson process |

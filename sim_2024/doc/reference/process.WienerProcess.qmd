@@ -1,0 +1,5 @@
+# process.WienerProcess { #sim_2024.process.WienerProcess }
+
+`process.WienerProcess(self)`
+
+Standar Wiener process

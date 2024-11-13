@@ -1,0 +1,5 @@
+# process.PoissonProcess { #sim_2024.process.PoissonProcess }
+
+`process.PoissonProcess(self, **kwargs)`
+
+Homogeneous Poisson process

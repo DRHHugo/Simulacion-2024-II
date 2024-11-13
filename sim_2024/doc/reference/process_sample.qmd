@@ -1,0 +1,14 @@
+# process_sample { #sim_2024.process_sample }
+
+`process_sample(self, paths)`
+
+sample of process paths
+
+List of process paths and related functions. The process can be a continuous or jumps process but is assumed to be of in continum time.
+Attribute _paths must be a list of process_path elements, each one is a realization of a process.
+
+## Parameters
+
+| Name    | Type                 | Description          | Default    |
+|---------|----------------------|----------------------|------------|
+| `paths` | list\[random_paths\] | list of random_paths | _required_ |

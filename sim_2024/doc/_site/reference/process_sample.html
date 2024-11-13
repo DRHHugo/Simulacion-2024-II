@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>variates.exponential – sim_2024</title>
+<title>process_sample – sim_2024</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -334,12 +334,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="sim_2024.variates.Exponential" class="level1">
-<h1>variates.Exponential</h1>
-<p><code>variates.Exponential(self, **kwargs)</code></p>
-<p>Exponential distribution.</p>
-<section id="other-parameters" class="level2">
-<h2 class="anchored" data-anchor-id="other-parameters">Other Parameters</h2>
+<section id="sim_2024.process_sample" class="level1">
+<h1>process_sample</h1>
+<p><code>process_sample(self, paths)</code></p>
+<p>sample of process paths</p>
+<p>List of process paths and related functions. The process can be a continuous or jumps process but is assumed to be of in continum time. Attribute _paths must be a list of process_path elements, each one is a realization of a process.</p>
+<section id="parameters" class="level2">
+<h2 class="anchored" data-anchor-id="parameters">Parameters</h2>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -351,37 +352,15 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>rate</code></td>
-<td>float</td>
-<td>rate parameter</td>
+<td><code>paths</code></td>
+<td>list[random_paths]</td>
+<td>list of random_paths</td>
 <td><em>required</em></td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="methods" class="level2">
-<h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a href="#sim_2024.variates.Exponential.rand">rand</a></td>
-<td>generation of one random number</td>
-</tr>
-</tbody>
-</table>
-<section id="sim_2024.variates.Exponential.rand" class="level3">
-<h3 class="anchored" data-anchor-id="sim_2024.variates.Exponential.rand">rand</h3>
-<p><code>variates.Exponential.rand()</code></p>
-<p>generation of one random number</p>
 
 
-</section>
 </section>
 </section>
 

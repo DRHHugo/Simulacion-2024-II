@@ -168,25 +168,68 @@
     "text": "random_path\nrandom_path(self, times, events)"
   },
   {
+    "objectID": "reference/process_sample.html",
+    "href": "reference/process_sample.html",
+    "title": "process_sample",
+    "section": "",
+    "text": "process_sample(self, paths)\nsample of process paths\nList of process paths and related functions. The process can be a continuous or jumps process but is assumed to be of in continum time. Attribute _paths must be a list of process_path elements, each one is a realization of a process.\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\npaths\nlist[random_paths]\nlist of random_paths\nrequired"
+  },
+  {
+    "objectID": "reference/process_sample.html#parameters",
+    "href": "reference/process_sample.html#parameters",
+    "title": "process_sample",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\npaths\nlist[random_paths]\nlist of random_paths\nrequired"
+  },
+  {
+    "objectID": "reference/process.WienerProcess.html",
+    "href": "reference/process.WienerProcess.html",
+    "title": "process.WienerProcess",
+    "section": "",
+    "text": "process.WienerProcess\nprocess.WienerProcess(self)\nStandar Wiener process"
+  },
+  {
+    "objectID": "reference/process.CompundPoissonProcess.html",
+    "href": "reference/process.CompundPoissonProcess.html",
+    "title": "process.CompundPoissonProcess",
+    "section": "",
+    "text": "process.CompundPoissonProcess\nprocess.CompundPoissonProcess(self, **kwargs)\nHomogeneous Poisson process"
+  },
+  {
     "objectID": "reference/mass_function.html",
     "href": "reference/mass_function.html",
     "title": "mass_function",
     "section": "",
-    "text": "mass_function\nmass_function(self, function, sup)\nfuncion de masa"
+    "text": "mass_function\nmass_function(self, function, sup)\nfuncion de masa",
+    "crumbs": [
+      "Get started",
+      "Main features",
+      "mass_function"
+    ]
   },
   {
     "objectID": "reference/HistogramFigure.html",
     "href": "reference/HistogramFigure.html",
     "title": "HistogramFigure",
     "section": "",
-    "text": "HistogramFigure(self, sample, **kwargs)\ncustom matplotlib Figure to plot a density histogram\nThis custom figure allows to create a histogram of a sample of float values in a pre-defined format. args and Keyword arguments are passed to figure inizialization and to histogram creation.\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nsample\nrandom_sample\nrandom_sample to plot\nrequired"
+    "text": "HistogramFigure(self, sample, **kwargs)\ncustom matplotlib Figure to plot a density histogram\nThis custom figure allows to create a histogram of a sample of float values in a pre-defined format. args and Keyword arguments are passed to figure inizialization and to histogram creation.\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nsample\nrandom_sample\nrandom_sample to plot\nrequired",
+    "crumbs": [
+      "Get started",
+      "Main features",
+      "HistogramFigure"
+    ]
   },
   {
     "objectID": "reference/HistogramFigure.html#parameters",
     "href": "reference/HistogramFigure.html#parameters",
     "title": "HistogramFigure",
     "section": "",
-    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nsample\nrandom_sample\nrandom_sample to plot\nrequired"
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nsample\nrandom_sample\nrandom_sample to plot\nrequired",
+    "crumbs": [
+      "Get started",
+      "Main features",
+      "HistogramFigure"
+    ]
   },
   {
     "objectID": "reference/generators.polynomial_congruential_generator.html",
@@ -343,21 +386,36 @@
     "href": "reference/density_function.html",
     "title": "density_function",
     "section": "",
-    "text": "density_function(self, function, **kwargs)\nfuncion de densidad\nClase de abstracci�n de una funci�n de densidad de probabilidad.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nfunction\nCallable\nfuncti�n used to evaluate density_function between min and max args.\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmin\nfloat\ndensity_functi�n evaluate to zero below min\nrequired\n\n\nmax\nfloat\ndensity_functi�n evaluate to zero above max\nrequired"
+    "text": "density_function(self, function, **kwargs)\nfuncion de densidad\nClase de abstracci�n de una funci�n de densidad de probabilidad.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nfunction\nCallable\nfuncti�n used to evaluate density_function between min and max args.\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmin\nfloat\ndensity_functi�n evaluate to zero below min\nrequired\n\n\nmax\nfloat\ndensity_functi�n evaluate to zero above max\nrequired",
+    "crumbs": [
+      "Get started",
+      "Main features",
+      "density_function"
+    ]
   },
   {
     "objectID": "reference/density_function.html#parameters",
     "href": "reference/density_function.html#parameters",
     "title": "density_function",
     "section": "",
-    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nfunction\nCallable\nfuncti�n used to evaluate density_function between min and max args.\nrequired"
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nfunction\nCallable\nfuncti�n used to evaluate density_function between min and max args.\nrequired",
+    "crumbs": [
+      "Get started",
+      "Main features",
+      "density_function"
+    ]
   },
   {
     "objectID": "reference/density_function.html#other-parameters",
     "href": "reference/density_function.html#other-parameters",
     "title": "density_function",
     "section": "",
-    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nmin\nfloat\ndensity_functi�n evaluate to zero below min\nrequired\n\n\nmax\nfloat\ndensity_functi�n evaluate to zero above max\nrequired"
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nmin\nfloat\ndensity_functi�n evaluate to zero below min\nrequired\n\n\nmax\nfloat\ndensity_functi�n evaluate to zero above max\nrequired",
+    "crumbs": [
+      "Get started",
+      "Main features",
+      "density_function"
+    ]
   },
   {
     "objectID": "get_started.html",
@@ -599,14 +657,14 @@
     "href": "reference/index.html",
     "title": "sim_2024",
     "section": "",
-    "text": "funcionalidades básicas\n\n\n\nrand\n\n\n\nset_seed\nChange state of default pseudorandom generator.\n\n\nmass_function\nfuncion de masa\n\n\ndensity_function\nfuncion de densidad\n\n\nrandom_sample\ncustom type to store an array of float xor int values and some functionalities related\n\n\nrandom_path\n\n\n\nHistogramFigure\ncustom matplotlib Figure to plot a density histogram\n\n\n\n\n\n\nsubmodulo de generadores de números pseudoaleatorios\n\n\n\ngenerators.multiplicative_congruential_generator\nMultiplicative congruential pseudorandom generator.\n\n\ngenerators.linear_congruential_generator\nLinear congruential pseudorandom generator.\n\n\ngenerators.quadratic_congrential_generator\nQuadratic congruential pseudorandom generators.\n\n\ngenerators.polynomial_congruential_generator\nPolynomial congruential pseudorandom generator.\n\n\ngenerators.multiple_congruential_generator\nMultiple congruential pseudorandom generator\n\n\ngenerators.combined_congruential_generator\nCombined congruential pseudorandom generator.\n\n\ngenerators.multcombi_congruential_generator\nMultiple combined congruential pseudorandom generator\n\n\ngenerators.linear_feedback_shift_register_4\nlinear fedbacl shift register for word size 4\n\n\ngenerators.linear_feedback_shift_register_8\nlinear fedbacl shift register for word size 8\n\n\ngenerators.linear_feedback_shift_register_12\nlinear fedbacl shift register for word size 12\n\n\ngenerators.linear_feedback_shift_register_16\nlinear fedback shift register for word size 16\n\n\ngenerators.linear_feedback_shift_register_20\nlinear fedbacl shift register for word size 20\n\n\ngenerators.linear_feedback_shift_register_24\nlinear fedbacl shift register for word size 24\n\n\n\n\n\n\nsubmodulo de pruebas de aleatoriedad para PRNG\n\n\n\ntests.mean_est\n\n\n\ntests.mean_test\n\n\n\ntests.variance_est\n\n\n\ntests.variance_test\n\n\n\ntests.chisq_est\n\n\n\ntests.chisq_test\n\n\n\ntests.series_est\n\n\n\ntests.series_test\n\n\n\ntests.runs_est\n\n\n\ntests.runs_test\n\n\n\n\n\n\n\nsubmodulo de distribuciones de probabilidad\n\n\n\nvariates.Bernoulli\nRepresentation of a random variate of Bernoulli type.\n\n\nvariates.Binomial\nrepresentation of a random variate of binonimal type\n\n\nvariates.Geometric\nRepresentation of a random variate of Bernoulli type\n\n\nvariates.NegativeBinomial\nrepresentation of a random variate of Bernoulli type\n\n\nvariates.DiscreteUniform\nDiscrete uniform distribution.\n\n\nvariates.Poisson\nPoisson distribution.\n\n\nvariates.ContinuousUniform\nContinuous uniform distribution.\n\n\nvariates.Exponential\nExponential distribution.\n\n\nvariates.Normal\nNormal distribution\n\n\nvariates.BoundedNormal\nNormal bounded distribution\n\n\nvariates.RectifiedNormal\nRectified normal distribution\n\n\nvariates.Chisq\n\n\n\nvariates.Student\n\n\n\nvariates.Gamma\nGamma distribution\n\n\nvariates.Beta\nBeta distribution\n\n\nvariates.ExampleDis"
+    "text": "funcionalidades básicas\n\n\n\nrand\n\n\n\nset_seed\nChange state of default pseudorandom generator.\n\n\nrandom_sample\narray subclass to represent a realization of a random process\n\n\nHistogramFigure\ncustom matplotlib Figure to plot a density histogram\n\n\nprocess_path\nrealization of a random process\n\n\nprocess_sample\nsample of process paths\n\n\nPathFigure\ncustom matplotlib Figure to plot a realization from a random process\n\n\nmass_function\nfuncion de masa\n\n\ndensity_function\nfuncion de densidad\n\n\n\n\n\n\nsubmodulo de generadores de números pseudoaleatorios\n\n\n\ngenerators.multiplicative_congruential_generator\nMultiplicative congruential pseudorandom generator.\n\n\ngenerators.linear_congruential_generator\nLinear congruential pseudorandom generator.\n\n\ngenerators.quadratic_congrential_generator\nQuadratic congruential pseudorandom generators.\n\n\ngenerators.polynomial_congruential_generator\nPolynomial congruential pseudorandom generator.\n\n\ngenerators.multiple_congruential_generator\nMultiple congruential pseudorandom generator\n\n\ngenerators.combined_congruential_generator\nCombined congruential pseudorandom generator.\n\n\ngenerators.multcombi_congruential_generator\nMultiple combined congruential pseudorandom generator\n\n\ngenerators.linear_feedback_shift_register_4\nlinear fedbacl shift register for word size 4\n\n\ngenerators.linear_feedback_shift_register_8\nlinear fedbacl shift register for word size 8\n\n\ngenerators.linear_feedback_shift_register_12\nlinear fedbacl shift register for word size 12\n\n\ngenerators.linear_feedback_shift_register_16\nlinear fedback shift register for word size 16\n\n\ngenerators.linear_feedback_shift_register_20\nlinear fedbacl shift register for word size 20\n\n\ngenerators.linear_feedback_shift_register_24\nlinear fedbacl shift register for word size 24\n\n\n\n\n\n\nsubmodulo de pruebas de aleatoriedad para PRNG\n\n\n\ntests.mean_est\n\n\n\ntests.mean_test\n\n\n\ntests.variance_est\n\n\n\ntests.variance_test\n\n\n\ntests.chisq_est\n\n\n\ntests.chisq_test\n\n\n\ntests.series_est\n\n\n\ntests.series_test\n\n\n\ntests.runs_est\n\n\n\ntests.runs_test\n\n\n\n\n\n\n\nsubmodulo de distribuciones de probabilidad\n\n\n\nvariates.Bernoulli\nRepresentation of a random variate of Bernoulli type.\n\n\nvariates.Binomial\nrepresentation of a random variate of binonimal type\n\n\nvariates.Geometric\nRepresentation of a random variate of Bernoulli type\n\n\nvariates.NegativeBinomial\nrepresentation of a random variate of Bernoulli type\n\n\nvariates.DiscreteUniform\nDiscrete uniform distribution.\n\n\nvariates.Poisson\nPoisson distribution.\n\n\nvariates.ContinuousUniform\nContinuous uniform distribution.\n\n\nvariates.Exponential\nExponential distribution.\n\n\nvariates.Normal\nNormal distribution\n\n\nvariates.BoundedNormal\nNormal bounded distribution\n\n\nvariates.RectifiedNormal\nRectified normal distribution\n\n\nvariates.Chisq\n\n\n\nvariates.Student\n\n\n\nvariates.Gamma\nGamma distribution\n\n\nvariates.Beta\nBeta distribution\n\n\nvariates.ExampleDis\n\n\n\n\n\n\n\nsubmodulo de procesos estocásticos\n\n\n\nprocess.WienerProcess\nStandar Wiener process\n\n\nprocess.PoissonProcess\nHomogeneous Poisson process\n\n\nprocess.CompundPoissonProcess\nHomogeneous Poisson process"
   },
   {
     "objectID": "reference/index.html#basics-pseudorandom-functionalities",
     "href": "reference/index.html#basics-pseudorandom-functionalities",
     "title": "sim_2024",
     "section": "",
-    "text": "funcionalidades básicas\n\n\n\nrand\n\n\n\nset_seed\nChange state of default pseudorandom generator.\n\n\nmass_function\nfuncion de masa\n\n\ndensity_function\nfuncion de densidad\n\n\nrandom_sample\ncustom type to store an array of float xor int values and some functionalities related\n\n\nrandom_path\n\n\n\nHistogramFigure\ncustom matplotlib Figure to plot a density histogram"
+    "text": "funcionalidades básicas\n\n\n\nrand\n\n\n\nset_seed\nChange state of default pseudorandom generator.\n\n\nrandom_sample\narray subclass to represent a realization of a random process\n\n\nHistogramFigure\ncustom matplotlib Figure to plot a density histogram\n\n\nprocess_path\nrealization of a random process\n\n\nprocess_sample\nsample of process paths\n\n\nPathFigure\ncustom matplotlib Figure to plot a realization from a random process\n\n\nmass_function\nfuncion de masa\n\n\ndensity_function\nfuncion de densidad"
   },
   {
     "objectID": "reference/index.html#pseudorandom-number-generators-prng",
@@ -630,32 +688,104 @@
     "text": "submodulo de distribuciones de probabilidad\n\n\n\nvariates.Bernoulli\nRepresentation of a random variate of Bernoulli type.\n\n\nvariates.Binomial\nrepresentation of a random variate of binonimal type\n\n\nvariates.Geometric\nRepresentation of a random variate of Bernoulli type\n\n\nvariates.NegativeBinomial\nrepresentation of a random variate of Bernoulli type\n\n\nvariates.DiscreteUniform\nDiscrete uniform distribution.\n\n\nvariates.Poisson\nPoisson distribution.\n\n\nvariates.ContinuousUniform\nContinuous uniform distribution.\n\n\nvariates.Exponential\nExponential distribution.\n\n\nvariates.Normal\nNormal distribution\n\n\nvariates.BoundedNormal\nNormal bounded distribution\n\n\nvariates.RectifiedNormal\nRectified normal distribution\n\n\nvariates.Chisq\n\n\n\nvariates.Student\n\n\n\nvariates.Gamma\nGamma distribution\n\n\nvariates.Beta\nBeta distribution\n\n\nvariates.ExampleDis"
   },
   {
+    "objectID": "reference/index.html#stochastic-process",
+    "href": "reference/index.html#stochastic-process",
+    "title": "sim_2024",
+    "section": "",
+    "text": "submodulo de procesos estocásticos\n\n\n\nprocess.WienerProcess\nStandar Wiener process\n\n\nprocess.PoissonProcess\nHomogeneous Poisson process\n\n\nprocess.CompundPoissonProcess\nHomogeneous Poisson process"
+  },
+  {
+    "objectID": "reference/PathFigure.html",
+    "href": "reference/PathFigure.html",
+    "title": "PathFigure",
+    "section": "",
+    "text": "PathFigure\nPathFigure(self, paths, **kwargs)\ncustom matplotlib Figure to plot a realization from a random process",
+    "crumbs": [
+      "Get started",
+      "Main features",
+      "PathFigure"
+    ]
+  },
+  {
+    "objectID": "reference/process.PoissonProcess.html",
+    "href": "reference/process.PoissonProcess.html",
+    "title": "process.PoissonProcess",
+    "section": "",
+    "text": "process.PoissonProcess\nprocess.PoissonProcess(self, **kwargs)\nHomogeneous Poisson process"
+  },
+  {
+    "objectID": "reference/process_path.html",
+    "href": "reference/process_path.html",
+    "title": "process_path",
+    "section": "",
+    "text": "process_path(self, times, X, type_path, auto=False)\nrealization of a random process\nAn observation over a period of the form [0,T] of a random process is called a realization. Value T is called horizon and is derived at izialitation time. A representation of such realization consist of an array of times and another one with the observed value for each time. Is assumed that both arrays are of the same length and that the value at any index corresponds to time at the same index. A random process can have contiuos or jumps paths, either one can be represneted in this class. Attribute _type is set to continum for contonuos paths and to jump for jumps paths. For both types of paths the attribute _auto must be set to on if the value of the realization at a time not given at inizialization can be derived as the weight average between the two closets times.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\ntimes\narray[float] | list[float]\ntimes for wich the process has been observed\nrequired\n\n\nX\narray[float] | list[float]\nvalues for wich the process has been observed\nrequired\n\n\ntype_path\nstr\nthe type of path that the process have, continum or jump.\nrequired\n\n\nauto\nbool\nTreu if the value of the realization at a time not given at inizialization can be derived.\nFalse"
+  },
+  {
+    "objectID": "reference/process_path.html#parameters",
+    "href": "reference/process_path.html#parameters",
+    "title": "process_path",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\ntimes\narray[float] | list[float]\ntimes for wich the process has been observed\nrequired\n\n\nX\narray[float] | list[float]\nvalues for wich the process has been observed\nrequired\n\n\ntype_path\nstr\nthe type of path that the process have, continum or jump.\nrequired\n\n\nauto\nbool\nTreu if the value of the realization at a time not given at inizialization can be derived.\nFalse"
+  },
+  {
     "objectID": "reference/rand.html",
     "href": "reference/rand.html",
     "title": "rand",
     "section": "",
-    "text": "rand\nrand"
+    "text": "rand\nrand",
+    "crumbs": [
+      "Get started",
+      "Main features",
+      "rand"
+    ]
   },
   {
     "objectID": "reference/random_sample.html",
     "href": "reference/random_sample.html",
     "title": "random_sample",
     "section": "",
-    "text": "random_sample\nrandom_sample()\ncustom type to store an array of float xor int values and some functionalities related\nSample has to porpuses. First, store a potentialy huge amount of numbers (either float or int)"
+    "text": "random_sample(self, initializer=None)\narray subclass to represent a realization of a random process\nA realization is an indexed set of observations of a random process wich is assumed to be indexed by continum time. The _type attribute is set to continuos if the undarlay process is of continuos paths and to jump if is a jump process. This class also defines some related functions and functionalities.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\ninitializer\niterable\nif provided it must be an iterable object whose\nNone",
+    "crumbs": [
+      "Get started",
+      "Main features",
+      "random_sample"
+    ]
+  },
+  {
+    "objectID": "reference/random_sample.html#parameters",
+    "href": "reference/random_sample.html#parameters",
+    "title": "random_sample",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\ninitializer\niterable\nif provided it must be an iterable object whose\nNone",
+    "crumbs": [
+      "Get started",
+      "Main features",
+      "random_sample"
+    ]
   },
   {
     "objectID": "reference/set_seed.html",
     "href": "reference/set_seed.html",
     "title": "set_seed",
     "section": "",
-    "text": "set_seed(seed)\nChange state of default pseudorandom generator.\nThis functions allows to set the state of the default pseudorandom generator for reproductibility porpuses. If seed is not an integer it raise a Warning and no change is done.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nseed\nint\ninteger used to restart the default pseudorandom generator\nrequired"
+    "text": "set_seed(seed)\nChange state of default pseudorandom generator.\nThis functions allows to set the state of the default pseudorandom generator for reproductibility porpuses. If seed is not an integer it raise a Warning and no change is done.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nseed\nint\ninteger used to restart the default pseudorandom generator\nrequired",
+    "crumbs": [
+      "Get started",
+      "Main features",
+      "set_seed"
+    ]
   },
   {
     "objectID": "reference/set_seed.html#parameters",
     "href": "reference/set_seed.html#parameters",
     "title": "set_seed",
     "section": "",
-    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nseed\nint\ninteger used to restart the default pseudorandom generator\nrequired"
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nseed\nint\ninteger used to restart the default pseudorandom generator\nrequired",
+    "crumbs": [
+      "Get started",
+      "Main features",
+      "set_seed"
+    ]
   },
   {
     "objectID": "reference/tests.chisq_test.html",

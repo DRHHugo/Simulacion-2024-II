@@ -468,17 +468,17 @@ class process_path:
     Args:
         times (array[float]|list[float]): times for wich the process has been observed
         X (array[float]|list[float]): values for wich the process has been observed
-        type_par (str): the type of path that the process have, continum or jump.
+        type_path (str): the type of path that the process have, continum or jump.
         auto (bool): Treu if the value of the realization at a time not given at inizialization can be derived.
     """
-    def __new__(cls,times:_array[float]|list[float],X:_array[float]|list[float],type_par:str='continum',auto:bool=False):
+    def __new__(cls,times:_array[float]|list[float],X:_array[float]|list[float],type_path:str='continum',auto:bool=False):
         if type(auto)!=bool:
             raise TypeError('auto must a bool value')
-        if type(type_par)!=str:
-            raise TypeError('type_par must be of str type')
+        if type(type_path)!=str:
+            raise TypeError('type_path must be of str type')
         else:
-            if type_par!='continum' and type_par!='jump':
-                raise ValueError('type_par must be continum or jump')
+            if type_path!='continum' and type_path!='jump':
+                raise ValueError('type_path must be continum or jump')
         if type(times)==_array and type(X)==_array:
             if len(times)>=0 and len(X)>=0 and len(times)==len(X):
                 return super().__new__(cls)
@@ -806,8 +806,11 @@ class PathFigure(_Figure):
 __all__ = [
     'rand',
     'set_seed',
-    'mass_function',
-    'density_function',
+    'random_sample',
     'HistogramFigure',
-    'random_sample'
+    'process_path',
+    'process_sample',
+    'PathFigure',
+    'mass_function',
+    'density_function'
     ]
