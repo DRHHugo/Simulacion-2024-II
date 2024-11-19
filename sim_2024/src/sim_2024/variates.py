@@ -30,7 +30,11 @@ class _random_variate:
     def rand(self):
         pass
     def sample(self,size:int=1)->_random_sample|None:
-        """generation of size pseudo-random sample of variate"""
+        """simulation of a sample of the random variate
+        
+        Args:
+            size (int): Size of the desire sample
+        """
         sample = _random_sample()
         for _ in range(size):
             sample.append(self.rand())
@@ -69,6 +73,7 @@ class Bernoulli(_discrete_variate):
         self.mass_function:mass_function = _mass_function(function=lambda x:(self._p if x==1 else 1-self._p),sup=[0,1])
     
     def rand(self)->float:
+        """simulate one value of the random variate"""
         global _rand
         u = _rand()
         if u<self._p:

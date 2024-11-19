@@ -11,6 +11,11 @@ from os import chdir
 chdir('D:\\OneDrive\\Documents\\GitHub\\Simulacion-2024-II\\sim_2024\\src')
 from sim_2024.generators import *
 ```
+
+Los generadores de números pseudoaleatorios (PRNG) son sin duda alguna un tema especializado dentro de las técnicas de simulación y el estado actual de estos métodos queda fuera del alcance de un curso introductorio. Razón por la cual se ha elegido implementar solo algunos de los métodos básicos: los así denominados métodos congruenciales y los métodos de retroalimentación lineal.
+
+Todos los métodos implementados derivan de una clase maestra denominada `{python} _random_generator`. Dada la naturaleza disimila de PRNG cada generador derivado de esta clase padre debe implementar el método `{python} rand` el cual debe generar un (único) número pseudoaleatorio. En esta clase se implementa el método `{python} sample` 
+
 # Generadores pseudoaleatorios
 
 Aqui vamos a poner cosas sobre el apartado de generadores
