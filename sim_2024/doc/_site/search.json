@@ -186,14 +186,24 @@
     "href": "reference/process.WienerProcess.html",
     "title": "process.WienerProcess",
     "section": "",
-    "text": "process.WienerProcess\nprocess.WienerProcess(self)\nStandar Wiener process"
+    "text": "process.WienerProcess\nprocess.WienerProcess(self)\nStandar Wiener process",
+    "crumbs": [
+      "Get started",
+      "Stochastic process",
+      "`Wiener Process`"
+    ]
   },
   {
     "objectID": "reference/process.CompundPoissonProcess.html",
     "href": "reference/process.CompundPoissonProcess.html",
     "title": "process.CompundPoissonProcess",
     "section": "",
-    "text": "process.CompundPoissonProcess\nprocess.CompundPoissonProcess(self, **kwargs)\nHomogeneous Poisson process"
+    "text": "process.CompundPoissonProcess\nprocess.CompundPoissonProcess(self, **kwargs)\nHomogeneous Poisson process",
+    "crumbs": [
+      "Get started",
+      "Stochastic process",
+      "`Compound Poisson Process`"
+    ]
   },
   {
     "objectID": "reference/mass_function.html",
@@ -204,7 +214,7 @@
     "crumbs": [
       "Get started",
       "Main features",
-      "mass_function"
+      "`mass_function`"
     ]
   },
   {
@@ -216,7 +226,7 @@
     "crumbs": [
       "Get started",
       "Main features",
-      "HistogramFigure"
+      "`HistogramFigure`"
     ]
   },
   {
@@ -228,7 +238,7 @@
     "crumbs": [
       "Get started",
       "Main features",
-      "HistogramFigure"
+      "`HistogramFigure`"
     ]
   },
   {
@@ -390,7 +400,7 @@
     "crumbs": [
       "Get started",
       "Main features",
-      "density_function"
+      "`density_function`"
     ]
   },
   {
@@ -402,7 +412,7 @@
     "crumbs": [
       "Get started",
       "Main features",
-      "density_function"
+      "`density_function`"
     ]
   },
   {
@@ -414,7 +424,7 @@
     "crumbs": [
       "Get started",
       "Main features",
-      "density_function"
+      "`density_function`"
     ]
   },
   {
@@ -703,7 +713,7 @@
     "crumbs": [
       "Get started",
       "Main features",
-      "PathFigure"
+      "`PathFigure`"
     ]
   },
   {
@@ -711,7 +721,12 @@
     "href": "reference/process.PoissonProcess.html",
     "title": "process.PoissonProcess",
     "section": "",
-    "text": "process.PoissonProcess\nprocess.PoissonProcess(self, **kwargs)\nHomogeneous Poisson process"
+    "text": "process.PoissonProcess\nprocess.PoissonProcess(self, **kwargs)\nHomogeneous Poisson process",
+    "crumbs": [
+      "Get started",
+      "Stochastic process",
+      "`Poisson Process`"
+    ]
   },
   {
     "objectID": "reference/process_path.html",
@@ -736,7 +751,7 @@
     "crumbs": [
       "Get started",
       "Main features",
-      "rand"
+      "`rand`"
     ]
   },
   {
@@ -748,7 +763,7 @@
     "crumbs": [
       "Get started",
       "Main features",
-      "random_sample"
+      "`random_sample`"
     ]
   },
   {
@@ -760,7 +775,7 @@
     "crumbs": [
       "Get started",
       "Main features",
-      "random_sample"
+      "`random_sample`"
     ]
   },
   {
@@ -772,7 +787,7 @@
     "crumbs": [
       "Get started",
       "Main features",
-      "set_seed"
+      "`set_seed`"
     ]
   },
   {
@@ -784,7 +799,7 @@
     "crumbs": [
       "Get started",
       "Main features",
-      "set_seed"
+      "`set_seed`"
     ]
   },
   {
