@@ -22,7 +22,7 @@ Este paquete contiene los siguientes modulos
 
 - *variates*: este modulo contiene representaciones de las variables aleatorias más utilizadas en el contexto actuarial. Esto inclute distribuciones discretas y continuas univariadas, así como las distribuciónes mutinormal y multinomial como únicos ejemplos de distribuciones multivariadas.
 
-- *processes*: aqui se han implementado representaciones del proceso de Wiener, del proceso de Poisson homogeneo y del proceso de Poisson no-homogeneo de tasa acotada.
+- *process*: aqui se han implementado representaciones del proceso de Wiener, del proceso de Poisson homogeneo y del proceso de Poisson compuesto.
 
 En toda el paquete se utilizan las definiciones y la terminología estandar de probabilidad y estadística. Para cualquier referencia sugerimos consultar la página [Wikipedia](https://es.wikipedia.org/).
 

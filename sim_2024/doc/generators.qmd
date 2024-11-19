@@ -1,4 +1,6 @@
 ---
+title: "Pseudo Random Number Generators Module"
+format: html
 jupyter: python3
 ---
 
