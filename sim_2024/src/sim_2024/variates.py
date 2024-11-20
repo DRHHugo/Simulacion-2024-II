@@ -62,7 +62,7 @@ class Bernoulli(_discrete_variate):
     def __new__(cls,**kwargs:dict[str,float]):
         """validation of parameters occurs here"""
         _validate_float_by_key(kwargs,'p','probability p must be a float betwenn 0 and 1',threshold=0.0)
-        if kwargs['p']>1:
+        if kwargs['p']>1.:
             raise ValueError('probability p must be a float betwenn 0 and 1')
         return super().__new__(cls)
     
@@ -93,7 +93,7 @@ class Binomial(_discrete_variate):
         """validation of parameters occurs here"""
         _validate_int_by_key(kwargs,'n','number of trials must be a positive integer',threshold=1)
         _validate_float_by_key(kwargs,'p','probability p must be a float between 0 and 1',threshold=0.0)
-        if kwargs['p']>1:
+        if kwargs['p']>1.:
             raise ValueError('probability p must be a float betwenn 0 and 1')
         return super().__new__(cls)
     def __init__(self,**kwargs:dict[str,int|float]):

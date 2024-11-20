@@ -263,91 +263,6 @@ def _validate_sample(sample:_Any,message:str='')->bool:
             raise TypeError(message)
     return True
 
-#pseudorandom default generator and related functions
-
-class _package_generator:
-    """Class reserved for main pseudorandom generator.
-    
-    This class provide the default pseudorandom generator on package initialization.
-    This pseudorandom generator is an implementation of L'Ecuyer* MRG32k3a specification.
-    When the package is first imported the generator is initialized with a random number provided by the host system.
-    After that is possible to restart the generator with the set_seed function.
-    This class is not intended to be used to construct another generator, if desire use multcombi_congruential_generator class to construct an equivalent generator.
-    *L'Ecuyer, P. Uniform random number generation. Ann Oper Res 53, 77-120 (1994).
-    
-    Args:
-        seed : integer to initilizate the pseudorandom generator
-    """
-    
-    def __str__(self)->str:
-        return 'package default generator'
-    
-    def __call__(self,n:None|int=None)->float|list[float]|None:
-        if n==None:
-            return self.rand()
-        if type(n)==int:
-            return self.sample(n)
-        else:
-            _warn(message='invalid parameter')
-            return None
-    
-    def __init__(self,seed:int)->None:
-        """all attributes are private"""
-        self._mod_1:int = 2**32-209
-        self._mod_2:int = 2**32-22853
-        self._mults_1:list[int] = [0,1403580,-810728]
-        self._mults_2:list[int] = [527612,0,-1370589]
-        self._state_1:list[int] = [1,1,seed%self._mod_1]
-        self._state_2:list[int] = [1,1,1]
-    
-    def rand(self)->float:
-        """generation of one pseudo-random numbers"""
-        x:int = 0
-        y:int = 0
-        for i in range(len(self._state_1)):
-            x = (x+self._state_1[i]*self._mults_1[i])%self._mod_1
-            y = (y+self._state_2[i]*self._mults_2[i])%self._mod_2
-        z:int = (x-y)%self._mod_1
-        self._state_1.pop(0)
-        self._state_2.pop(0)
-        self._state_1.insert(len(self._state_1),x)
-        self._state_2.insert(len(self._state_2),y)
-        return z/self._mod_1
-    
-    def sample(self,size:int=1)->list[float]|None:
-        """generation of a sample of pseudo-random numbers of length size
-        
-        Keyword Args:
-            size (int): size of sample
-        """
-        sample:random_sample
-        _warn_int(size,'size of sample must be a posituve integer',threshold=1)
-        sample = random_sample()
-        for _ in range(size):
-            sample.append(self.rand())
-        return sample
-
-    def _set_seed(self,seed)->None:
-        """restart the state"""
-        self._state_1 = [1,1,seed]
-        self._state_2 = [1,1,1]
-        return None
-
-rand = _package_generator(int.from_bytes(_urandom(4)))
-
-def set_seed(seed:int)->None:
-    """Change state of default pseudorandom generator.
-
-    This functions allows to set the state of the default pseudorandom generator for reproductibility porpuses.
-    If seed is not an integer it raise a Warning and no change is done.
-
-    Args:
-        seed: integer used to restart the default pseudorandom generator
-    """
-    if _warn_int(seed,message='seed must be an integer'):
-        rand._set_seed(seed)
-    return None
-
 #probability and statistics utilities
 
 class mass_function:
@@ -422,181 +337,13 @@ class density_function:
             return self._function(x)
 
 class random_sample(_array):
-    """array subclass to represent a realization of a random process
-    
-    A realization is an indexed set of observations of a random process wich is assumed to be indexed by continum time.
-    The _type attribute is set to continuos if the undarlay process is of continuos paths and to jump if is a jump process.
-    This class also defines some related functions and functionalities.
-    
-    Args:
-        initializer (iterable): if provided it must be an iterable object whose
-    """
-    
-    def __new__(cls,initializer:_Any=None):
-        if initializer==None or '__iter__' in initializer.__dir__():
-            return _array.__new__(cls,'d')
-        else:
-            raise TypeError('initializer is not iterable')
-    
-    def __init__(self,initializer:_Any=None)->None:
-        if not initializer==None:
-            for elem in initializer:
-                self.append(elem)
-    
-    @property
-    def mean(self)->float:
-        return sum(self)/len(self)
-    
-    def make_plot(self,*args,**kwargs)->_Figure:
-        fig:HistogramFigure
-        try:
-            fig = _pyplot.figure(*args,**dict({'FigureClass':HistogramFigure,'sample':self},**kwargs))
-        finally:
-            return fig
+    pass
 
 class process_path:
-    """realization of a random process
-
-    An observation over a period of the form [0,T] of a random process is called a realization.
-    Value T is called horizon and is derived at izialitation time.
-    A representation of such realization consist of an array of times and another one with the observed value for each time.
-    Is assumed that both arrays are of the same length and that the value at any index corresponds to time at the same index.
-    A random process can have contiuos or jumps paths, either one can be represneted in this class.
-    Attribute _type is set to continum for contonuos paths and to jump for jumps paths.
-    For both types of paths the attribute _auto must be set to on if the value of the realization at a time not given at inizialization can be derived as the weight average between the two closets times.
-    
-    Args:
-        times (array[float]|list[float]): times for wich the process has been observed
-        X (array[float]|list[float]): values for wich the process has been observed
-        type_path (str): the type of path that the process have, continum or jump.
-        auto (bool): Treu if the value of the realization at a time not given at inizialization can be derived.
-    """
-    def __new__(cls,times:_array[float]|list[float],X:_array[float]|list[float],type_path:str='continum',auto:bool=False):
-        if type(auto)!=bool:
-            raise TypeError('auto must a bool value')
-        if type(type_path)!=str:
-            raise TypeError('type_path must be of str type')
-        else:
-            if type_path!='continum' and type_path!='jump':
-                raise ValueError('type_path must be continum or jump')
-        if type(times)==_array and type(X)==_array:
-            if len(times)>=0 and len(X)>=0 and len(times)==len(X):
-                return super().__new__(cls)
-            else:
-                raise ValueError('times and X parameters must be arrays of the same length')
-        elif type(times)==list and type(X)==list:
-            _validate_list(times,'all elemnts of first parameter must be floats')
-            _validate_list(X,'all elemnts of second parameter must be floats')
-            if len(times)>0 and len(X)>0 and len(times)==len(X):
-                return super().__new__(cls)
-            else:
-                raise ValueError('first and second parameters must be lists of the same length')
-        else:
-            raise TypeError('first and second parameters must both be arrays or lists of the same length')
-    def __init__(self,times:_array[float]|list[float],X:_array[float]|list[float],type_path:str,auto:bool=False)->None:
-        self._times:_array[float]
-        self._X:_array[float]
-        self._horizon:float
-        self._type_path:str
-        self._auto:bool
-        self._type_path = type_path 
-        self._auto = auto
-        if type(times)==_array:
-            self._times = times
-            self._X = X
-        else:
-            self._times = _array('d',times)
-            self._X = _array('d',X)
-        self._horizon = max(times)
-    def __len__(self):
-        return len(self._times)
-    
-    def __getitem__(self, i:int)->tuple:
-        return (self._times[i],self._X[i])
-    
-    def __call__(self,time:float)->float:
-        if time in self._times:
-            return self._X[self._times.index(time)]
-        else:
-            raise ValueError('time not in path')
-
-    def get_values(self)->list[tuple]:
-        i:int
-        return [(self._times[i],self._X[i]) for i in range(len(self._times))]
-    
-    def append(self,Xt:tuple[float])->None:
-        if type(Xt)!=tuple:
-            _warn('appended value must be a tuple of two float values',category=_package_warning)
-        if len(Xt)!=2:
-            _warn('appended value must be a tuple of two float values',category=_package_warning)
-        if type(Xt[0])!=float or type(Xt[1])!=float:
-            _warn('appended value must be a tuple of two float values',category=_package_warning)
-        self._times.append(Xt[0])
-        self._X.append(Xt[1])
-
-    def make_plot(self,*args,**kwargs)->None:
-        fig:PathFigure
-        color:str
-        if not 'color' in kwargs:
-            kwargs['color'] = 'xkcd:cobalt'
-        if not 'linewidth' in kwargs:
-            kwargs['linewidth'] = 0.75
-        try:
-            fig=_pyplot.figure(*args,**dict({'FigureClass':PathFigure,'paths':self},**kwargs))
-        finally:
-            return fig
+    pass
 
 class process_sample:
-    """sample of process paths
-    
-    List of process paths and related functions. The process can be a continuous or jumps process but is assumed to be of in continum time.
-    Attribute _paths must be a list of process_path elements, each one is a realization of a process.
-
-    Args:
-        paths (list[random_paths]): list of random_paths
-    """
-    
-    def __init__(self,paths:list[process_path]):
-        self._paths:list[process_paths]
-        self._maxhorizon:float
-        self._paths = paths
-        self._maxhorizon = max([path._horizon for path in paths])
-    
-    def __len__(self)->int:
-        return len(self._paths)
-
-    def __getitem__(self,i:int)->process_path:
-        return self._paths[i]
-
-    def get_values(self)->list[tuple[_array,_array]]:
-        return [path.get_values() for path in self._paths]
-    
-    @property
-    def mean(self)->process_path:
-        times:_array[float]
-        means:_array[float]
-        means = _array('d')
-        t:float
-        i:int
-        times = self._paths[0]._times
-        for t in times:
-            sample = []
-            for path in self._paths:
-                try:
-                    i = path._times.index(t)
-                except:
-                    raise IndexError('times for paths in sample are different')
-                finally:
-                    sample.append(path._X[i])
-            means.append(sum(sample)/len(sample))
-        return process_path(times,means,self._paths[0]._type,self._paths[0]._auto)
-    
-    def make_plot(self,*args,**kwargs):
-        fig:PathFigure
-        try:
-            fig = _pyplot.figure(*args,**dict({'FigureClass':PathFigure,'paths':self},**kwargs))
-        finally:
-            return fig
+    pass
 
 class HistogramFigure(_Figure):
     """custom matplotlib Figure to plot a density histogram
@@ -646,6 +393,7 @@ class HistogramFigure(_Figure):
         xmax:float
         xrange:_array
         yrange:_array
+        x:float
         if 'range' in kwargs:
             if type(kwargs['range'])==tuple:
                 xmin = kwargs['range'][0]
@@ -656,7 +404,6 @@ class HistogramFigure(_Figure):
             xmin = float(self.axes[0].get_xlim()[0])
             xmax = float(self.axes[0].get_xlim()[1])
         if type(function)==density_function:
-            x:float
             dx:float
             xmax_minus_dx:float
             xrange = _array('d')
@@ -679,7 +426,6 @@ class HistogramFigure(_Figure):
             yrange.append(function(xmax))
             self.axes[0].plot(xrange,yrange,color='xkcd:wine')
         elif type(function)==mass_function:
-            x:float
             radius:float
             marker:str
             xrange = _array('d')
@@ -721,7 +467,7 @@ class PathFigure(_Figure):
             for path in paths:
                 if type(path)!=process_path:
                     raise TypeError('path(s) must be a process path, process sample or list of process paths')
-            _timesS = [path._time for path in paths]
+            _timesS = [path._times for path in paths]
             _XS = [path._X for ppath in paths]
             _type_paths = paths[0]._type_path
         else:
@@ -800,6 +546,274 @@ class PathFigure(_Figure):
         else:
             linewidth=0.75
         self.axes[0].plot([path[i][0] for i in range(len(path))],[path[i][1] for i in range(len(path))],color=color,linewidth=linewidth)
+
+class random_sample(_array):
+    """array subclass to represent a realization of a random process
+    
+    A realization is an indexed set of observations of a random process wich is assumed to be indexed by continum time.
+    The _type attribute is set to continuos if the undarlay process is of continuos paths and to jump if is a jump process.
+    This class also defines some related functions and functionalities.
+    
+    Args:
+        initializer (iterable): if provided it must be an iterable object whose
+    """
+    
+    def __new__(cls,initializer:_Any=None):
+        if initializer==None or '__iter__' in initializer.__dir__():
+            return _array.__new__(cls,'d')
+        else:
+            raise TypeError('initializer is not iterable')
+    
+    def __init__(self,initializer:_Any=None)->None:
+        if not initializer==None:
+            for elem in initializer:
+                self.append(elem)
+    
+    @property
+    def mean(self)->float:
+        return sum(self)/len(self)
+    
+    def make_plot(self,*args,**kwargs)->HistogramFigure:
+        fig:HistogramFigure
+        try:
+            fig = _pyplot.figure(*args,**dict({'FigureClass':HistogramFigure,'sample':self},**kwargs))
+        finally:
+            return fig
+
+class process_path:
+    """realization of a random process
+
+    An observation over a period of the form [0,T] of a random process is called a realization.
+    Value T is called horizon and is derived at izialitation time.
+    A representation of such realization consist of an array of times and another one with the observed value for each time.
+    Is assumed that both arrays are of the same length and that the value at any index corresponds to time at the same index.
+    A random process can have contiuos or jumps paths, either one can be represneted in this class.
+    Attribute _type is set to continum for contonuos paths and to jump for jumps paths.
+    For both types of paths the attribute _auto must be set to on if the value of the realization at a time not given at inizialization can be derived as the weight average between the two closets times.
+    
+    Args:
+        times (array[float]|list[float]): times for wich the process has been observed
+        X (array[float]|list[float]): values for wich the process has been observed
+        type_path (str): the type of path that the process have, continum or jump.
+        auto (bool): Treu if the value of the realization at a time not given at inizialization can be derived.
+    """
+    def __new__(cls,times:_array[float]|list[float],X:_array[float]|list[float],type_path:str='continum',auto:bool=False):
+        if type(auto)!=bool:
+            raise TypeError('auto must a bool value')
+        if type(type_path)!=str:
+            raise TypeError('type_path must be of str type')
+        else:
+            if type_path!='continum' and type_path!='jump':
+                raise ValueError('type_path must be continum or jump')
+        if type(times)==_array and type(X)==_array:
+            if len(times)>=0 and len(X)>=0 and len(times)==len(X):
+                return super().__new__(cls)
+            else:
+                raise ValueError('times and X parameters must be arrays of the same length')
+        elif type(times)==list and type(X)==list:
+            _validate_list(times,'all elemnts of first parameter must be floats')
+            _validate_list(X,'all elemnts of second parameter must be floats')
+            if len(times)>0 and len(X)>0 and len(times)==len(X):
+                return super().__new__(cls)
+            else:
+                raise ValueError('first and second parameters must be lists of the same length')
+        else:
+            raise TypeError('first and second parameters must both be arrays or lists of the same length')
+    def __init__(self,times:_array[float]|list[float],X:_array[float]|list[float],type_path:str,auto:bool=False)->None:
+        self._times:_array[float]
+        self._X:_array[float]
+        self._horizon:float
+        self._type_path:str
+        self._auto:bool
+        self._type_path = type_path 
+        self._auto = auto
+        if type(times)==_array:
+            self._times = times
+        elif type(times)==list:
+            self._times = _array('d',times)
+        else:
+            raise ValueError('times must be a list or an array of floats')
+        if type(X)==_array:
+            self._X = X
+        elif type(X)==list:
+            self._X = _array('d',X)
+        else:
+            raise ValueError('X\'s must be a list or an array of floats')
+        self._horizon = max(times)
+    def __len__(self):
+        return len(self._times)
+    
+    def __getitem__(self, i:int)->tuple:
+        return (self._times[i],self._X[i])
+    
+    def __call__(self,time:float)->float:
+        if time in self._times:
+            return self._X[self._times.index(time)]
+        else:
+            raise ValueError('time not in path')
+
+    def get_values(self)->list[tuple]:
+        i:int
+        return [(self._times[i],self._X[i]) for i in range(len(self._times))]
+    
+    def append(self,Xt:tuple[float])->None:
+        if type(Xt)!=tuple:
+            _warn('appended value must be a tuple of two float values',category=_package_warning)
+        if len(Xt)!=2:
+            _warn('appended value must be a tuple of two float values',category=_package_warning)
+        if type(Xt[0])!=float or type(Xt[1])!=float:
+            _warn('appended value must be a tuple of two float values',category=_package_warning)
+        self._times.append(Xt[0])
+        self._X.append(Xt[1])
+
+    def make_plot(self,*args,**kwargs)->PathFigure:
+        fig:PathFigure
+        color:str
+        if not 'color' in kwargs:
+            kwargs['color'] = 'xkcd:cobalt'
+        if not 'linewidth' in kwargs:
+            kwargs['linewidth'] = 0.75
+        try:
+            fig = _pyplot.figure(*args,**dict({'FigureClass':PathFigure,'paths':self},**kwargs))
+        finally:
+            return fig
+
+class process_sample:
+    """sample of process paths
+    
+    List of process paths and related functions. The process can be a continuous or jumps process but is assumed to be of in continum time.
+    Attribute _paths must be a list of process_path elements, each one is a realization of a process.
+
+    Args:
+        paths (list[random_paths]): list of random_paths
+    """
+    
+    def __init__(self,paths:list[process_path]):
+        self._paths:list[process_path]
+        self._maxhorizon:float
+        self._paths = paths
+        self._maxhorizon = max([path._horizon for path in paths])
+    
+    def __len__(self)->int:
+        return len(self._paths)
+
+    def __getitem__(self,i:int)->process_path:
+        return self._paths[i]
+
+    def get_values(self)->list[list[tuple[_array[float],_array[float]]]]:
+        return [path.get_values() for path in self._paths]
+    
+    @property
+    def mean(self)->process_path:
+        times:_array[float]
+        means:_array[float]
+        means = _array('d')
+        t:float
+        i:int
+        times = self._paths[0]._times
+        for t in times:
+            sample = []
+            for path in self._paths:
+                try:
+                    i = path._times.index(t)
+                except:
+                    raise IndexError('times for paths in sample are different')
+                finally:
+                    sample.append(path._X[i])
+            means.append(sum(sample)/len(sample))
+        return process_path(times,means,self._paths[0]._type_path,self._paths[0]._auto)
+    
+    def make_plot(self,*args,**kwargs)->PathFigure:
+        fig:PathFigure
+        try:
+            fig = _pyplot.figure(*args,**dict({'FigureClass':PathFigure,'paths':self},**kwargs))
+        finally:
+            return fig
+
+#pseudorandom default generator and related functions
+
+class _package_generator:
+    """Class reserved for main pseudorandom generator.
+    
+    This class provide the default pseudorandom generator on package initialization.
+    This pseudorandom generator is an implementation of L'Ecuyer* MRG32k3a specification.
+    When the package is first imported the generator is initialized with a random number provided by the host system.
+    After that is possible to restart the generator with the set_seed function.
+    This class is not intended to be used to construct another generator, if desire use multcombi_congruential_generator class to construct an equivalent generator.
+    *L'Ecuyer, P. Uniform random number generation. Ann Oper Res 53, 77-120 (1994).
+    
+    Args:
+        seed : integer to initilizate the pseudorandom generator
+    """
+    
+    def __str__(self)->str:
+        return 'package default generator'
+    
+    def __call__(self,n:None|int=None)->float|random_sample|None:
+        if n==None:
+            return self.rand()
+        if type(n)==int:
+            return self.sample(n)
+        else:
+            _warn(message='invalid parameter')
+            return None
+    
+    def __init__(self,seed:int)->None:
+        """all attributes are private"""
+        self._mod_1:int = 2**32-209
+        self._mod_2:int = 2**32-22853
+        self._mults_1:list[int] = [0,1403580,-810728]
+        self._mults_2:list[int] = [527612,0,-1370589]
+        self._state_1:list[int] = [1,1,seed%self._mod_1]
+        self._state_2:list[int] = [1,1,1]
+    
+    def rand(self)->float:
+        """generation of one pseudo-random numbers"""
+        x:int = 0
+        y:int = 0
+        for i in range(len(self._state_1)):
+            x = (x+self._state_1[i]*self._mults_1[i])%self._mod_1
+            y = (y+self._state_2[i]*self._mults_2[i])%self._mod_2
+        z:int = (x-y)%self._mod_1
+        self._state_1.pop(0)
+        self._state_2.pop(0)
+        self._state_1.insert(len(self._state_1),x)
+        self._state_2.insert(len(self._state_2),y)
+        return z/self._mod_1
+    
+    def sample(self,size:int=1)->random_sample|None:
+        """generation of a sample of pseudo-random numbers of length size
+        
+        Keyword Args:
+            size (int): size of sample
+        """
+        sample:random_sample
+        _warn_int(size,'size of sample must be a posituve integer',threshold=1)
+        sample = random_sample()
+        for _ in range(size):
+            sample.append(self.rand())
+        return sample
+
+    def _set_seed(self,seed)->None:
+        """restart the state"""
+        self._state_1 = [1,1,seed]
+        self._state_2 = [1,1,1]
+        return None
+
+rand = _package_generator(int.from_bytes(_urandom(4)))
+
+def set_seed(seed:int)->None:
+    """Change state of default pseudorandom generator.
+
+    This functions allows to set the state of the default pseudorandom generator for reproductibility porpuses.
+    If seed is not an integer it raise a Warning and no change is done.
+
+    Args:
+        seed: integer used to restart the default pseudorandom generator
+    """
+    if _warn_int(seed,message='seed must be an integer'):
+        rand._set_seed(seed)
+    return None
 
 #elements to export
 
