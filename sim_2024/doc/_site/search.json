@@ -179,7 +179,7 @@
     "href": "reference/variates.Bernoulli.html",
     "title": "variates.Bernoulli",
     "section": "",
-    "text": "variates.Bernoulli(self, **kwargs)\nRepresentation of a random variate of Bernoulli type.\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\np\nfloat\nSucess probability\nrequired",
+    "text": "variates.Bernoulli(self, **kwargs)\nRepresentation of a random variate of Bernoulli type.\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\np\nfloat\nSucess probability\nrequired\n\n\n\n\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\nsimulate one value of the random variate\n\n\n\n\n\nvariates.Bernoulli.rand()\nsimulate one value of the random variate",
     "crumbs": [
       "Get started",
       "Random variates",
@@ -192,6 +192,18 @@
     "title": "variates.Bernoulli",
     "section": "",
     "text": "Name\nType\nDescription\nDefault\n\n\n\n\np\nfloat\nSucess probability\nrequired",
+    "crumbs": [
+      "Get started",
+      "Random variates",
+      "`Bernoulli variate`"
+    ]
+  },
+  {
+    "objectID": "reference/variates.Bernoulli.html#methods",
+    "href": "reference/variates.Bernoulli.html#methods",
+    "title": "variates.Bernoulli",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nrand\nsimulate one value of the random variate\n\n\n\n\n\nvariates.Bernoulli.rand()\nsimulate one value of the random variate",
     "crumbs": [
       "Get started",
       "Random variates",
@@ -266,7 +278,12 @@
     "href": "reference/process.WienerProcess.html",
     "title": "process.WienerProcess",
     "section": "",
-    "text": "process.WienerProcess\nprocess.WienerProcess(self)\nStandar Wiener process"
+    "text": "process.WienerProcess\nprocess.WienerProcess(self)\nStandar Wiener process",
+    "crumbs": [
+      "Get started",
+      "Stochastic process",
+      "`Wiener Process`"
+    ]
   },
   {
     "objectID": "reference/process.CompundPoissonProcess.html",
@@ -276,388 +293,93 @@
     "text": "process.CompundPoissonProcess\nprocess.CompundPoissonProcess(self, **kwargs)\nHomogeneous Poisson process"
   },
   {
-    "objectID": "reference/mass_function.html",
-    "href": "reference/mass_function.html",
-    "title": "mass_function",
+    "objectID": "reference/PathFigure.html",
+    "href": "reference/PathFigure.html",
+    "title": "PathFigure",
     "section": "",
-    "text": "mass_function\nmass_function(self, function, sup)\nfuncion de masa",
+    "text": "PathFigure\nPathFigure(self, paths, **kwargs)\ncustom matplotlib Figure to plot a realization from a random process",
     "crumbs": [
       "Get started",
       "Main features",
-      "mass_function"
+      "`PathFigure`"
     ]
   },
   {
-    "objectID": "reference/HistogramFigure.html",
-    "href": "reference/HistogramFigure.html",
-    "title": "HistogramFigure",
+    "objectID": "reference/index.html",
+    "href": "reference/index.html",
+    "title": "sim_2024",
     "section": "",
-    "text": "HistogramFigure(self, sample, **kwargs)\ncustom matplotlib Figure to plot a density histogram\nThis custom figure allows to create a histogram of a sample of float values in a pre-defined format. args and Keyword arguments are passed to figure inizialization and to histogram creation.\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nsample\nrandom_sample\nrandom_sample to plot\nrequired",
-    "crumbs": [
-      "Get started",
-      "Main features",
-      "HistogramFigure"
-    ]
+    "text": "funcionalidades básicas\n\n\n\nrand\n\n\n\nset_seed\nChange state of default pseudorandom generator.\n\n\nrandom_sample\narray subclass to represent a realization of a random process\n\n\nHistogramFigure\ncustom matplotlib Figure to plot a density histogram\n\n\nprocess_path\nrealization of a random process\n\n\nprocess_sample\nsample of process paths\n\n\nPathFigure\ncustom matplotlib Figure to plot a realization from a random process\n\n\nmass_function\nfuncion de masa\n\n\ndensity_function\nfuncion de densidad\n\n\n\n\n\n\nsubmodulo de generadores de números pseudoaleatorios\n\n\n\ngenerators.multiplicative_congruential_generator\nMultiplicative congruential pseudorandom generator.\n\n\ngenerators.linear_congruential_generator\nLinear congruential pseudorandom generator.\n\n\ngenerators.quadratic_congrential_generator\nQuadratic congruential pseudorandom generators.\n\n\ngenerators.polynomial_congruential_generator\nPolynomial congruential pseudorandom generator.\n\n\ngenerators.multiple_congruential_generator\nMultiple congruential pseudorandom generator\n\n\ngenerators.combined_congruential_generator\nCombined congruential pseudorandom generator.\n\n\ngenerators.multcombi_congruential_generator\nMultiple combined congruential pseudorandom generator\n\n\ngenerators.linear_feedback_shift_register_4\nlinear fedbacl shift register for word size 4\n\n\ngenerators.linear_feedback_shift_register_8\nlinear fedbacl shift register for word size 8\n\n\ngenerators.linear_feedback_shift_register_12\nlinear fedbacl shift register for word size 12\n\n\ngenerators.linear_feedback_shift_register_16\nlinear fedback shift register for word size 16\n\n\ngenerators.linear_feedback_shift_register_20\nlinear fedbacl shift register for word size 20\n\n\ngenerators.linear_feedback_shift_register_24\nlinear fedbacl shift register for word size 24\n\n\n\n\n\n\nsubmodulo de pruebas de aleatoriedad para PRNG\n\n\n\ntests.mean_est\n\n\n\ntests.mean_test\n\n\n\ntests.variance_est\n\n\n\ntests.variance_test\n\n\n\ntests.chisq_est\n\n\n\ntests.chisq_test\n\n\n\ntests.series_est\n\n\n\ntests.series_test\n\n\n\ntests.runs_est\n\n\n\ntests.runs_test\n\n\n\n\n\n\n\nsubmodulo de distribuciones de probabilidad\n\n\n\nvariates.Bernoulli\nRepresentation of a random variate of Bernoulli type.\n\n\nvariates.Binomial\nrepresentation of a random variate of binonimal type\n\n\nvariates.Geometric\nRepresentation of a random variate of Bernoulli type\n\n\nvariates.NegativeBinomial\nrepresentation of a random variate of Bernoulli type\n\n\nvariates.DiscreteUniform\nDiscrete uniform distribution.\n\n\nvariates.Poisson\nPoisson distribution.\n\n\nvariates.ContinuousUniform\nContinuous uniform distribution.\n\n\nvariates.Exponential\nExponential distribution.\n\n\nvariates.Normal\nNormal distribution\n\n\nvariates.BoundedNormal\nNormal bounded distribution\n\n\nvariates.RectifiedNormal\nRectified normal distribution\n\n\nvariates.Chisq\n\n\n\nvariates.Student\n\n\n\nvariates.Gamma\nGamma distribution\n\n\nvariates.Beta\nBeta distribution\n\n\nvariates.ExampleDis\n\n\n\n\n\n\n\nsubmodulo de procesos estocásticos\n\n\n\nprocess.WienerProcess\nStandar Wiener process\n\n\nprocess.PoissonProcess\nHomogeneous Poisson process\n\n\nprocess.CompoundPoissonProcess\nHomogeneous Poisson process"
   },
   {
-    "objectID": "reference/HistogramFigure.html#parameters",
-    "href": "reference/HistogramFigure.html#parameters",
-    "title": "HistogramFigure",
+    "objectID": "reference/index.html#basics-pseudorandom-functionalities",
+    "href": "reference/index.html#basics-pseudorandom-functionalities",
+    "title": "sim_2024",
     "section": "",
-    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nsample\nrandom_sample\nrandom_sample to plot\nrequired",
-    "crumbs": [
-      "Get started",
-      "Main features",
-      "HistogramFigure"
-    ]
+    "text": "funcionalidades básicas\n\n\n\nrand\n\n\n\nset_seed\nChange state of default pseudorandom generator.\n\n\nrandom_sample\narray subclass to represent a realization of a random process\n\n\nHistogramFigure\ncustom matplotlib Figure to plot a density histogram\n\n\nprocess_path\nrealization of a random process\n\n\nprocess_sample\nsample of process paths\n\n\nPathFigure\ncustom matplotlib Figure to plot a realization from a random process\n\n\nmass_function\nfuncion de masa\n\n\ndensity_function\nfuncion de densidad"
   },
   {
-    "objectID": "reference/generators.polynomial_congruential_generator.html",
-    "href": "reference/generators.polynomial_congruential_generator.html",
-    "title": "generators.polynomial_congruential_generator",
+    "objectID": "reference/index.html#pseudorandom-number-generators-prng",
+    "href": "reference/index.html#pseudorandom-number-generators-prng",
+    "title": "sim_2024",
     "section": "",
-    "text": "generators.polynomial_congruential_generator(self, **kwargs)\nPolynomial congruential pseudorandom generator.\nPseudorandom generator based on the method to generate pseudorandom numbers. Initialization must be made with keywords for all parameters.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmod\nint\nModule for residual reduction\nrequired\n\n\nmults\nint\nMultipliers\nrequired\n\n\nseeds\nint\ninitial values, the flast element on the list\nrequired\n\n\n\n\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.polynomial_congruential_generator.rand()\ngeneration of one pseudo-random number",
-    "crumbs": [
-      "Get started",
-      "PseudoRandom Number Generators (PRNG)",
-      "`polynomial_congruential_generator`"
-    ]
+    "text": "submodulo de generadores de números pseudoaleatorios\n\n\n\ngenerators.multiplicative_congruential_generator\nMultiplicative congruential pseudorandom generator.\n\n\ngenerators.linear_congruential_generator\nLinear congruential pseudorandom generator.\n\n\ngenerators.quadratic_congrential_generator\nQuadratic congruential pseudorandom generators.\n\n\ngenerators.polynomial_congruential_generator\nPolynomial congruential pseudorandom generator.\n\n\ngenerators.multiple_congruential_generator\nMultiple congruential pseudorandom generator\n\n\ngenerators.combined_congruential_generator\nCombined congruential pseudorandom generator.\n\n\ngenerators.multcombi_congruential_generator\nMultiple combined congruential pseudorandom generator\n\n\ngenerators.linear_feedback_shift_register_4\nlinear fedbacl shift register for word size 4\n\n\ngenerators.linear_feedback_shift_register_8\nlinear fedbacl shift register for word size 8\n\n\ngenerators.linear_feedback_shift_register_12\nlinear fedbacl shift register for word size 12\n\n\ngenerators.linear_feedback_shift_register_16\nlinear fedback shift register for word size 16\n\n\ngenerators.linear_feedback_shift_register_20\nlinear fedbacl shift register for word size 20\n\n\ngenerators.linear_feedback_shift_register_24\nlinear fedbacl shift register for word size 24"
   },
   {
-    "objectID": "reference/generators.polynomial_congruential_generator.html#other-parameters",
-    "href": "reference/generators.polynomial_congruential_generator.html#other-parameters",
-    "title": "generators.polynomial_congruential_generator",
+    "objectID": "reference/index.html#pruebas-de-aleatoriedad",
+    "href": "reference/index.html#pruebas-de-aleatoriedad",
+    "title": "sim_2024",
     "section": "",
-    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nmod\nint\nModule for residual reduction\nrequired\n\n\nmults\nint\nMultipliers\nrequired\n\n\nseeds\nint\ninitial values, the flast element on the list\nrequired",
-    "crumbs": [
-      "Get started",
-      "PseudoRandom Number Generators (PRNG)",
-      "`polynomial_congruential_generator`"
-    ]
+    "text": "submodulo de pruebas de aleatoriedad para PRNG\n\n\n\ntests.mean_est\n\n\n\ntests.mean_test\n\n\n\ntests.variance_est\n\n\n\ntests.variance_test\n\n\n\ntests.chisq_est\n\n\n\ntests.chisq_test\n\n\n\ntests.series_est\n\n\n\ntests.series_test\n\n\n\ntests.runs_est\n\n\n\ntests.runs_test"
   },
   {
-    "objectID": "reference/generators.polynomial_congruential_generator.html#methods",
-    "href": "reference/generators.polynomial_congruential_generator.html#methods",
-    "title": "generators.polynomial_congruential_generator",
+    "objectID": "reference/index.html#distribuciones-de-probabilidad",
+    "href": "reference/index.html#distribuciones-de-probabilidad",
+    "title": "sim_2024",
     "section": "",
-    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.polynomial_congruential_generator.rand()\ngeneration of one pseudo-random number",
+    "text": "submodulo de distribuciones de probabilidad\n\n\n\nvariates.Bernoulli\nRepresentation of a random variate of Bernoulli type.\n\n\nvariates.Binomial\nrepresentation of a random variate of binonimal type\n\n\nvariates.Geometric\nRepresentation of a random variate of Bernoulli type\n\n\nvariates.NegativeBinomial\nrepresentation of a random variate of Bernoulli type\n\n\nvariates.DiscreteUniform\nDiscrete uniform distribution.\n\n\nvariates.Poisson\nPoisson distribution.\n\n\nvariates.ContinuousUniform\nContinuous uniform distribution.\n\n\nvariates.Exponential\nExponential distribution.\n\n\nvariates.Normal\nNormal distribution\n\n\nvariates.BoundedNormal\nNormal bounded distribution\n\n\nvariates.RectifiedNormal\nRectified normal distribution\n\n\nvariates.Chisq\n\n\n\nvariates.Student\n\n\n\nvariates.Gamma\nGamma distribution\n\n\nvariates.Beta\nBeta distribution\n\n\nvariates.ExampleDis"
+  },
+  {
+    "objectID": "reference/index.html#stochastic-process",
+    "href": "reference/index.html#stochastic-process",
+    "title": "sim_2024",
+    "section": "",
+    "text": "submodulo de procesos estocásticos\n\n\n\nprocess.WienerProcess\nStandar Wiener process\n\n\nprocess.PoissonProcess\nHomogeneous Poisson process\n\n\nprocess.CompoundPoissonProcess\nHomogeneous Poisson process"
+  },
+  {
+    "objectID": "reference/generators.quadratic_congrential_generator.html",
+    "href": "reference/generators.quadratic_congrential_generator.html",
+    "title": "generators.quadratic_congrential_generator",
+    "section": "",
+    "text": "generators.quadratic_congrential_generator(self, **kwargs)\nQuadratic congruential pseudorandom generators.\nPseudorandom generator based on the quadr�tic congruential method. Initialization must be made with keywords for all parameters.\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmod\nint\nModule for residual reduction\nrequired\n\n\nseed\nint\ninitial value\nrequired\n\n\n\n\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.quadratic_congrential_generator.rand()\ngeneration of one pseudo-random number",
     "crumbs": [
       "Get started",
       "PseudoRandom Number Generators (PRNG)",
-      "`polynomial_congruential_generator`"
+      "`quadratic_congrential_generator`"
     ]
   },
   {
-    "objectID": "reference/generators.multiple_congruential_generator.html",
-    "href": "reference/generators.multiple_congruential_generator.html",
-    "title": "generators.multiple_congruential_generator",
+    "objectID": "reference/generators.quadratic_congrential_generator.html#other-parameters",
+    "href": "reference/generators.quadratic_congrential_generator.html#other-parameters",
+    "title": "generators.quadratic_congrential_generator",
     "section": "",
-    "text": "generators.multiple_congruential_generator(self, **kwargs)\nMultiple congruential pseudorandom generator\nPseudorandom generator based on the multiple multiplicative congruential generator.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmod\nint\nModule for residual reduction\nrequired\n\n\nseed\nint\ninitial values, the last element on the list\nrequired\n\n\n\n\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.multiple_congruential_generator.rand()\ngeneration of one pseudo-random number",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nmod\nint\nModule for residual reduction\nrequired\n\n\nseed\nint\ninitial value\nrequired",
     "crumbs": [
       "Get started",
       "PseudoRandom Number Generators (PRNG)",
-      "`multiple_congruential_generator`"
+      "`quadratic_congrential_generator`"
     ]
   },
   {
-    "objectID": "reference/generators.multiple_congruential_generator.html#other-parameters",
-    "href": "reference/generators.multiple_congruential_generator.html#other-parameters",
-    "title": "generators.multiple_congruential_generator",
+    "objectID": "reference/generators.quadratic_congrential_generator.html#methods",
+    "href": "reference/generators.quadratic_congrential_generator.html#methods",
+    "title": "generators.quadratic_congrential_generator",
     "section": "",
-    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nmod\nint\nModule for residual reduction\nrequired\n\n\nseed\nint\ninitial values, the last element on the list\nrequired",
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.quadratic_congrential_generator.rand()\ngeneration of one pseudo-random number",
     "crumbs": [
       "Get started",
       "PseudoRandom Number Generators (PRNG)",
-      "`multiple_congruential_generator`"
-    ]
-  },
-  {
-    "objectID": "reference/generators.multiple_congruential_generator.html#methods",
-    "href": "reference/generators.multiple_congruential_generator.html#methods",
-    "title": "generators.multiple_congruential_generator",
-    "section": "",
-    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.multiple_congruential_generator.rand()\ngeneration of one pseudo-random number",
-    "crumbs": [
-      "Get started",
-      "PseudoRandom Number Generators (PRNG)",
-      "`multiple_congruential_generator`"
-    ]
-  },
-  {
-    "objectID": "reference/generators.linear_feedback_shift_register_8.html",
-    "href": "reference/generators.linear_feedback_shift_register_8.html",
-    "title": "generators.linear_feedback_shift_register_8",
-    "section": "",
-    "text": "generators.linear_feedback_shift_register_8(self, **kwargs)\nlinear fedbacl shift register for word size 8\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_8.rand()\ngeneration of one pseudo-random number"
-  },
-  {
-    "objectID": "reference/generators.linear_feedback_shift_register_8.html#methods",
-    "href": "reference/generators.linear_feedback_shift_register_8.html#methods",
-    "title": "generators.linear_feedback_shift_register_8",
-    "section": "",
-    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_8.rand()\ngeneration of one pseudo-random number"
-  },
-  {
-    "objectID": "reference/generators.linear_feedback_shift_register_24.html",
-    "href": "reference/generators.linear_feedback_shift_register_24.html",
-    "title": "generators.linear_feedback_shift_register_24",
-    "section": "",
-    "text": "generators.linear_feedback_shift_register_24(self, **kwargs)\nlinear fedbacl shift register for word size 24\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_24.rand()\ngeneration of one pseudo random number"
-  },
-  {
-    "objectID": "reference/generators.linear_feedback_shift_register_24.html#methods",
-    "href": "reference/generators.linear_feedback_shift_register_24.html#methods",
-    "title": "generators.linear_feedback_shift_register_24",
-    "section": "",
-    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_24.rand()\ngeneration of one pseudo random number"
-  },
-  {
-    "objectID": "reference/generators.linear_feedback_shift_register_16.html",
-    "href": "reference/generators.linear_feedback_shift_register_16.html",
-    "title": "generators.linear_feedback_shift_register_16",
-    "section": "",
-    "text": "generators.linear_feedback_shift_register_16(self, **kwargs)\nlinear fedback shift register for word size 16\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_16.rand()\ngeneration of one pseudo-random number"
-  },
-  {
-    "objectID": "reference/generators.linear_feedback_shift_register_16.html#methods",
-    "href": "reference/generators.linear_feedback_shift_register_16.html#methods",
-    "title": "generators.linear_feedback_shift_register_16",
-    "section": "",
-    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_16.rand()\ngeneration of one pseudo-random number"
-  },
-  {
-    "objectID": "reference/generators.linear_congruential_generator.html",
-    "href": "reference/generators.linear_congruential_generator.html",
-    "title": "generators.linear_congruential_generator",
-    "section": "",
-    "text": "generators.linear_congruential_generator(self, **kwargs)\nLinear congruential pseudorandom generator.\nPseudorandom generator based on the linear congruential method. Initialization must be made with keywords for all parameters.\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmod\nint\nModule for residual reduction\nrequired\n\n\nmult\nint\nMultiplier\nrequired\n\n\nseed\nint\ninitial value\nrequired\n\n\ncte\nint\naditive constant\nrequired\n\n\n\n\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_congruential_generator.rand()\ngeneration of one pseudo-random number",
-    "crumbs": [
-      "Get started",
-      "PseudoRandom Number Generators (PRNG)",
-      "`linear_congruential_generator`"
-    ]
-  },
-  {
-    "objectID": "reference/generators.linear_congruential_generator.html#other-parameters",
-    "href": "reference/generators.linear_congruential_generator.html#other-parameters",
-    "title": "generators.linear_congruential_generator",
-    "section": "",
-    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nmod\nint\nModule for residual reduction\nrequired\n\n\nmult\nint\nMultiplier\nrequired\n\n\nseed\nint\ninitial value\nrequired\n\n\ncte\nint\naditive constant\nrequired",
-    "crumbs": [
-      "Get started",
-      "PseudoRandom Number Generators (PRNG)",
-      "`linear_congruential_generator`"
-    ]
-  },
-  {
-    "objectID": "reference/generators.linear_congruential_generator.html#methods",
-    "href": "reference/generators.linear_congruential_generator.html#methods",
-    "title": "generators.linear_congruential_generator",
-    "section": "",
-    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_congruential_generator.rand()\ngeneration of one pseudo-random number",
-    "crumbs": [
-      "Get started",
-      "PseudoRandom Number Generators (PRNG)",
-      "`linear_congruential_generator`"
-    ]
-  },
-  {
-    "objectID": "reference/density_function.html",
-    "href": "reference/density_function.html",
-    "title": "density_function",
-    "section": "",
-    "text": "density_function(self, function, **kwargs)\nfuncion de densidad\nClase de abstracci�n de una funci�n de densidad de probabilidad.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nfunction\nCallable\nfuncti�n used to evaluate density_function between min and max args.\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmin\nfloat\ndensity_functi�n evaluate to zero below min\nrequired\n\n\nmax\nfloat\ndensity_functi�n evaluate to zero above max\nrequired",
-    "crumbs": [
-      "Get started",
-      "Main features",
-      "density_function"
-    ]
-  },
-  {
-    "objectID": "reference/density_function.html#parameters",
-    "href": "reference/density_function.html#parameters",
-    "title": "density_function",
-    "section": "",
-    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nfunction\nCallable\nfuncti�n used to evaluate density_function between min and max args.\nrequired",
-    "crumbs": [
-      "Get started",
-      "Main features",
-      "density_function"
-    ]
-  },
-  {
-    "objectID": "reference/density_function.html#other-parameters",
-    "href": "reference/density_function.html#other-parameters",
-    "title": "density_function",
-    "section": "",
-    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nmin\nfloat\ndensity_functi�n evaluate to zero below min\nrequired\n\n\nmax\nfloat\ndensity_functi�n evaluate to zero above max\nrequired",
-    "crumbs": [
-      "Get started",
-      "Main features",
-      "density_function"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "sim_2024 ",
-    "section": "",
-    "text": "El paquete sim_2024 es un paquete básico de simulación estocástica construido dentro del curso Simulación Estocástica que se impartio en el periodo agosto-noviembre de 2024 en el programa de Acturía de la Universidad La Salle México."
-  },
-  {
-    "objectID": "index.html#contenido",
-    "href": "index.html#contenido",
-    "title": "sim_2024 ",
-    "section": "Contenido",
-    "text": "Contenido\nEste paquete contiene los siguientes modulos\n\ngenerators: aqui se implementan algunos generadores de números pseudoaleatorios (PRNG por sus siglas en ingles) simples. Ninguno de estos generadores tiene la intención de ser utilizado más que con fines didácticos.\ntests: en este módulo se implementan algunas pruebas empíricas de aleatoriedad que son aplicables a los PRNG contenidos en el módulo generators así como una batería de pruebas para facilitar el análisis de muestras.\nvariates: este modulo contiene representaciones de las variables aleatorias más utilizadas en el contexto actuarial. Esto inclute distribuciones discretas y continuas univariadas, así como las distribuciónes mutinormal y multinomial como únicos ejemplos de distribuciones multivariadas.\nprocess: aqui se han implementado representaciones del proceso de Wiener, del proceso de Poisson homogeneo y del proceso de Poisson compuesto.\n\nEn toda el paquete se utilizan las definiciones y la terminología estandar de probabilidad y estadística. Para cualquier referencia sugerimos consultar la página Wikipedia."
-  },
-  {
-    "objectID": "index.html#autor",
-    "href": "index.html#autor",
-    "title": "sim_2024 ",
-    "section": "Autor",
-    "text": "Autor\n\nHéctor Hugo Corrales Sánchez, hhcorrales@gmail.com."
-  },
-  {
-    "objectID": "generators.html",
-    "href": "generators.html",
-    "title": "Pseudo Random Number Generators Module",
-    "section": "",
-    "text": "Generadores pseudoaleatorios\nAqui vamos a poner cosas sobre el apartado de generadores\n\nRANDU = multiplicative_congruential_generator(mod=2**31,mult=65539,seed=14501)"
-  },
-  {
-    "objectID": "get_started.html",
-    "href": "get_started.html",
-    "title": "Guia rápida",
-    "section": "",
-    "text": "Aqui vamos a poner una guia rápida."
-  },
-  {
-    "objectID": "get_started.html#primeros-pasos",
-    "href": "get_started.html#primeros-pasos",
-    "title": "Guia rápida",
-    "section": "Primeros pasos",
-    "text": "Primeros pasos\nLos módulos descritos son independientes, por lo que es necesario importarlos de forma independiente. Por ejemplo, para recrear el infame PRNG RANDU del lenguaje Basic utilizariamos\n\nimport sim_2024.generators as generators\nRANDU = generators.multiplicative_congruential_generator(mod=2**31,mult=65539,seed=14501)\n\nCualquier generador pseudoaleatorio creado mediante uno de los constructores definidos posee dos métodos: rand y sample. El método rand se utiliza para obtener un número pseudoaleatorio, mientras que sample se emplea cuando se desea obtener una lista de números pseudoaleatorios."
-  },
-  {
-    "objectID": "get_started.html#segundos-pasos",
-    "href": "get_started.html#segundos-pasos",
-    "title": "Guia rápida",
-    "section": "Segundos pasos",
-    "text": "Segundos pasos\nY luego mas cosas así"
-  },
-  {
-    "objectID": "reference/generators.combined_congruential_generator.html",
-    "href": "reference/generators.combined_congruential_generator.html",
-    "title": "generators.combined_congruential_generator",
-    "section": "",
-    "text": "generators.combined_congruential_generator(self, **kwargs)\nCombined congruential pseudorandom generator.\nPseudorandom generator based on the multiple multiplicative congruential generator.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmod\nint\nModule for residual reduction\nrequired\n\n\nseed\nint\ninitial values, the last element on the list\nrequired\n\n\n\n\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.combined_congruential_generator.rand()\ngeneration of one pseudo-random number",
-    "crumbs": [
-      "Get started",
-      "PseudoRandom Number Generators (PRNG)",
-      "`combined_congruential_generator`"
-    ]
-  },
-  {
-    "objectID": "reference/generators.combined_congruential_generator.html#other-parameters",
-    "href": "reference/generators.combined_congruential_generator.html#other-parameters",
-    "title": "generators.combined_congruential_generator",
-    "section": "",
-    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nmod\nint\nModule for residual reduction\nrequired\n\n\nseed\nint\ninitial values, the last element on the list\nrequired",
-    "crumbs": [
-      "Get started",
-      "PseudoRandom Number Generators (PRNG)",
-      "`combined_congruential_generator`"
-    ]
-  },
-  {
-    "objectID": "reference/generators.combined_congruential_generator.html#methods",
-    "href": "reference/generators.combined_congruential_generator.html#methods",
-    "title": "generators.combined_congruential_generator",
-    "section": "",
-    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.combined_congruential_generator.rand()\ngeneration of one pseudo-random number",
-    "crumbs": [
-      "Get started",
-      "PseudoRandom Number Generators (PRNG)",
-      "`combined_congruential_generator`"
-    ]
-  },
-  {
-    "objectID": "reference/generators.linear_feedback_shift_register_12.html",
-    "href": "reference/generators.linear_feedback_shift_register_12.html",
-    "title": "generators.linear_feedback_shift_register_12",
-    "section": "",
-    "text": "generators.linear_feedback_shift_register_12(self, **kwargs)\nlinear fedbacl shift register for word size 12\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_12.rand()\ngeneration of one pseudo-random number"
-  },
-  {
-    "objectID": "reference/generators.linear_feedback_shift_register_12.html#methods",
-    "href": "reference/generators.linear_feedback_shift_register_12.html#methods",
-    "title": "generators.linear_feedback_shift_register_12",
-    "section": "",
-    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_12.rand()\ngeneration of one pseudo-random number"
-  },
-  {
-    "objectID": "reference/generators.linear_feedback_shift_register_20.html",
-    "href": "reference/generators.linear_feedback_shift_register_20.html",
-    "title": "generators.linear_feedback_shift_register_20",
-    "section": "",
-    "text": "generators.linear_feedback_shift_register_20(self, **kwargs)\nlinear fedbacl shift register for word size 20\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_20.rand()\ngeneration of one pseudo-random number"
-  },
-  {
-    "objectID": "reference/generators.linear_feedback_shift_register_20.html#methods",
-    "href": "reference/generators.linear_feedback_shift_register_20.html#methods",
-    "title": "generators.linear_feedback_shift_register_20",
-    "section": "",
-    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_20.rand()\ngeneration of one pseudo-random number"
-  },
-  {
-    "objectID": "reference/generators.linear_feedback_shift_register_4.html",
-    "href": "reference/generators.linear_feedback_shift_register_4.html",
-    "title": "generators.linear_feedback_shift_register_4",
-    "section": "",
-    "text": "generators.linear_feedback_shift_register_4(self, **kwargs)\nlinear fedbacl shift register for word size 4\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_4.rand()\ngeneration of one pseudo-random number"
-  },
-  {
-    "objectID": "reference/generators.linear_feedback_shift_register_4.html#methods",
-    "href": "reference/generators.linear_feedback_shift_register_4.html#methods",
-    "title": "generators.linear_feedback_shift_register_4",
-    "section": "",
-    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_4.rand()\ngeneration of one pseudo-random number"
-  },
-  {
-    "objectID": "reference/generators.multcombi_congruential_generator.html",
-    "href": "reference/generators.multcombi_congruential_generator.html",
-    "title": "generators.multcombi_congruential_generator",
-    "section": "",
-    "text": "generators.multcombi_congruential_generator(self, **kwargs)\nMultiple combined congruential pseudorandom generator\nPseudorandom generator based on the multiple combined congruential method. Initialization must be made with keywords for all parameters.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmods\nlist[int]\narray of 2 positive integers, both to be used as modules\nrequired\n\n\nmults\nlist[int]\narray of 2m integers used as multipliers, the sequence is splited in two array of the same length\nrequired\n\n\nseeds\nlist[int]\narray of 2m integers used as seeds, the sequence is splited in two array of the same length\nrequired\n\n\n\n\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudorandom number\n\n\n\n\n\ngenerators.multcombi_congruential_generator.rand()\ngeneration of one pseudorandom number",
-    "crumbs": [
-      "Get started",
-      "PseudoRandom Number Generators (PRNG)",
-      "`multcombi_congruential_generator`"
-    ]
-  },
-  {
-    "objectID": "reference/generators.multcombi_congruential_generator.html#other-parameters",
-    "href": "reference/generators.multcombi_congruential_generator.html#other-parameters",
-    "title": "generators.multcombi_congruential_generator",
-    "section": "",
-    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nmods\nlist[int]\narray of 2 positive integers, both to be used as modules\nrequired\n\n\nmults\nlist[int]\narray of 2m integers used as multipliers, the sequence is splited in two array of the same length\nrequired\n\n\nseeds\nlist[int]\narray of 2m integers used as seeds, the sequence is splited in two array of the same length\nrequired",
-    "crumbs": [
-      "Get started",
-      "PseudoRandom Number Generators (PRNG)",
-      "`multcombi_congruential_generator`"
-    ]
-  },
-  {
-    "objectID": "reference/generators.multcombi_congruential_generator.html#methods",
-    "href": "reference/generators.multcombi_congruential_generator.html#methods",
-    "title": "generators.multcombi_congruential_generator",
-    "section": "",
-    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudorandom number\n\n\n\n\n\ngenerators.multcombi_congruential_generator.rand()\ngeneration of one pseudorandom number",
-    "crumbs": [
-      "Get started",
-      "PseudoRandom Number Generators (PRNG)",
-      "`multcombi_congruential_generator`"
+      "`quadratic_congrential_generator`"
     ]
   },
   {
@@ -697,93 +419,400 @@
     ]
   },
   {
-    "objectID": "reference/generators.quadratic_congrential_generator.html",
-    "href": "reference/generators.quadratic_congrential_generator.html",
-    "title": "generators.quadratic_congrential_generator",
+    "objectID": "reference/generators.multcombi_congruential_generator.html",
+    "href": "reference/generators.multcombi_congruential_generator.html",
+    "title": "generators.multcombi_congruential_generator",
     "section": "",
-    "text": "generators.quadratic_congrential_generator(self, **kwargs)\nQuadratic congruential pseudorandom generators.\nPseudorandom generator based on the quadr�tic congruential method. Initialization must be made with keywords for all parameters.\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmod\nint\nModule for residual reduction\nrequired\n\n\nseed\nint\ninitial value\nrequired\n\n\n\n\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.quadratic_congrential_generator.rand()\ngeneration of one pseudo-random number",
+    "text": "generators.multcombi_congruential_generator(self, **kwargs)\nMultiple combined congruential pseudorandom generator\nPseudorandom generator based on the multiple combined congruential method. Initialization must be made with keywords for all parameters.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmods\nlist[int]\narray of 2 positive integers, both to be used as modules\nrequired\n\n\nmults\nlist[int]\narray of 2m integers used as multipliers, the sequence is splited in two array of the same length\nrequired\n\n\nseeds\nlist[int]\narray of 2m integers used as seeds, the sequence is splited in two array of the same length\nrequired\n\n\n\n\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudorandom number\n\n\n\n\n\ngenerators.multcombi_congruential_generator.rand()\ngeneration of one pseudorandom number",
     "crumbs": [
       "Get started",
       "PseudoRandom Number Generators (PRNG)",
-      "`quadratic_congrential_generator`"
+      "`multcombi_congruential_generator`"
     ]
   },
   {
-    "objectID": "reference/generators.quadratic_congrential_generator.html#other-parameters",
-    "href": "reference/generators.quadratic_congrential_generator.html#other-parameters",
-    "title": "generators.quadratic_congrential_generator",
+    "objectID": "reference/generators.multcombi_congruential_generator.html#other-parameters",
+    "href": "reference/generators.multcombi_congruential_generator.html#other-parameters",
+    "title": "generators.multcombi_congruential_generator",
     "section": "",
-    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nmod\nint\nModule for residual reduction\nrequired\n\n\nseed\nint\ninitial value\nrequired",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nmods\nlist[int]\narray of 2 positive integers, both to be used as modules\nrequired\n\n\nmults\nlist[int]\narray of 2m integers used as multipliers, the sequence is splited in two array of the same length\nrequired\n\n\nseeds\nlist[int]\narray of 2m integers used as seeds, the sequence is splited in two array of the same length\nrequired",
     "crumbs": [
       "Get started",
       "PseudoRandom Number Generators (PRNG)",
-      "`quadratic_congrential_generator`"
+      "`multcombi_congruential_generator`"
     ]
   },
   {
-    "objectID": "reference/generators.quadratic_congrential_generator.html#methods",
-    "href": "reference/generators.quadratic_congrential_generator.html#methods",
-    "title": "generators.quadratic_congrential_generator",
+    "objectID": "reference/generators.multcombi_congruential_generator.html#methods",
+    "href": "reference/generators.multcombi_congruential_generator.html#methods",
+    "title": "generators.multcombi_congruential_generator",
     "section": "",
-    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.quadratic_congrential_generator.rand()\ngeneration of one pseudo-random number",
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudorandom number\n\n\n\n\n\ngenerators.multcombi_congruential_generator.rand()\ngeneration of one pseudorandom number",
     "crumbs": [
       "Get started",
       "PseudoRandom Number Generators (PRNG)",
-      "`quadratic_congrential_generator`"
+      "`multcombi_congruential_generator`"
     ]
   },
   {
-    "objectID": "reference/index.html",
-    "href": "reference/index.html",
-    "title": "sim_2024",
+    "objectID": "reference/generators.linear_feedback_shift_register_4.html",
+    "href": "reference/generators.linear_feedback_shift_register_4.html",
+    "title": "generators.linear_feedback_shift_register_4",
     "section": "",
-    "text": "funcionalidades básicas\n\n\n\nrand\n\n\n\nset_seed\nChange state of default pseudorandom generator.\n\n\nrandom_sample\narray subclass to represent a realization of a random process\n\n\nHistogramFigure\ncustom matplotlib Figure to plot a density histogram\n\n\nprocess_path\nrealization of a random process\n\n\nprocess_sample\nsample of process paths\n\n\nPathFigure\ncustom matplotlib Figure to plot a realization from a random process\n\n\nmass_function\nfuncion de masa\n\n\ndensity_function\nfuncion de densidad\n\n\n\n\n\n\nsubmodulo de generadores de números pseudoaleatorios\n\n\n\ngenerators.multiplicative_congruential_generator\nMultiplicative congruential pseudorandom generator.\n\n\ngenerators.linear_congruential_generator\nLinear congruential pseudorandom generator.\n\n\ngenerators.quadratic_congrential_generator\nQuadratic congruential pseudorandom generators.\n\n\ngenerators.polynomial_congruential_generator\nPolynomial congruential pseudorandom generator.\n\n\ngenerators.multiple_congruential_generator\nMultiple congruential pseudorandom generator\n\n\ngenerators.combined_congruential_generator\nCombined congruential pseudorandom generator.\n\n\ngenerators.multcombi_congruential_generator\nMultiple combined congruential pseudorandom generator\n\n\ngenerators.linear_feedback_shift_register_4\nlinear fedbacl shift register for word size 4\n\n\ngenerators.linear_feedback_shift_register_8\nlinear fedbacl shift register for word size 8\n\n\ngenerators.linear_feedback_shift_register_12\nlinear fedbacl shift register for word size 12\n\n\ngenerators.linear_feedback_shift_register_16\nlinear fedback shift register for word size 16\n\n\ngenerators.linear_feedback_shift_register_20\nlinear fedbacl shift register for word size 20\n\n\ngenerators.linear_feedback_shift_register_24\nlinear fedbacl shift register for word size 24\n\n\n\n\n\n\nsubmodulo de pruebas de aleatoriedad para PRNG\n\n\n\ntests.mean_est\n\n\n\ntests.mean_test\n\n\n\ntests.variance_est\n\n\n\ntests.variance_test\n\n\n\ntests.chisq_est\n\n\n\ntests.chisq_test\n\n\n\ntests.series_est\n\n\n\ntests.series_test\n\n\n\ntests.runs_est\n\n\n\ntests.runs_test\n\n\n\n\n\n\n\nsubmodulo de distribuciones de probabilidad\n\n\n\nvariates.Bernoulli\nRepresentation of a random variate of Bernoulli type.\n\n\nvariates.Binomial\nrepresentation of a random variate of binonimal type\n\n\nvariates.Geometric\nRepresentation of a random variate of Bernoulli type\n\n\nvariates.NegativeBinomial\nrepresentation of a random variate of Bernoulli type\n\n\nvariates.DiscreteUniform\nDiscrete uniform distribution.\n\n\nvariates.Poisson\nPoisson distribution.\n\n\nvariates.ContinuousUniform\nContinuous uniform distribution.\n\n\nvariates.Exponential\nExponential distribution.\n\n\nvariates.Normal\nNormal distribution\n\n\nvariates.BoundedNormal\nNormal bounded distribution\n\n\nvariates.RectifiedNormal\nRectified normal distribution\n\n\nvariates.Chisq\n\n\n\nvariates.Student\n\n\n\nvariates.Gamma\nGamma distribution\n\n\nvariates.Beta\nBeta distribution\n\n\nvariates.ExampleDis\n\n\n\n\n\n\n\nsubmodulo de procesos estocásticos\n\n\n\nprocess.WienerProcess\nStandar Wiener process\n\n\nprocess.PoissonProcess\nHomogeneous Poisson process\n\n\nprocess.CompundPoissonProcess\nHomogeneous Poisson process"
+    "text": "generators.linear_feedback_shift_register_4(self, **kwargs)\nlinear fedbacl shift register for word size 4\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_4.rand()\ngeneration of one pseudo-random number"
   },
   {
-    "objectID": "reference/index.html#basics-pseudorandom-functionalities",
-    "href": "reference/index.html#basics-pseudorandom-functionalities",
-    "title": "sim_2024",
+    "objectID": "reference/generators.linear_feedback_shift_register_4.html#methods",
+    "href": "reference/generators.linear_feedback_shift_register_4.html#methods",
+    "title": "generators.linear_feedback_shift_register_4",
     "section": "",
-    "text": "funcionalidades básicas\n\n\n\nrand\n\n\n\nset_seed\nChange state of default pseudorandom generator.\n\n\nrandom_sample\narray subclass to represent a realization of a random process\n\n\nHistogramFigure\ncustom matplotlib Figure to plot a density histogram\n\n\nprocess_path\nrealization of a random process\n\n\nprocess_sample\nsample of process paths\n\n\nPathFigure\ncustom matplotlib Figure to plot a realization from a random process\n\n\nmass_function\nfuncion de masa\n\n\ndensity_function\nfuncion de densidad"
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_4.rand()\ngeneration of one pseudo-random number"
   },
   {
-    "objectID": "reference/index.html#pseudorandom-number-generators-prng",
-    "href": "reference/index.html#pseudorandom-number-generators-prng",
-    "title": "sim_2024",
+    "objectID": "reference/generators.linear_feedback_shift_register_20.html",
+    "href": "reference/generators.linear_feedback_shift_register_20.html",
+    "title": "generators.linear_feedback_shift_register_20",
     "section": "",
-    "text": "submodulo de generadores de números pseudoaleatorios\n\n\n\ngenerators.multiplicative_congruential_generator\nMultiplicative congruential pseudorandom generator.\n\n\ngenerators.linear_congruential_generator\nLinear congruential pseudorandom generator.\n\n\ngenerators.quadratic_congrential_generator\nQuadratic congruential pseudorandom generators.\n\n\ngenerators.polynomial_congruential_generator\nPolynomial congruential pseudorandom generator.\n\n\ngenerators.multiple_congruential_generator\nMultiple congruential pseudorandom generator\n\n\ngenerators.combined_congruential_generator\nCombined congruential pseudorandom generator.\n\n\ngenerators.multcombi_congruential_generator\nMultiple combined congruential pseudorandom generator\n\n\ngenerators.linear_feedback_shift_register_4\nlinear fedbacl shift register for word size 4\n\n\ngenerators.linear_feedback_shift_register_8\nlinear fedbacl shift register for word size 8\n\n\ngenerators.linear_feedback_shift_register_12\nlinear fedbacl shift register for word size 12\n\n\ngenerators.linear_feedback_shift_register_16\nlinear fedback shift register for word size 16\n\n\ngenerators.linear_feedback_shift_register_20\nlinear fedbacl shift register for word size 20\n\n\ngenerators.linear_feedback_shift_register_24\nlinear fedbacl shift register for word size 24"
+    "text": "generators.linear_feedback_shift_register_20(self, **kwargs)\nlinear fedbacl shift register for word size 20\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_20.rand()\ngeneration of one pseudo-random number"
   },
   {
-    "objectID": "reference/index.html#pruebas-de-aleatoriedad",
-    "href": "reference/index.html#pruebas-de-aleatoriedad",
-    "title": "sim_2024",
+    "objectID": "reference/generators.linear_feedback_shift_register_20.html#methods",
+    "href": "reference/generators.linear_feedback_shift_register_20.html#methods",
+    "title": "generators.linear_feedback_shift_register_20",
     "section": "",
-    "text": "submodulo de pruebas de aleatoriedad para PRNG\n\n\n\ntests.mean_est\n\n\n\ntests.mean_test\n\n\n\ntests.variance_est\n\n\n\ntests.variance_test\n\n\n\ntests.chisq_est\n\n\n\ntests.chisq_test\n\n\n\ntests.series_est\n\n\n\ntests.series_test\n\n\n\ntests.runs_est\n\n\n\ntests.runs_test"
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_20.rand()\ngeneration of one pseudo-random number"
   },
   {
-    "objectID": "reference/index.html#distribuciones-de-probabilidad",
-    "href": "reference/index.html#distribuciones-de-probabilidad",
-    "title": "sim_2024",
+    "objectID": "reference/generators.linear_feedback_shift_register_12.html",
+    "href": "reference/generators.linear_feedback_shift_register_12.html",
+    "title": "generators.linear_feedback_shift_register_12",
     "section": "",
-    "text": "submodulo de distribuciones de probabilidad\n\n\n\nvariates.Bernoulli\nRepresentation of a random variate of Bernoulli type.\n\n\nvariates.Binomial\nrepresentation of a random variate of binonimal type\n\n\nvariates.Geometric\nRepresentation of a random variate of Bernoulli type\n\n\nvariates.NegativeBinomial\nrepresentation of a random variate of Bernoulli type\n\n\nvariates.DiscreteUniform\nDiscrete uniform distribution.\n\n\nvariates.Poisson\nPoisson distribution.\n\n\nvariates.ContinuousUniform\nContinuous uniform distribution.\n\n\nvariates.Exponential\nExponential distribution.\n\n\nvariates.Normal\nNormal distribution\n\n\nvariates.BoundedNormal\nNormal bounded distribution\n\n\nvariates.RectifiedNormal\nRectified normal distribution\n\n\nvariates.Chisq\n\n\n\nvariates.Student\n\n\n\nvariates.Gamma\nGamma distribution\n\n\nvariates.Beta\nBeta distribution\n\n\nvariates.ExampleDis"
+    "text": "generators.linear_feedback_shift_register_12(self, **kwargs)\nlinear fedbacl shift register for word size 12\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_12.rand()\ngeneration of one pseudo-random number"
   },
   {
-    "objectID": "reference/index.html#stochastic-process",
-    "href": "reference/index.html#stochastic-process",
-    "title": "sim_2024",
+    "objectID": "reference/generators.linear_feedback_shift_register_12.html#methods",
+    "href": "reference/generators.linear_feedback_shift_register_12.html#methods",
+    "title": "generators.linear_feedback_shift_register_12",
     "section": "",
-    "text": "submodulo de procesos estocásticos\n\n\n\nprocess.WienerProcess\nStandar Wiener process\n\n\nprocess.PoissonProcess\nHomogeneous Poisson process\n\n\nprocess.CompundPoissonProcess\nHomogeneous Poisson process"
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_12.rand()\ngeneration of one pseudo-random number"
   },
   {
-    "objectID": "reference/PathFigure.html",
-    "href": "reference/PathFigure.html",
-    "title": "PathFigure",
+    "objectID": "reference/generators.combined_congruential_generator.html",
+    "href": "reference/generators.combined_congruential_generator.html",
+    "title": "generators.combined_congruential_generator",
     "section": "",
-    "text": "PathFigure\nPathFigure(self, paths, **kwargs)\ncustom matplotlib Figure to plot a realization from a random process",
+    "text": "generators.combined_congruential_generator(self, **kwargs)\nCombined congruential pseudorandom generator.\nPseudorandom generator based on the multiple multiplicative congruential generator.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmod\nint\nModule for residual reduction\nrequired\n\n\nseed\nint\ninitial values, the last element on the list\nrequired\n\n\n\n\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.combined_congruential_generator.rand()\ngeneration of one pseudo-random number",
+    "crumbs": [
+      "Get started",
+      "PseudoRandom Number Generators (PRNG)",
+      "`combined_congruential_generator`"
+    ]
+  },
+  {
+    "objectID": "reference/generators.combined_congruential_generator.html#other-parameters",
+    "href": "reference/generators.combined_congruential_generator.html#other-parameters",
+    "title": "generators.combined_congruential_generator",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nmod\nint\nModule for residual reduction\nrequired\n\n\nseed\nint\ninitial values, the last element on the list\nrequired",
+    "crumbs": [
+      "Get started",
+      "PseudoRandom Number Generators (PRNG)",
+      "`combined_congruential_generator`"
+    ]
+  },
+  {
+    "objectID": "reference/generators.combined_congruential_generator.html#methods",
+    "href": "reference/generators.combined_congruential_generator.html#methods",
+    "title": "generators.combined_congruential_generator",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.combined_congruential_generator.rand()\ngeneration of one pseudo-random number",
+    "crumbs": [
+      "Get started",
+      "PseudoRandom Number Generators (PRNG)",
+      "`combined_congruential_generator`"
+    ]
+  },
+  {
+    "objectID": "get_started.html",
+    "href": "get_started.html",
+    "title": "Guia rápida",
+    "section": "",
+    "text": "Aqui vamos a poner una guia rápida."
+  },
+  {
+    "objectID": "get_started.html#primeros-pasos",
+    "href": "get_started.html#primeros-pasos",
+    "title": "Guia rápida",
+    "section": "Primeros pasos",
+    "text": "Primeros pasos\nLos módulos descritos son independientes, por lo que es necesario importarlos de forma independiente. Por ejemplo, para recrear el infame PRNG RANDU del lenguaje Basic utilizariamos\n\nimport sim_2024.generators as generators\nRANDU = generators.multiplicative_congruential_generator(mod=2**31,mult=65539,seed=14501)\n\nCualquier generador pseudoaleatorio creado mediante uno de los constructores definidos posee dos métodos: rand y sample. El método rand se utiliza para obtener un número pseudoaleatorio, mientras que sample se emplea cuando se desea obtener una lista de números pseudoaleatorios."
+  },
+  {
+    "objectID": "get_started.html#segundos-pasos",
+    "href": "get_started.html#segundos-pasos",
+    "title": "Guia rápida",
+    "section": "Segundos pasos",
+    "text": "Segundos pasos\nY luego mas cosas así"
+  },
+  {
+    "objectID": "generators.html",
+    "href": "generators.html",
+    "title": "Pseudo Random Number Generators Module",
+    "section": "",
+    "text": "Los generadores de números pseudoaleatorios (PRNG) son sin duda alguna un tema especializado dentro de las técnicas de simulación y el estado actual de estos métodos queda fuera del alcance de un curso introductorio. Razón por la cual se ha elegido implementar solo algunos de los métodos básicos: los así denominados métodos congruenciales y los métodos de retroalimentación lineal.\nTodos los métodos implementados derivan de una clase maestra denominada _random_generator. Dada la naturaleza disimila de PRNG cada generador derivado de esta clase padre debe implementar el método rand el cual debe generar un (único) número pseudoaleatorio. En esta clase se implementa el método sample\n\nGeneradores pseudoaleatorios\nAqui vamos a poner cosas sobre el apartado de generadores\n\nRANDU = multiplicative_congruential_generator(mod=2**31,mult=65539,seed=14501)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "sim_2024 ",
+    "section": "",
+    "text": "El paquete sim_2024 es un paquete básico de simulación estocástica construido dentro del curso Simulación Estocástica que se impartio en el periodo agosto-noviembre de 2024 en el programa de Acturía de la Universidad La Salle México."
+  },
+  {
+    "objectID": "index.html#contenido",
+    "href": "index.html#contenido",
+    "title": "sim_2024 ",
+    "section": "Contenido",
+    "text": "Contenido\nEste paquete contiene los siguientes modulos\n\ngenerators: aqui se implementan algunos generadores de números pseudoaleatorios (PRNG por sus siglas en ingles) simples. Ninguno de estos generadores tiene la intención de ser utilizado más que con fines didácticos.\ntests: en este módulo se implementan algunas pruebas empíricas de aleatoriedad que son aplicables a los PRNG contenidos en el módulo generators así como una batería de pruebas para facilitar el análisis de muestras.\nvariates: este modulo contiene representaciones de las variables aleatorias más utilizadas en el contexto actuarial. Esto inclute distribuciones discretas y continuas univariadas, así como las distribuciónes mutinormal y multinomial como únicos ejemplos de distribuciones multivariadas.\nprocess: aqui se han implementado representaciones del proceso de Wiener, del proceso de Poisson homogeneo y del proceso de Poisson compuesto.\n\nEn toda el paquete se utilizan las definiciones y la terminología estandar de probabilidad y estadística. Para cualquier referencia sugerimos consultar la página Wikipedia."
+  },
+  {
+    "objectID": "index.html#autor",
+    "href": "index.html#autor",
+    "title": "sim_2024 ",
+    "section": "Autor",
+    "text": "Autor\n\nHéctor Hugo Corrales Sánchez, hhcorrales@gmail.com."
+  },
+  {
+    "objectID": "reference/density_function.html",
+    "href": "reference/density_function.html",
+    "title": "density_function",
+    "section": "",
+    "text": "density_function(self, function, **kwargs)\nfuncion de densidad\nClase de abstracci�n de una funci�n de densidad de probabilidad.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nfunction\nCallable\nfuncti�n used to evaluate density_function between min and max args.\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmin\nfloat\ndensity_functi�n evaluate to zero below min\nrequired\n\n\nmax\nfloat\ndensity_functi�n evaluate to zero above max\nrequired",
     "crumbs": [
       "Get started",
       "Main features",
-      "PathFigure"
+      "`density_function`"
+    ]
+  },
+  {
+    "objectID": "reference/density_function.html#parameters",
+    "href": "reference/density_function.html#parameters",
+    "title": "density_function",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nfunction\nCallable\nfuncti�n used to evaluate density_function between min and max args.\nrequired",
+    "crumbs": [
+      "Get started",
+      "Main features",
+      "`density_function`"
+    ]
+  },
+  {
+    "objectID": "reference/density_function.html#other-parameters",
+    "href": "reference/density_function.html#other-parameters",
+    "title": "density_function",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nmin\nfloat\ndensity_functi�n evaluate to zero below min\nrequired\n\n\nmax\nfloat\ndensity_functi�n evaluate to zero above max\nrequired",
+    "crumbs": [
+      "Get started",
+      "Main features",
+      "`density_function`"
+    ]
+  },
+  {
+    "objectID": "reference/generators.linear_congruential_generator.html",
+    "href": "reference/generators.linear_congruential_generator.html",
+    "title": "generators.linear_congruential_generator",
+    "section": "",
+    "text": "generators.linear_congruential_generator(self, **kwargs)\nLinear congruential pseudorandom generator.\nPseudorandom generator based on the linear congruential method. Initialization must be made with keywords for all parameters.\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmod\nint\nModule for residual reduction\nrequired\n\n\nmult\nint\nMultiplier\nrequired\n\n\nseed\nint\ninitial value\nrequired\n\n\ncte\nint\naditive constant\nrequired\n\n\n\n\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_congruential_generator.rand()\ngeneration of one pseudo-random number",
+    "crumbs": [
+      "Get started",
+      "PseudoRandom Number Generators (PRNG)",
+      "`linear_congruential_generator`"
+    ]
+  },
+  {
+    "objectID": "reference/generators.linear_congruential_generator.html#other-parameters",
+    "href": "reference/generators.linear_congruential_generator.html#other-parameters",
+    "title": "generators.linear_congruential_generator",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nmod\nint\nModule for residual reduction\nrequired\n\n\nmult\nint\nMultiplier\nrequired\n\n\nseed\nint\ninitial value\nrequired\n\n\ncte\nint\naditive constant\nrequired",
+    "crumbs": [
+      "Get started",
+      "PseudoRandom Number Generators (PRNG)",
+      "`linear_congruential_generator`"
+    ]
+  },
+  {
+    "objectID": "reference/generators.linear_congruential_generator.html#methods",
+    "href": "reference/generators.linear_congruential_generator.html#methods",
+    "title": "generators.linear_congruential_generator",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_congruential_generator.rand()\ngeneration of one pseudo-random number",
+    "crumbs": [
+      "Get started",
+      "PseudoRandom Number Generators (PRNG)",
+      "`linear_congruential_generator`"
+    ]
+  },
+  {
+    "objectID": "reference/generators.linear_feedback_shift_register_16.html",
+    "href": "reference/generators.linear_feedback_shift_register_16.html",
+    "title": "generators.linear_feedback_shift_register_16",
+    "section": "",
+    "text": "generators.linear_feedback_shift_register_16(self, **kwargs)\nlinear fedback shift register for word size 16\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_16.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.linear_feedback_shift_register_16.html#methods",
+    "href": "reference/generators.linear_feedback_shift_register_16.html#methods",
+    "title": "generators.linear_feedback_shift_register_16",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_16.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.linear_feedback_shift_register_24.html",
+    "href": "reference/generators.linear_feedback_shift_register_24.html",
+    "title": "generators.linear_feedback_shift_register_24",
+    "section": "",
+    "text": "generators.linear_feedback_shift_register_24(self, **kwargs)\nlinear fedbacl shift register for word size 24\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_24.rand()\ngeneration of one pseudo random number"
+  },
+  {
+    "objectID": "reference/generators.linear_feedback_shift_register_24.html#methods",
+    "href": "reference/generators.linear_feedback_shift_register_24.html#methods",
+    "title": "generators.linear_feedback_shift_register_24",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_24.rand()\ngeneration of one pseudo random number"
+  },
+  {
+    "objectID": "reference/generators.linear_feedback_shift_register_8.html",
+    "href": "reference/generators.linear_feedback_shift_register_8.html",
+    "title": "generators.linear_feedback_shift_register_8",
+    "section": "",
+    "text": "generators.linear_feedback_shift_register_8(self, **kwargs)\nlinear fedbacl shift register for word size 8\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_8.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.linear_feedback_shift_register_8.html#methods",
+    "href": "reference/generators.linear_feedback_shift_register_8.html#methods",
+    "title": "generators.linear_feedback_shift_register_8",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.linear_feedback_shift_register_8.rand()\ngeneration of one pseudo-random number"
+  },
+  {
+    "objectID": "reference/generators.multiple_congruential_generator.html",
+    "href": "reference/generators.multiple_congruential_generator.html",
+    "title": "generators.multiple_congruential_generator",
+    "section": "",
+    "text": "generators.multiple_congruential_generator(self, **kwargs)\nMultiple congruential pseudorandom generator\nPseudorandom generator based on the multiple multiplicative congruential generator.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmod\nint\nModule for residual reduction\nrequired\n\n\nseed\nint\ninitial values, the last element on the list\nrequired\n\n\n\n\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.multiple_congruential_generator.rand()\ngeneration of one pseudo-random number",
+    "crumbs": [
+      "Get started",
+      "PseudoRandom Number Generators (PRNG)",
+      "`multiple_congruential_generator`"
+    ]
+  },
+  {
+    "objectID": "reference/generators.multiple_congruential_generator.html#other-parameters",
+    "href": "reference/generators.multiple_congruential_generator.html#other-parameters",
+    "title": "generators.multiple_congruential_generator",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nmod\nint\nModule for residual reduction\nrequired\n\n\nseed\nint\ninitial values, the last element on the list\nrequired",
+    "crumbs": [
+      "Get started",
+      "PseudoRandom Number Generators (PRNG)",
+      "`multiple_congruential_generator`"
+    ]
+  },
+  {
+    "objectID": "reference/generators.multiple_congruential_generator.html#methods",
+    "href": "reference/generators.multiple_congruential_generator.html#methods",
+    "title": "generators.multiple_congruential_generator",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.multiple_congruential_generator.rand()\ngeneration of one pseudo-random number",
+    "crumbs": [
+      "Get started",
+      "PseudoRandom Number Generators (PRNG)",
+      "`multiple_congruential_generator`"
+    ]
+  },
+  {
+    "objectID": "reference/generators.polynomial_congruential_generator.html",
+    "href": "reference/generators.polynomial_congruential_generator.html",
+    "title": "generators.polynomial_congruential_generator",
+    "section": "",
+    "text": "generators.polynomial_congruential_generator(self, **kwargs)\nPolynomial congruential pseudorandom generator.\nPseudorandom generator based on the method to generate pseudorandom numbers. Initialization must be made with keywords for all parameters.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmod\nint\nModule for residual reduction\nrequired\n\n\nmults\nint\nMultipliers\nrequired\n\n\nseeds\nint\ninitial values, the flast element on the list\nrequired\n\n\n\n\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.polynomial_congruential_generator.rand()\ngeneration of one pseudo-random number",
+    "crumbs": [
+      "Get started",
+      "PseudoRandom Number Generators (PRNG)",
+      "`polynomial_congruential_generator`"
+    ]
+  },
+  {
+    "objectID": "reference/generators.polynomial_congruential_generator.html#other-parameters",
+    "href": "reference/generators.polynomial_congruential_generator.html#other-parameters",
+    "title": "generators.polynomial_congruential_generator",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nmod\nint\nModule for residual reduction\nrequired\n\n\nmults\nint\nMultipliers\nrequired\n\n\nseeds\nint\ninitial values, the flast element on the list\nrequired",
+    "crumbs": [
+      "Get started",
+      "PseudoRandom Number Generators (PRNG)",
+      "`polynomial_congruential_generator`"
+    ]
+  },
+  {
+    "objectID": "reference/generators.polynomial_congruential_generator.html#methods",
+    "href": "reference/generators.polynomial_congruential_generator.html#methods",
+    "title": "generators.polynomial_congruential_generator",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nrand\ngeneration of one pseudo-random number\n\n\n\n\n\ngenerators.polynomial_congruential_generator.rand()\ngeneration of one pseudo-random number",
+    "crumbs": [
+      "Get started",
+      "PseudoRandom Number Generators (PRNG)",
+      "`polynomial_congruential_generator`"
+    ]
+  },
+  {
+    "objectID": "reference/HistogramFigure.html",
+    "href": "reference/HistogramFigure.html",
+    "title": "HistogramFigure",
+    "section": "",
+    "text": "HistogramFigure(self, sample, **kwargs)\ncustom matplotlib Figure to plot a density histogram\nThis custom figure allows to create a histogram of a sample of float values in a pre-defined format. args and Keyword arguments are passed to figure inizialization and to histogram creation.\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nsample\nrandom_sample\nrandom_sample to plot\nrequired",
+    "crumbs": [
+      "Get started",
+      "Main features",
+      "`HistogramFigure`"
+    ]
+  },
+  {
+    "objectID": "reference/HistogramFigure.html#parameters",
+    "href": "reference/HistogramFigure.html#parameters",
+    "title": "HistogramFigure",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nsample\nrandom_sample\nrandom_sample to plot\nrequired",
+    "crumbs": [
+      "Get started",
+      "Main features",
+      "`HistogramFigure`"
+    ]
+  },
+  {
+    "objectID": "reference/mass_function.html",
+    "href": "reference/mass_function.html",
+    "title": "mass_function",
+    "section": "",
+    "text": "mass_function\nmass_function(self, function, sup)\nfuncion de masa",
+    "crumbs": [
+      "Get started",
+      "Main features",
+      "`mass_function`"
+    ]
+  },
+  {
+    "objectID": "reference/process.CompoundPoissonProcess.html",
+    "href": "reference/process.CompoundPoissonProcess.html",
+    "title": "process.CompoundPoissonProcess",
+    "section": "",
+    "text": "process.CompoundPoissonProcess\nprocess.CompoundPoissonProcess(self, **kwargs)\nHomogeneous Poisson process",
+    "crumbs": [
+      "Get started",
+      "Stochastic process",
+      "`Compound Poisson Process`"
     ]
   },
   {
@@ -791,7 +820,12 @@
     "href": "reference/process.PoissonProcess.html",
     "title": "process.PoissonProcess",
     "section": "",
-    "text": "process.PoissonProcess\nprocess.PoissonProcess(self, **kwargs)\nHomogeneous Poisson process"
+    "text": "process.PoissonProcess\nprocess.PoissonProcess(self, **kwargs)\nHomogeneous Poisson process",
+    "crumbs": [
+      "Get started",
+      "Stochastic process",
+      "`Poisson Process`"
+    ]
   },
   {
     "objectID": "reference/process_path.html",
@@ -816,7 +850,7 @@
     "crumbs": [
       "Get started",
       "Main features",
-      "rand"
+      "`rand`"
     ]
   },
   {
@@ -828,7 +862,7 @@
     "crumbs": [
       "Get started",
       "Main features",
-      "random_sample"
+      "`random_sample`"
     ]
   },
   {
@@ -840,7 +874,7 @@
     "crumbs": [
       "Get started",
       "Main features",
-      "random_sample"
+      "`random_sample`"
     ]
   },
   {
@@ -852,7 +886,7 @@
     "crumbs": [
       "Get started",
       "Main features",
-      "set_seed"
+      "`set_seed`"
     ]
   },
   {
@@ -864,7 +898,7 @@
     "crumbs": [
       "Get started",
       "Main features",
-      "set_seed"
+      "`set_seed`"
     ]
   },
   {

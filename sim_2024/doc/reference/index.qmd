@@ -84,4 +84,4 @@ submodulo de procesos estocásticos
 | --- | --- |
 | [process.WienerProcess](process.WienerProcess.qmd#sim_2024.process.WienerProcess) | Standar Wiener process |
 | [process.PoissonProcess](process.PoissonProcess.qmd#sim_2024.process.PoissonProcess) | Homogeneous Poisson process |
-| [process.CompundPoissonProcess](process.CompundPoissonProcess.qmd#sim_2024.process.CompundPoissonProcess) | Homogeneous Poisson process |
+| [process.CompoundPoissonProcess](process.CompoundPoissonProcess.qmd#sim_2024.process.CompoundPoissonProcess) | Homogeneous Poisson process |

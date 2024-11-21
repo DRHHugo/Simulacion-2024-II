@@ -9,3 +9,15 @@ Representation of a random variate of Bernoulli type.
 | Name   | Type   | Description        | Default    |
 |--------|--------|--------------------|------------|
 | `p`    | float  | Sucess probability | _required_ |
+
+## Methods
+
+| Name | Description |
+| --- | --- |
+| [rand](#sim_2024.variates.Bernoulli.rand) | simulate one value of the random variate |
+
+### rand { #sim_2024.variates.Bernoulli.rand }
+
+`variates.Bernoulli.rand()`
+
+simulate one value of the random variate

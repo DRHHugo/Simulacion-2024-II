@@ -89,7 +89,7 @@ class PoissonProcess(_random_process):
             arrivals+=1
         return _process_path(times,X,self._type_paths,self._auto_valuation)
 
-class CompundPoissonProcess(_random_process):
+class CompoundPoissonProcess(_random_process):
     """Homogeneous Poisson process """
     _main_type = 'Compound Poisson'
     _type_paths = 'jump'
@@ -142,5 +142,5 @@ class CompundPoissonProcess(_random_process):
 __all__=[
     'WienerProcess',
     'PoissonProcess',
-    'CompundPoissonProcess'
+    'CompoundPoissonProcess'
 ]
