@@ -29,13 +29,23 @@ class _random_process:
         return _process_sample([self.rand(horizon=horizon,granularity=dt) for _ in range(size)])
 
 class WienerProcess(_random_process):
-    """Standar Wiener process """
+    """Standar Wiener process
+    
+    Args:
+        
+    """
     _main_type = 'Wiener standar'
     _type_paths = 'continum'
     _auto_valuation = False
     def __init__(self):
         self._stdvariate = _NormalStd()
     def rand(self,**kwargs)->_process_path:
+        """simulation of a path
+        
+        Keyword Args:
+            horizon (float): Stop time for the simulated path
+            granularity (float): Intended as a small value Δt. The value of the Wiener process is simulated at 0,Δt,2Δt,...
+        """
         dt = kwargs['granularity'] if 'granularity' in kwargs else 0.01
         stdev_dt = dt**0.5
         horizon = kwargs['horizon'] if 'horizon' in kwargs else 1.0
@@ -53,7 +63,11 @@ class WienerProcess(_random_process):
         return _process_path(times,X,self._type_paths,self._auto_valuation)
 
 class PoissonProcess(_random_process):
-    """Homogeneous Poisson process """
+    """Homogeneous Poisson process
+    
+    Keyword Args:
+        rate (float): Rate of the Poisson process
+    """
     _main_type:str = 'Homogeneous Poisson'
     _type_paths:str = 'jump'
     _auto_valuation:bool = True
@@ -71,6 +85,11 @@ class PoissonProcess(_random_process):
     def __init__(self,**kwargs):
         self._exponential = _Exponential(rate=kwargs['rate'])
     def rand(self,**kwargs)->_process_path:
+        """simulation of a path
+
+        Keyword Args:
+            horizon (float): Stop time for the simulated path
+        """
         times:_array
         X:_array
         t:float
@@ -90,7 +109,12 @@ class PoissonProcess(_random_process):
         return _process_path(times,X,self._type_paths,self._auto_valuation)
 
 class CompoundPoissonProcess(_random_process):
-    """Homogeneous Poisson process """
+    """Compound Poisson Process with Gaussian jumps
+    
+    Keyword Args:
+        rate (float): Rate of the underlaing Poisson process
+        var (float): Variance of the Gaussian jumps
+    """
     _main_type = 'Compound Poisson'
     _type_paths = 'jump'
     _auto_valuation = True
@@ -120,6 +144,11 @@ class CompoundPoissonProcess(_random_process):
         self._exponential = _Exponential(rate=kwargs['rate'])
     
     def rand(self,**kwargs)->_process_path:
+        """simulation of a path
+
+        Keyword Args:
+            horizon (float): Stop time for the simulated path
+        """
         times:_array
         X:_array
         t:float
