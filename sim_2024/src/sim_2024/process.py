@@ -44,7 +44,7 @@ class WienerProcess(_random_process):
         
         Keyword Args:
             horizon (float): Stop time for the simulated path
-            granularity (float): Intended as a small value Δt. The value of the Wiener process is simulated at 0,Δt,2Δt,...
+            granularity (float): Intended as a small value dt. The value of the Wiener process is simulated at 0,dt,2dt,...
         """
         dt = kwargs['granularity'] if 'granularity' in kwargs else 0.01
         stdev_dt = dt**0.5

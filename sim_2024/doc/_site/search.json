@@ -278,7 +278,19 @@
     "href": "reference/process.WienerProcess.html",
     "title": "process.WienerProcess",
     "section": "",
-    "text": "process.WienerProcess\nprocess.WienerProcess(self)\nStandar Wiener process",
+    "text": "process.WienerProcess(self)\nStandar Wiener process\nArgs:\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\nsimulation of a path\n\n\n\n\n\nprocess.WienerProcess.rand(**kwargs)\nsimulation of a path\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nhorizon\nfloat\nStop time for the simulated path\nrequired\n\n\ngranularity\nfloat\nIntended as a small value dt. The value of the Wiener process is simulated at 0,dt,2dt,…\nrequired",
+    "crumbs": [
+      "Get started",
+      "Stochastic process",
+      "`Wiener Process`"
+    ]
+  },
+  {
+    "objectID": "reference/process.WienerProcess.html#methods",
+    "href": "reference/process.WienerProcess.html#methods",
+    "title": "process.WienerProcess",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nrand\nsimulation of a path\n\n\n\n\n\nprocess.WienerProcess.rand(**kwargs)\nsimulation of a path\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nhorizon\nfloat\nStop time for the simulated path\nrequired\n\n\ngranularity\nfloat\nIntended as a small value dt. The value of the Wiener process is simulated at 0,dt,2dt,…\nrequired",
     "crumbs": [
       "Get started",
       "Stochastic process",
@@ -309,7 +321,7 @@
     "href": "reference/index.html",
     "title": "sim_2024",
     "section": "",
-    "text": "funcionalidades básicas\n\n\n\nrand\n\n\n\nset_seed\nChange state of default pseudorandom generator.\n\n\nrandom_sample\narray subclass to represent a realization of a random process\n\n\nHistogramFigure\ncustom matplotlib Figure to plot a density histogram\n\n\nprocess_path\nrealization of a random process\n\n\nprocess_sample\nsample of process paths\n\n\nPathFigure\ncustom matplotlib Figure to plot a realization from a random process\n\n\nmass_function\nfuncion de masa\n\n\ndensity_function\nfuncion de densidad\n\n\n\n\n\n\nsubmodulo de generadores de números pseudoaleatorios\n\n\n\ngenerators.multiplicative_congruential_generator\nMultiplicative congruential pseudorandom generator.\n\n\ngenerators.linear_congruential_generator\nLinear congruential pseudorandom generator.\n\n\ngenerators.quadratic_congrential_generator\nQuadratic congruential pseudorandom generators.\n\n\ngenerators.polynomial_congruential_generator\nPolynomial congruential pseudorandom generator.\n\n\ngenerators.multiple_congruential_generator\nMultiple congruential pseudorandom generator\n\n\ngenerators.combined_congruential_generator\nCombined congruential pseudorandom generator.\n\n\ngenerators.multcombi_congruential_generator\nMultiple combined congruential pseudorandom generator\n\n\ngenerators.linear_feedback_shift_register_4\nlinear fedbacl shift register for word size 4\n\n\ngenerators.linear_feedback_shift_register_8\nlinear fedbacl shift register for word size 8\n\n\ngenerators.linear_feedback_shift_register_12\nlinear fedbacl shift register for word size 12\n\n\ngenerators.linear_feedback_shift_register_16\nlinear fedback shift register for word size 16\n\n\ngenerators.linear_feedback_shift_register_20\nlinear fedbacl shift register for word size 20\n\n\ngenerators.linear_feedback_shift_register_24\nlinear fedbacl shift register for word size 24\n\n\n\n\n\n\nsubmodulo de pruebas de aleatoriedad para PRNG\n\n\n\ntests.mean_est\n\n\n\ntests.mean_test\n\n\n\ntests.variance_est\n\n\n\ntests.variance_test\n\n\n\ntests.chisq_est\n\n\n\ntests.chisq_test\n\n\n\ntests.series_est\n\n\n\ntests.series_test\n\n\n\ntests.runs_est\n\n\n\ntests.runs_test\n\n\n\n\n\n\n\nsubmodulo de distribuciones de probabilidad\n\n\n\nvariates.Bernoulli\nRepresentation of a random variate of Bernoulli type.\n\n\nvariates.Binomial\nrepresentation of a random variate of binonimal type\n\n\nvariates.Geometric\nRepresentation of a random variate of Bernoulli type\n\n\nvariates.NegativeBinomial\nrepresentation of a random variate of Bernoulli type\n\n\nvariates.DiscreteUniform\nDiscrete uniform distribution.\n\n\nvariates.Poisson\nPoisson distribution.\n\n\nvariates.ContinuousUniform\nContinuous uniform distribution.\n\n\nvariates.Exponential\nExponential distribution.\n\n\nvariates.Normal\nNormal distribution\n\n\nvariates.BoundedNormal\nNormal bounded distribution\n\n\nvariates.RectifiedNormal\nRectified normal distribution\n\n\nvariates.Chisq\n\n\n\nvariates.Student\n\n\n\nvariates.Gamma\nGamma distribution\n\n\nvariates.Beta\nBeta distribution\n\n\nvariates.ExampleDis\n\n\n\n\n\n\n\nsubmodulo de procesos estocásticos\n\n\n\nprocess.WienerProcess\nStandar Wiener process\n\n\nprocess.PoissonProcess\nHomogeneous Poisson process\n\n\nprocess.CompoundPoissonProcess\nHomogeneous Poisson process"
+    "text": "funcionalidades básicas\n\n\n\nrand\n\n\n\nset_seed\nChange state of default pseudorandom generator.\n\n\nrandom_sample\narray subclass to represent a realization of a random process\n\n\nHistogramFigure\ncustom matplotlib Figure to plot a density histogram\n\n\nprocess_path\nrealization of a random process\n\n\nprocess_sample\nsample of process paths\n\n\nPathFigure\ncustom matplotlib Figure to plot a realization from a random process\n\n\nmass_function\nfuncion de masa\n\n\ndensity_function\nfuncion de densidad\n\n\n\n\n\n\nsubmodulo de generadores de números pseudoaleatorios\n\n\n\ngenerators.multiplicative_congruential_generator\nMultiplicative congruential pseudorandom generator.\n\n\ngenerators.linear_congruential_generator\nLinear congruential pseudorandom generator.\n\n\ngenerators.quadratic_congrential_generator\nQuadratic congruential pseudorandom generators.\n\n\ngenerators.polynomial_congruential_generator\nPolynomial congruential pseudorandom generator.\n\n\ngenerators.multiple_congruential_generator\nMultiple congruential pseudorandom generator\n\n\ngenerators.combined_congruential_generator\nCombined congruential pseudorandom generator.\n\n\ngenerators.multcombi_congruential_generator\nMultiple combined congruential pseudorandom generator\n\n\ngenerators.linear_feedback_shift_register_4\nlinear fedbacl shift register for word size 4\n\n\ngenerators.linear_feedback_shift_register_8\nlinear fedbacl shift register for word size 8\n\n\ngenerators.linear_feedback_shift_register_12\nlinear fedbacl shift register for word size 12\n\n\ngenerators.linear_feedback_shift_register_16\nlinear fedback shift register for word size 16\n\n\ngenerators.linear_feedback_shift_register_20\nlinear fedbacl shift register for word size 20\n\n\ngenerators.linear_feedback_shift_register_24\nlinear fedbacl shift register for word size 24\n\n\n\n\n\n\nsubmodulo de pruebas de aleatoriedad para PRNG\n\n\n\ntests.mean_est\n\n\n\ntests.mean_test\n\n\n\ntests.variance_est\n\n\n\ntests.variance_test\n\n\n\ntests.chisq_est\n\n\n\ntests.chisq_test\n\n\n\ntests.series_est\n\n\n\ntests.series_test\n\n\n\ntests.runs_est\n\n\n\ntests.runs_test\n\n\n\n\n\n\n\nsubmodulo de distribuciones de probabilidad\n\n\n\nvariates.Bernoulli\nRepresentation of a random variate of Bernoulli type.\n\n\nvariates.Binomial\nrepresentation of a random variate of binonimal type\n\n\nvariates.Geometric\nRepresentation of a random variate of Bernoulli type\n\n\nvariates.NegativeBinomial\nrepresentation of a random variate of Bernoulli type\n\n\nvariates.DiscreteUniform\nDiscrete uniform distribution.\n\n\nvariates.Poisson\nPoisson distribution.\n\n\nvariates.ContinuousUniform\nContinuous uniform distribution.\n\n\nvariates.Exponential\nExponential distribution.\n\n\nvariates.Normal\nNormal distribution\n\n\nvariates.BoundedNormal\nNormal bounded distribution\n\n\nvariates.RectifiedNormal\nRectified normal distribution\n\n\nvariates.Chisq\n\n\n\nvariates.Student\n\n\n\nvariates.Gamma\nGamma distribution\n\n\nvariates.Beta\nBeta distribution\n\n\nvariates.ExampleDis\n\n\n\n\n\n\n\nsubmodulo de procesos estocásticos\n\n\n\nprocess.WienerProcess\nStandar Wiener process\n\n\nprocess.PoissonProcess\nHomogeneous Poisson process\n\n\nprocess.CompoundPoissonProcess\nCompound Poisson Process with Gaussian jumps"
   },
   {
     "objectID": "reference/index.html#basics-pseudorandom-functionalities",
@@ -344,7 +356,7 @@
     "href": "reference/index.html#stochastic-process",
     "title": "sim_2024",
     "section": "",
-    "text": "submodulo de procesos estocásticos\n\n\n\nprocess.WienerProcess\nStandar Wiener process\n\n\nprocess.PoissonProcess\nHomogeneous Poisson process\n\n\nprocess.CompoundPoissonProcess\nHomogeneous Poisson process"
+    "text": "submodulo de procesos estocásticos\n\n\n\nprocess.WienerProcess\nStandar Wiener process\n\n\nprocess.PoissonProcess\nHomogeneous Poisson process\n\n\nprocess.CompoundPoissonProcess\nCompound Poisson Process with Gaussian jumps"
   },
   {
     "objectID": "reference/generators.quadratic_congrential_generator.html",
@@ -808,7 +820,31 @@
     "href": "reference/process.CompoundPoissonProcess.html",
     "title": "process.CompoundPoissonProcess",
     "section": "",
-    "text": "process.CompoundPoissonProcess\nprocess.CompoundPoissonProcess(self, **kwargs)\nHomogeneous Poisson process",
+    "text": "process.CompoundPoissonProcess(self, **kwargs)\nCompound Poisson Process with Gaussian jumps\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nrate\nfloat\nRate of the underlaing Poisson process\nrequired\n\n\nvar\nfloat\nVariance of the Gaussian jumps\nrequired\n\n\n\n\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\nsimulation of a path\n\n\n\n\n\nprocess.CompoundPoissonProcess.rand(**kwargs)\nsimulation of a path\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nhorizon\nfloat\nStop time for the simulated path\nrequired",
+    "crumbs": [
+      "Get started",
+      "Stochastic process",
+      "`Compound Poisson Process`"
+    ]
+  },
+  {
+    "objectID": "reference/process.CompoundPoissonProcess.html#other-parameters",
+    "href": "reference/process.CompoundPoissonProcess.html#other-parameters",
+    "title": "process.CompoundPoissonProcess",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nrate\nfloat\nRate of the underlaing Poisson process\nrequired\n\n\nvar\nfloat\nVariance of the Gaussian jumps\nrequired",
+    "crumbs": [
+      "Get started",
+      "Stochastic process",
+      "`Compound Poisson Process`"
+    ]
+  },
+  {
+    "objectID": "reference/process.CompoundPoissonProcess.html#methods",
+    "href": "reference/process.CompoundPoissonProcess.html#methods",
+    "title": "process.CompoundPoissonProcess",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nrand\nsimulation of a path\n\n\n\n\n\nprocess.CompoundPoissonProcess.rand(**kwargs)\nsimulation of a path\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nhorizon\nfloat\nStop time for the simulated path\nrequired",
     "crumbs": [
       "Get started",
       "Stochastic process",
@@ -820,7 +856,31 @@
     "href": "reference/process.PoissonProcess.html",
     "title": "process.PoissonProcess",
     "section": "",
-    "text": "process.PoissonProcess\nprocess.PoissonProcess(self, **kwargs)\nHomogeneous Poisson process",
+    "text": "process.PoissonProcess(self, **kwargs)\nHomogeneous Poisson process\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nrate\nfloat\nRate of the Poisson process\nrequired\n\n\n\n\n\n\n\n\n\nName\nDescription\n\n\n\n\nrand\nsimulation of a path\n\n\n\n\n\nprocess.PoissonProcess.rand(**kwargs)\nsimulation of a path\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nhorizon\nfloat\nStop time for the simulated path\nrequired",
+    "crumbs": [
+      "Get started",
+      "Stochastic process",
+      "`Poisson Process`"
+    ]
+  },
+  {
+    "objectID": "reference/process.PoissonProcess.html#other-parameters",
+    "href": "reference/process.PoissonProcess.html#other-parameters",
+    "title": "process.PoissonProcess",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nrate\nfloat\nRate of the Poisson process\nrequired",
+    "crumbs": [
+      "Get started",
+      "Stochastic process",
+      "`Poisson Process`"
+    ]
+  },
+  {
+    "objectID": "reference/process.PoissonProcess.html#methods",
+    "href": "reference/process.PoissonProcess.html#methods",
+    "title": "process.PoissonProcess",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nrand\nsimulation of a path\n\n\n\n\n\nprocess.PoissonProcess.rand(**kwargs)\nsimulation of a path\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nhorizon\nfloat\nStop time for the simulated path\nrequired",
     "crumbs": [
       "Get started",
       "Stochastic process",

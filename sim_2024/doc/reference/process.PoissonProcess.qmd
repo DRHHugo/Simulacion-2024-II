@@ -3,3 +3,27 @@
 `process.PoissonProcess(self, **kwargs)`
 
 Homogeneous Poisson process
+
+## Other Parameters
+
+| Name   | Type   | Description                 | Default    |
+|--------|--------|-----------------------------|------------|
+| `rate` | float  | Rate of the Poisson process | _required_ |
+
+## Methods
+
+| Name | Description |
+| --- | --- |
+| [rand](#sim_2024.process.PoissonProcess.rand) | simulation of a path |
+
+### rand { #sim_2024.process.PoissonProcess.rand }
+
+`process.PoissonProcess.rand(**kwargs)`
+
+simulation of a path
+
+#### Other Parameters
+
+| Name      | Type   | Description                      | Default    |
+|-----------|--------|----------------------------------|------------|
+| `horizon` | float  | Stop time for the simulated path | _required_ |

@@ -27,7 +27,7 @@ website:
             target: _blank
     right:
       - icon: github
-        href: https://github.com/rstudio/pins-python
+        href: https://github.com/DRHHugo/Simulacion-2024-II
         aria-label: GitHub repo
   sidebar:
     collapse-level: 1

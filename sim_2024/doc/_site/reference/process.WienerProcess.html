@@ -122,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/rstudio/pins-python"> <i class="bi bi-github" role="img" aria-label="GitHub repo">
+    <a class="nav-link" href="https://github.com/DRHHugo/Simulacion-2024-II"> <i class="bi bi-github" role="img" aria-label="GitHub repo">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -430,8 +430,64 @@ ul.task-list li input[type="checkbox"] {
 <h1>process.WienerProcess</h1>
 <p><code>process.WienerProcess(self)</code></p>
 <p>Standar Wiener process</p>
+<p>Args:</p>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="#sim_2024.process.WienerProcess.rand">rand</a></td>
+<td>simulation of a path</td>
+</tr>
+</tbody>
+</table>
+<section id="sim_2024.process.WienerProcess.rand" class="level3">
+<h3 class="anchored" data-anchor-id="sim_2024.process.WienerProcess.rand">rand</h3>
+<p><code>process.WienerProcess.rand(**kwargs)</code></p>
+<p>simulation of a path</p>
+<section id="other-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="other-parameters">Other Parameters</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 6%">
+<col style="width: 72%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>horizon</code></td>
+<td>float</td>
+<td>Stop time for the simulated path</td>
+<td><em>required</em></td>
+</tr>
+<tr class="even">
+<td><code>granularity</code></td>
+<td>float</td>
+<td>Intended as a small value dt. The value of the Wiener process is simulated at 0,dt,2dt,…</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
 
 
+</section>
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

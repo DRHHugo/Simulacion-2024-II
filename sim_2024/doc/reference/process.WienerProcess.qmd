@@ -3,3 +3,24 @@
 `process.WienerProcess(self)`
 
 Standar Wiener process
+
+Args:
+
+## Methods
+
+| Name | Description |
+| --- | --- |
+| [rand](#sim_2024.process.WienerProcess.rand) | simulation of a path |
+
+### rand { #sim_2024.process.WienerProcess.rand }
+
+`process.WienerProcess.rand(**kwargs)`
+
+simulation of a path
+
+#### Other Parameters
+
+| Name          | Type   | Description                                                                                | Default    |
+|---------------|--------|--------------------------------------------------------------------------------------------|------------|
+| `horizon`     | float  | Stop time for the simulated path                                                           | _required_ |
+| `granularity` | float  | Intended as a small value dt. The value of the Wiener process is simulated at 0,dt,2dt,... | _required_ |
