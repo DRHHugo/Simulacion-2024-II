@@ -408,7 +408,6 @@ class _mayorant_Gamma_density:
         self.shape = shape
         self.a = abs(2*shape-1)**0.5
         self.b = 4*(shape**shape)*_exp(shape)/(self.a*_gamma(shape))
-    
     def __call__(self,x:float)->float:
         if self.shape<1:
             if 1<x:
@@ -425,16 +424,35 @@ class Gamma(_continuos_variate):
     
     _sub_type = 'gamma distribution'
     
+    def __new__(cls,**kwargs:dict[str,float]):
+        """validation of parameters occurs here"""
+        if 'shape' not in kwargs:
+            raise KeyError('parameter shape not found')
+        _validate_float_by_key(kwargs,'shape','shape must be a float positive number',threshold=0.0,exceptions=0.0)
+        if 'rate' not in kwargs and 'scale' not in kwargs:
+            raise KeyError('parameter rate or shape must be provided')
+        if 'rate' in kwargs and 'scale' in kwargs:
+            raise KeyError('only one parameter rate or shape must be provided')
+        if 'rate' in kwargs:
+            _validate_float_by_key(kwargs,'rate','rate must be a  float positive number',threshold=0.0,exceptions=0.0)
+        if 'scale' in kwargs:
+            _validate_float_by_key(kwargs,'scale','scale must be a  float positive number',threshold=0.0,exceptions=0.0)
+        return super().__new__(cls)
+
     def __init__(self,**kwargs)->None:
         self._shape:float
         self._rate:float
         self._scale:float
         self._mayorant:_mayorant_Gamma_density
         self._shape = kwargs['shape']
-        self._rate = kwargs['rate']
-        self._scale = 1/self._rate
+        if 'rate' in kwargs:
+            self._rate = kwargs['rate']
+            self._scale = 1/self._rate
+        if 'scale' in kwargs:
+            self._scale = kwargs['scale']
+            self._rate = 1/self._scale
         self._mayorant = _mayorant_Gamma_density(self._shape)
-    
+
     def rand(self)->float:
         global _rand
         x:float
@@ -455,7 +473,7 @@ class Gamma(_continuos_variate):
             else:
                 y = (u*self._shape**self._mayorant.a/(1-u))**(1/self._mayorant.a)
             u = _rand()
-        return self._rate*y        
+        return y/self._rate        
 
 class Beta(_continuos_variate):
     """Beta distribution
