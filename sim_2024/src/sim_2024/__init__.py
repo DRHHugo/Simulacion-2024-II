@@ -61,21 +61,216 @@ def _validate_int(x:_Any,message:str='',threshold:None|int=None,exceptions:None|
     if threshold!=None:
         if type(threshold)!=int:
             raise TypeError('inferior threshold must be an integer')
-        if x<threshold:
-            raise ValueError(message)
     if exceptions!=None:
         if type(exceptions)!=int and type(exceptions)!=list:
             raise TypeError('exceptions must be an integer or a list of integers')
-        if type(exceptions)==int:
-            if x==exceptions:
-                raise ValueError(message)
         if type(exceptions)==list:
-            for exc in exceptions:
-                if type(exc)!=int:
+            for exception in exceptions:
+                if type(exception)!=int:
                     raise TypeError('exceptions must be an integer or a list of integers')
-            for exc in exceptions:
-                if x==exc:
-                    raise ValueError(message)
+    if type(threshold)==int:
+        if x<threshold:
+            raise ValueError(message)
+    if type(exceptions)==int:
+        if x==exceptions:
+            raise ValueError(message)
+    if type(exceptions)==list:
+        for exception in exceptions:
+            if x==exception:
+                raise ValueError(message)
+    return True
+
+def _validate_float(x:_Any,message:str='',threshold:None|float=0.0,exceptions:None|float|list[float]=None)->bool:
+    """Validation for float.
+
+    x must be a float not inferior to threshold and not in exceptions to be valid.
+    If x is not valid an apropiate Error will be raised with the associated message error.
+
+    Args:
+        x : variable to validate
+        threshold : inferior threshold for x
+        exceptions : one or more values not allowed for x
+        message : message to be displayed when x isn't valid
+
+    Returns:
+        True for success validation
+    """
+    if type(x)!=float:
+        raise TypeError(message)
+    if threshold!=None:
+        if type(threshold)!=float:
+            raise TypeError('inferior threshold must be a float')
+    if exceptions!=None:
+        if type(exceptions)!=float and type(exceptions)!=list:
+            raise TypeError('exceptions must be an integer or a list of floats')
+        if type(exceptions)==list:
+            for exception in exceptions:
+                if type(exception)!=float:
+                    raise TypeError('exceptions must be an integer or a list of floats')
+    if type(threshold)==float:
+        if x<threshold:
+            raise ValueError(message)
+    if type(exceptions)==float:
+        if x==exceptions:
+            raise ValueError(message)
+    if type(exceptions)==list:
+        for exception in exceptions:
+            if x==exception:
+                raise ValueError(message)
+    return True
+
+def _validate_int_by_key(kwargs:dict[str,_Any],key:str,message:str='',threshold:None|int=None,exceptions:None|int|list[int]=None)->bool:
+    """Validation for an integer on a dictionary.
+
+    This functions will raise an Error if kwargs[key] doesn't exists.
+    If kwargs[key] exists, evaluate _validate_int(kwargs[key],message,threshold,exceptions).
+
+    Args:
+        kwargs : kwargs passed by another function
+        key: name of parameter to validate
+        message : message to be displayed when kwargs[key] isn't valid
+        threshold : inferior threshold for kwargs[key]
+        exceptions : one or more values not allowed for kwargs[key]
+
+    Returns:
+        True for success validation
+    """
+    if not key in kwargs:
+        raise KeyError(key+' key not found during inicialization. You should use '+key+'=value(s).')
+    return _validate_int(kwargs[key],message,threshold,exceptions)
+
+def _validate_float_by_key(kwargs:dict[str,_Any],key:str,message:str='',threshold:None|float=None,exceptions:None|float|list[float]=None)->bool:
+    """Validation for an float on a dictionary.
+
+    This functions will raise an Error if kwargs[key] doesn't exists.
+    If kwargs[key] exists, evaluate _validate_float(kwargs[key],message,threshold,exceptions)
+
+    Args:
+        kwargs : kwargs passed by another function
+        key: name of parameter to validate
+        message : message to be displayed when kwargs[key] isn't valid
+        threshold : inferior threshold for kwargs[key]
+        exceptions : one or more values not allowed for kwargs[key]
+
+    Returns:
+        True for success validation
+    """
+    if not key in kwargs:
+        raise KeyError(key+' key not found during inicialization. You should use '+key+'=value(s).')
+        return False
+    return _validate_float(kwargs[key],message,threshold,exceptions)
+
+def _validate_list_ints(l:_Any,message:str='',threshold:None|int=None,exceptions:None|int|list[int]=None,exclude_all_zeros:bool=False)->bool:
+    """Validation for an array of integers.
+
+    l must be a non empty list of integers and each one must be not inferior to threshold and not in exceptions to be valid.
+    If l is not valid an apropiate Error will be raised with the associated message error.
+    
+    Args:
+        l : list to validate
+        message : message to be displayed when l isn't valid
+        threshold : inferior threshold for integers in l
+        exceptions : one or more values not allowed for integers in l
+        exclude_all_zeros: if True, l also cannot be a list of zeros only
+
+    Returns:
+        True for success validation
+    """
+    if type(l)!=list:
+        raise TypeError(message)
+        return False
+    if len(l)==0:
+        raise ValueError(message)
+        return False
+    for x in l:
+        _validate_int(x,message,threshold,exceptions)
+    if exclude_all_zeros:
+        if l.count(0)==len(l):
+            raise ValueError(message)
+    return True
+
+def _validate_list_floats(l:_Any,message:str='',threshold:None|float=None,exceptions:None|float|list[float]=None,exclude_all_zeros:bool=False)->bool:
+    """Validation for an array of floats.
+
+    l must be a non empty list of floats and each one must be not inferior to threshold and not in exceptions to be valid.
+    If l is not valid an apropiate Error will be raised with the associated message error.
+    
+    Args:
+        l : array to validate
+        threshold : inferior threshold for floats in l
+        exceptions : one or more values not allowed for floats in l
+        message : message to be displayed when l isn't valid
+
+    Returns:
+        True for success validation
+    """
+    if type(l)!=list:
+        raise TypeError(message)
+        return False
+    if len(l)==0:
+        raise ValueError(message)
+        return False
+    for x in l:
+        _validate_float(x,message,threshold,exceptions)
+    if exclude_all_zeros:
+        if l.count(0.0)==len(l):
+            raise ValueError(message)
+    return True
+
+def _validate_list_ints_by_key(kwargs:dict[str,_Any],key:str,message:str='',threshold:None|int=None,exceptions:None|int|list[int]=None,exclude_all_zeros:bool=False)->bool:
+    """Validation for an array on a dictionary.
+
+    This functions will raise an Error if kwargs[key] doesn't exists or if is not a list of integers.
+    If exclude_all_zeros==True, it will also raise an Error if all elements on list kwargs[key] are zeros.
+
+    Args:
+        kwargs : kwargs passed from another function
+        key: key associated with the list to be validated
+        exclude_all_zeros : True if kwargs[key] can't be a list of zeros only
+
+    Returns:
+        True for success validation
+    """
+    if not key in kwargs.keys():
+        raise KeyError(key+' not found during inicialization. You should use '+key+'=list[value(s)]')
+    _validate_list_ints(kwargs[key],message,threshold,exceptions,exclude_all_zeros)
+    return True
+
+def _validate_list_floats_by_key(kwargs:dict[str,_Any],key:str,message:str='',threshold:None|float=None,exceptions:None|float|list[float]=None,exclude_all_zeros:bool=False)->bool:
+    """Validation for an array on a dictionary.
+
+    This functions will raise an Error if kwargs[key] doesn't exists or if is not a list of integers.
+    If exclude_all_zeros==True, it will also raise an Error if all elements on list kwargs[key] are zeros.
+
+    Args:
+        kwargs : kwargs passed from another function
+        key: key associated with the list to be validated
+        exclude_all_zeros : True if kwargs[key] can't be a list of zeros only
+
+    Returns:
+        True for success validation
+    """
+    if not key in kwargs.keys():
+        raise KeyError(key+' not found during inicialization. You should use '+key+'=list[value(s)]')
+    _validate_list_floats(kwargs[key],message,threshold,exclude_all_zeros)
+    return True
+
+def _validate_sample(sample:_Any,message:str='')->bool:
+    """Validate if sample is a sample.
+
+    This functions will raise an Error with message=message if sample is not a non-empty array of pseudorandom numbers.
+    
+    Args:
+        sample : array to validate
+    
+    Returns:
+        True for success validation
+    """
+    if type(sample)!=random_sample:
+        raise TypeError(message)
+    for x in sample:
+        if type(x)!=float and type(x)!=int:
+            raise TypeError(message)
     return True
 
 def _warn_int(x:_Any,message:str='',threshold:None|int=None,exceptions:None|int|list[int]=None)->bool:
@@ -103,179 +298,38 @@ def _warn_int(x:_Any,message:str='',threshold:None|int=None,exceptions:None|int|
     else:
         return True
 
-def _validate_int_by_key(kwargs:dict[str,_Any],key:str,message:str='',threshold:None|int=None,exceptions:None|int|list[int]=None)->bool:
-    """Validation for an integer on a dictionary.
-
-    This functions will raise an Error if kwargs[key] doesn't exists.
-    If kwargs[key] exists, evaluate _validate_int(kwargs[key],message,threshold,exceptions).
-
-    Args:
-        kwargs : kwargs passed by another function
-        key: name of parameter to validate
-        message : message to be displayed when kwargs[key] isn't valid
-        threshold : inferior threshold for kwargs[key]
-        exceptions : one or more values not allowed for kwargs[key]
-
-    Returns:
-        True for success validation
-    """
-    if not key in kwargs:
-        raise KeyError(key+' key not found during inicialization. You should use '+key+'=value(s).')
-    return _validate_int(kwargs[key],message,threshold,exceptions)
-
-def _validate_float(x:_Any,message:str='',threshold:None|float=0.0,exceptions:None|float|list[float]=None)->bool:
-    """Validation for float.
-
-    x must be a float not inferior to threshold and not in exceptions to be valid.
-    If x is not valid an apropiate Error will be raised with the associated message error.
-
-    Args:
-        x : variable to validate
-        threshold : inferior threshold for x
-        exceptions : one or more values not allowed for x
-        message : message to be displayed when x isn't valid
-
-    Returns:
-        True for success validation
-    """
-    if type(x)!=float:
-        raise TypeError(message)
-    if threshold!=None:
-        if type(threshold)!=float:
-            raise TypeError('inferior threshold must be a float')
-        if x<threshold:
-            raise ValueError(message)
-    if exceptions!=None:
-        if type(exceptions)!=float and type(exceptions)!=list:
-            raise TypeError('exceptions must be an integer or a list of integers')
-        if type(exceptions)==int:
-            if x==exceptions:
-                raise ValueError(message)
-        if type(exceptions)==list:
-            for exc in exceptions:
-                if type(exc)!=int:
-                    raise TypeError('exceptions must be an integer or a list of integers')
-            for exc in exceptions:
-                if x==exc:
-                    raise ValueError(message)
-    return True
-
-def _validate_float_by_key(kwargs:dict[str,_Any],key:str,message:str='',threshold:None|float=None,exceptions:None|float|list[float]=None)->bool:
-    """Validation for an float on a dictionary.
-
-    This functions will raise an Error if kwargs[key] doesn't exists.
-    If kwargs[key] exists, evaluate _validate_float(kwargs[key],message,threshold,exceptions)
-
-    Args:
-        kwargs : kwargs passed by another function
-        key: name of parameter to validate
-        message : message to be displayed when kwargs[key] isn't valid
-        threshold : inferior threshold for kwargs[key]
-        exceptions : one or more values not allowed for kwargs[key]
-
-    Returns:
-        True for success validation
-    """
-    if not key in kwargs:
-        raise KeyError(key+' key not found during inicialization. You should use '+key+'=value(s).')
-        return False
-    return _validate_float(kwargs[key],message,threshold,exceptions)
-
-def _validate_list(l:_Any,message:str='',threshold:None|int=None,exceptions:None|int|list[int]=None):
-    """Validation for an array of integers.
-
-    l must be a non empty list of integers and each one must be not inferior to threshold and not in exceptions to be valid.
-    If l is not valid an apropiate Error will be raised with the associated message error.
-    
-    Args:
-        l : array to validate
-        threshold : inferior threshold for integers in l
-        exceptions : one or more values not allowed for integers in l
-        message : message to be displayed when l isn't valid
-
-    Returns:
-        True for success validation
-    """
-    if type(l)!=list:
-        raise TypeError(message)
-        return False
-    if len(l)==0:
-        raise ValueError(message)
-        return False
-    fails:list[int] = [0 for i in range(len(l))]
-    exceptions_list:list[int] =[]
-    if type(exceptions)==int:
-        exceptions_list.append(exceptions)
-    for i in range(len(l)):
-        if threshold!=None:
-            if l[i]<threshold:
-                fails[i] = 1
-        if l[i] in exceptions_list:
-            fails[i] = 1
-    if sum(fails)==len(l):
-        raise ValueError(message)
-    return True
-
-def _validate_list_by_key(kwargs:dict[str,_Any],key:str,exclude_all_zeros:bool=True)->bool:
-    """Validation for an array on a dictionary.
-
-    This functions will raise an Error if kwargs[key] doesn't exists or if is not a list of integers.
-    If exclude_all_zeros==True, it will also raise an Error if all elements on list kwargs[key] are zeros.
-
-    Args:
-        kwargs : kwargs passed from another function
-        key: key associated with the list to be validated
-        exclude_all_zeros : True if kwargs[key] can't be a list of zeros only
-
-    Returns:
-        True for success validation
-    """
-    if not key in kwargs.keys():
-        raise KeyError(key+' not found during inicialization. You should use '+key+'=list[value(s)]')
-    if type(kwargs[key])!=list:
-        raise TypeError(key+' should be a non empty list of integers')
-    for x in kwargs[key]:
-        _validate_int(x,key+' should be a non empty list of integers')
-    if exclude_all_zeros:
-        num_of_zeros = 0
-        for x in kwargs[key]:
-            if x==0:
-                num_of_zeros+=1
-        if num_of_zeros == len(kwargs[key]):
-            raise ValueError(key+' can\'t be a list of zeros')
-    return True
-
-def _validate_sample(sample:_Any,message:str='')->bool:
-    """Validate if sample is a sample.
-
-    This functions will raise an Error with message=message if sample is not a non-empty array of pseudorandom numbers.
-    
-    Args:
-        sample : array to validate
-    
-    Returns:
-        True for success validation
-    """
-    if type(sample)!=random_sample:
-        raise TypeError(message)
-    for x in sample:
-        if type(x)!=float and type(x)!=int:
-            raise TypeError(message)
-    return True
-
 #probability and statistics utilities
 
 class mass_function:
-    """funcion de masa"""
-    def __init__(self,function:_Callable[[float],float],sup:list[float])->None:
-        self._function:_Any = function
-        self._support:list[float] = sup
-    def __str__(self) :
+    """funcion de masa
+    
+    Clase de abstracción de una función de masa de probabilidad.
+
+    Args:
+        sup (list): support of mass function
+        values (list): values of mass function in the same order as support
+    """
+    def __new__(cls,sup:list[float],values:list[float]):
+        _validate_list_floats(sup)
+        _validate_list_floats(values)
+        if len(sup)!=len(values):
+            raise ValueError('support and prabalities must be of the same length')
+        return super().__new__(cls)
+    def __init__(self,sup:list[float],values:list[float])->None:
+        self._function:dict[float,float]
+        self._function = {sup[i]:values[i] for i in range(len(sup))}
+    def __str__(self):
         return 'Funcion de masa'
-    def __repr__(self) :
-        return f'mass_function with:\\n support:'+repr(self._sup)+'\\n formula:'+repr(self._support)
+    def __repr__(self):
+        return f'mass_function with:\\n support:'+repr(self._function.keys)
     def __call__(self,x):
-        return self._function(x)
+        if type(x)==int or type(x)==float:
+            if float(x) in self._function:
+                return self._function[x]
+            else:
+                return 0.0
+        else:
+            raise TypeError('arg must be an int or a float')
     #    def __add__(self,g:mass_function) :
     #        len_f:float = self.__max-self.__min+1
     #        len_g:float = g.__max-g.__min+1
@@ -290,7 +344,7 @@ class density_function:
     Clase de abstracción de una función de densidad de probabilidad.
 
     Args:
-        function (Callable): functión used to evaluate density_function between min and max args.
+        function (Callable): function used to evaluate density_function between min and max args.
 
     Keyword Args:
         min (float): density_functión evaluate to zero below min
@@ -442,7 +496,7 @@ class HistogramFigure(_Figure):
                 marker = kwargs['marker']
             else:
                 marker = 'o'
-            for x in function._support:
+            for x in list(function._function.keys()):
                 if xmin<=x<=xmax:
                     xrange.append(x)
                     yrange.append(function(x))
