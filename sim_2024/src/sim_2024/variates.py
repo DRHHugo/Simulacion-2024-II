@@ -293,10 +293,8 @@ class _NormalStd(_continuos_variate):
             y = 2*v -1
             s = x**2+y**2
         return (x*((-2*_log(s)/s)**0.5),y*((-2*_log(s)/s)**0.5))
-    
     def rand(self)->float:
         return self._rand()[0]
-    
     def sample(self,size:int=1)->_random_sample:
         pairs = [self._rand() for _ in range(size//2+size%2)]
         _sample = _random_sample()
@@ -442,6 +440,7 @@ class Gamma(_continuos_variate):
         return super().__new__(cls)
 
     def __init__(self,**kwargs)->None:
+        
         self._shape:float
         self._rate:float
         self._scale:float
