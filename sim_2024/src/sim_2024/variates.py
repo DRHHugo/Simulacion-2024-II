@@ -6,7 +6,7 @@ from math import gamma as _gamma
 from . import _validate_float_by_key
 from . import _validate_int_by_key
 from . import _validate_int
-from . import _validate_list
+from . import _validate_list_floats
 from . import _warn_int
 from . import random_sample as _random_sample
 from . import mass_function as _mass_function
@@ -69,8 +69,9 @@ class Bernoulli(_discrete_variate):
     def __init__(self,**kwargs:dict[str,float]):
         """all attributes are private"""
         self._p:float
+        self.mass_function:mass_function
         self._p = kwargs['p']
-        self.mass_function:mass_function = _mass_function(function=lambda x:(self._p if x==1 else 1-self._p),sup=[0,1])
+        self.mass_function = _mass_function(sup=[0.,1.],values=[1-self._p,self._p])
     
     def rand(self)->float:
         """simulate one value of the random variate"""
@@ -186,7 +187,7 @@ class DiscreteUniform(_discrete_variate):
         if 'size' in kwargs:
             _validate_int(kwargs['size'],'size must be an integer greater than 1',2)
         if 'sup' in kwargs:
-            _validate_list(kwargs['sup'],'sup must be a list of int or float numbers')
+            _validate_list_floats(kwargs['sup'],'sup must be a list of int or float numbers')
             if len(kwargs['sup'])<2:
                 raise ValueError('sup must be a list of size at leats 2')
         return super().__new__(cls)
@@ -499,7 +500,7 @@ class Beta(_continuos_variate):
         y = self._gamma_2.rand()
         return x/(x+y)
 
-class Tringular(_continuos_variate):
+class Triangular(_continuos_variate):
     """Triangular distribution
     """
     def __init__(self,**kwargs)->None:
@@ -539,7 +540,7 @@ __all__ = [
     'NegativeBinomial',
     'DiscreteUniform',
     'Poisson',
-    'ContinuosUniform',
+    'ContinuousUniform',
     'Exponential',
     'Normal',
     'Chisq',

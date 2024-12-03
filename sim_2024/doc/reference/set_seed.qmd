@@ -1,14 +1,16 @@
 # set_seed { #sim_2024.set_seed }
 
-`set_seed(seed)`
+```python
+set_seed(seed)
+```
 
 Change state of default pseudorandom generator.
 
 This functions allows to set the state of the default pseudorandom generator for reproductibility porpuses.
 If seed is not an integer it raise a Warning and no change is done.
 
-## Parameters
+## Parameters {.doc-section .doc-section-parameters}
 
 | Name   | Type   | Description                                                | Default    |
 |--------|--------|------------------------------------------------------------|------------|
-| `seed` | int    | integer used to restart the default pseudorandom generator | _required_ |
+| seed   | int    | integer used to restart the default pseudorandom generator | _required_ |

@@ -665,8 +665,8 @@ class process_path:
             else:
                 raise ValueError('times and X parameters must be arrays of the same length')
         elif type(times)==list and type(X)==list:
-            _validate_list(times,'all elemnts of first parameter must be floats')
-            _validate_list(X,'all elemnts of second parameter must be floats')
+            _validate_list_floats(times,'all elemnts of first parameter must be floats')
+            _validate_list_floats(X,'all elemnts of second parameter must be floats')
             if len(times)>0 and len(X)>0 and len(times)==len(X):
                 return super().__new__(cls)
             else:

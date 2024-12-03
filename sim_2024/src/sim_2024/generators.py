@@ -3,8 +3,8 @@ from . import _package_warning
 from . import _generator_Error
 from . import _warn_int
 from . import _validate_int_by_key
-from . import _validate_list
-from . import _validate_list_by_key
+from . import _validate_list_ints
+from . import _validate_list_ints_by_key
 from . import random_sample as _random_sample
 
 class _random_generator:
@@ -167,7 +167,7 @@ class polynomial_congruential_generator(_congruential_generator):
         """validation of parameters occurs here"""
         _validate_int_by_key(kwargs,key='mod',message='mod should be an integer bigger than 1',threshold=2)
         _validate_int_by_key(kwargs,key='seed',message='seed should be an integer')
-        _validate_list_by_key(kwargs,key='coefs',exclude_all_zeros=True)
+        _validate_list_ints_by_key(kwargs,key='coefs',exclude_all_zeros=True)
         if len(kwargs['coefs'])==1:
             raise ValueError('coefs shuld be at least of size 2')
         if len(kwargs['coefs'])==2:
@@ -236,7 +236,7 @@ class multiple_congruential_generator(_congruential_generator):
             self._state.pop(0)
             self._state.insert(len(self._state),x)
             try:
-                _validate_list(self._state,message='',exceptions=0)
+                _validate_list_ints(self._state,message='',exceptions=0)
             except:
                 raise _generator_Error()
         return x/self._mod
@@ -260,13 +260,13 @@ class combined_congruential_generator(_congruential_generator):
         _validate_list_by_key(kwargs,key='seeds',exclude_all_zeros=False)
         if len(kwargs['mods'])!=2:
             raise ValueError('mods must be a list of integers both at leats two')
-        _validate_list(kwargs['mods'],message='mods must be a list of integers both at leats two',threshold=2)
+        _validate_list_ints(kwargs['mods'],message='mods must be a list of integers both at leats two',threshold=2)
         if len(kwargs['mults'])!=2:
             raise ValueError('mults must be a list of two non zero integers')
-        _validate_list(kwargs['mults'],message='mults must be a list of two non zero integers',exceptions=0)
+        _validate_list_ints(kwargs['mults'],message='mults must be a list of two non zero integers',exceptions=0)
         if len(kwargs['seeds'])!=2:
             raise ValueError('seeds must be a list of two non zero integers')
-        _validate_list(kwargs['seeds'],message='seeds must be a list of two non zero integers',exceptions=0)
+        _validate_list_ints(kwargs['seeds'],message='seeds must be a list of two non zero integers',exceptions=0)
         return super().__new__(cls)
 
     def __init__(self,**kwargs:dict)->None:
@@ -304,18 +304,18 @@ class multcombi_congruential_generator(_congruential_generator):
         _validate_list_by_key(kwargs,key='seeds',exclude_all_zeros=False)
         if len(kwargs['mods'])!=2:
             raise ValueError('mods must be a list of integers both at leats two')
-        _validate_list(kwargs['mods'],message='mods must be a list of integers both at leats two',threshold=2)
+        _validate_list_ints(kwargs['mods'],message='mods must be a list of integers both at leats two',threshold=2)
         if len(kwargs['mults'])%2!=0:
             raise ValueError('mults must be a list of odd lenght')
         k = len(kwargs['mults'])//2
-        _validate_list(kwargs['mults'][0:k],message='first half of mults are all zero',exceptions=0)
-        _validate_list(kwargs['mults'][k+1:2*k],message='second half of mults are all zero',exceptions=0)
+        _validate_list_ints(kwargs['mults'][0:k],message='first half of mults are all zero',exceptions=0)
+        _validate_list_ints(kwargs['mults'][k+1:2*k],message='second half of mults are all zero',exceptions=0)
         if len(kwargs['seeds'])%2!=0:
             raise ValueError('seeds must be a list of odd lenght')
         if  len(kwargs['seeds'])//2!=k:
             raise ValueError('seeds and mods must be of the same lenght')
-        _validate_list(kwargs['seeds'][0:k],message='first half of seeds are all zero',exceptions=0)
-        _validate_list(kwargs['seeds'][k+1:2*k],message='second half of seeds are all zero',exceptions=0)
+        _validate_list_ints(kwargs['seeds'][0:k],message='first half of seeds are all zero',exceptions=0)
+        _validate_list_ints(kwargs['seeds'][k+1:2*k],message='second half of seeds are all zero',exceptions=0)
         return super().__new__(cls)
 
     def __init__(self,**kwargs:dict)->None:
@@ -340,10 +340,10 @@ class multcombi_congruential_generator(_congruential_generator):
         self._state_1.insert(len(self._state_1),x)
         self._state_2.insert(len(self._state_2),y)
         try:
-            _validate_list(self._state_1,message='',exceptions=0)
+            _validate_list_ints(self._state_1,message='',exceptions=0)
         except:
             try:
-                _validate_list(self._state_2,message='',exceptions=0)
+                _validate_list_ints(self._state_2,message='',exceptions=0)
             except:
                 raise _generator_Error()
         return z/self._mod_1

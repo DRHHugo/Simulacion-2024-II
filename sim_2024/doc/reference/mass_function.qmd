@@ -1,5 +1,16 @@
 # mass_function { #sim_2024.mass_function }
 
-`mass_function(self, function, sup)`
+```python
+mass_function(self, sup, values)
+```
 
 funcion de masa
+
+Clase de abstracción de una función de masa de probabilidad.
+
+## Parameters {.doc-section .doc-section-parameters}
+
+| Name   | Type   | Description                                          | Default    |
+|--------|--------|------------------------------------------------------|------------|
+| sup    | list   | support of mass function                             | _required_ |
+| values | list   | values of mass function in the same order as support | _required_ |

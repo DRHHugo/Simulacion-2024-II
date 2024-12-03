@@ -1,14 +1,16 @@
 # variates.Poisson { #sim_2024.variates.Poisson }
 
-`variates.Poisson(self, **kwargs)`
+```python
+variates.Poisson(self, **kwargs)
+```
 
 Poisson distribution.
 
-## Other Parameters
+## Other Parameters {.doc-section .doc-section-other-parameters}
 
 | Name   | Type   | Description                                                                      | Default    |
 |--------|--------|----------------------------------------------------------------------------------|------------|
-| `rate` | float  | the rate associated with the underlaing exponential distribitud arrival process. | _required_ |
+| rate   | float  | the rate associated with the underlaing exponential distribitud arrival process. | _required_ |
 
 ## Methods
 
@@ -18,6 +20,8 @@ Poisson distribution.
 
 ### rand { #sim_2024.variates.Poisson.rand }
 
-`variates.Poisson.rand()`
+```python
+variates.Poisson.rand()
+```
 
 generation of one random number

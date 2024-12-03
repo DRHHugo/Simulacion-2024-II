@@ -1,6 +1,8 @@
 # process_path { #sim_2024.process_path }
 
-`process_path(self, times, X, type_path, auto=False)`
+```python
+process_path(self, times, X, type_path, auto=False)
+```
 
 realization of a random process
 
@@ -12,11 +14,11 @@ A random process can have contiuos or jumps paths, either one can be represneted
 Attribute _type is set to continum for contonuos paths and to jump for jumps paths.
 For both types of paths the attribute _auto must be set to on if the value of the realization at a time not given at inizialization can be derived as the weight average between the two closets times.
 
-## Parameters
+## Parameters {.doc-section .doc-section-parameters}
 
-| Name        | Type                            | Description                                                                                | Default    |
-|-------------|---------------------------------|--------------------------------------------------------------------------------------------|------------|
-| `times`     | array\[float\] \| list\[float\] | times for wich the process has been observed                                               | _required_ |
-| `X`         | array\[float\] \| list\[float\] | values for wich the process has been observed                                              | _required_ |
-| `type_path` | str                             | the type of path that the process have, continum or jump.                                  | _required_ |
-| `auto`      | bool                            | Treu if the value of the realization at a time not given at inizialization can be derived. | `False`    |
+| Name      | Type                            | Description                                                                                | Default    |
+|-----------|---------------------------------|--------------------------------------------------------------------------------------------|------------|
+| times     | array\[float\] \| list\[float\] | times for wich the process has been observed                                               | _required_ |
+| X         | array\[float\] \| list\[float\] | values for wich the process has been observed                                              | _required_ |
+| type_path | str                             | the type of path that the process have, continum or jump.                                  | _required_ |
+| auto      | bool                            | Treu if the value of the realization at a time not given at inizialization can be derived. | `False`    |

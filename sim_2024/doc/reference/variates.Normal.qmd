@@ -1,13 +1,15 @@
 # variates.Normal { #sim_2024.variates.Normal }
 
-`variates.Normal(self, **kwargs)`
+```python
+variates.Normal(self, **kwargs)
+```
 
 Normal distribution
 
-## Other Parameters
+## Other Parameters {.doc-section .doc-section-other-parameters}
 
-| Name    | Type   | Description                 | Default    |
-|---------|--------|-----------------------------|------------|
-| `mean`  | float  | mean parameter              | _required_ |
-| `var`   | float  | variance parameter          | _required_ |
-| `stdev` | float  | standar deviation parameter | _required_ |
+| Name   | Type   | Description                 | Default    |
+|--------|--------|-----------------------------|------------|
+| mean   | float  | mean parameter              | _required_ |
+| var    | float  | variance parameter          | _required_ |
+| stdev  | float  | standar deviation parameter | _required_ |

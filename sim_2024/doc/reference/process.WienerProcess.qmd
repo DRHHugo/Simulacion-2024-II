@@ -1,6 +1,8 @@
 # process.WienerProcess { #sim_2024.process.WienerProcess }
 
-`process.WienerProcess(self)`
+```python
+process.WienerProcess(self)
+```
 
 Standar Wiener process
 
@@ -14,13 +16,15 @@ Args:
 
 ### rand { #sim_2024.process.WienerProcess.rand }
 
-`process.WienerProcess.rand(**kwargs)`
+```python
+process.WienerProcess.rand(**kwargs)
+```
 
 simulation of a path
 
-#### Other Parameters
+#### Other Parameters {.doc-section .doc-section-other-parameters}
 
-| Name          | Type   | Description                                                                                | Default    |
-|---------------|--------|--------------------------------------------------------------------------------------------|------------|
-| `horizon`     | float  | Stop time for the simulated path                                                           | _required_ |
-| `granularity` | float  | Intended as a small value dt. The value of the Wiener process is simulated at 0,dt,2dt,... | _required_ |
+| Name        | Type   | Description                                                                                | Default    |
+|-------------|--------|--------------------------------------------------------------------------------------------|------------|
+| horizon     | float  | Stop time for the simulated path                                                           | _required_ |
+| granularity | float  | Intended as a small value dt. The value of the Wiener process is simulated at 0,dt,2dt,... | _required_ |

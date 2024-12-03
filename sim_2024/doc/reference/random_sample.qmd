@@ -1,6 +1,8 @@
 # random_sample { #sim_2024.random_sample }
 
-`random_sample(self, initializer=None)`
+```python
+random_sample(self, initializer=None)
+```
 
 array subclass to represent a realization of a random process
 
@@ -8,8 +10,8 @@ A realization is an indexed set of observations of a random process wich is assu
 The _type attribute is set to continuos if the undarlay process is of continuos paths and to jump if is a jump process.
 This class also defines some related functions and functionalities.
 
-## Parameters
+## Parameters {.doc-section .doc-section-parameters}
 
-| Name          | Type     | Description                                     | Default   |
-|---------------|----------|-------------------------------------------------|-----------|
-| `initializer` | iterable | if provided it must be an iterable object whose | `None`    |
+| Name        | Type     | Description                                     | Default   |
+|-------------|----------|-------------------------------------------------|-----------|
+| initializer | iterable | if provided it must be an iterable object whose | `None`    |

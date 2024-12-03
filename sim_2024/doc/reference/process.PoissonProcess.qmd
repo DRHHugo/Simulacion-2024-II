@@ -1,14 +1,16 @@
 # process.PoissonProcess { #sim_2024.process.PoissonProcess }
 
-`process.PoissonProcess(self, **kwargs)`
+```python
+process.PoissonProcess(self, **kwargs)
+```
 
 Homogeneous Poisson process
 
-## Other Parameters
+## Other Parameters {.doc-section .doc-section-other-parameters}
 
 | Name   | Type   | Description                 | Default    |
 |--------|--------|-----------------------------|------------|
-| `rate` | float  | Rate of the Poisson process | _required_ |
+| rate   | float  | Rate of the Poisson process | _required_ |
 
 ## Methods
 
@@ -18,12 +20,14 @@ Homogeneous Poisson process
 
 ### rand { #sim_2024.process.PoissonProcess.rand }
 
-`process.PoissonProcess.rand(**kwargs)`
+```python
+process.PoissonProcess.rand(**kwargs)
+```
 
 simulation of a path
 
-#### Other Parameters
+#### Other Parameters {.doc-section .doc-section-other-parameters}
 
-| Name      | Type   | Description                      | Default    |
-|-----------|--------|----------------------------------|------------|
-| `horizon` | float  | Stop time for the simulated path | _required_ |
+| Name    | Type   | Description                      | Default    |
+|---------|--------|----------------------------------|------------|
+| horizon | float  | Stop time for the simulated path | _required_ |

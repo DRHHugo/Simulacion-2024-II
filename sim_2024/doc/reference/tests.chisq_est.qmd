@@ -1,4 +1,6 @@
 # tests.chisq_est { #sim_2024.tests.chisq_est }
 
-`tests.chisq_est(sample, k)`
+```python
+tests.chisq_est(sample, k)
+```
 

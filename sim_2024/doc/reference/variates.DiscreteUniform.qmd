@@ -1,15 +1,17 @@
 # variates.DiscreteUniform { #sim_2024.variates.DiscreteUniform }
 
-`variates.DiscreteUniform(self, **kwargs)`
+```python
+variates.DiscreteUniform(self, **kwargs)
+```
 
 Discrete uniform distribution.
 
-## Other Parameters
+## Other Parameters {.doc-section .doc-section-other-parameters}
 
 | Name   | Type          | Description                                                                               | Default    |
 |--------|---------------|-------------------------------------------------------------------------------------------|------------|
-| `size` | int           | if provided, the class will represenr Discrete distribution on inetegers 1,2,...,size.    | _required_ |
-| `sup`  | list\[float\] | if provided, the class will represent Discrete distribution on the set {members of list}. | _required_ |
+| size   | int           | if provided, the class will represenr Discrete distribution on inetegers 1,2,...,size.    | _required_ |
+| sup    | list\[float\] | if provided, the class will represent Discrete distribution on the set {members of list}. | _required_ |
 
 ## Methods
 
@@ -19,6 +21,8 @@ Discrete uniform distribution.
 
 ### rand { #sim_2024.variates.DiscreteUniform.rand }
 
-`variates.DiscreteUniform.rand()`
+```python
+variates.DiscreteUniform.rand()
+```
 
 generation of one random number

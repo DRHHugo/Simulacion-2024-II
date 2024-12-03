@@ -1,14 +1,16 @@
 # variates.Bernoulli { #sim_2024.variates.Bernoulli }
 
-`variates.Bernoulli(self, **kwargs)`
+```python
+variates.Bernoulli(self, **kwargs)
+```
 
 Representation of a random variate of Bernoulli type.
 
-## Other Parameters
+## Other Parameters {.doc-section .doc-section-other-parameters}
 
 | Name   | Type   | Description        | Default    |
 |--------|--------|--------------------|------------|
-| `p`    | float  | Sucess probability | _required_ |
+| p      | float  | Sucess probability | _required_ |
 
 ## Methods
 
@@ -18,6 +20,8 @@ Representation of a random variate of Bernoulli type.
 
 ### rand { #sim_2024.variates.Bernoulli.rand }
 
-`variates.Bernoulli.rand()`
+```python
+variates.Bernoulli.rand()
+```
 
 simulate one value of the random variate

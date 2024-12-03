@@ -1,12 +1,14 @@
 # variates.Binomial { #sim_2024.variates.Binomial }
 
-`variates.Binomial(self, **kwargs)`
+```python
+variates.Binomial(self, **kwargs)
+```
 
 representation of a random variate of binonimal type
 
-## Other Parameters
+## Other Parameters {.doc-section .doc-section-other-parameters}
 
 | Name   | Type   | Description        | Default    |
 |--------|--------|--------------------|------------|
-| `p`    | float  | Sucess probability | _required_ |
-| `n`    | int    | Number of trials   | _required_ |
+| p      | float  | Sucess probability | _required_ |
+| n      | int    | Number of trials   | _required_ |

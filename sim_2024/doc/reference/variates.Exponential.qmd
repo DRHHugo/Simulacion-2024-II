@@ -1,14 +1,16 @@
 # variates.Exponential { #sim_2024.variates.Exponential }
 
-`variates.Exponential(self, **kwargs)`
+```python
+variates.Exponential(self, **kwargs)
+```
 
 Exponential distribution.
 
-## Other Parameters
+## Other Parameters {.doc-section .doc-section-other-parameters}
 
 | Name   | Type   | Description    | Default    |
 |--------|--------|----------------|------------|
-| `rate` | float  | rate parameter | _required_ |
+| rate   | float  | rate parameter | _required_ |
 
 ## Methods
 
@@ -18,6 +20,8 @@ Exponential distribution.
 
 ### rand { #sim_2024.variates.Exponential.rand }
 
-`variates.Exponential.rand()`
+```python
+variates.Exponential.rand()
+```
 
 generation of one random number

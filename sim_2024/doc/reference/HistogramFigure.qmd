@@ -1,14 +1,16 @@
 # HistogramFigure { #sim_2024.HistogramFigure }
 
-`HistogramFigure(self, sample, **kwargs)`
+```python
+HistogramFigure(self, sample, **kwargs)
+```
 
 custom matplotlib Figure to plot a density histogram
 
 This custom figure allows to create a histogram of a sample of float values in a pre-defined format.
 *args and *Keyword arguments are passed to figure inizialization and to histogram creation.
 
-## Parameters
+## Parameters {.doc-section .doc-section-parameters}
 
-| Name     | Type          | Description           | Default    |
-|----------|---------------|-----------------------|------------|
-| `sample` | random_sample | random_sample to plot | _required_ |
+| Name   | Type          | Description           | Default    |
+|--------|---------------|-----------------------|------------|
+| sample | random_sample | random_sample to plot | _required_ |
