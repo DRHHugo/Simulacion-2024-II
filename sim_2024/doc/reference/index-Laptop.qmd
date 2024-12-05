@@ -1,0 +1,87 @@
+# sim_2024 {.doc .doc-index}
+
+## Basics PseudoRandom functionalities
+
+funcionalidades básicas
+
+| | |
+| --- | --- |
+| [rand](rand.qmd#sim_2024.rand) |  |
+| [set_seed](set_seed.qmd#sim_2024.set_seed) | Change state of default pseudorandom generator. |
+| [random_sample](random_sample.qmd#sim_2024.random_sample) | array subclass to represent a realization of a random process |
+| [HistogramFigure](HistogramFigure.qmd#sim_2024.HistogramFigure) | custom matplotlib Figure to plot a density histogram |
+| [process_path](process_path.qmd#sim_2024.process_path) | realization of a random process |
+| [process_sample](process_sample.qmd#sim_2024.process_sample) | sample of process paths |
+| [PathFigure](PathFigure.qmd#sim_2024.PathFigure) | custom matplotlib Figure to plot a realization from a random process |
+| [mass_function](mass_function.qmd#sim_2024.mass_function) | funcion de masa |
+| [density_function](density_function.qmd#sim_2024.density_function) | funcion de densidad |
+
+## PseudoRandom Number Generators (PRNG)
+
+submodulo de generadores de números pseudoaleatorios
+
+| | |
+| --- | --- |
+| [generators.multiplicative_congruential_generator](generators.multiplicative_congruential_generator.qmd#sim_2024.generators.multiplicative_congruential_generator) | Multiplicative congruential  pseudorandom generator. |
+| [generators.linear_congruential_generator](generators.linear_congruential_generator.qmd#sim_2024.generators.linear_congruential_generator) | Linear congruential pseudorandom generator. |
+| [generators.quadratic_congrential_generator](generators.quadratic_congrential_generator.qmd#sim_2024.generators.quadratic_congrential_generator) | Quadratic congruential pseudorandom generators. |
+| [generators.polynomial_congruential_generator](generators.polynomial_congruential_generator.qmd#sim_2024.generators.polynomial_congruential_generator) | Polynomial congruential pseudorandom generator. |
+| [generators.multiple_congruential_generator](generators.multiple_congruential_generator.qmd#sim_2024.generators.multiple_congruential_generator) | Multiple congruential pseudorandom generator |
+| [generators.combined_congruential_generator](generators.combined_congruential_generator.qmd#sim_2024.generators.combined_congruential_generator) | Combined congruential pseudorandom generator. |
+| [generators.multcombi_congruential_generator](generators.multcombi_congruential_generator.qmd#sim_2024.generators.multcombi_congruential_generator) | Multiple combined congruential pseudorandom generator |
+| [generators.linear_feedback_shift_register_4](generators.linear_feedback_shift_register_4.qmd#sim_2024.generators.linear_feedback_shift_register_4) | linear fedbacl shift register for word size 4 |
+| [generators.linear_feedback_shift_register_8](generators.linear_feedback_shift_register_8.qmd#sim_2024.generators.linear_feedback_shift_register_8) | linear fedbacl shift register for word size 8 |
+| [generators.linear_feedback_shift_register_12](generators.linear_feedback_shift_register_12.qmd#sim_2024.generators.linear_feedback_shift_register_12) | linear fedbacl shift register for word size 12 |
+| [generators.linear_feedback_shift_register_16](generators.linear_feedback_shift_register_16.qmd#sim_2024.generators.linear_feedback_shift_register_16) | linear fedback shift register for word size 16 |
+| [generators.linear_feedback_shift_register_20](generators.linear_feedback_shift_register_20.qmd#sim_2024.generators.linear_feedback_shift_register_20) | linear fedbacl shift register for word size 20 |
+| [generators.linear_feedback_shift_register_24](generators.linear_feedback_shift_register_24.qmd#sim_2024.generators.linear_feedback_shift_register_24) | linear fedbacl shift register for word size 24 |
+
+## Pruebas de aleatoriedad
+
+submodulo de pruebas de aleatoriedad para PRNG
+
+| | |
+| --- | --- |
+| [tests.mean_est](tests.mean_est.qmd#sim_2024.tests.mean_est) |  |
+| [tests.mean_test](tests.mean_test.qmd#sim_2024.tests.mean_test) |  |
+| [tests.variance_est](tests.variance_est.qmd#sim_2024.tests.variance_est) |  |
+| [tests.variance_test](tests.variance_test.qmd#sim_2024.tests.variance_test) |  |
+| [tests.chisq_est](tests.chisq_est.qmd#sim_2024.tests.chisq_est) |  |
+| [tests.chisq_test](tests.chisq_test.qmd#sim_2024.tests.chisq_test) |  |
+| [tests.series_est](tests.series_est.qmd#sim_2024.tests.series_est) |  |
+| [tests.series_test](tests.series_test.qmd#sim_2024.tests.series_test) |  |
+| [tests.runs_est](tests.runs_est.qmd#sim_2024.tests.runs_est) |  |
+| [tests.runs_test](tests.runs_test.qmd#sim_2024.tests.runs_test) |  |
+
+## Distribuciones de probabilidad
+
+submodulo de distribuciones de probabilidad
+
+| | |
+| --- | --- |
+| [variates.Bernoulli](variates.Bernoulli.qmd#sim_2024.variates.Bernoulli) | Representation of a random variate of Bernoulli type. |
+| [variates.Binomial](variates.Binomial.qmd#sim_2024.variates.Binomial) | representation of a random variate of binonimal type |
+| [variates.Geometric](variates.Geometric.qmd#sim_2024.variates.Geometric) | Representation of a random variate of Bernoulli type |
+| [variates.NegativeBinomial](variates.NegativeBinomial.qmd#sim_2024.variates.NegativeBinomial) | representation of a random variate of Bernoulli type |
+| [variates.DiscreteUniform](variates.DiscreteUniform.qmd#sim_2024.variates.DiscreteUniform) | Discrete uniform distribution. |
+| [variates.Poisson](variates.Poisson.qmd#sim_2024.variates.Poisson) | Poisson distribution. |
+| [variates.ContinuousUniform](variates.ContinuousUniform.qmd#sim_2024.variates.ContinuousUniform) | Continuous uniform distribution. |
+| [variates.Exponential](variates.Exponential.qmd#sim_2024.variates.Exponential) | Exponential distribution. |
+| [variates.Normal](variates.Normal.qmd#sim_2024.variates.Normal) | Normal distribution |
+| [variates.BoundedNormal](variates.BoundedNormal.qmd#sim_2024.variates.BoundedNormal) | Normal bounded distribution |
+| [variates.RectifiedNormal](variates.RectifiedNormal.qmd#sim_2024.variates.RectifiedNormal) | Rectified normal distribution |
+| [variates.Chisq](variates.Chisq.qmd#sim_2024.variates.Chisq) |  |
+| [variates.Student](variates.Student.qmd#sim_2024.variates.Student) |  |
+| [variates.Gamma](variates.Gamma.qmd#sim_2024.variates.Gamma) | Gamma distribution |
+| [variates.Beta](variates.Beta.qmd#sim_2024.variates.Beta) | Beta distribution |
+| [variates.ExampleDis](variates.ExampleDis.qmd#sim_2024.variates.ExampleDis) |  |
+
+## Stochastic Process
+
+submodulo de procesos estocásticos
+
+| | |
+| --- | --- |
+| [process.WienerProcess](process.WienerProcess.qmd#sim_2024.process.WienerProcess) | Standar Wiener process |
+| [process.PoissonProcess](process.PoissonProcess.qmd#sim_2024.process.PoissonProcess) | Homogeneous Poisson process |
+| [process.CompoundPoissonProcess](process.CompoundPoissonProcess.qmd#sim_2024.process.CompoundPoissonProcess) | Compound Poisson process with Gaussian size jumps |

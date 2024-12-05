@@ -1,0 +1,34 @@
+# process.CompoundPoissonProcess { #sim_2024.process.CompoundPoissonProcess }
+
+```python
+process.CompoundPoissonProcess(self, **kwargs)
+```
+
+Compound Poisson Process with Gaussian jumps
+
+## Other Parameters {.doc-section .doc-section-other-parameters}
+
+| Name   | Type   | Description                            | Default    |
+|--------|--------|----------------------------------------|------------|
+| rate   | float  | Rate of the underlaing Poisson process | _required_ |
+| var    | float  | Variance of the Gaussian jumps         | _required_ |
+
+## Methods
+
+| Name | Description |
+| --- | --- |
+| [rand](#sim_2024.process.CompoundPoissonProcess.rand) | simulation of a path |
+
+### rand { #sim_2024.process.CompoundPoissonProcess.rand }
+
+```python
+process.CompoundPoissonProcess.rand(**kwargs)
+```
+
+simulation of a path
+
+#### Other Parameters {.doc-section .doc-section-other-parameters}
+
+| Name    | Type   | Description                      | Default    |
+|---------|--------|----------------------------------|------------|
+| horizon | float  | Stop time for the simulated path | _required_ |

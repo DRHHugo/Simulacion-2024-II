@@ -1,0 +1,5 @@
+# process.CompoundPoissonProcess { #sim_2024.process.CompoundPoissonProcess }
+
+`process.CompoundPoissonProcess(self, **kwargs)`
+
+Compound Poisson process with Gaussian size jumps
