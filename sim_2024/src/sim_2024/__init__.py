@@ -3,6 +3,7 @@ from typing import Callable as _Callable
 from array import array as _array
 from os import urandom as _urandom
 from os import path as _path
+from os import name as _name
 from warnings import warn as _warn  
 from matplotlib import font_manager as _font_manager
 from matplotlib import rcParams as _rcParams
@@ -13,14 +14,22 @@ from matplotlib import colormaps as _colormaps
 #change font for matplotlib figures
 _dir_path = _path.dirname(_path.realpath(__file__))
 
-_font_manager.fontManager.addfont(_dir_path+'\\lmroman12-regular.otf')
-_font_manager.fontManager.addfont(_dir_path+'\\lmsans12-regular.otf')
+if _name=='windows':
+    _font_manager.fontManager.addfont(_dir_path+'\\lmroman12-regular.otf')
+    _font_manager.fontManager.addfont(_dir_path+'\\lmsans12-regular.otf')
+elif _name=='posix':
+    _font_manager.fontManager.addfont(_dir_path+'/lmroman12-regular.otf')
+    _font_manager.fontManager.addfont(_dir_path+'/lmsans12-regular.otf')
+else:
+    raise EnvironmentError("unknow OS")
 _rcParams.update({
     'font.serif': 'Latin Modern Roman',
     'font.sans-serif': 'Latin Modern Sans',
     'font.size': 8,
     'savefig.bbox':'tight'
     })
+
+
 
 #custom errors and warnings
 
